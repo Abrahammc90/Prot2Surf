@@ -1,0 +1,5 @@
+*.o
+*.mod
+analyze_residues
+make_matrix
+clust
