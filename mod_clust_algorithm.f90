@@ -14,9 +14,11 @@ module mod_clust_algorithm
         integer, intent(in) :: n, ncls
         type(type_assoc_file) :: complexes
 
-        integer :: i, j, k, min_i, min_j, merge_counter, remaining_clusters
+        integer :: i, j, k, min_i, min_j, merge_counter, remaining_clusters, num_dist
         integer, dimension(n) :: cluster_size ! To track the size of each cluster
-        real (kind=8):: min_dist, dist, standard_deviation
+        real (kind=8):: min_dist, dist, mean_dist, standard_deviation, dist_threshold
+        real (kind=8):: sum_dist, sum_sq_dist
+        real (kind=8):: k_factor=1.d0
         logical, dimension(n) :: active_points
 
         integer, dimension(n, n) :: cluster_indexes, cluster_indexes_sorted ! Store indexes of each cluster
@@ -38,8 +40,26 @@ module mod_clust_algorithm
           cluster_count(i) = 1       ! Initially, each cluster has one member
         end do
 
+        ! Initialize statistics
+        sum_dist = 0.0
+        sum_sq_dist = 0.0
+        num_dist = 0
+
+        do i = 1, n
+            do j = i + 1, n
+                sum_dist = sum_dist + matrix(i, j)
+                sum_sq_dist = sum_sq_dist + matrix(i, j) ** 2
+                num_dist = num_dist + 1
+            end do
+        end do
+
+        mean_dist = sum_dist / num_dist
+        standard_deviation = sqrt((sum_sq_dist / num_dist) - mean_dist ** 2)
+        dist_threshold = mean_dist + k_factor * standard_deviation
+
+
         ! Main loop for clustering
-        do while (remaining_clusters > ncls)
+        do while (remaining_clusters > 1)
           ! Find the closest pair of clusters
           min_dist = 1.0e30
           min_i = -1
@@ -50,6 +70,9 @@ module mod_clust_algorithm
             do j = i + 1, n
               if (.not. active_points(j)) cycle
               dist = matrix(i, j)
+              !sum_dist = sum_dist + dist
+              !sum_sq_dist = sum_sq_dist + dist**2
+              !num_dist = num_dist + 1
               if (dist < min_dist) then
                 min_dist = dist
                 min_i = i
@@ -57,6 +80,14 @@ module mod_clust_algorithm
               end if
             end do
           end do
+
+          ! Update dynamic threshold
+          mean_dist = sum_dist / num_dist
+          standard_deviation = sqrt((sum_sq_dist / num_dist) - mean_dist ** 2)
+          dist_threshold = mean_dist + k_factor * standard_deviation
+
+          ! Stop merging if clusters are too far apart
+          if (min_dist > dist_threshold) exit
       
           ! Merge clusters min_i and min_j
           merge_counter = merge_counter + 1
@@ -93,6 +124,11 @@ module mod_clust_algorithm
                                          (cluster_size(min_i) + cluster_size(min_j))
                                          matrix(i, min_i) = matrix(min_i, i)
           end do
+
+          ! Update distance statistics dynamically
+          sum_dist = sum_dist + min_dist
+          sum_sq_dist = sum_sq_dist + min_dist ** 2
+          num_dist = num_dist + 1
 
           if ( mod(remaining_clusters, 100) == 0 ) then
             print *, 'remaining clusters', remaining_clusters
@@ -133,19 +169,19 @@ module mod_clust_algorithm
         !Calculate average and standard deviation
         do i = 1, n
           if (.not. active_points(i)) cycle
-          dist = 0.0
+          mean_dist = 0.0
           do j = 1, cluster_count(i)
               !do k = 1, cluster_count(i)
                   !dist = dist + matrix(cluster_indexes(i, j), cluster_indexes(i, k))
               !end do
               if ( present(opt_array) ) then
-                dist = dist + opt_array(cluster_indexes(i, j))
+                mean_dist = mean_dist + opt_array(cluster_indexes(i, j))
               else
-                dist = dist + matrix(i, cluster_indexes(i, j))
+                mean_dist = mean_dist + matrix(i, cluster_indexes(i, j))
               end if
           end do
-          dist = dist / cluster_count(i)
-          cluster_average(i) = dist
+          mean_dist = mean_dist / cluster_count(i)
+          cluster_average(i) = mean_dist
           standard_deviation = 0.0
           do j = 1, cluster_count(i)
             if ( present(opt_array) ) then
