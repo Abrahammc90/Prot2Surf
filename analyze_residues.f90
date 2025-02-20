@@ -10,7 +10,7 @@ program main
 
     integer :: tot_atoms2, tot_residues2, tot_chains2, tot_residue_atoms2
     integer :: tot_encounters, nb_encounters
-    type ( type_pdb_file ) :: pdb1!, surface_pdb
+    type ( type_pdb_file ) :: pdb1, pdb2
     type ( type_assoc_file ) :: complexes
 
     integer :: i, j, k
@@ -30,10 +30,12 @@ program main
     complexes_bool = .false.
     nb_encounters_bool = .false.
     dist_threshold = 6.0
+    nb_argument = 0
+    count_arg = 1
+    nb_argument = command_argument_count()
 
     do while ( count_arg <= nb_argument )
         call getarg( count_arg, argument )
-        
         if ( trim(argument) == "-pdb2" ) then
             pdb2_bool = .true.
             call getarg( count_arg+1, argument )
@@ -68,7 +70,7 @@ program main
 
 
     !Reads protein PDB
-    call read_pdb(pdb1, pdb2_filename, tot_atoms2, tot_residues2, tot_chains2)
+    call read_pdb(pdb2, pdb2_filename, tot_atoms2, tot_residues2, tot_chains2)
     
 
     !Reads Complexes
@@ -98,10 +100,10 @@ program main
     allocate(residues_cog(tot_residues2, 3))
 
     do j = 1, tot_residues2
-        tot_residue_atoms2 = pdb1 % residues(j) % natoms
+        tot_residue_atoms2 = pdb2 % residues(j) % natoms
         allocate(residue_crds(tot_residue_atoms2, 3))
         do k = 1, tot_residue_atoms2
-          residue_crds(k, :) = pdb1 % residues(j) % atoms(k) % coord
+          residue_crds(k, :) = pdb2 % residues(j) % atoms(k) % coord
         end do
         call calculate_cog(residue_cog, residue_crds, tot_residue_atoms2)
         residues_cog(j, :) = residue_cog
@@ -139,7 +141,7 @@ program main
     open(unit=unit_number, file='closest_residues.txt', status='replace', action='write')
     do j = 1, tot_residues2
 
-        closest_resid = pdb1 % residues(j) % resid
+        closest_resid = pdb2 % residues(j) % resid
         write(str_resid, '(I4)') closest_resid
         residue_str = "Residue" // adjustr(str_resid) // ":"
         if (encounters_count(j) .gt. 0) then
