@@ -4,15 +4,15 @@ MODULE mod_matrix
 
     contains
 
-    subroutine matrix_z(matrix, array, n, nb_atoms, &
-      xc1, xc2, trans_vector, rot1, rot2, coord)
+    subroutine matrix_z_coord(matrix, array, n, nb_atoms, &
+      xc1, xc2, trans_vector, rot1, rot2, solute_crds)
     
       IMPLICIT NONE
       real(kind=8), dimension(3), intent(in) :: xc1, xc2
       real(kind=8), dimension(:, :), intent(in) :: trans_vector, rot1, rot2
       real(kind=8), dimension(n, n), intent(out) :: matrix
       real(kind=8), dimension(n), intent(out) :: array
-      real(kind=8), dimension(:, :), intent(in) :: coord
+      real(kind=8), dimension(:, :), intent(in) :: solute_crds
       integer, intent(in) :: n, nb_atoms
       real(kind=8), dimension(nb_atoms, 3) :: new_coord
       integer :: i, j
@@ -25,12 +25,12 @@ MODULE mod_matrix
       do i = 1, n
         matrix(i, i) = 0
         call update_complex(xc1, xc2, trans_vector(i, :), &
-        rot1(i, :), rot2(i, :), nb_atoms, coord, new_coord)
+        rot1(i, :), rot2(i, :), nb_atoms, solute_crds, new_coord)
         value_i = new_coord(1, 3)
         array(i) = value_i
         do j = i+1, n
           call update_complex(xc1, xc2, trans_vector(j, :), &
-        rot1(j, :), rot2(j, :), nb_atoms, coord, new_coord)
+        rot1(j, :), rot2(j, :), nb_atoms, solute_crds, new_coord)
           value_j = new_coord(1, 3)
           !write(*,*) 'new coord j', new_coord
           !write(*,*) value_i, value_j
@@ -44,80 +44,86 @@ MODULE mod_matrix
           matrix(i, j) = abs(value_i - value_j) !function
           matrix(j, i) = matrix(i, j)
         end do
+        write(*,*) 'Encounters processed: ', i
       end do
-    end subroutine matrix_z
+    end subroutine matrix_z_coord
 
-    subroutine matrix_dist(matrix, array, n, nb_atoms, &
-      xc1, xc2, trans_vector, rot1, rot2, protein_points, surface_points)
+    subroutine matrix_atoms_dist(matrix, array, n, nb_atoms, &
+      xc1, xc2, trans_vector, rot1, rot2, solute1_crds, solute2_crds)
     
       IMPLICIT NONE
       real(kind=8), dimension(3), intent(in) :: xc1, xc2
       real(kind=8), dimension(:, :), intent(in) :: trans_vector, rot1, rot2
       real(kind=8), dimension(n, n), intent(out) :: matrix
       real(kind=8), dimension(n), intent(out) :: array
-      real(kind=8), dimension(:, :), intent(in) :: protein_points, surface_points
+      real(kind=8), dimension(:, :), intent(in) :: solute1_crds, solute2_crds
       integer, intent(in) :: n, nb_atoms
-      real(kind=8), dimension(:), allocatable :: C1_C4_distances
+      real(kind=8), dimension(:), allocatable :: distances
       real(kind=8), dimension(nb_atoms, 3) :: new_coord
-      integer :: i, j, k, tot_coords
-      real(kind=8) :: value_i, value_j, dist
+      integer :: i, j, k, l, tot_coords1, tot_coords2
+      real(kind=8) :: min_i, min_j, dist
 
-      tot_coords = size(surface_points)
-      allocate(C1_C4_distances(tot_coords))
-      C1_C4_distances = 0
+      tot_coords1 = size(solute1_crds(:, 1))
+      tot_coords2 = size(solute2_crds(:, 1))
+      allocate(distances(tot_coords1))
+      distances = 999999.9
 
-      ! Initialize the matrix based on the closest C1/C4 atom
+      ! Initialize the matrix based on the closest atom distances
       do i = 1, n
         matrix(i, i) = 0
-        C1_C4_distances = 0
+        distances = 999999.9
         call update_complex(xc1, xc2, trans_vector(i, :), &
-        rot1(i, :), rot2(i, :), nb_atoms, protein_points, new_coord)
-        do k = 1, tot_coords
-          call calculate_distance(new_coord, surface_points(k, :), dist)
-          C1_C4_distances(k) = dist
+        rot1(i, :), rot2(i, :), nb_atoms, solute2_crds, new_coord)
+        do k = 1, tot_coords1
+          call calculate_distance(new_coord, solute1_crds(k, :), dist)
+          distances(k) = dist
         end do
-        value_i = minval(C1_C4_distances)
-        array(i) = value_i
+        min_i = minval(distances)
+        array(i) = min_i
         do j = i+1, n
-          C1_C4_distances = 0
+          distances = 999999.9
           call update_complex(xc1, xc2, trans_vector(j, :), &
-        rot1(j, :), rot2(j, :), nb_atoms, protein_points, new_coord)
-          do k = 1, tot_coords
-            call calculate_distance(new_coord, surface_points(k, :), dist)
-            C1_C4_distances(k) = dist
+        rot1(j, :), rot2(j, :), nb_atoms, solute2_crds, new_coord)
+          do k = 1, tot_coords1
+            call calculate_distance(new_coord, solute1_crds(k, :), dist)
+            distances(k) = dist
           end do
-          value_j = minval(C1_C4_distances)
-          matrix(i, j) = abs(value_i - value_j) !function
+          min_j = minval(distances)
+          matrix(i, j) = abs(min_i - min_j) !function
           matrix(j, i) = matrix(i, j)
         end do
         write(*,*) 'Encounters processed: ', i
       end do
-    end subroutine matrix_dist
+    end subroutine matrix_atoms_dist
 
     !Subroutine matrix_plane_degree
 !
-    subroutine matrix_chain_degree(matrix, array, n, nb_atoms, &
-      xc1, xc2, trans_vector, rot1, rot2, protein_points, surface_points)
+    subroutine matrix_angle(matrix, array, n, nb_atoms, &
+      xc1, xc2, trans_vector, rot1, rot2, point1, point2, point3, point4)
       
       IMPLICIT NONE
       real(kind=8), dimension(3), intent(in) :: xc1, xc2
       real(kind=8), dimension(:, :), intent(in) :: trans_vector, rot1, rot2
       real(kind=8), dimension(n, n), intent(out) :: matrix
       real(kind=8), dimension(n), intent(out) :: array
-      real(kind=8), dimension(:, :), intent(in) :: protein_points, surface_points
+      real(kind=8), dimension(:), intent(in) :: point1, point2, point3, point4
       integer, intent(in) :: n, nb_atoms
       real(kind=8), dimension(nb_atoms, 3) :: new_coord_1, new_coord_2
       real(kind=8), dimension(3) :: v1, v2
       real(kind=8) :: theta1, theta2
       integer :: i, j
+      real(kind=8), dimension(2, 3) :: solute2_points
 
-      ! Initialize the matrix based on rmsd
-      v1(1) = surface_points(1, 1) - surface_points(2, 1)
-      v1(2) = surface_points(1, 2) - surface_points(2, 2)
-      v1(3) = surface_points(1, 3) - surface_points(2, 3)
+      solute2_points(1, :) = point3(:)
+      solute2_points(2, :) = point4(:)
+
+      ! Initialize the matrix based on angle between vectors
+      v1(1) = point2(1) - point1(1)
+      v1(2) = point2(2) - point1(2)
+      v1(3) = point2(3) - point1(3)
       do i = 1, n
         call update_complex(xc1, xc2, trans_vector(i, :), &
-        rot1(i, :), rot2(i, :), nb_atoms, protein_points, new_coord_1)
+        rot1(i, :), rot2(i, :), nb_atoms, solute2_points, new_coord_1)
         
         matrix(i, i) = 0
         v2(1) = new_coord_1(1, 1) -  new_coord_1(2, 1)
@@ -129,7 +135,7 @@ MODULE mod_matrix
 
         do j = i+1, n
           call update_complex(xc1, xc2, trans_vector(j, :), &
-        rot1(j, :), rot2(j, :), nb_atoms, protein_points, new_coord_2)
+        rot1(j, :), rot2(j, :), nb_atoms, solute2_points, new_coord_2)
           
           v2(1) = new_coord_2(1, 1) -  new_coord_2(2, 1)
           v2(2) = new_coord_2(1, 2) -  new_coord_2(2, 2)
@@ -139,52 +145,10 @@ MODULE mod_matrix
           matrix(i, j) = abs(theta1 - theta2)
           matrix(j, i) = matrix(i, j)
         end do
+        write(*,*) 'Encounters processed: ', i
       end do
 
-    end subroutine matrix_chain_degree
-
-    !subroutine matrix_residue_dist(matrix, array, n, nb_atoms, &
-    !  xc1, xc2, trans_vector, rot1, rot2, coord)
-    !
-    !  IMPLICIT NONE
-    !  real(kind=8), dimension(3), intent(in) :: xc1, xc2
-    !  real(kind=8), dimension(:, :), intent(in) :: trans_vector, rot1, rot2
-    !  real(kind=8), dimension(n, n), intent(out) :: matrix
-    !  real(kind=8), dimension(n), intent(out) :: array
-    !  real(kind=8), dimension(:, :), intent(in) :: coord
-    !  integer, intent(in) :: n, nb_atoms
-    !  real(kind=8), dimension(nb_atoms, 3) :: new_coord
-    !  integer :: i, j
-    !  real(kind=8) :: value_i, value_j
-!
-    !  !write(*,*) trans_vector(1, :)
-    !  !STOP
-!
-    !  ! Initialize the matrix based on z-distance
-    !  do i = 1, n
-    !    matrix(i, i) = 0
-    !    call update_complex(xc1, xc2, trans_vector(i, :), &
-    !    rot1(i, :), rot2(i, :), nb_atoms, coord, new_coord)
-    !    value_i = new_coord(1, 3)
-    !    array(i) = value_i
-    !    do j = i+1, n
-    !      call update_complex(xc1, xc2, trans_vector(j, :), &
-    !    rot1(j, :), rot2(j, :), nb_atoms, coord, new_coord)
-    !      value_j = new_coord(1, 3)
-    !      !write(*,*) 'new coord j', new_coord
-    !      !write(*,*) value_i, value_j
-    !      !write(*,*) 'trans i', trans_vector(i, :)
-    !      !write(*,*) 'trans j', trans_vector(j, :)
-    !      !write(*,*) 'rot1 i', rot1(i, :)
-    !      !write(*,*) 'rot2 i', rot2(i, :)
-    !      !write(*,*) 'rot1 j', rot1(j, :)
-    !      !write(*,*) 'rot2 j', rot2(j, :)
-    !      !if (j == 12) STOP
-    !      matrix(i, j) = abs(value_i - value_j) !function
-    !      matrix(j, i) = matrix(i, j)
-    !    end do
-    !  end do
-    !end subroutine matrix_residue_dist
+    end subroutine matrix_angle
     
     subroutine matrix_rmsd(matrix, n, nb_atoms, &
       xc1, xc2, trans_vector, rot1, rot2, coord)
@@ -202,34 +166,18 @@ MODULE mod_matrix
       do i = 1, n
         call update_complex(xc1, xc2, trans_vector(i, :), &
         rot1(i, :), rot2(i, :), nb_atoms, coord, new_coord_1)
-        !print *, trans_vector(i, :)
-        !print *, rot1(i, :)
-        !print *, rot2(i, :)
-        !print *, ""
         matrix(i, i) = 0
         do j = i+1, n
           call update_complex(xc1, xc2, trans_vector(j, :), &
         rot1(j, :), rot2(j, :), nb_atoms, coord, new_coord_2)
-          !print *, trans_vector(j, :)
-          !print *, rot1(j, :)
-          !print *, rot2(j, :)
-          !print *, ""
-          !call rmsd(rmsd2, dist_max, & 
-          !trans_vector(i, :), rot1(i, :), rot2(i, :), &
-          !trans_vector(j, :), rot1(j, :), rot2(j, :))
           call rmsd(rmsd_value, nb_atoms, new_coord_1, new_coord_2)
-          !print *, new_coord_1(1, :)
-          !print *, new_coord_2(1, :)
-          !print *, rmsd_value
-          !stop
           matrix(i, j) = rmsd_value
           matrix(j, i) = matrix(i, j)
         end do
         if (mod(i, n/100) == 0) then
           percentage = (real(i)/real(n))*100 
-          !write(*,'(F5.1, A)') percentage, '%'
         end if
-        !if (mod(i, n/1000) == 0) write(*,*) i
+        write(*,*) 'Encounters processed: ', i
       end do
 
     end subroutine matrix_rmsd

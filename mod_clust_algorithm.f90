@@ -4,24 +4,24 @@ module mod_clust_algorithm
 
   contains
 
-    subroutine mean_linkage_clustering(matrix, n, ncls, output_name, complexes, opt_array)
+    subroutine mean_linkage_clustering(matrix, n, k_factor, output_name, complexes, opt_array)
 
         IMPLICIT NONE
 
         real (kind=8), dimension(:, :), intent(inout) :: matrix
         real (kind=8), dimension(:), intent(inout), optional :: opt_array
         character*128, intent(in) :: output_name
-        integer, intent(in) :: n, ncls
+        integer, intent(in) :: n
+        real (kind=8), intent(in):: k_factor
         type(type_assoc_file) :: complexes
 
         integer :: i, j, k, min_i, min_j, merge_counter, remaining_clusters, num_dist
         integer, dimension(n) :: cluster_size ! To track the size of each cluster
         real (kind=8):: min_dist, dist, mean_dist, standard_deviation, dist_threshold
         real (kind=8):: sum_dist, sum_sq_dist
-        real (kind=8):: k_factor=1.d0
         logical, dimension(n) :: active_points
 
-        integer, dimension(n, n) :: cluster_indexes, cluster_indexes_sorted ! Store indexes of each cluster
+        integer, dimension(n, n) :: cluster_indexes ! Store indexes of each cluster
         integer, dimension(n) :: cluster_count  ! Number of elements in each cluster
 
         integer, dimension(n) :: representative_indexes  ! Store most representative value index for each cluster
@@ -226,7 +226,7 @@ module mod_clust_algorithm
       real (kind=8), dimension(:), intent(inout) :: cluster_average, cluster_sd
       logical, dimension(:), intent(inout) :: active_clusters
       
-      integer :: i, j, min_i, min_j, sorted_i, encounters_found, temp_j
+      integer :: i, j, sorted_i, encounters_found, temp_j
       real (kind=8) :: temp
       integer, dimension(tot_encounters) :: sorted_indexes
       !logical, dimension(tot_encounters, tot_encounters) :: indexes_checked_matrix
@@ -266,27 +266,27 @@ module mod_clust_algorithm
       end do
 
       do i = 1, tot_encounters
-
         sorted_i = sorted_indexes(i)
+    
+        ! Cache values for better memory access efficiency
         temp_cluster_count(i) = cluster_count(sorted_i)
         temp_active_clusters(i) = active_clusters(sorted_i)
         temp_cluster_average(i) = cluster_average(sorted_i)
         temp_cluster_sd(i) = cluster_sd(sorted_i)
         temp_representative_indexes(i) = representative_indexes(sorted_i)
-
+    
         encounters_found = 0
         do j = 1, tot_encounters
-
-          if ( ANY( cluster_indexes(sorted_i,:) == sorted_indexes(j) ) ) then
-            encounters_found = encounters_found + 1
-            temp_cluster_indexes(i, encounters_found) = sorted_indexes(j)
-
-            if ( encounters_found == cluster_count(sorted_i) ) EXIT
-          end if
-        
+            do temp_j = 1, cluster_count(sorted_i)
+                if (cluster_indexes(sorted_i, temp_j) == sorted_indexes(j)) then
+                    encounters_found = encounters_found + 1
+                    temp_cluster_indexes(i, encounters_found) = sorted_indexes(j)
+    
+                    ! Exit early if all encounters are found
+                    if (encounters_found == cluster_count(sorted_i)) exit
+                end if
+            end do
         end do
-
-        
       end do
 
       array = temp_array
@@ -343,7 +343,7 @@ module mod_clust_algorithm
       logical, dimension(:), intent(in) :: active_clusters
       integer, dimension(:), intent(in) :: representative_indexes
       character*128, intent(in) :: output_name
-      integer :: i, j, unit_number, clust_number
+      integer :: i, unit_number, clust_number
       character(len=13):: clust_str
       character(len=4):: clust_n_str
       character*128 :: filename
@@ -386,7 +386,7 @@ module mod_clust_algorithm
       logical, dimension(:), intent(in) :: active_clusters
       integer, dimension(:), intent(in) :: cluster_count
       character*128, intent(in) :: output_name
-      integer :: i, j, unit_number, clust_number, nfile, encounter_index
+      integer :: i, j, unit_number, clust_number, encounter_index
       character(len=4):: str_clust_number
       character(len=200) :: filename
       type(type_assoc_file) :: complexes
