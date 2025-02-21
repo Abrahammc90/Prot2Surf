@@ -307,7 +307,7 @@ program main
         print *, "For more information, please use the -help option:"
         print *, "./make_matrix -matrix angle -help"
         STOP 1
-      else if (.not. arr_atoms1_bool .or. arr_atoms3_bool .or. arr_atoms4_bool) then 
+      else if (.not. arr_atoms1_bool .or. .not. arr_atoms3_bool .or. .not. arr_atoms4_bool) then 
         print *, "ERROR. Not all necessary group of atoms given"
         print *, "Please provide all group of atoms with '-atoms1', '-atoms2', '-atoms3' and '-atoms4' options"
         print *, "For more information, please use the -help option:"
@@ -324,9 +324,9 @@ program main
       call read_pdb(pdb1, pdb1_filename, tot_atoms1, tot_residues1, tot_chains1)
 
       call read_atoms_coord(arr_atoms1, atoms1_coords, tot_atoms1, pdb1, pdb1_filename)
-      call read_atoms_coord(arr_atoms1, atoms2_coords, tot_atoms1, pdb1, pdb1_filename)
-      call read_atoms_coord(arr_atoms2, atoms3_coords, tot_atoms2, pdb2, pdb2_filename)
-      call read_atoms_coord(arr_atoms2, atoms4_coords, tot_atoms2, pdb2, pdb2_filename)
+      call read_atoms_coord(arr_atoms2, atoms2_coords, tot_atoms1, pdb1, pdb1_filename)
+      call read_atoms_coord(arr_atoms3, atoms3_coords, tot_atoms2, pdb2, pdb2_filename)
+      call read_atoms_coord(arr_atoms4, atoms4_coords, tot_atoms2, pdb2, pdb2_filename)
 
       call calculate_cog(cog1, atoms1_coords, size(atoms1_coords))
       call calculate_cog(cog2, atoms2_coords, size(atoms2_coords))
