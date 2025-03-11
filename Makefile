@@ -1,6 +1,6 @@
 # Compiler and flags
 FC = gfortran
-FLAGS = -O2 -Wall
+FLAGS = -O0 -Wall -fno-fast-math
 
 # Source files
 MOD_PDB_SRC = mod_pdb.f90

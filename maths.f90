@@ -118,31 +118,15 @@ MODULE maths
 
     end subroutine update_complex
 
-    subroutine vector_perpendicular_to_plane(p1, p2, p3, n)
-        IMPLICIT NONE
-        real ( kind=8 ), dimension ( 3 ), intent ( out ) :: n
-        real( kind=8 ),dimension( 3 ), intent ( in ) :: p1, p2, p3
-        real( kind=8 ),dimension( 3 ) :: v1, v2
-        real( kind=8 ) :: magnitude_n
-
-        v1 = p3 - p1
-        v2 = p2 - p1
-
-        call cross(v1, v2, n)
-        !Normalizing n
-        magnitude_n = sqrt ( dot_product ( n, n ) )
-        n = n / magnitude_n
-    end subroutine vector_perpendicular_to_plane
-
     subroutine vectors_angle(vector1, vector2, theta_degrees)
 
         IMPLICIT NONE
         real (kind=8), intent(out) :: theta_degrees
         real( kind=8 ),dimension( 3 ), intent ( in ) :: vector1, vector2
-        real (kind=8) :: magnitude_v1, magnitude_v2, cos_theta
+        real (kind=8) :: magnitude_v1, magnitude_v2, magnitude_v12, cos_theta
         real (kind=8) :: theta_radians
-        real(kind=8), dimension(3) :: v1, v2
-        real (kind=8) :: test_v1, test_v2
+        real (kind=8) :: dot_11, dot_22, dot_12
+        integer :: i
 
         !v1 = (/1, 0, 0/)
         !v2 = (/0, 1, 0/)
@@ -156,10 +140,36 @@ MODULE maths
 
         !write(*,*) theta_degrees
         !STOP 1
+        !print *, vector1
+        
+        dot_11 = 0.0d0
+        do i = 1, 3
+            dot_11 = dot_11 + vector1(i)*vector1(i)
+        end do
+        magnitude_v1 = sqrt(dot_11)
+        
+        dot_22 = 0.0d0
+        do i = 1, 3
+            dot_22 = dot_22 + vector2(i)*vector2(i)
+        end do
+        magnitude_v2 = sqrt(dot_22)
+        !print *, magnitude_v2
+        
+        dot_12 = 0.0d0
+        do i = 1, 3
+            dot_12 = dot_12 + vector1(i)*vector2(i)
+        end do
+        !magnitude_v12 = sqrt(sum)
+        !print *, sum
 
-        magnitude_v1 = sqrt ( dot_product ( vector1, vector1 ) )
-        magnitude_v2 = sqrt ( dot_product ( vector2, vector2 ) )
-        cos_theta = dot_product(vector1, vector2) / ( magnitude_v1 * magnitude_v2 )
+        !print *, magnitude_v2
+        !magnitude_v1 = sqrt ( dot_product ( vector1, vector1 ) )
+        !magnitude_v2 = sqrt ( dot_product ( vector2, vector2 ) )
+        !print *, magnitude_v2
+        !cos_theta = dot_product(vector1, vector2) / ( magnitude_v1 * magnitude_v2 )
+        !print *, cos_theta
+        cos_theta = dot_12 / ( magnitude_v1 * magnitude_v2 )
+        
 
         !if (cos_theta > 1.0) cos_theta = 1.0
         !if (cos_theta < -1.0) cos_theta = -1.0
@@ -167,56 +177,6 @@ MODULE maths
         theta_degrees = theta_radians * (180.0 / 3.141592653589793)
 
     end subroutine vectors_angle
-
-    subroutine rmsd_test ( rmsd2, dist_max, r1,y11,y12,r2,y21,y22 )
-        IMPLICIT NONE
-            real ( kind=8 ), intent ( out ) :: rmsd2
-            real ( kind=8 ), intent ( in ) :: dist_max
-            real ( kind=8 ), dimension ( 3 ) :: r1, y11, y12, y13
-            real ( kind=8 ), dimension ( 3 ) :: r2, y21, y22, y23
-            real ( kind=8 ), dimension ( 3 ) :: yy11, yy12, yy13
-            real ( kind=8 ), dimension ( 3 ) :: yy21, yy22, yy23
-            real ( kind=8 ), dimension ( 3 ) :: yy1m1, yy1m2, yy1m3
-            real ( kind=8 ), dimension ( 3 ) :: yy2m1, yy2m2, yy2m3
-    
-            rmsd2 = 0.d0
-            call cross( y13, y11, y12 )
-            call cross( y23, y21, y22 )
-    
-            ! write(*,*) 'dismx ',dismx
-            ! write(*,*) 'r1', (r1(m),m=1,3)
-            ! write(*,*) 'y11', (y11(m),m=1,3)
-            ! write(*,*) 'y12', (y12(m),m=1,3)
-            ! write(*,*) 'y13', (y13(m),m=1,3)
-            ! write(*,*) 'r2', (r2(m),m=1,3)
-            ! write(*,*) 'y21', (y21(m),m=1,3)
-            ! write(*,*) 'y13 ', (y13(m),m=1,3 )
-            ! write(*,*) 'y23 ', (y23(m),m=1,3)
-    
-            yy11 = y11 * dist_max + r1
-            yy12 = y12 * dist_max + r1
-            yy13 = y13 * dist_max + r1
-            yy21 = y21 * dist_max + r2
-            yy22 = y22 * dist_max + r2
-            yy23 = y23 * dist_max + r2
-    
-            yy1m1 = -y11 * dist_max + r1
-            yy1m2 = -y12 * dist_max + r1
-            yy1m3 = -y13 * dist_max + r1
-            yy2m1 = -y21 * dist_max + r2
-            yy2m2 = -y22 * dist_max + r2
-            yy2m3 = -y23 * dist_max + r2
-    
-            rmsd2 = dot_product ( r1 - r2, r1 - r2 ) + &
-                   2. * dot_product ( yy11 - yy21, yy11 - yy21 ) + &
-                   2. * dot_product ( yy12 - yy22, yy12 - yy22 ) + &
-                   2. * dot_product ( yy13 - yy23, yy13 - yy23 ) + &
-                   dot_product ( yy1m1 - yy2m1, yy1m1 - yy2m1 ) + &
-                   dot_product ( yy1m2 - yy2m2, yy1m2 - yy2m2 ) + &
-                   dot_product ( yy1m3 - yy2m3, yy1m3 - yy2m3 )
-    
-            rmsd2 = rmsd2 / 7.
-    end subroutine rmsd_test
 
     subroutine rmsd ( rmsd_value, nb_atoms, coords1, coords2)
         IMPLICIT NONE
