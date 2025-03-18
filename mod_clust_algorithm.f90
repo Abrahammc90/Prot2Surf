@@ -1,6 +1,7 @@
 module mod_clust_algorithm
 
   USE read_input
+  USE OMP_LIB
 
   contains
 
@@ -28,6 +29,9 @@ module mod_clust_algorithm
         real (kind=8), dimension(n) :: representative_values  ! Store representative values for each cluster
         real (kind=8), dimension(n) :: cluster_average, cluster_sd
 
+        real (kind=8):: local_min_dist
+        integer :: local_min_i, local_min_j
+
     
         active_points = .true.
         cluster_size = 1
@@ -45,157 +49,161 @@ module mod_clust_algorithm
         sum_sq_dist = 0.0
         num_dist = 0
 
+        !$OMP PARALLEL DO REDUCTION(+:sum_dist, sum_sq_dist, num_dist) PRIVATE(i, j)
         do i = 1, n
-            do j = i + 1, n
-                sum_dist = sum_dist + matrix(i, j)
-                sum_sq_dist = sum_sq_dist + matrix(i, j) ** 2
-                num_dist = num_dist + 1
-            end do
+          do j = i + 1, n
+              sum_dist = sum_dist + matrix(i, j)
+              sum_sq_dist = sum_sq_dist + matrix(i, j) ** 2
+              num_dist = num_dist + 1
+          end do
         end do
-
+        !$OMP END PARALLEL DO
+      
         mean_dist = sum_dist / num_dist
         standard_deviation = sqrt((sum_sq_dist / num_dist) - mean_dist ** 2)
         dist_threshold = mean_dist + k_factor * standard_deviation
 
-
-        ! Main loop for clustering
+        !print *, dist_threshold
+        !print *, standard_deviation, mean_dist
+      
+        ! Main clustering loop
         do while (remaining_clusters > 1)
-          ! Find the closest pair of clusters
-          min_dist = 1.0e30
-          min_i = -1
-          min_j = -1
-        
-          do i = 1, n
-            if (.not. active_points(i)) cycle
-            do j = i + 1, n
-              if (.not. active_points(j)) cycle
-              dist = matrix(i, j)
-              !sum_dist = sum_dist + dist
-              !sum_sq_dist = sum_sq_dist + dist**2
-              !num_dist = num_dist + 1
-              if (dist < min_dist) then
-                min_dist = dist
-                min_i = i
-                min_j = j
-              end if
-            end do
-          end do
+            min_dist = huge(1.0)  ! Set to a very large number
+            min_i = -1
+            min_j = -1
 
-          ! Update dynamic threshold
-          mean_dist = sum_dist / num_dist
-          standard_deviation = sqrt((sum_sq_dist / num_dist) - mean_dist ** 2)
-          dist_threshold = mean_dist + k_factor * standard_deviation
+            !local_min_dist = huge(1.0)  ! Set to a very large number
+            !local_min_i = -1
+            !local_min_j = -1
 
-          ! Stop merging if clusters are too far apart
-          if (min_dist > dist_threshold) exit
-      
-          ! Merge clusters min_i and min_j
-          merge_counter = merge_counter + 1
+            !$OMP PARALLEL PRIVATE(i, j, dist, local_min_dist, local_min_i, local_min_j) SHARED(min_dist, min_i, min_j)
+                ! Initialize local private variables at the start of each thread
+                local_min_dist = huge(1.0)  ! Set to a very large number
+                local_min_i = -1
+                local_min_j = -1
 
-          !if (remaining_clusters == 176) then
-          !  call write_clusters(tot_encounters, cluster_indexes, active_clusters)
-          !  STOP
-          !end if
-
-          ! Combine the indexes and values of the two clusters
-          if (merge_counter <= n) then
-            do k = 1, cluster_count(min_j)
-              cluster_indexes(min_i, cluster_count(min_i) + k) = cluster_indexes(min_j, k)
-            end do
-            cluster_average(min_i) = cluster_average(min_i) + cluster_average(min_j)
-            cluster_count(min_i) = cluster_count(min_i) + cluster_count(min_j)
-          end if
-
-          !if (remaining_clusters == 176) print *, 'patata'
-      
-          ! Mark cluster min_j as inactive and update the size of min_i
-          active_points(min_j) = .false.
-          cluster_size(min_i) = cluster_size(min_i) + cluster_size(min_j)
-          remaining_clusters = remaining_clusters - 1
+                !$OMP DO
+                do i = 1, n
+                    if (.not. active_points(i)) cycle
+                    do j = i + 1, n
+                        if (.not. active_points(j)) cycle
+                        dist = matrix(i, j)
+                        if (dist < local_min_dist) then
+                            local_min_dist = dist
+                            local_min_i = i
+                            local_min_j = j
+                        end if
+                    end do
+                end do
+                !$OMP END DO
+              
+                ! After the parallel loop ends, update the global minimum in a thread-safe manner
+                !$OMP CRITICAL
+                    if (local_min_dist < min_dist) then
+                        min_dist = local_min_dist
+                        min_i = local_min_i
+                        min_j = local_min_j
+                    end if
+                !$OMP END CRITICAL
+            !$OMP END PARALLEL
 
           
-
-          ! Update distances for the new merged cluster using average linkage
+            ! Stop merging if clusters are too far apart
+            if (min_dist > dist_threshold) exit
           
-          do i = 1, n
-            if (i == min_i .or. i == min_j .or. .not. active_points(i)) cycle
-            matrix(min_i, i) = (matrix(min_i, i) * cluster_size(min_i) + &
-            matrix(min_j, i) * cluster_size(min_j)) / &
-                                         (cluster_size(min_i) + cluster_size(min_j))
-                                         matrix(i, min_i) = matrix(min_i, i)
-          end do
-
-          ! Update distance statistics dynamically
-          sum_dist = sum_dist + min_dist
-          sum_sq_dist = sum_sq_dist + min_dist ** 2
-          num_dist = num_dist + 1
-
-          if ( mod(remaining_clusters, 100) == 0 ) then
-            print *, 'remaining clusters', remaining_clusters
-          end if
-
-        end do
-
-
-        ! Find the most representative value for each active cluster and calculate average and standard deviation
-        do i = 1, n
-          if (.not. active_points(i)) cycle
-        
-          min_dist = 1.0e30
-          representative_indexes(i) = -1
-
-          do j = 1, cluster_count(i)
-              dist = 0.0
-              do k = 1, cluster_count(i)
-                  dist = dist + matrix(cluster_indexes(i, j), cluster_indexes(i, k))
-              end do
-              dist = dist / cluster_count(i)
-              !cluster_average(i) = dist
-              !standard_deviation = 0
-              !do k = 1, cluster_count(i)
-              !  standard_deviation = standard_deviation + (cluster_average(i) - &
-              !  matrix(cluster_indexes(i, j), cluster_indexes(i, k)))**2
-              !end do
-              !standard_deviation = sqrt(standard_deviation/cluster_count(i))
-              !cluster_sd(i) = standard_deviation
-              if (dist < min_dist) then
-                  min_dist = dist
-                  representative_indexes(i) = cluster_indexes(i, j)
-                  representative_values(i) = min_dist
-              end if
-          end do
-        end do
-
-        !Calculate average and standard deviation
-        do i = 1, n
-          if (.not. active_points(i)) cycle
-          mean_dist = 0.0
-          do j = 1, cluster_count(i)
-              !do k = 1, cluster_count(i)
-                  !dist = dist + matrix(cluster_indexes(i, j), cluster_indexes(i, k))
-              !end do
-              if ( present(opt_array) ) then
-                mean_dist = mean_dist + opt_array(cluster_indexes(i, j))
-              else
-                mean_dist = mean_dist + matrix(i, cluster_indexes(i, j))
-              end if
-          end do
-          mean_dist = mean_dist / cluster_count(i)
-          cluster_average(i) = mean_dist
-          standard_deviation = 0.0
-          do j = 1, cluster_count(i)
-            if ( present(opt_array) ) then
-              standard_deviation = standard_deviation + (cluster_average(i) - &
-              opt_array(cluster_indexes(i, j)))**2
-            else
-              standard_deviation = standard_deviation + (cluster_average(i) - &
-              matrix(i, cluster_indexes(i, j)))**2
+            merge_counter = merge_counter + 1
+          
+            ! Merge clusters min_i and min_j
+            if (merge_counter <= n) then
+                !$OMP PARALLEL DO
+                do k = 1, cluster_count(min_j)
+                    cluster_indexes(min_i, cluster_count(min_i) + k) = cluster_indexes(min_j, k)
+                end do
+                !$OMP END PARALLEL DO
+              
+                cluster_average(min_i) = cluster_average(min_i) + cluster_average(min_j)
+                cluster_count(min_i) = cluster_count(min_i) + cluster_count(min_j)
             end if
-          end do
-          standard_deviation = sqrt(standard_deviation/cluster_count(i))
-          cluster_sd(i) = standard_deviation
+          
+            active_points(min_j) = .false.
+            cluster_size(min_i) = cluster_size(min_i) + cluster_size(min_j)
+            remaining_clusters = remaining_clusters - 1
+          
+            ! Update distances using average linkage
+            !$OMP PARALLEL DO
+            do i = 1, n
+                if (i == min_i .or. i == min_j .or. .not. active_points(i)) cycle
+                matrix(min_i, i) = (matrix(min_i, i) * cluster_size(min_i) + &
+                matrix(min_j, i) * cluster_size(min_j)) / &
+                                             (cluster_size(min_i) + cluster_size(min_j))
+                matrix(i, min_i) = matrix(min_i, i)
+            end do
+            !$OMP END PARALLEL DO
+          
+            ! Update statistics
+            sum_dist = sum_dist + min_dist
+            sum_sq_dist = sum_sq_dist + min_dist ** 2
+            num_dist = num_dist + 1
+          
+            if (mod(remaining_clusters, 100) == 0) then
+                print *, 'Remaining clusters:', remaining_clusters
+            end if
         end do
-
+      
+        ! Find the most representative value
+        !$OMP PARALLEL DO PRIVATE(i, j, k, dist, min_dist)
+        do i = 1, n
+            if (.not. active_points(i)) cycle
+        
+            min_dist = 1.0e30
+            representative_indexes(i) = -1
+        
+            do j = 1, cluster_count(i)
+                dist = 0.0
+                do k = 1, cluster_count(i)
+                    dist = dist + matrix(cluster_indexes(i, j), cluster_indexes(i, k))
+                end do
+                dist = dist / cluster_count(i)
+              
+                if (dist < min_dist) then
+                    min_dist = dist
+                    representative_indexes(i) = cluster_indexes(i, j)
+                    representative_values(i) = min_dist
+                end if
+            end do
+        end do
+        !$OMP END PARALLEL DO
+      
+        ! Compute mean and standard deviation
+        !$OMP PARALLEL DO PRIVATE(i, j, mean_dist, standard_deviation)
+        do i = 1, n
+            if (.not. active_points(i)) cycle
+            mean_dist = 0.0
+            do j = 1, cluster_count(i)
+                if (present(opt_array)) then
+                    mean_dist = mean_dist + opt_array(cluster_indexes(i, j))
+                else
+                    mean_dist = mean_dist + matrix(i, cluster_indexes(i, j))
+                end if
+            end do
+            mean_dist = mean_dist / cluster_count(i)
+            cluster_average(i) = mean_dist
+          
+            standard_deviation = 0.0
+            do j = 1, cluster_count(i)
+                if (present(opt_array)) then
+                    standard_deviation = standard_deviation + (cluster_average(i) - &
+                    opt_array(cluster_indexes(i, j)))**2
+                else
+                    standard_deviation = standard_deviation + (cluster_average(i) - &
+                    matrix(i, cluster_indexes(i, j)))**2
+                end if
+            end do
+            standard_deviation = sqrt(standard_deviation / cluster_count(i))
+            cluster_sd(i) = standard_deviation
+        end do
+        !$OMP END PARALLEL DO
+    
         !write(*,*) cluster_indexes(45, :)
 
         if ( present(opt_array) ) then
@@ -204,12 +212,12 @@ module mod_clust_algorithm
         !else
         !  call sort_complexes(n, cluster_indexes, cluster_count, cluster_indexes_sorted, matrix)
         end if
-
+      
         call write_cluster_elements(n, cluster_indexes, cluster_count, active_points, output_name)
         call write_clust_info(n, representative_indexes, active_points, cluster_count, cluster_average, cluster_sd, output_name)
         call write_complexes(n, cluster_indexes, cluster_count, active_points, output_name, complexes)
-
-
+          
+          
         print *, 'Clustering complete.'
     
     end subroutine mean_linkage_clustering
@@ -289,6 +297,7 @@ module mod_clust_algorithm
         end do
       end do
 
+      
       array = temp_array
       cluster_indexes = temp_cluster_indexes
       cluster_average = temp_cluster_average
@@ -296,6 +305,7 @@ module mod_clust_algorithm
       representative_indexes = temp_representative_indexes
       active_clusters = temp_active_clusters
       cluster_count = temp_cluster_count
+      
       
     end subroutine sort_complexes
 

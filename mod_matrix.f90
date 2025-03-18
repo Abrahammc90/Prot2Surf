@@ -1,12 +1,13 @@
 MODULE mod_matrix
 
     USE maths
+    USE OMP_LIB
 
     contains
 
     subroutine matrix_z_coord(matrix, array, n, nb_atoms, &
       xc1, xc2, trans_vector, rot1, rot2, solute_crds)
-    
+
       IMPLICIT NONE
       real(kind=8), dimension(3), intent(in) :: xc1, xc2
       real(kind=8), dimension(:, :), intent(in) :: trans_vector, rot1, rot2
@@ -15,42 +16,44 @@ MODULE mod_matrix
       real(kind=8), dimension(:, :), intent(in) :: solute_crds
       integer, intent(in) :: n, nb_atoms
       real(kind=8), dimension(nb_atoms, 3) :: new_coord
-      integer :: i, j
+      integer :: i, j, progress_index
       real(kind=8) :: value_i, value_j
 
-      !write(*,*) trans_vector(1, :)
-      !STOP
+      progress_index = 0
 
-      ! Initialize the matrix based on z-distance
+      ! Parallelize the outer loop
+      !$OMP PARALLEL DO PRIVATE(j, new_coord, value_i, value_j) SCHEDULE(DYNAMIC)
       do i = 1, n
         matrix(i, i) = 0
         call update_complex(xc1, xc2, trans_vector(i, :), &
         rot1(i, :), rot2(i, :), nb_atoms, solute_crds, new_coord)
         value_i = new_coord(1, 3)
         array(i) = value_i
+        
         do j = i+1, n
           call update_complex(xc1, xc2, trans_vector(j, :), &
-        rot1(j, :), rot2(j, :), nb_atoms, solute_crds, new_coord)
+          rot1(j, :), rot2(j, :), nb_atoms, solute_crds, new_coord)
           value_j = new_coord(1, 3)
-          !write(*,*) 'new coord j', new_coord
-          !write(*,*) value_i, value_j
-          !write(*,*) 'trans i', trans_vector(i, :)
-          !write(*,*) 'trans j', trans_vector(j, :)
-          !write(*,*) 'rot1 i', rot1(i, :)
-          !write(*,*) 'rot2 i', rot2(i, :)
-          !write(*,*) 'rot1 j', rot1(j, :)
-          !write(*,*) 'rot2 j', rot2(j, :)
-          !if (j == 12) STOP
-          matrix(i, j) = abs(value_i - value_j) !function
+          
+          matrix(i, j) = abs(value_i - value_j)
           matrix(j, i) = matrix(i, j)
         end do
-        write(*,*) 'Encounters processed: ', i
+
+        ! Ensure orderly printing using an atomic increment
+        !$OMP CRITICAL
+        progress_index = progress_index + 1
+        ! Print the progress after the atomic increment
+        write(*,*) 'Encounters processed: ', progress_index
+        !$OMP END CRITICAL
+
       end do
+      !$OMP END PARALLEL DO
+
     end subroutine matrix_z_coord
 
     subroutine matrix_atoms_dist(matrix, array, n, nb_atoms, &
       xc1, xc2, trans_vector, rot1, rot2, solute1_crds, solute2_crds)
-    
+
       IMPLICIT NONE
       real(kind=8), dimension(3), intent(in) :: xc1, xc2
       real(kind=8), dimension(:, :), intent(in) :: trans_vector, rot1, rot2
@@ -60,47 +63,64 @@ MODULE mod_matrix
       integer, intent(in) :: n, nb_atoms
       real(kind=8), dimension(:), allocatable :: distances
       real(kind=8), dimension(nb_atoms, 3) :: new_coord
-      integer :: i, j, k, l, tot_coords1, tot_coords2
+      integer :: i, j, k, tot_coords1, progress_index
       real(kind=8) :: min_i, min_j, dist
 
       tot_coords1 = size(solute1_crds(:, 1))
-      tot_coords2 = size(solute2_crds(:, 1))
       allocate(distances(tot_coords1))
-      distances = 999999.9
+      progress_index = 0
 
-      ! Initialize the matrix based on the closest atom distances
+      !$OMP PARALLEL DO PRIVATE(j, k, new_coord, distances, min_i, min_j, dist) SCHEDULE(DYNAMIC)
       do i = 1, n
         matrix(i, i) = 0
         distances = 999999.9
+
         call update_complex(xc1, xc2, trans_vector(i, :), &
         rot1(i, :), rot2(i, :), nb_atoms, solute2_crds, new_coord)
+
         do k = 1, tot_coords1
           call calculate_distance(new_coord, solute1_crds(k, :), dist)
           distances(k) = dist
         end do
+
         min_i = minval(distances)
         array(i) = min_i
+
         do j = i+1, n
           distances = 999999.9
           call update_complex(xc1, xc2, trans_vector(j, :), &
-        rot1(j, :), rot2(j, :), nb_atoms, solute2_crds, new_coord)
+          rot1(j, :), rot2(j, :), nb_atoms, solute2_crds, new_coord)
+
           do k = 1, tot_coords1
             call calculate_distance(new_coord, solute1_crds(k, :), dist)
             distances(k) = dist
           end do
+
           min_j = minval(distances)
-          matrix(i, j) = abs(min_i - min_j) !function
+          matrix(i, j) = abs(min_i - min_j)
           matrix(j, i) = matrix(i, j)
         end do
-        write(*,*) 'Encounters processed: ', i
+
+        ! Ensure orderly printing using an atomic increment
+        !$OMP CRITICAL
+        progress_index = progress_index + 1
+        ! Print the progress after the atomic increment
+        write(*,*) 'Encounters processed: ', progress_index
+        !$OMP END CRITICAL
+
       end do
+      !$OMP END PARALLEL DO
+
+      deallocate(distances)
+
     end subroutine matrix_atoms_dist
 
+  
     !Subroutine matrix_plane_degree
-!
+! 
     subroutine matrix_angle(matrix, array, n, nb_atoms, &
       xc1, xc2, trans_vector, rot1, rot2, point1, point2, point3, point4)
-      
+
       IMPLICIT NONE
       real(kind=8), dimension(3), intent(in) :: xc1, xc2
       real(kind=8), dimension(:, :), intent(in) :: trans_vector, rot1, rot2
@@ -111,44 +131,58 @@ MODULE mod_matrix
       real(kind=8), dimension(nb_atoms, 3) :: new_coord_1, new_coord_2
       real(kind=8), dimension(3) :: v1, v2
       real(kind=8) :: theta1, theta2
-      integer :: i, j
+      integer :: i, j, progress_index
       real(kind=8), dimension(2, 3) :: solute2_points
+
+      progress_index = 0
 
       solute2_points(1, :) = point3(:)
       solute2_points(2, :) = point4(:)
 
-      ! Initialize the matrix based on angle between vectors
+      ! Initialize the reference vector
       v1(1) = point2(1) - point1(1)
       v1(2) = point2(2) - point1(2)
       v1(3) = point2(3) - point1(3)
+
+      ! Parallelizing outer loop with OpenMP
+      !$OMP PARALLEL DO PRIVATE(j, new_coord_1, new_coord_2, v2, theta1, theta2) SCHEDULE(DYNAMIC)
       do i = 1, n
         call update_complex(xc1, xc2, trans_vector(i, :), &
         rot1(i, :), rot2(i, :), nb_atoms, solute2_points, new_coord_1)
         
         matrix(i, i) = 0
-        v2(1) = new_coord_1(1, 1) -  new_coord_1(2, 1)
-        v2(2) = new_coord_1(1, 2) -  new_coord_1(2, 2)
-        v2(3) = new_coord_1(1, 3) -  new_coord_1(2, 3)
+        v2(1) = new_coord_1(1, 1) - new_coord_1(2, 1)
+        v2(2) = new_coord_1(1, 2) - new_coord_1(2, 2)
+        v2(3) = new_coord_1(1, 3) - new_coord_1(2, 3)
         call vectors_angle(v1, v2, theta1)
 
         array(i) = theta1
 
         do j = i+1, n
           call update_complex(xc1, xc2, trans_vector(j, :), &
-        rot1(j, :), rot2(j, :), nb_atoms, solute2_points, new_coord_2)
+          rot1(j, :), rot2(j, :), nb_atoms, solute2_points, new_coord_2)
           
-          v2(1) = new_coord_2(1, 1) -  new_coord_2(2, 1)
-          v2(2) = new_coord_2(1, 2) -  new_coord_2(2, 2)
-          v2(3) = new_coord_2(1, 3) -  new_coord_2(2, 3)
+          v2(1) = new_coord_2(1, 1) - new_coord_2(2, 1)
+          v2(2) = new_coord_2(1, 2) - new_coord_2(2, 2)
+          v2(3) = new_coord_2(1, 3) - new_coord_2(2, 3)
           call vectors_angle(v1, v2, theta2)
           
           matrix(i, j) = abs(theta1 - theta2)
           matrix(j, i) = matrix(i, j)
         end do
-        write(*,*) 'Encounters processed: ', i
+
+        ! Ensure orderly printing using an atomic increment
+        !$OMP CRITICAL
+        progress_index = progress_index + 1
+        ! Print the progress after the atomic increment
+        write(*,*) 'Encounters processed: ', progress_index
+        !$OMP END CRITICAL
+
       end do
+      !$OMP END PARALLEL DO
 
     end subroutine matrix_angle
+
     
     subroutine matrix_rmsd(matrix, n, nb_atoms, &
       xc1, xc2, trans_vector, rot1, rot2, coord)
@@ -190,7 +224,7 @@ MODULE mod_matrix
       character*128 :: fmt
       
       integer :: i, j
-      integer :: unit
+      integer :: unit = 15
       integer :: nrows, ncols
       
       nrows = size(matrix(1, :))
@@ -218,7 +252,7 @@ MODULE mod_matrix
       character*128 :: fmt
       
       integer :: i
-      integer :: unit
+      integer :: unit = 15
       integer :: nelements
       
       nelements = size(array(:))
