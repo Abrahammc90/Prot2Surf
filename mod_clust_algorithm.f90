@@ -18,7 +18,7 @@ module mod_clust_algorithm
 
         integer :: i, j, k, min_i, min_j, merge_counter, remaining_clusters, num_dist
         integer, dimension(n) :: cluster_size ! To track the size of each cluster
-        real (kind=8):: min_dist, dist, mean_dist, standard_deviation, dist_threshold
+        real (kind=8):: min_dist, max_dist, dist, norm_dist, mean_dist, standard_deviation, dist_threshold
         real (kind=8):: sum_dist, sum_sq_dist
         logical, dimension(n) :: active_points
 
@@ -29,8 +29,10 @@ module mod_clust_algorithm
         real (kind=8), dimension(n) :: representative_values  ! Store representative values for each cluster
         real (kind=8), dimension(n) :: cluster_average, cluster_sd
 
-        real (kind=8):: local_min_dist
+        real (kind=8) :: local_min_dist
         integer :: local_min_i, local_min_j
+
+        real (kind=8) :: alpha
 
     
         active_points = .true.
@@ -48,6 +50,13 @@ module mod_clust_algorithm
         sum_dist = 0.0
         sum_sq_dist = 0.0
         num_dist = 0
+        !max_dist = 0.0
+!
+        !do i = 1, n
+        !  do j = i + 1, n
+        !    if ( matrix(i, j) > max_dist ) max_dist = matrix(i, j)
+        !  end do
+        !end do
 
         !$OMP PARALLEL DO REDUCTION(+:sum_dist, sum_sq_dist, num_dist) PRIVATE(i, j)
         do i = 1, n
@@ -59,15 +68,66 @@ module mod_clust_algorithm
         end do
         !$OMP END PARALLEL DO
       
-        mean_dist = sum_dist / num_dist
-        standard_deviation = sqrt((sum_sq_dist / num_dist) - mean_dist ** 2)
-        dist_threshold = mean_dist + k_factor * standard_deviation
+        !mean_dist = sum_dist / num_dist
+        !standard_deviation = sqrt((sum_sq_dist / num_dist) - mean_dist ** 2)
 
+        !!$OMP PARALLEL DO REDUCTION(+:sum_dist, sum_sq_dist, num_dist) PRIVATE(i, j)
+        !do i = 1, n
+        !  do j = i + 1, n
+        !      !sum_dist = sum_dist + matrix(i, j)
+        !      !sum_sq_dist = sum_sq_dist + matrix(i, j) ** 2
+        !      !num_dist = num_dist + 1
+        !  end do
+        !end do
+        !!$OMP END PARALLEL DO
+
+        !
+        !if ( standard_deviation > mean_dist ) then
+        !  standard_deviation = mean_dist
+        !end if
+        !
+        !dist_threshold = mean_dist + k_factor * standard_deviation
+        !dist_threshold = 0.9*max_dist
         !print *, dist_threshold
         !print *, standard_deviation, mean_dist
+
+        !dist_threshold = -0.1
+
+        mean_dist = sum_dist / num_dist
+        standard_deviation = sqrt((sum_sq_dist / num_dist) - mean_dist ** 2)
+
+        alpha = standard_deviation / sqrt(standard_deviation**2 + mean_dist**2)
+
+        dist_threshold = alpha*mean_dist - (1-alpha)*standard_deviation
       
         ! Main clustering loop
         do while (remaining_clusters > 1)
+
+
+            !mean_dist = sum_dist / num_dist
+            !standard_deviation = sqrt((sum_sq_dist / num_dist) - mean_dist ** 2)
+          !
+            !alpha = standard_deviation / sqrt(standard_deviation**2 + mean_dist**2)
+          !
+            !dist_threshold = alpha*mean_dist - (1-alpha)*standard_deviation
+
+            !if ( standard_deviation > mean_dist ) then
+              !standard_deviation = mean_dist
+            !dist_threshold = mean_dist + k_factor * (alpha*mean_dist + (1-alpha)*standard_deviation)
+            !else
+            !  dist_threshold = mean_dist + k_factor * standard_deviation
+            !end if
+  
+            
+
+            !print *, dist_threshold
+            !print *, standard_deviation, mean_dist
+
+            !dist_threshold = mean_dist + k_factor * (0.5*mean_dist + 0.5*standard_deviation)
+            !dist_threshold = mean_dist + (k_factor*mean_dist - (1-k_factor)*standard_deviation)
+
+            
+
             min_dist = huge(1.0)  ! Set to a very large number
             min_i = -1
             min_j = -1
@@ -109,6 +169,7 @@ module mod_clust_algorithm
 
           
             ! Stop merging if clusters are too far apart
+            !norm_dist = (min_dist - mean_dist) / standard_deviation
             if (min_dist > dist_threshold) exit
           
             merge_counter = merge_counter + 1
@@ -121,7 +182,7 @@ module mod_clust_algorithm
                 end do
                 !$OMP END PARALLEL DO
               
-                cluster_average(min_i) = cluster_average(min_i) + cluster_average(min_j)
+                !cluster_average(min_i) = cluster_average(min_i) + cluster_average(min_j)
                 cluster_count(min_i) = cluster_count(min_i) + cluster_count(min_j)
             end if
           
@@ -129,21 +190,28 @@ module mod_clust_algorithm
             cluster_size(min_i) = cluster_size(min_i) + cluster_size(min_j)
             remaining_clusters = remaining_clusters - 1
           
-            ! Update distances using average linkage
-            !$OMP PARALLEL DO
+            ! Update distances and statistics using average linkage
+            !$OMP PARALLEL DO REDUCTION(+:sum_dist, sum_sq_dist) PRIVATE(i)
             do i = 1, n
                 if (i == min_i .or. i == min_j .or. .not. active_points(i)) cycle
+
+                sum_dist = sum_dist - matrix(min_i, i) - matrix(min_j, i)
+                sum_sq_dist = sum_sq_dist - matrix(min_i, i) ** 2 - matrix(min_j, i) ** 2
+
                 matrix(min_i, i) = (matrix(min_i, i) * cluster_size(min_i) + &
                 matrix(min_j, i) * cluster_size(min_j)) / &
                                              (cluster_size(min_i) + cluster_size(min_j))
                 matrix(i, min_i) = matrix(min_i, i)
+
+                sum_dist = sum_dist + matrix(min_i, i)
+                sum_sq_dist = sum_sq_dist + matrix(min_i, i) ** 2
+
             end do
             !$OMP END PARALLEL DO
+            sum_dist = sum_dist - min_dist
+            sum_sq_dist = sum_sq_dist - min_dist ** 2
+            num_dist = num_dist - 1
           
-            ! Update statistics
-            sum_dist = sum_dist + min_dist
-            sum_sq_dist = sum_sq_dist + min_dist ** 2
-            num_dist = num_dist + 1
           
             if (mod(remaining_clusters, 100) == 0) then
                 print *, 'Remaining clusters:', remaining_clusters
@@ -429,7 +497,6 @@ module mod_clust_algorithm
 
     end subroutine write_complexes
     !subroutine write_clust_info(min_i, min_j)
-
 
     
 end module mod_clust_algorithm

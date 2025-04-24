@@ -127,20 +127,6 @@ MODULE maths
         real (kind=8) :: theta_radians
         real (kind=8) :: dot_11, dot_22, dot_12
         integer :: i
-
-        !v1 = (/1, 0, 0/)
-        !v2 = (/0, 1, 0/)
-
-        !test_v1 = sqrt ( dot_product ( v1,v1 ))
-        !test_v2 = sqrt ( dot_product ( v2,v2 ))
-
-        !cos_theta = dot_product(v1, v2) / ( test_v1 * test_v2 )
-        !theta_radians = acos(cos_theta)
-        !theta_degrees = theta_radians * (180.0 / 3.141592653589793)
-
-        !write(*,*) theta_degrees
-        !STOP 1
-        !print *, vector1
         
         dot_11 = 0.0d0
         do i = 1, 3
@@ -159,20 +145,9 @@ MODULE maths
         do i = 1, 3
             dot_12 = dot_12 + vector1(i)*vector2(i)
         end do
-        !magnitude_v12 = sqrt(sum)
-        !print *, sum
 
-        !print *, magnitude_v2
-        !magnitude_v1 = sqrt ( dot_product ( vector1, vector1 ) )
-        !magnitude_v2 = sqrt ( dot_product ( vector2, vector2 ) )
-        !print *, magnitude_v2
-        !cos_theta = dot_product(vector1, vector2) / ( magnitude_v1 * magnitude_v2 )
-        !print *, cos_theta
         cos_theta = dot_12 / ( magnitude_v1 * magnitude_v2 )
         
-
-        !if (cos_theta > 1.0) cos_theta = 1.0
-        !if (cos_theta < -1.0) cos_theta = -1.0
         theta_radians = acos(cos_theta)
         theta_degrees = theta_radians * (180.0 / 3.141592653589793)
 

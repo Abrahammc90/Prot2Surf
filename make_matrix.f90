@@ -328,10 +328,10 @@ program main
       call read_atoms_coord(arr_atoms3, atoms3_coords, tot_atoms2, pdb2, pdb2_filename)
       call read_atoms_coord(arr_atoms4, atoms4_coords, tot_atoms2, pdb2, pdb2_filename)
 
-      call calculate_cog(cog1, atoms1_coords, size(atoms1_coords))
-      call calculate_cog(cog2, atoms2_coords, size(atoms2_coords))
-      call calculate_cog(cog3, atoms3_coords, size(atoms3_coords))
-      call calculate_cog(cog4, atoms4_coords, size(atoms4_coords))
+      call calculate_cog(cog1, atoms1_coords, size(atoms1_coords(:, 3)))
+      call calculate_cog(cog2, atoms2_coords, size(atoms2_coords(:, 3)))
+      call calculate_cog(cog3, atoms3_coords, size(atoms3_coords(:, 3)))
+      call calculate_cog(cog4, atoms4_coords, size(atoms4_coords(:, 3)))
       
       call matrix_angle(distmatrix, distarray, nb_encounters, 2, &
       complexes % xc1, complexes % xc2, complexes % trans_vector, complexes % rot1, complexes % rot2, &

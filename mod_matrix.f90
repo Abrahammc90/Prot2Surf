@@ -136,13 +136,19 @@ MODULE mod_matrix
 
       progress_index = 0
 
-      solute2_points(1, :) = point3(:)
-      solute2_points(2, :) = point4(:)
+      !print *, point1
+      !print *, point2
+      !print *, point3
+      !print *, point4
+      !STOP
 
       ! Initialize the reference vector
       v1(1) = point2(1) - point1(1)
       v1(2) = point2(2) - point1(2)
       v1(3) = point2(3) - point1(3)
+
+      solute2_points(1, :) = point3(:)
+      solute2_points(2, :) = point4(:)
 
       ! Parallelizing outer loop with OpenMP
       !$OMP PARALLEL DO PRIVATE(j, new_coord_1, new_coord_2, v2, theta1, theta2) SCHEDULE(DYNAMIC)
@@ -150,11 +156,21 @@ MODULE mod_matrix
         call update_complex(xc1, xc2, trans_vector(i, :), &
         rot1(i, :), rot2(i, :), nb_atoms, solute2_points, new_coord_1)
         
+        !print *, point1
+        !print *, point2
+        !print *, new_coord_1(1, :)
+        !print *, new_coord_1(2, :)
+        !STOP
+
         matrix(i, i) = 0
         v2(1) = new_coord_1(1, 1) - new_coord_1(2, 1)
         v2(2) = new_coord_1(1, 2) - new_coord_1(2, 2)
         v2(3) = new_coord_1(1, 3) - new_coord_1(2, 3)
         call vectors_angle(v1, v2, theta1)
+        !print *, 'vector 1', v1
+        !print *, 'vector 2', v2
+        !print *, 'angle', theta1
+        !STOP
 
         array(i) = theta1
 
