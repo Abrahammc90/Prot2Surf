@@ -9,7 +9,7 @@ program main
     character*128 :: pdb1_filename, pdb2_filename, complexes_filename
     character*128 :: matrix_type, matrix_filename, array_filename
     character*128 :: argument
-    character*128, dimension(:), allocatable :: arr_atoms1, arr_atoms2, arr_atoms3, arr_atoms4
+    character*128, dimension(:), allocatable :: arr_atoms1a, arr_atoms1b, arr_atoms2a, arr_atoms2b
 
     integer :: tot_atoms2, tot_encounters, tot_coords
     integer :: tot_chains2, tot_residues2
@@ -21,15 +21,15 @@ program main
     integer :: i
     real (kind=8), dimension(:, :), allocatable :: distmatrix
     real (kind=8), dimension(:), allocatable :: distarray
-    real (kind=8), dimension(:, :), allocatable :: atoms1_coords, atoms2_coords
-    real (kind=8), dimension(:, :), allocatable :: atoms3_coords, atoms4_coords
-    real (kind=8), dimension(3) :: cog1, cog2, cog3, cog4
+    real (kind=8), dimension(:, :), allocatable :: atoms1a_coords, atoms1b_coords
+    real (kind=8), dimension(:, :), allocatable :: atoms2a_coords, atoms2b_coords
+    real (kind=8), dimension(3) :: cog1a, cog1b, cog2a, cog2b
     integer :: nb_argument, count_arg, n_atoms
     !real (kind=8), dimension(:, :), allocatable :: residues_cog, residue_crds
     integer :: ios
     logical :: pdb1_bool, pdb2_bool, complexes_bool, atoms1_bool, atoms2_bool
     logical :: matrix_bool, matrixtype_bool, array_bool, nb_encounters_bool, help_bool
-    logical :: arr_atoms1_bool, arr_atoms2_bool, arr_atoms3_bool, arr_atoms4_bool
+    logical :: arr_atoms1a_bool, arr_atoms1b_bool, arr_atoms2a_bool, arr_atoms2b_bool
 
     nb_argument = 0
     nb_encounters = 0
@@ -43,10 +43,10 @@ program main
     matrixtype_bool = .false.
     array_bool = .false.
     nb_encounters_bool = .false.
-    arr_atoms1_bool = .false.
-    arr_atoms2_bool = .false.
-    arr_atoms3_bool = .false.
-    arr_atoms4_bool = .false.
+    arr_atoms1a_bool = .false.
+    arr_atoms1b_bool = .false.
+    arr_atoms2a_bool = .false.
+    arr_atoms2b_bool = .false.
     help_bool = .false.
     argument = ""
     !arr_atoms1 = ""
@@ -103,8 +103,8 @@ program main
         array_filename = trim(argument)
         count_arg = count_arg + 1
 
-      else if ( trim(argument) == "-atoms1" ) then
-        arr_atoms1_bool = .true.
+      else if ( trim(argument) == "-atoms1" .or. trim(argument) == "-atoms1a" ) then
+        arr_atoms1a_bool = .true.
         
         call getarg( count_arg+1, argument )
         n_atoms = 0
@@ -114,17 +114,17 @@ program main
           call getarg( count_arg+n_atoms, argument )
         end do
         n_atoms = n_atoms-1
-        allocate(arr_atoms1(n_atoms))
+        allocate(arr_atoms1a(n_atoms))
 
         do i = 1, n_atoms
           call getarg( count_arg+i, argument )
-          arr_atoms1(i) = trim(argument)
+          arr_atoms1a(i) = trim(argument)
         end do
 
         count_arg = count_arg + n_atoms
 
-      else if ( trim(argument) == "-atoms2" ) then
-        arr_atoms2_bool = .true.
+      else if ( trim(argument) == "-atoms1b" ) then
+        arr_atoms1b_bool = .true.
 
         call getarg( count_arg+1, argument )
         n_atoms = 0
@@ -134,17 +134,17 @@ program main
           call getarg( count_arg+n_atoms, argument )
         end do
         n_atoms = n_atoms-1
-        allocate(arr_atoms2(n_atoms))
+        allocate(arr_atoms1b(n_atoms))
 
         do i = 1, n_atoms
           call getarg( count_arg+i, argument )
-          arr_atoms2(i) = trim(argument)
+          arr_atoms1b(i) = trim(argument)
         end do
 
         count_arg = count_arg + n_atoms
 
-      else if ( trim(argument) == "-atoms3" ) then
-        arr_atoms3_bool = .true.
+      else if ( trim(argument) == "-atoms2" .or. trim(argument) == "-atoms2a" ) then
+        arr_atoms2a_bool = .true.
 
         call getarg( count_arg+1, argument )
         n_atoms = 0
@@ -154,17 +154,17 @@ program main
           call getarg( count_arg+n_atoms, argument )
         end do
         n_atoms = n_atoms-1
-        allocate(arr_atoms3(n_atoms))
+        allocate(arr_atoms2a(n_atoms))
 
         do i = 1, n_atoms
           call getarg( count_arg+i, argument )
-          arr_atoms3(i) = trim(argument)
+          arr_atoms2a(i) = trim(argument)
         end do
 
         count_arg = count_arg + n_atoms
 
-      else if ( trim(argument) == "-atoms4" ) then
-        arr_atoms4_bool = .true.
+      else if ( trim(argument) == "-atoms2b" ) then
+        arr_atoms2b_bool = .true.
 
         call getarg( count_arg+1, argument )
         n_atoms = 0
@@ -174,11 +174,11 @@ program main
           call getarg( count_arg+n_atoms, argument )
         end do
         n_atoms = n_atoms-1
-        allocate(arr_atoms4(n_atoms))
+        allocate(arr_atoms2b(n_atoms))
 
         do i = 1, n_atoms
           call getarg( count_arg+i, argument )
-          arr_atoms4(i) = trim(argument)
+          arr_atoms2b(i) = trim(argument)
         end do
 
         count_arg = count_arg + n_atoms
@@ -211,7 +211,7 @@ program main
       print *, "For more information, please use the -help option:"
       print *, "./make_matrix -help"
       STOP 1
-    else if ( .not. arr_atoms2_bool ) then 
+    else if ( .not. arr_atoms2a_bool ) then 
       print *, "ERROR. PDB2 provided but atoms2 not provided."
       print *, "Please provide a group of atoms with '-atoms2' option"
       print *, "For more information, please use the -help option:"
@@ -283,22 +283,22 @@ program main
         STOP 1
       end if
 
-      call read_atoms_coord(arr_atoms2, atoms2_coords, tot_atoms2, pdb2, pdb2_filename)
+      call read_atoms_coord(arr_atoms2a, atoms2a_coords, tot_atoms2, pdb2, pdb2_filename)
 
       call matrix_z_coord(distmatrix, distarray, nb_encounters, 1, complexes % xc1, complexes % xc2, &
-      complexes % trans_vector, complexes % rot1, complexes % rot2, atoms2_coords)
+      complexes % trans_vector, complexes % rot1, complexes % rot2, atoms2a_coords)
 
       call write_array(distarray, array_filename)
 
     else if (trim(adjustl(matrix_type)) == "rmsd") then
 
-      call read_atoms_coord(arr_atoms2, atoms2_coords, tot_atoms2, pdb2, pdb2_filename)
+      call read_atoms_coord(arr_atoms2a, atoms2a_coords, tot_atoms2, pdb2, pdb2_filename)
 
       call matrix_rmsd(distmatrix, nb_encounters, tot_coords, &
       complexes % xc1, complexes % xc2, complexes % trans_vector, &
-      complexes % rot1, complexes % rot2, atoms2_coords)
+      complexes % rot1, complexes % rot2, atoms2a_coords)
 
-    else if (trim(adjustl(matrix_type)) == "angle") then
+    else if (trim(adjustl(matrix_type)) == "3D_angle" .or. trim(adjustl(matrix_type)) == "2D_angle") then
 
       if (.not. pdb1_bool) then
         print *, "ERROR. Just one PDB provided. It is necessary to provide two pdbs ", &
@@ -307,9 +307,9 @@ program main
         print *, "For more information, please use the -help option:"
         print *, "./make_matrix -matrix angle -help"
         STOP 1
-      else if (.not. arr_atoms1_bool .or. .not. arr_atoms3_bool .or. .not. arr_atoms4_bool) then 
+      else if (.not. arr_atoms1a_bool .or. .not. arr_atoms1b_bool .or. .not. arr_atoms2b_bool) then 
         print *, "ERROR. Not all necessary group of atoms given"
-        print *, "Please provide all group of atoms with '-atoms1', '-atoms2', '-atoms3' and '-atoms4' options"
+        print *, "Please provide all group of atoms with '-atoms1a', '-atoms1b', '-atoms2a' and '-atoms2b' options"
         print *, "For more information, please use the -help option:"
         print *, "./make_matrix -matrix angle -help"
         STOP 1
@@ -323,19 +323,25 @@ program main
 
       call read_pdb(pdb1, pdb1_filename, tot_atoms1, tot_residues1, tot_chains1)
 
-      call read_atoms_coord(arr_atoms1, atoms1_coords, tot_atoms1, pdb1, pdb1_filename)
-      call read_atoms_coord(arr_atoms2, atoms2_coords, tot_atoms1, pdb1, pdb1_filename)
-      call read_atoms_coord(arr_atoms3, atoms3_coords, tot_atoms2, pdb2, pdb2_filename)
-      call read_atoms_coord(arr_atoms4, atoms4_coords, tot_atoms2, pdb2, pdb2_filename)
+      call read_atoms_coord(arr_atoms1a, atoms1a_coords, tot_atoms1, pdb1, pdb1_filename)
+      call read_atoms_coord(arr_atoms1b, atoms1b_coords, tot_atoms1, pdb1, pdb1_filename)
+      call read_atoms_coord(arr_atoms2a, atoms2a_coords, tot_atoms2, pdb2, pdb2_filename)
+      call read_atoms_coord(arr_atoms2b, atoms2b_coords, tot_atoms2, pdb2, pdb2_filename)
 
-      call calculate_cog(cog1, atoms1_coords, size(atoms1_coords(:, 3)))
-      call calculate_cog(cog2, atoms2_coords, size(atoms2_coords(:, 3)))
-      call calculate_cog(cog3, atoms3_coords, size(atoms3_coords(:, 3)))
-      call calculate_cog(cog4, atoms4_coords, size(atoms4_coords(:, 3)))
+      call calculate_cog(cog1a, atoms1a_coords, size(atoms1a_coords(:, 3)))
+      call calculate_cog(cog1b, atoms1b_coords, size(atoms1b_coords(:, 3)))
+      call calculate_cog(cog2a, atoms2a_coords, size(atoms2a_coords(:, 3)))
+      call calculate_cog(cog2b, atoms2b_coords, size(atoms2b_coords(:, 3)))
       
-      call matrix_angle(distmatrix, distarray, nb_encounters, 2, &
-      complexes % xc1, complexes % xc2, complexes % trans_vector, complexes % rot1, complexes % rot2, &
-      cog1, cog2, cog3, cog4)
+      if (trim(adjustl(matrix_type)) == "2D_angle") then
+        call matrix_angle(distmatrix, distarray, nb_encounters, 2, &
+        complexes % xc1, complexes % xc2, complexes % trans_vector, complexes % rot1, complexes % rot2, &
+        cog1a, cog1b, cog2a, cog2b, 2)
+      else if (trim(adjustl(matrix_type)) == "3D_angle") then
+        call matrix_angle(distmatrix, distarray, nb_encounters, 2, &
+        complexes % xc1, complexes % xc2, complexes % trans_vector, complexes % rot1, complexes % rot2, &
+        cog1a, cog1b, cog2a, cog2b, 3)
+      end if
 
       call write_array(distarray, array_filename)
 
@@ -348,7 +354,7 @@ program main
         print *, "For more information, please use the -help option:"
         print *, "./make_matrix -matrix atoms_dist -help"
         STOP 1
-      else if (.not. arr_atoms1_bool ) then 
+      else if (.not. arr_atoms1a_bool ) then 
         print *, "ERROR. Not all necessary group of atoms given"
         print *, "Please provide the group of atoms with '-atoms1' and '-atoms2' options"
         print *, "For more information, please use the -help option:"
@@ -363,9 +369,9 @@ program main
       end if
 
       call read_pdb(pdb1, pdb1_filename, tot_atoms1, tot_residues1, tot_chains1)
-      call read_atoms_coord(arr_atoms1, atoms1_coords, tot_atoms1, pdb1, pdb1_filename)
+      call read_atoms_coord(arr_atoms1a, atoms1a_coords, tot_atoms1, pdb1, pdb1_filename)
       !STOP 1
-      call read_atoms_coord(arr_atoms2, atoms2_coords, tot_atoms2, pdb2, pdb2_filename)
+      call read_atoms_coord(arr_atoms2a, atoms2a_coords, tot_atoms2, pdb2, pdb2_filename)
       !STOP 1
       
       !STOP 1
@@ -373,7 +379,7 @@ program main
       
 
       call matrix_atoms_dist(distmatrix, distarray, nb_encounters, 1, complexes % xc1, complexes % xc2, &
-      complexes % trans_vector, complexes % rot1, complexes % rot2, atoms1_coords, atoms2_coords)
+      complexes % trans_vector, complexes % rot1, complexes % rot2, atoms1a_coords, atoms2a_coords)
 
       call write_array(distarray, array_filename)
 
@@ -414,7 +420,7 @@ program main
         print *, "* angle"
         print *, ""
         STOP
-      else if (help_option == "rmsd") then
+      else if (trim(help_option) == "rmsd") then
         print *, ""
         print *, "To generate the rsmd matrix you will need to give pdb of solute 2, one group of ", &
         "atoms (either indexes or atomnames), the encounter complexes file, number of encounters, ", &
@@ -424,7 +430,7 @@ program main
         "-matrix_type rmsd -matrix matrix_rmsd.txt"
         print *, ""
         STOP
-      else if (help_option == "z_coord") then
+      else if (trim(help_option) == "z_coord") then
         print *, ""
         print *, "To generate the z_coord matrix you will need to give the pdb of solute 2,", &
         "one group of atoms (either indexes or atomnames), the encounter complexes file, ", &
@@ -434,7 +440,7 @@ program main
         "-matrix_type z_coord -matrix matrix_z.txt -array array_z.txt"
         print *, ""
         STOP
-      else if (help_option == "atoms_dist") then
+      else if (trim(help_option) == "atoms_dist") then
         print *, ""
         print *, "To generate the atoms_dist matrix you will need to give two pdbs, two groups of atoms ", &
         "(either indexes or atomnames), the encounter complexes file, number of encounters, matrix type, ", &
@@ -445,21 +451,21 @@ program main
         "-array array_dist.txt"
         print *, ""
         STOP
-      else if (help_option == "angle") then
+      else if (trim(help_option) == "2D_angle" .or. trim(help_option) == "3D_angle") then
         print *, ""
         print *, "To generate the angle matrix you will need to give two pdbs, four groups of atoms ", &
         "(either indexes or atomnames), the encounter complexes file, number of encounters, matrix ", & 
         "type, array output file and matrix output file."
         print *, ""
         print *, "Eg.: ./make_matrix -pdb1 p1_noh.pdb -pdb2 p2_noh.pdb -complexes ", &
-        "assoc_complexes -atoms1 1 -atoms2 411 -atoms3 Cu -atoms4 4 5 6 7 8 -matrix_type angle ", &
+        "assoc_complexes -atoms1a 1 -atoms1b 411 -atoms2a Cu -atoms2b 4 5 6 7 8 -matrix_type angle ", &
         "-matrix matrix_angle.txt -array array_angle.txt"
         print *, ""
         print *, "For this specific matrix type you need to be aware that a center ", &
         "of geometry will be calculated for each group of atoms and indexed accordingly: "
-        print *, "atoms1 -> cog1, atoms2 -> cog2, atoms3 -> cog3, atoms4 -> cog4"
-        print *, "Then, the 1st vector will be calculated as (cog2 - cog1) and the ", &
-        "2nd vector will be calculated as (cog4 - cog3)"
+        print *, "atoms1a -> cog1a, atoms1b -> cog1b, atoms2a -> cog2a, atoms2b -> cog2b"
+        print *, "Then, the 1st vector will be calculated as (cog1b - cog1a) and the ", &
+        "2nd vector will be calculated as (cog2b - cog2a)"
         print *, "Last, the angle between the two vectors will be computed."
         print *, ""
         STOP

@@ -119,23 +119,26 @@ MODULE mod_matrix
     !Subroutine matrix_plane_degree
 ! 
     subroutine matrix_angle(matrix, array, n, nb_atoms, &
-      xc1, xc2, trans_vector, rot1, rot2, point1, point2, point3, point4)
+      xc1, xc2, trans_vector, rot1, rot2, &
+      point1a, point1b, point2a, point2b, dimensions)
 
       IMPLICIT NONE
       real(kind=8), dimension(3), intent(in) :: xc1, xc2
       real(kind=8), dimension(:, :), intent(in) :: trans_vector, rot1, rot2
       real(kind=8), dimension(n, n), intent(out) :: matrix
       real(kind=8), dimension(n), intent(out) :: array
-      real(kind=8), dimension(:), intent(in) :: point1, point2, point3, point4
+      real(kind=8), dimension(:), intent(in) :: point1a, point1b, point2a, point2b
       integer, intent(in) :: n, nb_atoms
       real(kind=8), dimension(nb_atoms, 3) :: new_coord_1, new_coord_2
       real(kind=8), dimension(3) :: v1, v2
       real(kind=8) :: theta1, theta2
       integer :: i, j, progress_index
       real(kind=8), dimension(2, 3) :: solute2_points
+      integer, intent(in) :: dimensions
 
       progress_index = 0
 
+      
       !print *, point1
       !print *, point2
       !print *, point3
@@ -143,12 +146,12 @@ MODULE mod_matrix
       !STOP
 
       ! Initialize the reference vector
-      v1(1) = point2(1) - point1(1)
-      v1(2) = point2(2) - point1(2)
-      v1(3) = point2(3) - point1(3)
+      v1(1) = point1b(1) - point1a(1)
+      v1(2) = point1b(2) - point1a(2)
+      v1(3) = point1b(3) - point1a(3)
 
-      solute2_points(1, :) = point3(:)
-      solute2_points(2, :) = point4(:)
+      solute2_points(1, :) = point2a(:)
+      solute2_points(2, :) = point2b(:)
 
       ! Parallelizing outer loop with OpenMP
       !$OMP PARALLEL DO PRIVATE(j, new_coord_1, new_coord_2, v2, theta1, theta2) SCHEDULE(DYNAMIC)
@@ -166,7 +169,17 @@ MODULE mod_matrix
         v2(1) = new_coord_1(1, 1) - new_coord_1(2, 1)
         v2(2) = new_coord_1(1, 2) - new_coord_1(2, 2)
         v2(3) = new_coord_1(1, 3) - new_coord_1(2, 3)
-        call vectors_angle(v1, v2, theta1)
+
+        if ( dimensions .eq. 2 ) then
+          call vectors_angle_2D(v1, v2, theta1)
+        else if (dimensions .eq. 3) then
+          call vectors_angle_3D(v1, v2, theta1)
+        else
+          print *, "Dimensions indicated is ", dimensions
+          print *, "Dimensions implemented are 2 or 3."
+          STOP 1
+        end if
+        
         !print *, 'vector 1', v1
         !print *, 'vector 2', v2
         !print *, 'angle', theta1
@@ -181,7 +194,15 @@ MODULE mod_matrix
           v2(1) = new_coord_2(1, 1) - new_coord_2(2, 1)
           v2(2) = new_coord_2(1, 2) - new_coord_2(2, 2)
           v2(3) = new_coord_2(1, 3) - new_coord_2(2, 3)
-          call vectors_angle(v1, v2, theta2)
+          if ( dimensions .eq. 2 ) then
+            call vectors_angle_2D(v1, v2, theta2)
+          else if (dimensions .eq. 3) then
+            call vectors_angle_3D(v1, v2, theta2)
+          else
+            print *, "Dimensions indicated is ", dimensions
+            print *, "Dimensions implemented are 2 or 3."
+            STOP 1
+          end if
           
           matrix(i, j) = abs(theta1 - theta2)
           matrix(j, i) = matrix(i, j)

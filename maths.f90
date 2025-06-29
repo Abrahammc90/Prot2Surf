@@ -118,7 +118,7 @@ MODULE maths
 
     end subroutine update_complex
 
-    subroutine vectors_angle(vector1, vector2, theta_degrees)
+    subroutine vectors_angle_3D(vector1, vector2, theta_degrees)
 
         IMPLICIT NONE
         real (kind=8), intent(out) :: theta_degrees
@@ -151,7 +151,41 @@ MODULE maths
         theta_radians = acos(cos_theta)
         theta_degrees = theta_radians * (180.0 / 3.141592653589793)
 
-    end subroutine vectors_angle
+    end subroutine vectors_angle_3D
+
+    subroutine vectors_angle_2D(vector1, vector2, theta_degrees)
+
+        IMPLICIT NONE
+        real (kind=8), intent(out) :: theta_degrees
+        real( kind=8 ),dimension( 3 ), intent ( in ) :: vector1, vector2
+        real (kind=8) :: magnitude_v1, magnitude_v2, cos_theta
+        real (kind=8) :: theta_radians
+        real (kind=8) :: dot_12
+        
+        ! Compute the dot product of the vectors
+        dot_12 = vector1(1)*vector2(1) + vector1(2)*vector2(2)
+
+        ! Compute the norms of the vectors
+        magnitude_v1 = sqrt(vector1(1)**2 + vector1(2)**2)
+        magnitude_v2 = sqrt(vector2(1)**2 + vector2(2)**2)
+
+        ! Guard against division by zero
+        if (magnitude_v1 == 0.0d0 .or. magnitude_v2 == 0.0d0) then
+            theta_radians = 0.0d0
+            return
+        end if
+
+        ! Compute the cosine of the angle
+        cos_theta = dot_12 / (magnitude_v1 * magnitude_v2)
+
+        ! Clamp value to [-1, 1] to avoid numerical errors with acos
+        cos_theta = max(-1.0d0, min(1.0d0, cos_theta))
+
+        ! Compute the angle in radians
+        theta_radians = acos(cos_theta)
+        theta_degrees = theta_radians * (180.0 / 3.141592653589793)
+
+        end subroutine vectors_angle_2D
 
     subroutine rmsd ( rmsd_value, nb_atoms, coords1, coords2)
         IMPLICIT NONE
