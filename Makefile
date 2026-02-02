@@ -1,7 +1,7 @@
 # Compiler and flags
 FC = gfortran
 #FLAGS = -O0 -Wall -fno-fast-math
-FLAGS = -O0 -Wall -fopenmp -march=native -funroll-loops -fno-fast-math
+FLAGS = -O0 -Wall -llapack -lblas -fopenmp -march=native -funroll-loops -fno-fast-math
 
 # Source files
 MOD_PDB_SRC = mod_pdb.f90
@@ -10,9 +10,11 @@ READ_INPUT_SRC = read_input.f90
 MATHS_SRC = maths.f90
 MOD_MATRIX_SRC = mod_matrix.f90
 MOD_CLUST_ALGORITHM_SRC = mod_clust_algorithm.f90
+MOD_THRESHOLD_SRC = mod_threshold.f90
 MAKE_MATRIX_SRC = make_matrix.f90
 ANALYZE_RESIDUES_SRC = analyze_residues.f90
 CLUST_SRC = clust.f90
+THRESH_SRC = threshold.f90
 
 # Object files
 MOD_PDB_OBJ = mod_pdb.o
@@ -21,17 +23,20 @@ READ_INPUT_OBJ = read_input.o
 MATHS_OBJ = maths.o
 MOD_MATRIX_OBJ = mod_matrix.o
 MOD_CLUST_ALGORITHM_OBJ = mod_clust_algorithm.o
+MOD_THRESHOLD_OBJ = mod_threshold.o
 MAKE_MATRIX_OBJ = make_matrix.o
 ANALYZE_RESIDUES_OBJ = analyze_residues.o
 CLUST_OBJ = clust.o
+THRESH_OBJ = threshold.o
 
 # Executable
 EXE1 = make_matrix
 EXE2 = clust
 EXE3 = analyze_residues
+EXE4 = threshold
 
 # Default target: build the executable
-all: $(EXE1) $(EXE2) $(EXE3)
+all: $(EXE1) $(EXE2) $(EXE3) $(EXE4)
 
 # Rule to compile mod_pdb
 $(MOD_PDB_OBJ): $(MOD_PDB_SRC)
@@ -59,6 +64,10 @@ $(MATHS_OBJ): $(MATHS_SRC)
 $(MOD_MATRIX_OBJ): $(MOD_MATRIX_SRC) $(MATHS_OBJ)
 	$(FC) $(FLAGS) -c $(MOD_MATRIX_SRC)
 
+# Rule to compile mod_threshold (depends on maths)
+$(MOD_THRESHOLD_OBJ): $(MOD_THRESHOLD_SRC) $(MATHS_OBJ)
+	$(FC) $(FLAGS) -c $(MOD_THRESHOLD_SRC)
+
 
 
 # Rule to compile make_matrix (depends on everything else)
@@ -73,6 +82,9 @@ $(CLUST_OBJ): $(CLUST_SRC) $(MOD_CLUST_ALGORITHM_OBJ) $(READ_INPUT_OBJ) $(MOD_PD
 $(ANALYZE_RESIDUES_OBJ): $(ANALYZE_RESIDUES_SRC) $(MATHS_OBJ) $(READ_INPUT_OBJ) $(MOD_PDB_OBJ) $(MOD_ASSOC_OBJ)
 	$(FC) $(FLAGS) -c $(ANALYZE_RESIDUES_SRC)
 
+# Rule to compile threshold (depends on everything else)
+$(THRESH_OBJ): $(THRESH_SRC) $(MOD_PDB_OBJ) $(MOD_ASSOC_OBJ) $(MOD_THRESHOLD_OBJ) $(READ_INPUT_OBJ) $(MATHS_OBJ)
+	$(FC) $(FLAGS) -c $(THRESH_SRC)
 
 # Rule to link the make_matrix executable (depends on all object files)
 $(EXE1): $(MAKE_MATRIX_OBJ) $(MOD_PDB_OBJ) $(MOD_ASSOC_OBJ) $(MOD_MATRIX_OBJ) $(READ_INPUT_OBJ) $(MATHS_OBJ)
@@ -86,7 +98,11 @@ $(EXE2): $(CLUST_OBJ) $(MOD_CLUST_ALGORITHM_OBJ) $(READ_INPUT_OBJ) $(MOD_PDB_OBJ
 $(EXE3): $(ANALYZE_RESIDUES_OBJ) $(MATHS_OBJ) $(READ_INPUT_OBJ) $(MOD_PDB_OBJ) $(MOD_ASSOC_OBJ)
 	$(FC) $(FLAGS) -o $(EXE3) $(ANALYZE_RESIDUES_OBJ) $(MATHS_OBJ) $(READ_INPUT_OBJ) $(MOD_PDB_OBJ) $(MOD_ASSOC_OBJ)
 
+# Rule to link the make_matrix executable (depends on all object files)
+$(EXE4): $(THRESH_OBJ) $(MOD_PDB_OBJ) $(MOD_ASSOC_OBJ) $(MOD_THRESHOLD_OBJ) $(READ_INPUT_OBJ) $(MATHS_OBJ)
+	$(FC) $(FLAGS) -o $(EXE4) $(THRESH_OBJ) $(MOD_PDB_OBJ) $(MOD_ASSOC_OBJ) $(MOD_THRESHOLD_OBJ) $(READ_INPUT_OBJ) $(MATHS_OBJ)
+
 
 # Clean target: remove all compiled files
 clean:
-	rm -f $(EXE1) $(EXE2) $(EXE3) *.o *.mod
+	rm -f $(EXE1) $(EXE2) $(EXE3) $(EXE4) *.o *.mod
