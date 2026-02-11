@@ -1,0 +1,30 @@
+# Doxyfile 1.9.1
+# Minimal Doxygen configuration for this Fortran project
+PROJECT_NAME           = "Clustering program"
+OUTPUT_DIRECTORY       = ../docs
+CREATE_SUBDIRS         = YES
+OPTIMIZE_FOR_FORTRAN   = YES
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = NO
+RECURSIVE              = YES
+INPUT                  = .
+FILE_PATTERNS          = *.f90 *.F90 *.f *.F *.py *.sh *.md
+QUIET                  = NO
+GENERATE_HTML          = YES
+GENERATE_LATEX         = YES
+USE_PDFLATEX           = YES
+GENERATE_MAN           = NO
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = YES
+LAYOUT_FILE            =
+
+# Additional Fortran settings
+EXTENSION_MAPPING      = f90=Fortran py=Python sh=C
+PYTHON_DOCSTRING       = YES
+EXCLUDE_PATTERNS       = */build/* */docs/* */__pycache__/*
+
+# Enable markup from comments starting with !>, !! or !
+JAVADOC_AUTOBRIEF      = YES
+
+# End of minimal Doxyfile

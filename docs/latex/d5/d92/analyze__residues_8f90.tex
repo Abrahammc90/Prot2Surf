@@ -1,0 +1,33 @@
+\hypertarget{analyze__residues_8f90}{}\doxysection{analyze\+\_\+residues.\+f90 File Reference}
+\label{analyze__residues_8f90}\index{analyze\_residues.f90@{analyze\_residues.f90}}
+\doxysubsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+program \mbox{\hyperlink{analyze__residues_8f90_a8ec2266d83cd6c0b762cbcbc92c0af3d}{main}}
+\begin{DoxyCompactList}\small\item\em Analyze which residues are close to the surface across encounters. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{analyze__residues_8f90_a78fdb90c7b35c2b7767d67935a41814a}{print\+\_\+help}} ()
+\begin{DoxyCompactList}\small\item\em Print usage/help text for {\ttfamily analyze\+\_\+residues}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{analyze__residues_8f90_a8ec2266d83cd6c0b762cbcbc92c0af3d}\label{analyze__residues_8f90_a8ec2266d83cd6c0b762cbcbc92c0af3d}} 
+\index{analyze\_residues.f90@{analyze\_residues.f90}!main@{main}}
+\index{main@{main}!analyze\_residues.f90@{analyze\_residues.f90}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily program main}
+
+
+
+Analyze which residues are close to the surface across encounters. 
+
+This program reads a P\+DB for solute2 and an associations/complexes file, transforms residue centers for each encounter and counts how many encounters bring residues within a distance threshold from the surface. Results are written to {\ttfamily closest\+\_\+residues.\+txt}. \mbox{\Hypertarget{analyze__residues_8f90_a78fdb90c7b35c2b7767d67935a41814a}\label{analyze__residues_8f90_a78fdb90c7b35c2b7767d67935a41814a}} 
+\index{analyze\_residues.f90@{analyze\_residues.f90}!print\_help@{print\_help}}
+\index{print\_help@{print\_help}!analyze\_residues.f90@{analyze\_residues.f90}}
+\doxysubsubsection{\texorpdfstring{print\_help()}{print\_help()}}
+{\footnotesize\ttfamily subroutine main\+::print\+\_\+help}
+
+
+
+Print usage/help text for {\ttfamily analyze\+\_\+residues}. 
+
+Shows required command-\/line options and examples for running the residue analysis tool. 

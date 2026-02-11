@@ -1,0 +1,69 @@
+\hypertarget{threshold_8f90}{}\doxysection{threshold.\+f90 File Reference}
+\label{threshold_8f90}\index{threshold.f90@{threshold.f90}}
+\doxysubsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+program \mbox{\hyperlink{threshold_8f90_a8ec2266d83cd6c0b762cbcbc92c0af3d}{main}}
+\begin{DoxyCompactList}\small\item\em Generate encounter selection based on threshold criteria. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{threshold_8f90_a9c89be8ab0718c0b4d3d7857380231a3}{print\+\_\+help}} (help\+\_\+option)
+\begin{DoxyCompactList}\small\item\em Print usage/help text for {\ttfamily threshold}. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{threshold_8f90_ad0df42f74407d652097e6e433eea2dc8}{read\+\_\+atoms\+\_\+coord}} (atoms\+\_\+array, atoms\+\_\+coord, tot\+\_\+atoms, pdb, pdb\+\_\+filename)
+\begin{DoxyCompactList}\small\item\em Read coordinates for a specified list of atoms (names or indices). \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{threshold_8f90_ad04de6cff47de94926a29611e69af5b1}{write\+\_\+complexes}} (complexes\+\_\+arg, distarray\+\_\+arg, encounter\+\_\+indexes\+\_\+arg, nb\+\_\+encounters\+\_\+arg, cutoff\+\_\+arg, output\+\_\+name\+\_\+arg)
+\begin{DoxyCompactList}\small\item\em Write selected encounter complexes to an output file. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{threshold_8f90_a5ce58677d1b4a380e504f22141ae31a8}{write\+\_\+array}} (array\+\_\+arg, filename\+\_\+arg, cutoff\+\_\+arg)
+\begin{DoxyCompactList}\small\item\em Write array values up to a cutoff to a formatted file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{threshold_8f90_a8ec2266d83cd6c0b762cbcbc92c0af3d}\label{threshold_8f90_a8ec2266d83cd6c0b762cbcbc92c0af3d}} 
+\index{threshold.f90@{threshold.f90}!main@{main}}
+\index{main@{main}!threshold.f90@{threshold.f90}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily program main}
+
+
+
+Generate encounter selection based on threshold criteria. 
+
+This executable computes thresholds (z\+\_\+coord, atoms\+\_\+dist, angles) across encounter transforms and writes selected encounter records to an output complexes file. See {\ttfamily print\+\_\+help} for usage examples. \mbox{\Hypertarget{threshold_8f90_a9c89be8ab0718c0b4d3d7857380231a3}\label{threshold_8f90_a9c89be8ab0718c0b4d3d7857380231a3}} 
+\index{threshold.f90@{threshold.f90}!print\_help@{print\_help}}
+\index{print\_help@{print\_help}!threshold.f90@{threshold.f90}}
+\doxysubsubsection{\texorpdfstring{print\_help()}{print\_help()}}
+{\footnotesize\ttfamily subroutine main\+::print\+\_\+help (\begin{DoxyParamCaption}\item[{character(len=$\ast$), intent(in)}]{help\+\_\+option }\end{DoxyParamCaption})}
+
+
+
+Print usage/help text for {\ttfamily threshold}. 
+
+Explains command-\/line options and provides examples per threshold type. \mbox{\Hypertarget{threshold_8f90_ad0df42f74407d652097e6e433eea2dc8}\label{threshold_8f90_ad0df42f74407d652097e6e433eea2dc8}} 
+\index{threshold.f90@{threshold.f90}!read\_atoms\_coord@{read\_atoms\_coord}}
+\index{read\_atoms\_coord@{read\_atoms\_coord}!threshold.f90@{threshold.f90}}
+\doxysubsubsection{\texorpdfstring{read\_atoms\_coord()}{read\_atoms\_coord()}}
+{\footnotesize\ttfamily subroutine main\+::read\+\_\+atoms\+\_\+coord (\begin{DoxyParamCaption}\item[{character(len=$\ast$), dimension(\+:), intent(in)}]{atoms\+\_\+array,  }\item[{real(kind=8), dimension(\+:, \+:), intent(out), allocatable}]{atoms\+\_\+coord,  }\item[{integer, intent(in)}]{tot\+\_\+atoms,  }\item[{type ( \mbox{\hyperlink{structmod__pdb_1_1type__pdb__file}{type\+\_\+pdb\+\_\+file}} ), intent(in)}]{pdb,  }\item[{character(len=$\ast$), intent(in)}]{pdb\+\_\+filename }\end{DoxyParamCaption})}
+
+
+
+Read coordinates for a specified list of atoms (names or indices). 
+
+Similar to the helper in {\ttfamily make\+\_\+matrix}. Returns an allocated {\ttfamily atoms\+\_\+coord} array with matching coordinates for the atom names or indices provided in {\ttfamily atoms\+\_\+array}. \mbox{\Hypertarget{threshold_8f90_a5ce58677d1b4a380e504f22141ae31a8}\label{threshold_8f90_a5ce58677d1b4a380e504f22141ae31a8}} 
+\index{threshold.f90@{threshold.f90}!write\_array@{write\_array}}
+\index{write\_array@{write\_array}!threshold.f90@{threshold.f90}}
+\doxysubsubsection{\texorpdfstring{write\_array()}{write\_array()}}
+{\footnotesize\ttfamily subroutine main\+::write\+\_\+array (\begin{DoxyParamCaption}\item[{real(kind=8), dimension(\+:), intent(in)}]{array\+\_\+arg,  }\item[{character$\ast$128, intent(in)}]{filename\+\_\+arg,  }\item[{real(kind=8), intent(in)}]{cutoff\+\_\+arg }\end{DoxyParamCaption})}
+
+
+
+Write array values up to a cutoff to a formatted file. 
+
+Writes values from {\ttfamily array} (in ascending order) until {\ttfamily cutoff} is reached and stores them in {\ttfamily filename} using {\ttfamily F10.\+4} formatting. \mbox{\Hypertarget{threshold_8f90_ad04de6cff47de94926a29611e69af5b1}\label{threshold_8f90_ad04de6cff47de94926a29611e69af5b1}} 
+\index{threshold.f90@{threshold.f90}!write\_complexes@{write\_complexes}}
+\index{write\_complexes@{write\_complexes}!threshold.f90@{threshold.f90}}
+\doxysubsubsection{\texorpdfstring{write\_complexes()}{write\_complexes()}}
+{\footnotesize\ttfamily subroutine main\+::write\+\_\+complexes (\begin{DoxyParamCaption}\item[{type(type\+\_\+assoc\+\_\+file), intent(in)}]{complexes\+\_\+arg,  }\item[{real (kind=8), dimension(\+:), intent(in)}]{distarray\+\_\+arg,  }\item[{integer, dimension(\+:), intent(in)}]{encounter\+\_\+indexes\+\_\+arg,  }\item[{integer, intent(in)}]{nb\+\_\+encounters\+\_\+arg,  }\item[{real(kind=8), intent(in)}]{cutoff\+\_\+arg,  }\item[{character$\ast$128, intent(in)}]{output\+\_\+name\+\_\+arg }\end{DoxyParamCaption})}
+
+
+
+Write selected encounter complexes to an output file. 
+
+Writes the header lines from {\ttfamily complexeshead} and then appends encounter lines (from {\ttfamily complexeslines}) in the order provided by {\ttfamily encounter\+\_\+indexes} until a value exceeding {\ttfamily cutoff} is encountered. 

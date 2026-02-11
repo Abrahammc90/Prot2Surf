@@ -1,0 +1,120 @@
+\hypertarget{namespacemod__threshold}{}\doxysection{mod\+\_\+threshold Module Reference}
+\label{namespacemod__threshold}\index{mod\_threshold@{mod\_threshold}}
+\doxysubsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine \mbox{\hyperlink{namespacemod__threshold_a2c4340dbaf64f7e9fc27254f39046a79}{array\+\_\+z\+\_\+coord}} (array, n, nb\+\_\+atoms, xc1, xc2, trans\+\_\+vector, rot1, rot2, solute\+\_\+crds)
+\begin{DoxyCompactList}\small\item\em Compute the Z-\/coordinate (along transformed z-\/axis) for each encounter. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{namespacemod__threshold_ace0a65c5beea48bd05109321ae7b0372}{array\+\_\+atoms\+\_\+dist}} (array, n, nb\+\_\+atoms, xc1, xc2, trans\+\_\+vector, rot1, rot2, solute1\+\_\+crds, solute2\+\_\+crds)
+\begin{DoxyCompactList}\small\item\em Compute minimum inter-\/atomic distance between two solutes for each encounter. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{namespacemod__threshold_a642be7416f7ba53a4aa0f28a6d62049d}{array\+\_\+angle}} (array, n, nb\+\_\+atoms, xc1, xc2, trans\+\_\+vector, rot1, rot2, point1a, point1b, point2a, point2b, dimensions)
+\begin{DoxyCompactList}\small\item\em Compute angle between two vectors (defined by atom groups) per encounter. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{namespacemod__threshold_a09bbd97c3ea019b1aed4d594fc263309}{sort\+\_\+array}} (arr, encounter\+\_\+indexes)
+\begin{DoxyCompactList}\small\item\em Sort an array in ascending order and reorder encounter indexes accordingly. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespacemod__threshold_a642be7416f7ba53a4aa0f28a6d62049d}\label{namespacemod__threshold_a642be7416f7ba53a4aa0f28a6d62049d}} 
+\index{mod\_threshold@{mod\_threshold}!array\_angle@{array\_angle}}
+\index{array\_angle@{array\_angle}!mod\_threshold@{mod\_threshold}}
+\doxysubsubsection{\texorpdfstring{array\_angle()}{array\_angle()}}
+{\footnotesize\ttfamily subroutine mod\+\_\+threshold\+::array\+\_\+angle (\begin{DoxyParamCaption}\item[{real(kind=8), dimension(n), intent(out)}]{array,  }\item[{integer, intent(in)}]{n,  }\item[{integer, intent(in)}]{nb\+\_\+atoms,  }\item[{real(kind=8), dimension(3), intent(in)}]{xc1,  }\item[{real(kind=8), dimension(3), intent(in)}]{xc2,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{trans\+\_\+vector,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{rot1,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{rot2,  }\item[{real(kind=8), dimension(\+:), intent(in)}]{point1a,  }\item[{real(kind=8), dimension(\+:), intent(in)}]{point1b,  }\item[{real(kind=8), dimension(\+:), intent(in)}]{point2a,  }\item[{real(kind=8), dimension(\+:), intent(in)}]{point2b,  }\item[{integer, intent(in)}]{dimensions }\end{DoxyParamCaption})}
+
+
+
+Compute angle between two vectors (defined by atom groups) per encounter. 
+
+Transforms the pair of points from solute2 for each encounter and computes the angle between the vector defined by {\ttfamily point1b-\/point1a} and the vector defined by the transformed {\ttfamily point2b-\/point2a}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em array} & Output array with angles in degrees (n) \\
+\hline
+\mbox{\texttt{ in}}  & {\em n} & Number of encounters \\
+\hline
+\mbox{\texttt{ in}}  & {\em nb\+\_\+atoms} & Number of atoms used for transformation \\
+\hline
+\mbox{\texttt{ in}}  & {\em xc1,xc2} & Centers used for transform \\
+\hline
+\mbox{\texttt{ in}}  & {\em trans\+\_\+vector,rot1,rot2} & Transform arrays (n,3) \\
+\hline
+\mbox{\texttt{ in}}  & {\em point1a,b,point2a,b} & Reference points/vectors \\
+\hline
+\mbox{\texttt{ in}}  & {\em dimensions} & Use 2 or 3 to select projection \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacemod__threshold_ace0a65c5beea48bd05109321ae7b0372}\label{namespacemod__threshold_ace0a65c5beea48bd05109321ae7b0372}} 
+\index{mod\_threshold@{mod\_threshold}!array\_atoms\_dist@{array\_atoms\_dist}}
+\index{array\_atoms\_dist@{array\_atoms\_dist}!mod\_threshold@{mod\_threshold}}
+\doxysubsubsection{\texorpdfstring{array\_atoms\_dist()}{array\_atoms\_dist()}}
+{\footnotesize\ttfamily subroutine mod\+\_\+threshold\+::array\+\_\+atoms\+\_\+dist (\begin{DoxyParamCaption}\item[{real(kind=8), dimension(n), intent(out)}]{array,  }\item[{integer, intent(in)}]{n,  }\item[{integer, intent(in)}]{nb\+\_\+atoms,  }\item[{real(kind=8), dimension(3), intent(in)}]{xc1,  }\item[{real(kind=8), dimension(3), intent(in)}]{xc2,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{trans\+\_\+vector,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{rot1,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{rot2,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{solute1\+\_\+crds,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{solute2\+\_\+crds }\end{DoxyParamCaption})}
+
+
+
+Compute minimum inter-\/atomic distance between two solutes for each encounter. 
+
+For each encounter the second solute is transformed and the minimum distance between any atom of {\ttfamily solute1\+\_\+crds} and the transformed {\ttfamily solute2\+\_\+crds} is computed and stored in {\ttfamily array}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em array} & Output array (n) \\
+\hline
+\mbox{\texttt{ in}}  & {\em n} & Number of encounters \\
+\hline
+\mbox{\texttt{ in}}  & {\em nb\+\_\+atoms} & Number of atoms in {\ttfamily solute2\+\_\+crds} \\
+\hline
+\mbox{\texttt{ in}}  & {\em xc1,xc2} & Centers used for transform \\
+\hline
+\mbox{\texttt{ in}}  & {\em trans\+\_\+vector,rot1,rot2} & Transform arrays (n,3) \\
+\hline
+\mbox{\texttt{ in}}  & {\em solute1\+\_\+crds} & Coordinates of solute1 atoms \\
+\hline
+\mbox{\texttt{ in}}  & {\em solute2\+\_\+crds} & Coordinates of solute2 atoms \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacemod__threshold_a2c4340dbaf64f7e9fc27254f39046a79}\label{namespacemod__threshold_a2c4340dbaf64f7e9fc27254f39046a79}} 
+\index{mod\_threshold@{mod\_threshold}!array\_z\_coord@{array\_z\_coord}}
+\index{array\_z\_coord@{array\_z\_coord}!mod\_threshold@{mod\_threshold}}
+\doxysubsubsection{\texorpdfstring{array\_z\_coord()}{array\_z\_coord()}}
+{\footnotesize\ttfamily subroutine mod\+\_\+threshold\+::array\+\_\+z\+\_\+coord (\begin{DoxyParamCaption}\item[{real(kind=8), dimension(n), intent(out)}]{array,  }\item[{integer, intent(in)}]{n,  }\item[{integer, intent(in)}]{nb\+\_\+atoms,  }\item[{real(kind=8), dimension(3), intent(in)}]{xc1,  }\item[{real(kind=8), dimension(3), intent(in)}]{xc2,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{trans\+\_\+vector,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{rot1,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{rot2,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{solute\+\_\+crds }\end{DoxyParamCaption})}
+
+
+
+Compute the Z-\/coordinate (along transformed z-\/axis) for each encounter. 
+
+Recenters each encounter at {\ttfamily xc2}, applies rotation/translation using {\ttfamily rot1/rot2} and {\ttfamily trans\+\_\+vector}, and extracts the Z coordinate of the first atom in {\ttfamily solute\+\_\+crds} for every encounter into {\ttfamily array}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em array} & Output array of length {\ttfamily n} with z-\/coordinates \\
+\hline
+\mbox{\texttt{ in}}  & {\em n} & Number of encounters \\
+\hline
+\mbox{\texttt{ in}}  & {\em nb\+\_\+atoms} & Number of atoms in {\ttfamily solute\+\_\+crds} \\
+\hline
+\mbox{\texttt{ in}}  & {\em xc1,xc2} & Centers used for transform \\
+\hline
+\mbox{\texttt{ in}}  & {\em trans\+\_\+vector,rot1,rot2} & Transform arrays (n,3) \\
+\hline
+\mbox{\texttt{ in}}  & {\em solute\+\_\+crds} & Coordinates of solute atoms (nb\+\_\+atoms,3) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacemod__threshold_a09bbd97c3ea019b1aed4d594fc263309}\label{namespacemod__threshold_a09bbd97c3ea019b1aed4d594fc263309}} 
+\index{mod\_threshold@{mod\_threshold}!sort\_array@{sort\_array}}
+\index{sort\_array@{sort\_array}!mod\_threshold@{mod\_threshold}}
+\doxysubsubsection{\texorpdfstring{sort\_array()}{sort\_array()}}
+{\footnotesize\ttfamily subroutine mod\+\_\+threshold\+::sort\+\_\+array (\begin{DoxyParamCaption}\item[{real (kind=8), dimension(\+:), intent(inout)}]{arr,  }\item[{integer, dimension(\+:), intent(inout)}]{encounter\+\_\+indexes }\end{DoxyParamCaption})}
+
+
+
+Sort an array in ascending order and reorder encounter indexes accordingly. 
+
+Simple selection sort used to reorder {\ttfamily arr} and the parallel {\ttfamily encounter\+\_\+indexes} array. Intended for small to moderate sizes.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em arr} & Array to sort (modified in-\/place) \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em encounter\+\_\+indexes} & Parallel index array reordered to match {\ttfamily arr} \\
+\hline
+\end{DoxyParams}

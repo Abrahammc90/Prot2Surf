@@ -1,0 +1,179 @@
+\hypertarget{namespacemaths}{}\doxysection{maths Module Reference}
+\label{namespacemaths}\index{maths@{maths}}
+\doxysubsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine \mbox{\hyperlink{namespacemaths_ac89e1c68b50792f50ce2fd15c6606a9c}{cross}} (v1, v2, v3)
+\begin{DoxyCompactList}\small\item\em Compute the cross product of two 3D vectors. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{namespacemaths_a63f77e09ffc345c4982ee2558929223b}{update\+\_\+complex}} (xc1, xc2, trans, rot\+\_\+vx, rot\+\_\+vy, nb\+\_\+atoms, coords, new\+\_\+coords)
+\begin{DoxyCompactList}\small\item\em Apply translation and rotation to a set of atomic coordinates. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{namespacemaths_a7a88ae4cdae87c8a9b1a71c6c398147e}{vectors\+\_\+angle\+\_\+3d}} (vector1, vector2, theta\+\_\+degrees)
+\begin{DoxyCompactList}\small\item\em Compute the angle in degrees between two 3D vectors. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{namespacemaths_abb426ddd3613be84a4d6b52514518093}{vectors\+\_\+angle\+\_\+2d}} (vector1, vector2, theta\+\_\+degrees)
+\begin{DoxyCompactList}\small\item\em Compute the angle in degrees between two vectors projected to 2D. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{namespacemaths_a0027059d7d932be06e4246f1ea65549f}{rmsd}} (rmsd\+\_\+value, nb\+\_\+atoms, coords1, coords2)
+\begin{DoxyCompactList}\small\item\em Compute the root-\/mean-\/square deviation (R\+M\+SD) between two sets of coordinates. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{namespacemaths_a84de91e95426185eed4ea444f1d5f16f}{calculate\+\_\+cog}} (cog, coords, nb\+\_\+atoms)
+\begin{DoxyCompactList}\small\item\em Compute the center of geometry (centroid) of a set of points. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{namespacemaths_a25adf67f6183941af427c98445c60d9f}{calculate\+\_\+distance}} (p1, p2, dist)
+\begin{DoxyCompactList}\small\item\em Compute Euclidean distance between two 3D points. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespacemaths_a84de91e95426185eed4ea444f1d5f16f}\label{namespacemaths_a84de91e95426185eed4ea444f1d5f16f}} 
+\index{maths@{maths}!calculate\_cog@{calculate\_cog}}
+\index{calculate\_cog@{calculate\_cog}!maths@{maths}}
+\doxysubsubsection{\texorpdfstring{calculate\_cog()}{calculate\_cog()}}
+{\footnotesize\ttfamily subroutine maths\+::calculate\+\_\+cog (\begin{DoxyParamCaption}\item[{real (kind=8), dimension(3), intent(out)}]{cog,  }\item[{real (kind=8), dimension(nb\+\_\+atoms, 3), intent(in)}]{coords,  }\item[{integer, intent(in)}]{nb\+\_\+atoms }\end{DoxyParamCaption})}
+
+
+
+Compute the center of geometry (centroid) of a set of points. 
+
+Sums the coordinates and divides by the number of points to produce the centroid.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em cog} & Centroid vector (3 elements) \\
+\hline
+\mbox{\texttt{ in}}  & {\em coords} & Input coordinates, shape (nb\+\_\+atoms,3) \\
+\hline
+\mbox{\texttt{ in}}  & {\em nb\+\_\+atoms} & Number of atoms / points \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacemaths_a25adf67f6183941af427c98445c60d9f}\label{namespacemaths_a25adf67f6183941af427c98445c60d9f}} 
+\index{maths@{maths}!calculate\_distance@{calculate\_distance}}
+\index{calculate\_distance@{calculate\_distance}!maths@{maths}}
+\doxysubsubsection{\texorpdfstring{calculate\_distance()}{calculate\_distance()}}
+{\footnotesize\ttfamily subroutine maths\+::calculate\+\_\+distance (\begin{DoxyParamCaption}\item[{real (kind=8), dimension(3), intent(in)}]{p1,  }\item[{real (kind=8), dimension(3), intent(in)}]{p2,  }\item[{real (kind=8), intent(out)}]{dist }\end{DoxyParamCaption})}
+
+
+
+Compute Euclidean distance between two 3D points. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p1} & First point (3 elements) \\
+\hline
+\mbox{\texttt{ in}}  & {\em p2} & Second point (3 elements) \\
+\hline
+\mbox{\texttt{ out}}  & {\em dist} & Euclidean distance $\vert$$\vert$p1 -\/ p2$\vert$$\vert$ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacemaths_ac89e1c68b50792f50ce2fd15c6606a9c}\label{namespacemaths_ac89e1c68b50792f50ce2fd15c6606a9c}} 
+\index{maths@{maths}!cross@{cross}}
+\index{cross@{cross}!maths@{maths}}
+\doxysubsubsection{\texorpdfstring{cross()}{cross()}}
+{\footnotesize\ttfamily subroutine maths\+::cross (\begin{DoxyParamCaption}\item[{real ( kind=8 ), dimension ( 3 ), intent(in)}]{v1,  }\item[{real ( kind=8 ), dimension ( 3 ), intent(in)}]{v2,  }\item[{real ( kind=8 ), dimension ( 3 ), intent(out)}]{v3 }\end{DoxyParamCaption})}
+
+
+
+Compute the cross product of two 3D vectors. 
+
+Computes v3 = v1 x v2 using the standard right-\/hand rule.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em v1} & Left-\/hand operand vector (3 elements) \\
+\hline
+\mbox{\texttt{ in}}  & {\em v2} & Right-\/hand operand vector (3 elements) \\
+\hline
+\mbox{\texttt{ out}}  & {\em v3} & Resulting cross product (3 elements) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacemaths_a0027059d7d932be06e4246f1ea65549f}\label{namespacemaths_a0027059d7d932be06e4246f1ea65549f}} 
+\index{maths@{maths}!rmsd@{rmsd}}
+\index{rmsd@{rmsd}!maths@{maths}}
+\doxysubsubsection{\texorpdfstring{rmsd()}{rmsd()}}
+{\footnotesize\ttfamily subroutine maths\+::rmsd (\begin{DoxyParamCaption}\item[{real(kind=8), intent(out)}]{rmsd\+\_\+value,  }\item[{integer, intent(in)}]{nb\+\_\+atoms,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{coords1,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{coords2 }\end{DoxyParamCaption})}
+
+
+
+Compute the root-\/mean-\/square deviation (R\+M\+SD) between two sets of coordinates. 
+
+Calculates R\+M\+SD = sqrt( (1/N) $\ast$ sum\+\_\+i $\vert$$\vert$coords1(i,\+:) -\/ coords2(i,\+:)$\vert$$\vert$$^\wedge$2 ).
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em rmsd\+\_\+value} & Resulting R\+M\+SD (scalar) \\
+\hline
+\mbox{\texttt{ in}}  & {\em nb\+\_\+atoms} & Number of atoms / points (integer) \\
+\hline
+\mbox{\texttt{ in}}  & {\em coords1} & First coordinate set, shape (nb\+\_\+atoms,3) \\
+\hline
+\mbox{\texttt{ in}}  & {\em coords2} & Second coordinate set, shape (nb\+\_\+atoms,3) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacemaths_a63f77e09ffc345c4982ee2558929223b}\label{namespacemaths_a63f77e09ffc345c4982ee2558929223b}} 
+\index{maths@{maths}!update\_complex@{update\_complex}}
+\index{update\_complex@{update\_complex}!maths@{maths}}
+\doxysubsubsection{\texorpdfstring{update\_complex()}{update\_complex()}}
+{\footnotesize\ttfamily subroutine maths\+::update\+\_\+complex (\begin{DoxyParamCaption}\item[{real ( kind = 8 ), dimension ( 3 ), intent(in)}]{xc1,  }\item[{real ( kind = 8 ), dimension ( 3 ), intent(in)}]{xc2,  }\item[{real ( kind = 8 ), dimension ( 3 ), intent(in)}]{trans,  }\item[{real ( kind = 8 ), dimension ( 3 ), intent(in)}]{rot\+\_\+vx,  }\item[{real ( kind = 8 ), dimension ( 3 ), intent(in)}]{rot\+\_\+vy,  }\item[{integer}]{nb\+\_\+atoms,  }\item[{real ( kind = 8 ), dimension (\+:, \+:), intent(in)}]{coords,  }\item[{real ( kind = 8 ), dimension (\+:, \+:), intent(out)}]{new\+\_\+coords }\end{DoxyParamCaption})}
+
+
+
+Apply translation and rotation to a set of atomic coordinates. 
+
+Transforms the coordinates of a complex from a frame centered at {\ttfamily xc2} to a new frame centered at {\ttfamily xc1}. The routine first recenters coordinates by {\ttfamily xc2}, applies a rotation defined by {\ttfamily rot\+\_\+vx} and {\ttfamily rot\+\_\+vy} (their cross product defines the third axis), then applies an additional translation {\ttfamily trans}, and writes the results to {\ttfamily new\+\_\+coords}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em xc1} & Target center position (3) \\
+\hline
+\mbox{\texttt{ in}}  & {\em xc2} & Original center position (3) \\
+\hline
+\mbox{\texttt{ in}}  & {\em trans} & Translation to apply after rotation (3) \\
+\hline
+\mbox{\texttt{ in}}  & {\em rot\+\_\+vx} & First rotation axis vector (3) \\
+\hline
+\mbox{\texttt{ in}}  & {\em rot\+\_\+vy} & Second rotation axis vector (3) \\
+\hline
+\mbox{\texttt{ in}}  & {\em nb\+\_\+atoms} & Number of atoms (integer) \\
+\hline
+\mbox{\texttt{ in}}  & {\em coords} & Input coordinates, shape (nb\+\_\+atoms,3) \\
+\hline
+\mbox{\texttt{ out}}  & {\em new\+\_\+coords} & Output coordinates, shape (nb\+\_\+atoms,3) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacemaths_abb426ddd3613be84a4d6b52514518093}\label{namespacemaths_abb426ddd3613be84a4d6b52514518093}} 
+\index{maths@{maths}!vectors\_angle\_2d@{vectors\_angle\_2d}}
+\index{vectors\_angle\_2d@{vectors\_angle\_2d}!maths@{maths}}
+\doxysubsubsection{\texorpdfstring{vectors\_angle\_2d()}{vectors\_angle\_2d()}}
+{\footnotesize\ttfamily subroutine maths\+::vectors\+\_\+angle\+\_\+2d (\begin{DoxyParamCaption}\item[{real( kind=8 ), dimension( 3 ), intent(in)}]{vector1,  }\item[{real( kind=8 ), dimension( 3 ), intent(in)}]{vector2,  }\item[{real (kind=8), intent(out)}]{theta\+\_\+degrees }\end{DoxyParamCaption})}
+
+
+
+Compute the angle in degrees between two vectors projected to 2D. 
+
+Uses only the first two components of the input vectors to compute the angle in the XY plane. Returns 0 if either vector has zero length in the XY plane.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em vector1} & First vector (use components 1 and 2) \\
+\hline
+\mbox{\texttt{ in}}  & {\em vector2} & Second vector (use components 1 and 2) \\
+\hline
+\mbox{\texttt{ out}}  & {\em theta\+\_\+degrees} & Angle between projected vectors in degrees \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacemaths_a7a88ae4cdae87c8a9b1a71c6c398147e}\label{namespacemaths_a7a88ae4cdae87c8a9b1a71c6c398147e}} 
+\index{maths@{maths}!vectors\_angle\_3d@{vectors\_angle\_3d}}
+\index{vectors\_angle\_3d@{vectors\_angle\_3d}!maths@{maths}}
+\doxysubsubsection{\texorpdfstring{vectors\_angle\_3d()}{vectors\_angle\_3d()}}
+{\footnotesize\ttfamily subroutine maths\+::vectors\+\_\+angle\+\_\+3d (\begin{DoxyParamCaption}\item[{real( kind=8 ), dimension( 3 ), intent(in)}]{vector1,  }\item[{real( kind=8 ), dimension( 3 ), intent(in)}]{vector2,  }\item[{real (kind=8), intent(out)}]{theta\+\_\+degrees }\end{DoxyParamCaption})}
+
+
+
+Compute the angle in degrees between two 3D vectors. 
+
+Calculates the angle (in degrees) between {\ttfamily vector1} and {\ttfamily vector2} using the dot product formula and {\ttfamily acos}. No modification of inputs.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em vector1} & First 3D vector (3 elements) \\
+\hline
+\mbox{\texttt{ in}}  & {\em vector2} & Second 3D vector (3 elements) \\
+\hline
+\mbox{\texttt{ out}}  & {\em theta\+\_\+degrees} & Angle between vectors in degrees \\
+\hline
+\end{DoxyParams}

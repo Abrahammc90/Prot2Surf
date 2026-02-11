@@ -1,0 +1,55 @@
+\hypertarget{make__matrix_8f90}{}\doxysection{make\+\_\+matrix.\+f90 File Reference}
+\label{make__matrix_8f90}\index{make\_matrix.f90@{make\_matrix.f90}}
+\doxysubsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+program \mbox{\hyperlink{make__matrix_8f90_a8ec2266d83cd6c0b762cbcbc92c0af3d}{main}}
+\begin{DoxyCompactList}\small\item\em Command-\/line utility to build encounter-\/based matrices. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{make__matrix_8f90_a9c89be8ab0718c0b4d3d7857380231a3}{print\+\_\+help}} (help\+\_\+option)
+\begin{DoxyCompactList}\small\item\em Print usage/help text for {\ttfamily make\+\_\+matrix}. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{make__matrix_8f90_ad0df42f74407d652097e6e433eea2dc8}{read\+\_\+atoms\+\_\+coord}} (atoms\+\_\+array, atoms\+\_\+coord, tot\+\_\+atoms, pdb, pdb\+\_\+filename)
+\begin{DoxyCompactList}\small\item\em Read coordinates for a specified list of atoms (names or indices). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{make__matrix_8f90_a8ec2266d83cd6c0b762cbcbc92c0af3d}\label{make__matrix_8f90_a8ec2266d83cd6c0b762cbcbc92c0af3d}} 
+\index{make\_matrix.f90@{make\_matrix.f90}!main@{main}}
+\index{main@{main}!make\_matrix.f90@{make\_matrix.f90}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily program main}
+
+
+
+Command-\/line utility to build encounter-\/based matrices. 
+
+Usage\+: see {\ttfamily print\+\_\+help} below. This program reads P\+D\+B(s) and an association/complex file and generates matrices (rmsd, z\+\_\+coord, atoms\+\_\+dist, angle) and arrays derived from encounter transforms. \mbox{\Hypertarget{make__matrix_8f90_a9c89be8ab0718c0b4d3d7857380231a3}\label{make__matrix_8f90_a9c89be8ab0718c0b4d3d7857380231a3}} 
+\index{make\_matrix.f90@{make\_matrix.f90}!print\_help@{print\_help}}
+\index{print\_help@{print\_help}!make\_matrix.f90@{make\_matrix.f90}}
+\doxysubsubsection{\texorpdfstring{print\_help()}{print\_help()}}
+{\footnotesize\ttfamily subroutine main\+::print\+\_\+help (\begin{DoxyParamCaption}\item[{character(len=$\ast$), intent(in)}]{help\+\_\+option }\end{DoxyParamCaption})}
+
+
+
+Print usage/help text for {\ttfamily make\+\_\+matrix}. 
+
+Provides short usage examples for the main program and for each supported matrix type. \mbox{\Hypertarget{make__matrix_8f90_ad0df42f74407d652097e6e433eea2dc8}\label{make__matrix_8f90_ad0df42f74407d652097e6e433eea2dc8}} 
+\index{make\_matrix.f90@{make\_matrix.f90}!read\_atoms\_coord@{read\_atoms\_coord}}
+\index{read\_atoms\_coord@{read\_atoms\_coord}!make\_matrix.f90@{make\_matrix.f90}}
+\doxysubsubsection{\texorpdfstring{read\_atoms\_coord()}{read\_atoms\_coord()}}
+{\footnotesize\ttfamily subroutine main\+::read\+\_\+atoms\+\_\+coord (\begin{DoxyParamCaption}\item[{character(len=$\ast$), dimension(\+:), intent(in)}]{atoms\+\_\+array,  }\item[{real(kind=8), dimension(\+:, \+:), intent(out), allocatable}]{atoms\+\_\+coord,  }\item[{integer, intent(in)}]{tot\+\_\+atoms,  }\item[{type ( type\+\_\+pdb\+\_\+file ), intent(in)}]{pdb,  }\item[{character(len=$\ast$), intent(in)}]{pdb\+\_\+filename }\end{DoxyParamCaption})}
+
+
+
+Read coordinates for a specified list of atoms (names or indices). 
+
+Accepts either atom indices or atom names. If atom names are provided, all matching atoms in the P\+DB are returned (in order). 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em atoms\+\_\+array} & Array of atom name strings or index strings \\
+\hline
+\mbox{\texttt{ in}}  & {\em pdb\+\_\+filename} & Reference filename for warnings \\
+\hline
+\mbox{\texttt{ in}}  & {\em tot\+\_\+atoms} & Total number of atoms in {\ttfamily pdb} \\
+\hline
+\mbox{\texttt{ out}}  & {\em atoms\+\_\+coord} & Allocated array with atom coordinates (N,3) \\
+\hline
+\end{DoxyParams}

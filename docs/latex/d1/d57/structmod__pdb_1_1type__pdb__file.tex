@@ -1,0 +1,83 @@
+\hypertarget{structmod__pdb_1_1type__pdb__file}{}\doxysection{mod\+\_\+pdb\+::type\+\_\+pdb\+\_\+file Type Reference}
+\label{structmod__pdb_1_1type__pdb__file}\index{mod\_pdb::type\_pdb\_file@{mod\_pdb::type\_pdb\_file}}
+
+
+Data type for storing binned data (eg.  
+
+
+
+
+Collaboration diagram for mod\+\_\+pdb\+::type\+\_\+pdb\+\_\+file\+:
+% FIG 0
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+integer \mbox{\hyperlink{structmod__pdb_1_1type__pdb__file_a88ef3ed3f1c2b5ebbc512b11109111a1}{natoms}}
+\begin{DoxyCompactList}\small\item\em Number of atoms in pdb file. \end{DoxyCompactList}\item 
+integer \mbox{\hyperlink{structmod__pdb_1_1type__pdb__file_abe04e796ba15bb7f2ac11c02433f235a}{nresidues}}
+\item 
+integer \mbox{\hyperlink{structmod__pdb_1_1type__pdb__file_aa616b8818e62398abc49d1e4b538b7b2}{nchains}}
+\item 
+type(\mbox{\hyperlink{structmod__pdb_1_1type__pdb__atom}{type\+\_\+pdb\+\_\+atom}}), dimension(\+:), allocatable \mbox{\hyperlink{structmod__pdb_1_1type__pdb__file_a225fe2863ed661ebf1ae5626e0149540}{atoms}}
+\begin{DoxyCompactList}\small\item\em Flag for record type, 1 = A\+T\+OM, 2 = H\+E\+T\+A\+TM. \end{DoxyCompactList}\item 
+type(\mbox{\hyperlink{structmod__pdb_1_1type__pdb__residue}{type\+\_\+pdb\+\_\+residue}}), dimension(\+:), allocatable \mbox{\hyperlink{structmod__pdb_1_1type__pdb__file_a2f8e529d7721b7120532ef7b7b84aa32}{residues}}
+\item 
+type(\mbox{\hyperlink{structmod__pdb_1_1type__pdb__chain}{type\+\_\+pdb\+\_\+chain}}), dimension(\+:), allocatable \mbox{\hyperlink{structmod__pdb_1_1type__pdb__file_a2b8233dc938f2592962d38e0cbe0983b}{chains}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Data type for storing binned data (eg. 
+
+Radial distribution functions) 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structmod__pdb_1_1type__pdb__file_a225fe2863ed661ebf1ae5626e0149540}\label{structmod__pdb_1_1type__pdb__file_a225fe2863ed661ebf1ae5626e0149540}} 
+\index{mod\_pdb::type\_pdb\_file@{mod\_pdb::type\_pdb\_file}!atoms@{atoms}}
+\index{atoms@{atoms}!mod\_pdb::type\_pdb\_file@{mod\_pdb::type\_pdb\_file}}
+\doxysubsubsection{\texorpdfstring{atoms}{atoms}}
+{\footnotesize\ttfamily type(\mbox{\hyperlink{structmod__pdb_1_1type__pdb__atom}{type\+\_\+pdb\+\_\+atom}}), dimension (\+:), allocatable mod\+\_\+pdb\+::type\+\_\+pdb\+\_\+file\+::atoms}
+
+
+
+Flag for record type, 1 = A\+T\+OM, 2 = H\+E\+T\+A\+TM. 
+
+\mbox{\Hypertarget{structmod__pdb_1_1type__pdb__file_a2b8233dc938f2592962d38e0cbe0983b}\label{structmod__pdb_1_1type__pdb__file_a2b8233dc938f2592962d38e0cbe0983b}} 
+\index{mod\_pdb::type\_pdb\_file@{mod\_pdb::type\_pdb\_file}!chains@{chains}}
+\index{chains@{chains}!mod\_pdb::type\_pdb\_file@{mod\_pdb::type\_pdb\_file}}
+\doxysubsubsection{\texorpdfstring{chains}{chains}}
+{\footnotesize\ttfamily type(\mbox{\hyperlink{structmod__pdb_1_1type__pdb__chain}{type\+\_\+pdb\+\_\+chain}}), dimension (\+:), allocatable mod\+\_\+pdb\+::type\+\_\+pdb\+\_\+file\+::chains}
+
+\mbox{\Hypertarget{structmod__pdb_1_1type__pdb__file_a88ef3ed3f1c2b5ebbc512b11109111a1}\label{structmod__pdb_1_1type__pdb__file_a88ef3ed3f1c2b5ebbc512b11109111a1}} 
+\index{mod\_pdb::type\_pdb\_file@{mod\_pdb::type\_pdb\_file}!natoms@{natoms}}
+\index{natoms@{natoms}!mod\_pdb::type\_pdb\_file@{mod\_pdb::type\_pdb\_file}}
+\doxysubsubsection{\texorpdfstring{natoms}{natoms}}
+{\footnotesize\ttfamily integer mod\+\_\+pdb\+::type\+\_\+pdb\+\_\+file\+::natoms}
+
+
+
+Number of atoms in pdb file. 
+
+\mbox{\Hypertarget{structmod__pdb_1_1type__pdb__file_aa616b8818e62398abc49d1e4b538b7b2}\label{structmod__pdb_1_1type__pdb__file_aa616b8818e62398abc49d1e4b538b7b2}} 
+\index{mod\_pdb::type\_pdb\_file@{mod\_pdb::type\_pdb\_file}!nchains@{nchains}}
+\index{nchains@{nchains}!mod\_pdb::type\_pdb\_file@{mod\_pdb::type\_pdb\_file}}
+\doxysubsubsection{\texorpdfstring{nchains}{nchains}}
+{\footnotesize\ttfamily integer mod\+\_\+pdb\+::type\+\_\+pdb\+\_\+file\+::nchains}
+
+\mbox{\Hypertarget{structmod__pdb_1_1type__pdb__file_abe04e796ba15bb7f2ac11c02433f235a}\label{structmod__pdb_1_1type__pdb__file_abe04e796ba15bb7f2ac11c02433f235a}} 
+\index{mod\_pdb::type\_pdb\_file@{mod\_pdb::type\_pdb\_file}!nresidues@{nresidues}}
+\index{nresidues@{nresidues}!mod\_pdb::type\_pdb\_file@{mod\_pdb::type\_pdb\_file}}
+\doxysubsubsection{\texorpdfstring{nresidues}{nresidues}}
+{\footnotesize\ttfamily integer mod\+\_\+pdb\+::type\+\_\+pdb\+\_\+file\+::nresidues}
+
+\mbox{\Hypertarget{structmod__pdb_1_1type__pdb__file_a2f8e529d7721b7120532ef7b7b84aa32}\label{structmod__pdb_1_1type__pdb__file_a2f8e529d7721b7120532ef7b7b84aa32}} 
+\index{mod\_pdb::type\_pdb\_file@{mod\_pdb::type\_pdb\_file}!residues@{residues}}
+\index{residues@{residues}!mod\_pdb::type\_pdb\_file@{mod\_pdb::type\_pdb\_file}}
+\doxysubsubsection{\texorpdfstring{residues}{residues}}
+{\footnotesize\ttfamily type(\mbox{\hyperlink{structmod__pdb_1_1type__pdb__residue}{type\+\_\+pdb\+\_\+residue}}), dimension (\+:), allocatable mod\+\_\+pdb\+::type\+\_\+pdb\+\_\+file\+::residues}
+
+
+
+The documentation for this type was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{mod__pdb_8f90}{mod\+\_\+pdb.\+f90}}\end{DoxyCompactItemize}

@@ -1,0 +1,150 @@
+\hypertarget{namespacemod__pdb}{}\doxysection{mod\+\_\+pdb Module Reference}
+\label{namespacemod__pdb}\index{mod\_pdb@{mod\_pdb}}
+
+
+Module to define a pdb type and pdb reading routine for tools.  
+
+
+\doxysubsection*{Data Types}
+\begin{DoxyCompactItemize}
+\item 
+type \mbox{\hyperlink{structmod__pdb_1_1type__pdb__atom}{type\+\_\+pdb\+\_\+atom}}
+\item 
+type \mbox{\hyperlink{structmod__pdb_1_1type__pdb__chain}{type\+\_\+pdb\+\_\+chain}}
+\item 
+type \mbox{\hyperlink{structmod__pdb_1_1type__pdb__file}{type\+\_\+pdb\+\_\+file}}
+\begin{DoxyCompactList}\small\item\em Data type for storing binned data (eg. \end{DoxyCompactList}\item 
+type \mbox{\hyperlink{structmod__pdb_1_1type__pdb__residue}{type\+\_\+pdb\+\_\+residue}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine \mbox{\hyperlink{namespacemod__pdb_a3f94eefa2e718fc426df4eaa4d80eb45}{allocate\+\_\+pdb\+\_\+object}} (this, pdb\+\_\+file, natoms, nresidues, nchains)
+\begin{DoxyCompactList}\small\item\em Allocate and initialize a {\ttfamily \mbox{\hyperlink{structmod__pdb_1_1type__pdb__file}{type\+\_\+pdb\+\_\+file}}} structure from a P\+DB file. \end{DoxyCompactList}\item 
+integer function \mbox{\hyperlink{namespacemod__pdb_ae7a6bc503b6ad7f79280ed56dd359d94}{count\+\_\+atoms}} (pdb\+\_\+file)
+\begin{DoxyCompactList}\small\item\em Count A\+T\+O\+M/\+H\+E\+T\+A\+TM records in a P\+DB file. \end{DoxyCompactList}\item 
+integer function \mbox{\hyperlink{namespacemod__pdb_a82e23745258c421523a5564ecffd7d02}{count\+\_\+residues}} (pdb\+\_\+file)
+\begin{DoxyCompactList}\small\item\em Count residues in a P\+DB file. \end{DoxyCompactList}\item 
+integer function \mbox{\hyperlink{namespacemod__pdb_a7e68a28bfffec223067770157412b2b9}{count\+\_\+chains}} (pdb\+\_\+file)
+\begin{DoxyCompactList}\small\item\em Count chain separators (T\+ER records) in a P\+DB file. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{namespacemod__pdb_a08ac5c29c5079a644b0e41d004457d55}{fill\+\_\+pdb\+\_\+object}} (this, pdb\+\_\+file)
+\begin{DoxyCompactList}\small\item\em Parse P\+DB records and populate the {\ttfamily \mbox{\hyperlink{structmod__pdb_1_1type__pdb__file}{type\+\_\+pdb\+\_\+file}}} structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Module to define a pdb type and pdb reading routine for tools. 
+
+N\+O\+TE\+: This implementation is based on the S\+D\+A7 project\textquotesingle{}s {\ttfamily \mbox{\hyperlink{mod__pdb_8f90}{mod\+\_\+pdb.\+f90}}} (original author Neil Bruce). The present file has been modified and expanded for the clustering tools in this workspace. Notable enhancements include the addition of {\ttfamily count\+\_\+residues} and {\ttfamily count\+\_\+chains} functions and changes that allow creation of richer in-\/memory objects where residues contain their atoms and chains contain residues and atoms. These changes make it possible to build {\ttfamily \mbox{\hyperlink{structmod__pdb_1_1type__pdb__file}{type\+\_\+pdb\+\_\+file}}} instances with proper {\ttfamily residues} and {\ttfamily chains} substructures (each storing their atoms) rather than storing atoms in a single flat list only.
+
+The original S\+D\+A7 code and author attribution are retained; consult the S\+D\+A7 sources for original licensing and authorship details.
+
+\begin{DoxyAuthor}{Author}
+Neil Bruce @modified-\/by Abraham Muñiz Chicharro 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespacemod__pdb_a3f94eefa2e718fc426df4eaa4d80eb45}\label{namespacemod__pdb_a3f94eefa2e718fc426df4eaa4d80eb45}} 
+\index{mod\_pdb@{mod\_pdb}!allocate\_pdb\_object@{allocate\_pdb\_object}}
+\index{allocate\_pdb\_object@{allocate\_pdb\_object}!mod\_pdb@{mod\_pdb}}
+\doxysubsubsection{\texorpdfstring{allocate\_pdb\_object()}{allocate\_pdb\_object()}}
+{\footnotesize\ttfamily subroutine mod\+\_\+pdb\+::allocate\+\_\+pdb\+\_\+object (\begin{DoxyParamCaption}\item[{type(\mbox{\hyperlink{structmod__pdb_1_1type__pdb__file}{type\+\_\+pdb\+\_\+file}}), intent(inout)}]{this,  }\item[{integer, intent(in)}]{pdb\+\_\+file,  }\item[{integer, intent(in)}]{natoms,  }\item[{integer, intent(in)}]{nresidues,  }\item[{integer, intent(in)}]{nchains }\end{DoxyParamCaption})}
+
+
+
+Allocate and initialize a {\ttfamily \mbox{\hyperlink{structmod__pdb_1_1type__pdb__file}{type\+\_\+pdb\+\_\+file}}} structure from a P\+DB file. 
+
+This routine allocates the storage for {\ttfamily thisatoms}, {\ttfamily thisresidues} and {\ttfamily thischains} using the supplied counts and performs a preliminary scan of the open Fortran unit {\ttfamily pdb\+\_\+file} to determine per-\/chain and per-\/residue allocation sizes for nested arrays.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em this} & {\ttfamily \mbox{\hyperlink{structmod__pdb_1_1type__pdb__file}{type\+\_\+pdb\+\_\+file}}} instance to allocate and initialize \\
+\hline
+\mbox{\texttt{ in}}  & {\em pdb\+\_\+file} & Fortran unit number of an already-\/open P\+DB file \\
+\hline
+\mbox{\texttt{ in}}  & {\em natoms} & Total number of A\+T\+O\+M/\+H\+E\+T\+A\+TM records expected \\
+\hline
+\mbox{\texttt{ in}}  & {\em nresidues} & Number of residues expected \\
+\hline
+\mbox{\texttt{ in}}  & {\em nchains} & Number of chains expected \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacemod__pdb_ae7a6bc503b6ad7f79280ed56dd359d94}\label{namespacemod__pdb_ae7a6bc503b6ad7f79280ed56dd359d94}} 
+\index{mod\_pdb@{mod\_pdb}!count\_atoms@{count\_atoms}}
+\index{count\_atoms@{count\_atoms}!mod\_pdb@{mod\_pdb}}
+\doxysubsubsection{\texorpdfstring{count\_atoms()}{count\_atoms()}}
+{\footnotesize\ttfamily integer function mod\+\_\+pdb\+::count\+\_\+atoms (\begin{DoxyParamCaption}\item[{integer}]{pdb\+\_\+file }\end{DoxyParamCaption})}
+
+
+
+Count A\+T\+O\+M/\+H\+E\+T\+A\+TM records in a P\+DB file. 
+
+Scans the open Fortran file unit {\ttfamily pdb\+\_\+file} and returns the number of lines starting with {\ttfamily A\+T\+OM} or {\ttfamily H\+E\+T\+A\+TM}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pdb\+\_\+file} & Fortran unit number of an already-\/open P\+DB file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+natoms Number of A\+T\+O\+M/\+H\+E\+T\+A\+TM records found 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacemod__pdb_a7e68a28bfffec223067770157412b2b9}\label{namespacemod__pdb_a7e68a28bfffec223067770157412b2b9}} 
+\index{mod\_pdb@{mod\_pdb}!count\_chains@{count\_chains}}
+\index{count\_chains@{count\_chains}!mod\_pdb@{mod\_pdb}}
+\doxysubsubsection{\texorpdfstring{count\_chains()}{count\_chains()}}
+{\footnotesize\ttfamily integer function mod\+\_\+pdb\+::count\+\_\+chains (\begin{DoxyParamCaption}\item[{integer}]{pdb\+\_\+file }\end{DoxyParamCaption})}
+
+
+
+Count chain separators (T\+ER records) in a P\+DB file. 
+
+Scans the open Fortran file unit {\ttfamily pdb\+\_\+file} and counts the number of {\ttfamily T\+ER} records, which are treated as chain separators. Returns the number of chains found.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pdb\+\_\+file} & Fortran unit number of an already-\/open P\+DB file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nchains Number of chains (T\+ER records) found 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacemod__pdb_a82e23745258c421523a5564ecffd7d02}\label{namespacemod__pdb_a82e23745258c421523a5564ecffd7d02}} 
+\index{mod\_pdb@{mod\_pdb}!count\_residues@{count\_residues}}
+\index{count\_residues@{count\_residues}!mod\_pdb@{mod\_pdb}}
+\doxysubsubsection{\texorpdfstring{count\_residues()}{count\_residues()}}
+{\footnotesize\ttfamily integer function mod\+\_\+pdb\+::count\+\_\+residues (\begin{DoxyParamCaption}\item[{integer}]{pdb\+\_\+file }\end{DoxyParamCaption})}
+
+
+
+Count residues in a P\+DB file. 
+
+Scans the open Fortran file unit {\ttfamily pdb\+\_\+file} and counts residue changes by comparing residue identifiers in A\+T\+O\+M/\+H\+E\+T\+A\+TM records. Returns the number of distinct residues found.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em pdb\+\_\+file} & Fortran unit number of an already-\/open P\+DB file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nresidues Number of residues found 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacemod__pdb_a08ac5c29c5079a644b0e41d004457d55}\label{namespacemod__pdb_a08ac5c29c5079a644b0e41d004457d55}} 
+\index{mod\_pdb@{mod\_pdb}!fill\_pdb\_object@{fill\_pdb\_object}}
+\index{fill\_pdb\_object@{fill\_pdb\_object}!mod\_pdb@{mod\_pdb}}
+\doxysubsubsection{\texorpdfstring{fill\_pdb\_object()}{fill\_pdb\_object()}}
+{\footnotesize\ttfamily subroutine mod\+\_\+pdb\+::fill\+\_\+pdb\+\_\+object (\begin{DoxyParamCaption}\item[{type(\mbox{\hyperlink{structmod__pdb_1_1type__pdb__file}{type\+\_\+pdb\+\_\+file}}), intent(inout)}]{this,  }\item[{integer, intent(in)}]{pdb\+\_\+file }\end{DoxyParamCaption})}
+
+
+
+Parse P\+DB records and populate the {\ttfamily \mbox{\hyperlink{structmod__pdb_1_1type__pdb__file}{type\+\_\+pdb\+\_\+file}}} structure. 
+
+Reads A\+T\+O\+M/\+H\+E\+T\+A\+TM records from the already-\/open Fortran unit {\ttfamily pdb\+\_\+file}, fills {\ttfamily thisatoms} with atom records and populates {\ttfamily thisresidues} and {\ttfamily thischains} so that residues contain their per-\/residue {\ttfamily atoms} arrays and chains contain their residues and atoms. The routine expects {\ttfamily this} to have been allocated with the correct sizes (see {\ttfamily allocate\+\_\+pdb\+\_\+object}).
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em this} & Pre-\/allocated {\ttfamily \mbox{\hyperlink{structmod__pdb_1_1type__pdb__file}{type\+\_\+pdb\+\_\+file}}} to populate \\
+\hline
+\mbox{\texttt{ in}}  & {\em pdb\+\_\+file} & Fortran unit number of an already-\/open P\+DB file \\
+\hline
+\end{DoxyParams}

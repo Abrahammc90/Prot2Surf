@@ -1,0 +1,58 @@
+\hypertarget{namespaceread__input}{}\doxysection{read\+\_\+input Module Reference}
+\label{namespaceread__input}\index{read\_input@{read\_input}}
+\doxysubsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine \mbox{\hyperlink{namespaceread__input_a7787652b1f311a4f954bba0bcf15cde8}{read\+\_\+pdb}} (pdb, filename, tot\+\_\+atoms, tot\+\_\+residues, tot\+\_\+chains)
+\begin{DoxyCompactList}\small\item\em Read a P\+DB file into a {\ttfamily type\+\_\+pdb\+\_\+file} object. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{namespaceread__input_aef5b94c19f4622328ca9662303682902}{read\+\_\+assoc}} (assoc, filename, tot\+\_\+encounters)
+\begin{DoxyCompactList}\small\item\em Read an association/complexes file into a {\ttfamily type\+\_\+assoc\+\_\+file} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespaceread__input_aef5b94c19f4622328ca9662303682902}\label{namespaceread__input_aef5b94c19f4622328ca9662303682902}} 
+\index{read\_input@{read\_input}!read\_assoc@{read\_assoc}}
+\index{read\_assoc@{read\_assoc}!read\_input@{read\_input}}
+\doxysubsubsection{\texorpdfstring{read\_assoc()}{read\_assoc()}}
+{\footnotesize\ttfamily subroutine read\+\_\+input\+::read\+\_\+assoc (\begin{DoxyParamCaption}\item[{type ( \mbox{\hyperlink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}} )}]{assoc,  }\item[{character$\ast$128, intent(in)}]{filename,  }\item[{integer, intent(out)}]{tot\+\_\+encounters }\end{DoxyParamCaption})}
+
+
+
+Read an association/complexes file into a {\ttfamily type\+\_\+assoc\+\_\+file} object. 
+
+Checks the file exists, opens it and uses {\ttfamily size\+\_\+assoc}, {\ttfamily allocate\+\_\+assoc\+\_\+object} and {\ttfamily fill\+\_\+assoc\+\_\+object} to construct the {\ttfamily assoc} structure.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em assoc} & Allocated and filled assoc object \\
+\hline
+\mbox{\texttt{ in}}  & {\em filename} & Path to complexes file \\
+\hline
+\mbox{\texttt{ out}}  & {\em tot\+\_\+encounters} & Number of encounter records read \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespaceread__input_a7787652b1f311a4f954bba0bcf15cde8}\label{namespaceread__input_a7787652b1f311a4f954bba0bcf15cde8}} 
+\index{read\_input@{read\_input}!read\_pdb@{read\_pdb}}
+\index{read\_pdb@{read\_pdb}!read\_input@{read\_input}}
+\doxysubsubsection{\texorpdfstring{read\_pdb()}{read\_pdb()}}
+{\footnotesize\ttfamily subroutine read\+\_\+input\+::read\+\_\+pdb (\begin{DoxyParamCaption}\item[{type ( \mbox{\hyperlink{structmod__pdb_1_1type__pdb__file}{type\+\_\+pdb\+\_\+file}} )}]{pdb,  }\item[{character$\ast$128, intent(in)}]{filename,  }\item[{integer, intent(out)}]{tot\+\_\+atoms,  }\item[{integer, intent(out)}]{tot\+\_\+residues,  }\item[{integer, intent(out)}]{tot\+\_\+chains }\end{DoxyParamCaption})}
+
+
+
+Read a P\+DB file into a {\ttfamily type\+\_\+pdb\+\_\+file} object. 
+
+Validates the existence of {\ttfamily filename}, opens it, determines the counts for atoms, residues and chains, allocates {\ttfamily pdb} and fills it using {\ttfamily allocate\+\_\+pdb\+\_\+object} and {\ttfamily fill\+\_\+pdb\+\_\+object}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em pdb} & Allocated and filled P\+DB object \\
+\hline
+\mbox{\texttt{ in}}  & {\em filename} & Path to P\+DB file \\
+\hline
+\mbox{\texttt{ out}}  & {\em tot\+\_\+atoms} & Number of atoms found \\
+\hline
+\mbox{\texttt{ out}}  & {\em tot\+\_\+residues} & Number of residues found \\
+\hline
+\mbox{\texttt{ out}}  & {\em tot\+\_\+chains} & Number of chains found \\
+\hline
+\end{DoxyParams}

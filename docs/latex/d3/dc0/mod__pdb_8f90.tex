@@ -1,0 +1,31 @@
+\hypertarget{mod__pdb_8f90}{}\doxysection{mod\+\_\+pdb.\+f90 File Reference}
+\label{mod__pdb_8f90}\index{mod\_pdb.f90@{mod\_pdb.f90}}
+\doxysubsection*{Data Types}
+\begin{DoxyCompactItemize}
+\item 
+type \mbox{\hyperlink{structmod__pdb_1_1type__pdb__file}{mod\+\_\+pdb\+::type\+\_\+pdb\+\_\+file}}
+\begin{DoxyCompactList}\small\item\em Data type for storing binned data (eg. \end{DoxyCompactList}\item 
+type \mbox{\hyperlink{structmod__pdb_1_1type__pdb__chain}{mod\+\_\+pdb\+::type\+\_\+pdb\+\_\+chain}}
+\item 
+type \mbox{\hyperlink{structmod__pdb_1_1type__pdb__residue}{mod\+\_\+pdb\+::type\+\_\+pdb\+\_\+residue}}
+\item 
+type \mbox{\hyperlink{structmod__pdb_1_1type__pdb__atom}{mod\+\_\+pdb\+::type\+\_\+pdb\+\_\+atom}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+module \mbox{\hyperlink{namespacemod__pdb}{mod\+\_\+pdb}}
+\begin{DoxyCompactList}\small\item\em Module to define a pdb type and pdb reading routine for tools. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine \mbox{\hyperlink{namespacemod__pdb_a3f94eefa2e718fc426df4eaa4d80eb45}{mod\+\_\+pdb\+::allocate\+\_\+pdb\+\_\+object}} (this, pdb\+\_\+file, natoms, nresidues, nchains)
+\begin{DoxyCompactList}\small\item\em Allocate and initialize a {\ttfamily \mbox{\hyperlink{structmod__pdb_1_1type__pdb__file}{type\+\_\+pdb\+\_\+file}}} structure from a P\+DB file. \end{DoxyCompactList}\item 
+integer function \mbox{\hyperlink{namespacemod__pdb_ae7a6bc503b6ad7f79280ed56dd359d94}{mod\+\_\+pdb\+::count\+\_\+atoms}} (pdb\+\_\+file)
+\begin{DoxyCompactList}\small\item\em Count A\+T\+O\+M/\+H\+E\+T\+A\+TM records in a P\+DB file. \end{DoxyCompactList}\item 
+integer function \mbox{\hyperlink{namespacemod__pdb_a82e23745258c421523a5564ecffd7d02}{mod\+\_\+pdb\+::count\+\_\+residues}} (pdb\+\_\+file)
+\begin{DoxyCompactList}\small\item\em Count residues in a P\+DB file. \end{DoxyCompactList}\item 
+integer function \mbox{\hyperlink{namespacemod__pdb_a7e68a28bfffec223067770157412b2b9}{mod\+\_\+pdb\+::count\+\_\+chains}} (pdb\+\_\+file)
+\begin{DoxyCompactList}\small\item\em Count chain separators (T\+ER records) in a P\+DB file. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{namespacemod__pdb_a08ac5c29c5079a644b0e41d004457d55}{mod\+\_\+pdb\+::fill\+\_\+pdb\+\_\+object}} (this, pdb\+\_\+file)
+\begin{DoxyCompactList}\small\item\em Parse P\+DB records and populate the {\ttfamily \mbox{\hyperlink{structmod__pdb_1_1type__pdb__file}{type\+\_\+pdb\+\_\+file}}} structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
