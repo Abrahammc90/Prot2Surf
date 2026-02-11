@@ -1,2 +1,9 @@
+# Compiled object files and modules
 *.o
 *.mod
+
+# Compiled executables
+bin/*
+
+# Generated documentation
+docs/
