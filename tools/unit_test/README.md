@@ -8,14 +8,14 @@ This directory contains comprehensive unit tests for all Python scripts in the `
 
 ```
 unit_test/
-├── __init__.py                 # Package initialization
-├── conftest.py                 # Pytest fixtures and configuration
-├── test_cluster_kon.py        # Tests for cluster_kon.py (NAM algorithm, SDA parsing)
-├── test_combine.py            # Tests for combine.py (file merging)
-├── test_plot_angle.py         # Tests for plot_clust_array_angle.py (angle visualization)
-├── test_plot_dist.py          # Tests for plot_clust_array_dist.py (distance visualization)
-├── test_utilities.py          # Tests for utility functions (PDB, file handling)
-└── README.md                  # This file
+- __init__.py                 # Package initialization
+- conftest.py                 # Pytest fixtures and configuration
+- test_cluster_kon.py        # Tests for cluster_kon.py (NAM algorithm, SDA parsing)
+- test_combine.py            # Tests for combine.py (file merging)
+- test_plot_angle.py         # Tests for plot_clust_array_angle.py (angle visualization)
+- test_plot_dist.py          # Tests for plot_clust_array_dist.py (distance visualization)
+- test_utilities.py          # Tests for utility functions (PDB, file handling)
+- README.md                  # This file
 ```
 
 ## Test Coverage

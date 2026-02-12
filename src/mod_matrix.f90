@@ -7,6 +7,8 @@ MODULE mod_matrix
   !! inter-atomic distances, angles, RMSD), and to read/write matrix
   !! and array files. Several routines use OpenMP for parallelism.
   !!
+  !! @author Abraham Muñiz-Chicharro
+  !!
   USE maths
   USE OMP_LIB
 

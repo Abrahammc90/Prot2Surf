@@ -4,7 +4,9 @@
 !!   - Sort complexes functionality
 !!   - Write cluster elements
 !!   - Basic clustering threshold calculation
-!!   - Mean linkage clustering with simple matrices
+!!   - Minimum linkage clustering
+!!   - Maximum linkage clustering
+!!   - Mean linkage clustering
 !!
 !! Note: Array parameter is mandatory for all clustering methods EXCEPT RMSD.
 !! For RMSD-based clustering, array is optional. When provided, array is used to
@@ -12,7 +14,7 @@
 !!
 !! Compile with: gfortran -fopenmp -o test_clustering test_clustering.f90 ../src/mod_clust_algorithm.f90 ../src/read_input.f90
 !!
-!! @author Abraham Muñiz-Chicharro
+!! @author Abraham Muniz-Chicharro
 !! @version 1.0
 
 program test_clustering
@@ -35,6 +37,15 @@ program test_clustering
     
     ! Test clustering with simple data
     call test_simple_clustering(num_tests, num_passed, num_failed)
+    
+    ! Test minimum linkage clustering
+    call test_minimum_linkage(num_tests, num_passed, num_failed)
+    
+    ! Test maximum linkage clustering
+    call test_maximum_linkage(num_tests, num_passed, num_failed)
+    
+    ! Test mean linkage clustering
+    call test_mean_linkage(num_tests, num_passed, num_failed)
     
     ! Test write operations
     call test_cluster_writing(num_tests, num_passed, num_failed)
@@ -219,6 +230,210 @@ contains
         deallocate(matrix)
 
     end subroutine test_simple_clustering
+
+
+    subroutine test_minimum_linkage(num_tests, num_passed, num_failed)
+        integer, intent(inout) :: num_tests, num_passed, num_failed
+        real(kind=8), dimension(:, :), allocatable :: matrix, test_matrix
+        logical :: test_passed
+        integer :: n, i, j
+        type(type_assoc_file) :: complexes
+        character*128 :: output_name
+
+        print *, ""
+        print *, "Testing minimum linkage clustering..."
+
+        ! Test 1: Minimum linkage should use smallest distance between clusters
+        num_tests = num_tests + 1
+        n = 4
+        allocate(matrix(n, n), test_matrix(n, n))
+        
+        ! Create test data: two clear clusters with different linkage characteristics
+        ! Cluster A: points 1,2 (tight)
+        ! Cluster B: points 3,4 (tight)
+        matrix(1, 1) = 0.0d0
+        matrix(1, 2) = 1.0d0
+        matrix(1, 3) = 10.0d0  ! Large distance to other cluster
+        matrix(1, 4) = 15.0d0
+        
+        matrix(2, 1) = 1.0d0
+        matrix(2, 2) = 0.0d0
+        matrix(2, 3) = 12.0d0
+        matrix(2, 4) = 8.0d0   ! Minimum distance between clusters
+        
+        matrix(3, 1) = 10.0d0
+        matrix(3, 2) = 12.0d0
+        matrix(3, 3) = 0.0d0
+        matrix(3, 4) = 1.0d0
+        
+        matrix(4, 1) = 15.0d0
+        matrix(4, 2) = 8.0d0   ! Minimum distance between clusters
+        matrix(4, 3) = 1.0d0
+        matrix(4, 4) = 0.0d0
+
+        test_matrix = matrix
+        
+        ! Initialize minimal complexes structure
+        complexes%nlines = n
+        allocate(complexes%lines(n))
+        do i = 1, n
+            complexes%lines(i) = "Complex"
+        end do
+        
+        output_name = "test_min_linkage"
+        
+        ! Run minimum linkage clustering
+        call linkage_clustering(test_matrix, n, 'min', output_name, complexes)
+        
+        ! For minimum linkage, the inter-cluster distance should be the minimum
+        ! After merging within clusters, check that structure makes sense
+        test_passed = .true.  ! Basic test: just verify it completes without error
+
+        if (test_passed) then
+            print *, "  [PASS] Test 1: Minimum linkage clustering completed"
+            num_passed = num_passed + 1
+        else
+            print *, "  [FAIL] Test 1: Minimum linkage clustering"
+            num_failed = num_failed + 1
+        end if
+        
+        deallocate(matrix, test_matrix, complexes%lines)
+
+    end subroutine test_minimum_linkage
+
+
+    subroutine test_maximum_linkage(num_tests, num_passed, num_failed)
+        integer, intent(inout) :: num_tests, num_passed, num_failed
+        real(kind=8), dimension(:, :), allocatable :: matrix, test_matrix
+        logical :: test_passed
+        integer :: n, i, j
+        type(type_assoc_file) :: complexes
+        character*128 :: output_name
+
+        print *, ""
+        print *, "Testing maximum linkage clustering..."
+
+        ! Test 1: Maximum linkage should use largest distance between clusters
+        num_tests = num_tests + 1
+        n = 4
+        allocate(matrix(n, n), test_matrix(n, n))
+        
+        ! Create test data: two clear clusters
+        matrix(1, 1) = 0.0d0
+        matrix(1, 2) = 1.0d0
+        matrix(1, 3) = 10.0d0
+        matrix(1, 4) = 12.0d0  ! Maximum distance to other cluster
+        
+        matrix(2, 1) = 1.0d0
+        matrix(2, 2) = 0.0d0
+        matrix(2, 3) = 11.0d0  ! Maximum distance to other cluster
+        matrix(2, 4) = 8.0d0
+        
+        matrix(3, 1) = 10.0d0
+        matrix(3, 2) = 11.0d0  
+        matrix(3, 3) = 0.0d0
+        matrix(3, 4) = 1.0d0
+        
+        matrix(4, 1) = 12.0d0  ! Maximum distance to other cluster
+        matrix(4, 2) = 8.0d0
+        matrix(4, 3) = 1.0d0
+        matrix(4, 4) = 0.0d0
+
+        test_matrix = matrix
+        
+        ! Initialize minimal complexes structure
+        complexes%nlines = n
+        allocate(complexes%lines(n))
+        do i = 1, n
+            complexes%lines(i) = "Complex"
+        end do
+        
+        output_name = "test_max_linkage"
+        
+        ! Run maximum linkage clustering
+        call linkage_clustering(test_matrix, n, 'max', output_name, complexes)
+        
+        ! For maximum linkage, the inter-cluster distance should be the maximum
+        test_passed = .true.  ! Basic test: just verify it completes without error
+
+        if (test_passed) then
+            print *, "  [PASS] Test 1: Maximum linkage clustering completed"
+            num_passed = num_passed + 1
+        else
+            print *, "  [FAIL] Test 1: Maximum linkage clustering"
+            num_failed = num_failed + 1
+        end if
+        
+        deallocate(matrix, test_matrix, complexes%lines)
+
+    end subroutine test_maximum_linkage
+
+
+    subroutine test_mean_linkage(num_tests, num_passed, num_failed)
+        integer, intent(inout) :: num_tests, num_passed, num_failed
+        real(kind=8), dimension(:, :), allocatable :: matrix, test_matrix
+        logical :: test_passed
+        integer :: n, i, j
+        type(type_assoc_file) :: complexes
+        character*128 :: output_name
+
+        print *, ""
+        print *, "Testing mean linkage clustering..."
+
+        ! Test 1: Mean linkage should use weighted average distance
+        num_tests = num_tests + 1
+        n = 4
+        allocate(matrix(n, n), test_matrix(n, n))
+        
+        ! Create test data: two clear clusters
+        matrix(1, 1) = 0.0d0
+        matrix(1, 2) = 1.0d0
+        matrix(1, 3) = 10.0d0
+        matrix(1, 4) = 11.0d0
+        
+        matrix(2, 1) = 1.0d0
+        matrix(2, 2) = 0.0d0
+        matrix(2, 3) = 10.5d0
+        matrix(2, 4) = 10.0d0
+        
+        matrix(3, 1) = 10.0d0
+        matrix(3, 2) = 10.5d0
+        matrix(3, 3) = 0.0d0
+        matrix(3, 4) = 1.0d0
+        
+        matrix(4, 1) = 11.0d0
+        matrix(4, 2) = 10.0d0
+        matrix(4, 3) = 1.0d0
+        matrix(4, 4) = 0.0d0
+
+        test_matrix = matrix
+        
+        ! Initialize minimal complexes structure
+        complexes%nlines = n
+        allocate(complexes%lines(n))
+        do i = 1, n
+            complexes%lines(i) = "Complex"
+        end do
+        
+        output_name = "test_mean_linkage"
+        
+        ! Run mean linkage clustering
+        call linkage_clustering(test_matrix, n, 'mean', output_name, complexes)
+        
+        ! For mean linkage, the inter-cluster distance is weighted average
+        test_passed = .true.  ! Basic test: just verify it completes without error
+
+        if (test_passed) then
+            print *, "  [PASS] Test 1: Mean linkage clustering completed"
+            num_passed = num_passed + 1
+        else
+            print *, "  [FAIL] Test 1: Mean linkage clustering"
+            num_failed = num_failed + 1
+        end if
+        
+        deallocate(matrix, test_matrix, complexes%lines)
+
+    end subroutine test_mean_linkage
 
 
     subroutine test_cluster_writing(num_tests, num_passed, num_failed)

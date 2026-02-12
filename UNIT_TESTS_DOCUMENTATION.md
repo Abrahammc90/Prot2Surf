@@ -58,10 +58,10 @@ Note: Python tests have their own test runners in `tools/unit_test/`
 
 ## Summary
 
-✓ **Fortran tests** are located in `src/unit_test/`
-✓ **Python tests** are located in `tools/unit_test/`
-✓ **Makefile** points to Fortran tests in src
-✓ **Doxygen** configured to discover all test files through recursive INPUT
+* **Fortran tests** are located in `src/unit_test/`
+* **Python tests** are located in `tools/unit_test/`
+* **Makefile** points to Fortran tests in src
+* **Doxygen** configured to discover all test files through recursive INPUT
 
 This structure ensures:
 - Clear separation of unit tests (Fortran tests in src, Python tests in tools)

@@ -3,6 +3,8 @@
 !! This executable computes thresholds (z_coord, atoms_dist, angles)
 !! across encounter transforms and writes selected encounter records
 !! to an output complexes file. See `print_help` for usage examples.
+!!
+!! @author Abraham Muñiz-Chicharro
 program main
   USE read_input
   USE mod_threshold

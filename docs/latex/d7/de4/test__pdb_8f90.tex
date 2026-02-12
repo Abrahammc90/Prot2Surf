@@ -1,0 +1,59 @@
+\hypertarget{test__pdb_8f90}{}\doxysection{unit\+\_\+test/test\+\_\+pdb.f90 File Reference}
+\label{test__pdb_8f90}\index{unit\_test/test\_pdb.f90@{unit\_test/test\_pdb.f90}}
+\doxysubsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+program \mbox{\hyperlink{test__pdb_8f90_a9fb4796291212684c55ffdd71dbdea98}{test\+\_\+pdb}}
+\begin{DoxyCompactList}\small\item\em Unit tests for P\+DB operations in the \mbox{\hyperlink{namespacemod__pdb}{mod\+\_\+pdb}} module. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{test__pdb_8f90_a21a98c177d89df17cedef258b9c806e9}{test\+\_\+pdb\+\_\+allocation}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
+\item 
+subroutine \mbox{\hyperlink{test__pdb_8f90_a50b6b2a9367dabd83dacab325bfdfcab}{test\+\_\+atom\+\_\+properties}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
+\item 
+subroutine \mbox{\hyperlink{test__pdb_8f90_ad3d63eabebb7461d794fbb5ab92675fd}{test\+\_\+residue\+\_\+management}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{test__pdb_8f90_a50b6b2a9367dabd83dacab325bfdfcab}\label{test__pdb_8f90_a50b6b2a9367dabd83dacab325bfdfcab}} 
+\index{test\_pdb.f90@{test\_pdb.f90}!test\_atom\_properties@{test\_atom\_properties}}
+\index{test\_atom\_properties@{test\_atom\_properties}!test\_pdb.f90@{test\_pdb.f90}}
+\doxysubsubsection{\texorpdfstring{test\_atom\_properties()}{test\_atom\_properties()}}
+{\footnotesize\ttfamily subroutine test\+\_\+pdb\+::test\+\_\+atom\+\_\+properties (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{num\+\_\+tests,  }\item[{integer, intent(inout)}]{num\+\_\+passed,  }\item[{integer, intent(inout)}]{num\+\_\+failed }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__pdb_8f90_a9fb4796291212684c55ffdd71dbdea98}\label{test__pdb_8f90_a9fb4796291212684c55ffdd71dbdea98}} 
+\index{test\_pdb.f90@{test\_pdb.f90}!test\_pdb@{test\_pdb}}
+\index{test\_pdb@{test\_pdb}!test\_pdb.f90@{test\_pdb.f90}}
+\doxysubsubsection{\texorpdfstring{test\_pdb()}{test\_pdb()}}
+{\footnotesize\ttfamily program test\+\_\+pdb}
+
+
+
+Unit tests for P\+DB operations in the \mbox{\hyperlink{namespacemod__pdb}{mod\+\_\+pdb}} module. 
+
+Tests include\+:
+\begin{DoxyItemize}
+\item P\+DB type allocation and initialization
+\item Atom and residue management
+\item Chain structure handling
+\end{DoxyItemize}
+
+Compile with\+: gfortran -\/o test\+\_\+pdb \mbox{\hyperlink{test__pdb_8f90}{test\+\_\+pdb.\+f90}} \mbox{\hyperlink{mod__pdb_8f90}{mod\+\_\+pdb.\+f90}}
+
+\begin{DoxyAuthor}{Author}
+Abraham Muñiz-\/\+Chicharro 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\mbox{\Hypertarget{test__pdb_8f90_a21a98c177d89df17cedef258b9c806e9}\label{test__pdb_8f90_a21a98c177d89df17cedef258b9c806e9}} 
+\index{test\_pdb.f90@{test\_pdb.f90}!test\_pdb\_allocation@{test\_pdb\_allocation}}
+\index{test\_pdb\_allocation@{test\_pdb\_allocation}!test\_pdb.f90@{test\_pdb.f90}}
+\doxysubsubsection{\texorpdfstring{test\_pdb\_allocation()}{test\_pdb\_allocation()}}
+{\footnotesize\ttfamily subroutine test\+\_\+pdb\+::test\+\_\+pdb\+\_\+allocation (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{num\+\_\+tests,  }\item[{integer, intent(inout)}]{num\+\_\+passed,  }\item[{integer, intent(inout)}]{num\+\_\+failed }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__pdb_8f90_ad3d63eabebb7461d794fbb5ab92675fd}\label{test__pdb_8f90_ad3d63eabebb7461d794fbb5ab92675fd}} 
+\index{test\_pdb.f90@{test\_pdb.f90}!test\_residue\_management@{test\_residue\_management}}
+\index{test\_residue\_management@{test\_residue\_management}!test\_pdb.f90@{test\_pdb.f90}}
+\doxysubsubsection{\texorpdfstring{test\_residue\_management()}{test\_residue\_management()}}
+{\footnotesize\ttfamily subroutine test\+\_\+pdb\+::test\+\_\+residue\+\_\+management (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{num\+\_\+tests,  }\item[{integer, intent(inout)}]{num\+\_\+passed,  }\item[{integer, intent(inout)}]{num\+\_\+failed }\end{DoxyParamCaption})}
+

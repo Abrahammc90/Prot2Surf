@@ -162,9 +162,9 @@ test_read_input: $(READ_INPUT_OBJ) $(MOD_PDB_OBJ) $(MOD_ASSOC_OBJ) $(UNIT_TESTS_
 	$(FC) $(FLAGS) -o $(TEST_READ_INPUT) $(UNIT_TESTS_DIR)/test_read_input.f90 $(READ_INPUT_OBJ) $(MOD_PDB_OBJ) $(MOD_ASSOC_OBJ)
 	$(TEST_READ_INPUT)
 
-# Documentation target: generate Doxygen documentation (includes unit tests)
+# Documentation target: generate Doxygen documentation
 docs:
-	doxygen ../Doxyfile
+	doxygen Doxyfile
 	cd ../docs/latex && make pdf && cd ../../src
 
 # Clean target: remove all compiled files (including test executables)

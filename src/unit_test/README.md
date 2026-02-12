@@ -5,13 +5,13 @@ This directory contains the comprehensive unit testing framework for the cluster
 ## Contents
 
 ### Test Programs
-- **test_maths.f90** - Tests for mathematical operations (31 tests)
-- **test_matrix.f90** - Tests for matrix operations (8 tests)
+- **test_maths.f90** - Tests for mathematical operations (30 tests)
+- **test_matrix.f90** - Tests for matrix operations (10 tests)
 - **test_threshold.f90** - Tests for threshold calculations (9 tests)
-- **test_pdb.f90** - Tests for PDB file handling (8 tests)
-- **test_clustering.f90** - Tests for clustering algorithms (5 tests)
-- **test_assoc.f90** - Tests for association file reading (11 tests) ✓ NEW
-- **test_read_input.f90** - Tests for read_input module (10 tests) ✓ NEW
+- **test_pdb.f90** - Tests for PDB file handling (11 tests)
+- **test_clustering.f90** - Tests for clustering algorithms (8 tests)
+- **test_assoc.f90** - Tests for association file reading (11 tests)
+- **test_read_input.f90** - Tests for read_input module (10 tests)
 
 ### Test Automation
 - **run_all_tests.sh** - Automated script to run all unit tests
@@ -23,7 +23,6 @@ This directory contains the comprehensive unit testing framework for the cluster
 | **QUICK_TEST.md** | Quick reference guide | Getting started quickly |
 | **TESTING.md** | Comprehensive testing guide | Understanding all details |
 | **TEST_SUMMARY.md** | Test suite overview | High-level overview |
-| **UNIT_TESTING_COMPLETE.md** | Completion summary | Project status |
 | **INDEX.md** | File index and statistics | Navigation |
 
 ## Quick Start
@@ -48,24 +47,23 @@ make clean_tests
 
 ## Where to Start?
 
-1. **New to testing?** → Start with [QUICK_TEST.md](QUICK_TEST.md)
-2. **Need details?** → Read [TESTING.md](TESTING.md)
-3. **Want overview?** → See [TEST_SUMMARY.md](TEST_SUMMARY.md)
-4. **Need file list?** → Check [INDEX.md](INDEX.md)
-5. **Project status?** → Read [UNIT_TESTING_COMPLETE.md](UNIT_TESTING_COMPLETE.md)
+1. **New to testing?** - Start with [QUICK_TEST.md](QUICK_TEST.md)
+2. **Need details?** - Read [TESTING.md](TESTING.md)
+3. **Want overview?** - See [TEST_SUMMARY.md](TEST_SUMMARY.md)
+4. **Need file list?** - Check [INDEX.md](INDEX.md)
 
 ## Test Coverage
 
 | Module | Tests | Status |
 |--------|-------|--------|
-| maths.f90 | 31 | Yes |
-| mod_matrix.f90 | 8 | Yes |
-| mod_threshold.f90 | 9 | Yes |
-| mod_pdb.f90 | 8 | Yes |
-| mod_clust_algorithm.f90 | 5 | Yes |
-| mod_assoc.f90 | 11 | Yes ✓ NEW |
-| read_input.f90 | 10 | Yes ✓ NEW |
-| **Total** | **82** | **Yes** |
+| maths.f90 | 30 | Success |
+| mod_matrix.f90 | 10 | Success |
+| mod_threshold.f90 | 9 | Success |
+| mod_pdb.f90 | 11 | Success |
+| mod_clust_algorithm.f90 | 8 | Success |
+| mod_assoc.f90 | 11 | Success |
+| read_input.f90 | 10 | Success |
+| **Total** | **89** | **Success** |
 
 ## Build Requirements
 
@@ -75,7 +73,7 @@ make clean_tests
 
 ## Verification
 
-All 82 unit tests are defined and ready to run. The framework provides:
+All 89 unit tests are defined and ready to run. The framework provides:
 - Comprehensive test coverage across 7 test files
 - Assertion helpers for test validation
 - Pass/fail reporting with detailed output
@@ -95,7 +93,7 @@ All 82 unit tests are defined and ready to run. The framework provides:
 **Test File Coverage Updates (February 2026):**
 - Added comprehensive tests for mod_assoc module (association file reading)
 - Added comprehensive tests for read_input module (input file processing)
-- Expanded maths module tests from 2 to 31 tests with detailed coordinate transformation coverage
-- Updated all test documentation to reflect current test count (82 total tests)
+- Expanded maths module tests from 2 to 30 tests with detailed coordinate transformation coverage
+- Updated all test documentation to reflect current test count (89 total tests)
 
-For detailed information, see [TESTING.md](TESTING.md) and [UNIT_TESTING_COMPLETE.md](UNIT_TESTING_COMPLETE.md).
+For detailed information, see [TESTING.md](TESTING.md).

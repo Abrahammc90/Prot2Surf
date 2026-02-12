@@ -14,53 +14,53 @@ and Python tools for data analysis and visualization.
 
 ```
 clustering_program/
-├── bin/                            # Compiled executable binaries
-│   ├── make_matrix                # Generate encounter complex matrices
-│   ├── clust                      # Cluster encounter complexes
-│   ├── analyze_residues           # Analyze residue-level interactions
-│   └── threshold                  # Apply threshold filtering
-│
-├── src/                            # Source code and build files
-│   ├── Makefile                   # Build configuration and test targets
-│   ├── Doxyfile                   # Documentation generation config
-│   ├── *.f90                      # Fortran source files
-│   ├── *.mod                      # Compiled Fortran modules
-│   ├── *.o                        # Object files
-│   │
-│   └── unit_test/                 # Fortran unit test suite
-│       ├── test_*.f90             # 7 Fortran test programs
-│       ├── run_all_tests.sh       # Fortran test runner
-│       ├── README.md              # Test documentation
-│       ├── TESTING.md             # Complete testing guide
-│       └── INDEX.md               # Test index
-│
-├── tools/                          # Python auxiliary analysis tools
-│   ├── README.md                  # Tools documentation
-│   ├── cluster_kon.py             # NAM algorithm (KON calculations)
-│   ├── combine.py                 # Merge complex files
-│   ├── regioselectivity.py        # Binding site classification
-│   ├── plot_clust_array_*.py      # Distribution visualization (2 scripts)
-│   ├── extract_C1_C4_filtered.py  # Data extraction utilities (4 scripts)
-│   ├── filter_neg_enc.py          # Complex filtering (1 script)
-│   ├── gen_pdbs.py                # PDB generation
-│   ├── upper_C1_C4.py             # Extract key binding atoms
-│   └── unit_test/                 # Python unit tests
-│       ├── test_*.py              # 5 Python test modules (120+ tests)
-│       ├── conftest.py            # Pytest configuration
-│       ├── pytest.ini             # Pytest settings
-│       ├── run_tests.sh           # Comprehensive test runner
-│       ├── test.sh                # Quick test shortcuts
-│       ├── README.md              # Python test documentation
-│       └── TESTING.md             # Testing guide
-│
-├── docs/                           # Documentation and figures
-│   ├── doxygen/                   # Auto-generated API documentation
-│   ├── latex/                     # LaTeX documentation sources
-│   └── [other documentation]
-│
-├── Doxyfile                       # Main Doxygen configuration
-├── Makefile                       # [Top-level build coordination]
-└── README                         # [Quick start guide]
+- bin/                            # Compiled executable binaries
+  - make_matrix                # Generate encounter complex matrices
+  - clust                      # Cluster encounter complexes
+  - analyze_residues           # Analyze residue-level interactions
+  - threshold                  # Apply threshold filtering
+
+- src/                            # Source code and build files
+  - Makefile                   # Build configuration and test targets
+  - Doxyfile                   # Documentation generation config
+  - *.f90                      # Fortran source files
+  - *.mod                      # Compiled Fortran modules
+  - *.o                        # Object files
+  
+  - unit_test/                 # Fortran unit test suite
+    - test_*.f90             # 7 Fortran test programs
+    - run_all_tests.sh       # Fortran test runner
+    - README.md              # Test documentation
+    - TESTING.md             # Complete testing guide
+    - INDEX.md               # Test index
+
+- tools/                          # Python auxiliary analysis tools
+  - README.md                  # Tools documentation
+  - cluster_kon.py             # NAM algorithm (KON calculations)
+  - combine.py                 # Merge complex files
+  - regioselectivity.py        # Binding site classification
+  - plot_clust_array_*.py      # Distribution visualization (2 scripts)
+  - extract_C1_C4_filtered.py  # Data extraction utilities (4 scripts)
+  - filter_neg_enc.py          # Complex filtering (1 script)
+  - gen_pdbs.py                # PDB generation
+  - upper_C1_C4.py             # Extract key binding atoms
+  - unit_test/                 # Python unit tests
+    - test_*.py              # 5 Python test modules (120+ tests)
+    - conftest.py            # Pytest configuration
+    - pytest.ini             # Pytest settings
+    - run_tests.sh           # Comprehensive test runner
+    - test.sh                # Quick test shortcuts
+    - README.md              # Python test documentation
+    - TESTING.md             # Testing guide
+
+- docs/                           # Documentation and figures
+  - doxygen/                   # Auto-generated API documentation
+  - latex/                     # LaTeX documentation sources
+  - [other documentation]
+
+- Doxyfile                       # Main Doxygen configuration
+- Makefile                       # [Top-level build coordination]
+- README                         # [Quick start guide]
 ```
 
 ## Quick Start
@@ -270,31 +270,31 @@ make analyze_residues # Build analyze_residues executable
 
 ```
 read_input.f90
-├── mod_pdb.f90
-└── mod_assoc.f90
+- mod_pdb.f90
+- mod_assoc.f90
 
 mod_matrix.f90
-└── maths.f90
+- maths.f90
 
 mod_threshold.f90
-└── maths.f90
+- maths.f90
 
 make_matrix.f90
-├── mod_pdb.f90
-├── mod_assoc.f90
-├── mod_matrix.f90
-└── read_input.f90
+- mod_pdb.f90
+- mod_assoc.f90
+- mod_matrix.f90
+- read_input.f90
 
 clust.f90
-├── mod_clust_algorithm.f90
-├── mod_matrix.f90
-└── mod_pdb.f90
+- mod_clust_algorithm.f90
+- mod_matrix.f90
+- mod_pdb.f90
 
 threshold.f90
-├── mod_threshold.f90
-├── mod_pdb.f90
-├── mod_assoc.f90
-└── maths.f90
+- mod_threshold.f90
+- mod_pdb.f90
+- mod_assoc.f90
+- maths.f90
 ```
 
 ## Continuous Integration

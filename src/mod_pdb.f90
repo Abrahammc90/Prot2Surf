@@ -15,7 +15,7 @@
 !! the SDA7 sources for original licensing and authorship details.
 !!
 !! @author Neil Bruce
-!! @modified-by Abraham Muñiz Chicharro
+!! @modified-by Abraham Muñiz-Chicharro
 module mod_pdb
 
     !> Data type for storing binned data (eg. Radial distribution functions)

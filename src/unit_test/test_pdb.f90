@@ -3,7 +3,8 @@
 !! Tests include:
 !!   - PDB type allocation and initialization
 !!   - Atom and residue management
-!!   - Chain structure handling
+!!   - Residue structure handling
+!!   - Reading PDB files and filling the PDB data structure
 !!
 !! Compile with: gfortran -o test_pdb test_pdb.f90 mod_pdb.f90
 !!
@@ -32,6 +33,12 @@ program test_pdb
     
     ! Test residue management
     call test_residue_management(num_tests, num_passed, num_failed)
+
+    ! Test chain management
+    call test_chain_management(num_tests, num_passed, num_failed)
+
+    ! Test mod_pdb routines on a small PDB file
+    call test_mod_pdb_routines(num_tests, num_passed, num_failed)
 
     print *, ""
     print *, "========================================="
@@ -201,5 +208,111 @@ contains
         if (allocated(residue%atoms)) deallocate(residue%atoms)
 
     end subroutine test_residue_management
+
+
+    subroutine test_chain_management(num_tests, num_passed, num_failed)
+        integer, intent(inout) :: num_tests, num_passed, num_failed
+        type(type_pdb_chain) :: chain
+        logical :: test_passed
+
+        print *, ""
+        print *, "Testing chain management..."
+
+        ! Test 1: Set chain properties
+        num_tests = num_tests + 1
+        chain%chainid = "A"
+        chain%natoms = 5
+        chain%nresidues = 2
+
+        test_passed = (chain%chainid == "A" .and. chain%natoms == 5 .and. chain%nresidues == 2)
+
+        if (test_passed) then
+            print *, "  [PASS] Test 1: Chain property assignment"
+            num_passed = num_passed + 1
+        else
+            print *, "  [FAIL] Test 1: Chain property assignment"
+            num_failed = num_failed + 1
+        end if
+
+        ! Test 2: Allocate atoms and residues in chain
+        num_tests = num_tests + 1
+        if (allocated(chain%atoms)) deallocate(chain%atoms)
+        if (allocated(chain%residues)) deallocate(chain%residues)
+        allocate(chain%atoms(chain%natoms))
+        allocate(chain%residues(chain%nresidues))
+
+        test_passed = (allocated(chain%atoms) .and. size(chain%atoms) == 5 .and. &
+                      allocated(chain%residues) .and. size(chain%residues) == 2)
+
+        if (test_passed) then
+            print *, "  [PASS] Test 2: Chain arrays allocation"
+            num_passed = num_passed + 1
+        else
+            print *, "  [FAIL] Test 2: Chain arrays allocation"
+            num_failed = num_failed + 1
+        end if
+
+        ! Cleanup
+        if (allocated(chain%atoms)) deallocate(chain%atoms)
+        if (allocated(chain%residues)) deallocate(chain%residues)
+
+    end subroutine test_chain_management
+
+
+    subroutine test_mod_pdb_routines(num_tests, num_passed, num_failed)
+        integer, intent(inout) :: num_tests, num_passed, num_failed
+        type(type_pdb_file) :: pdb
+        integer :: pdb_unit, natoms, nresidues, nchains
+        character(len=128) :: filename
+        logical :: test_passed
+
+        print *, ""
+        print *, "Testing mod_pdb routines (count/allocate/fill)..."
+
+        filename = "test_pdb_temp.pdb"
+
+        open(newunit=pdb_unit, file=filename, status="replace", action="write")
+        write(pdb_unit,'(A6,I5,1X,A4,1X,A3,1X,A1,I4,4X,3F8.3)') "ATOM  ", 1, "CA  ", "ALA", "A", 1, 0.0d0, 0.0d0, 0.0d0
+        write(pdb_unit,'(A6,I5,1X,A4,1X,A3,1X,A1,I4,4X,3F8.3)') "ATOM  ", 2, "CB  ", "ALA", "A", 1, 1.0d0, 0.0d0, 0.0d0
+        write(pdb_unit,'(A6,I5,1X,A4,1X,A3,1X,A1,I4,4X,3F8.3)') "ATOM  ", 3, "CA  ", "GLY", "A", 2, 0.0d0, 1.0d0, 0.0d0
+        write(pdb_unit,'(A3)') "TER"
+        write(pdb_unit,'(A3)') "END"
+        close(pdb_unit)
+
+        open(newunit=pdb_unit, file=filename, status="old", action="read")
+        natoms = count_atoms(pdb_unit)
+        nresidues = count_residues(pdb_unit)
+        nchains = count_chains(pdb_unit)
+
+        num_tests = num_tests + 1
+        test_passed = (natoms == 3 .and. nresidues == 2 .and. nchains == 1)
+        if (test_passed) then
+            print *, "  [PASS] Test 1: count_atoms/count_residues/count_chains"
+            num_passed = num_passed + 1
+        else
+            print *, "  [FAIL] Test 1: count_atoms/count_residues/count_chains"
+            print *, "    natoms=", natoms, " nresidues=", nresidues, " nchains=", nchains
+            num_failed = num_failed + 1
+        end if
+
+        call allocate_pdb_object(pdb, pdb_unit, natoms, nresidues, nchains)
+        call fill_pdb_object(pdb, pdb_unit)
+
+        num_tests = num_tests + 1
+        test_passed = (pdb%natoms == 3 .and. pdb%nresidues == 2 .and. pdb%nchains == 1 .and. &
+                      allocated(pdb%atoms) .and. allocated(pdb%residues) .and. allocated(pdb%chains))
+        if (test_passed) then
+            print *, "  [PASS] Test 2: allocate_pdb_object/fill_pdb_object"
+            num_passed = num_passed + 1
+        else
+            print *, "  [FAIL] Test 2: allocate_pdb_object/fill_pdb_object"
+            num_failed = num_failed + 1
+        end if
+
+        close(pdb_unit)
+        if (allocated(pdb%atoms)) deallocate(pdb%atoms)
+        if (allocated(pdb%residues)) deallocate(pdb%residues)
+        if (allocated(pdb%chains)) deallocate(pdb%chains)
+    end subroutine test_mod_pdb_routines
 
 end program test_pdb

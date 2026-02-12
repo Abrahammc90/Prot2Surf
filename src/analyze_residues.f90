@@ -4,6 +4,8 @@
 !! file, transforms residue centers for each encounter and counts how
 !! many encounters bring residues within a distance threshold from the
 !! surface. Results are written to `closest_residues.txt`.
+!!
+!! @author Abraham Muñiz-Chicharro
 program main
   USE read_input
   USE maths

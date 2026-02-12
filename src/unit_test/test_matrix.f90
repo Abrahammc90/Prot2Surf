@@ -4,6 +4,8 @@
 !!   - Write and read matrix operations
 !!   - Write and read array operations
 !!   - Matrix Z-coordinate calculation
+!!   - Matrix atoms distance calculation 
+!!   - Matrix angle calculation
 !!   - RMSD matrix calculation
 !!
 !! Compile with: gfortran -fopenmp -o test_matrix test_matrix.f90 ../src/mod_matrix.f90 ../src/maths.f90 ../src/mod_pdb.f90
@@ -37,6 +39,12 @@ program test_matrix
     
     ! Test matrix_rmsd
     call test_matrix_rmsd_calc(num_tests, num_passed, num_failed)
+
+    ! Test matrix_atoms_dist
+    call test_matrix_atoms_dist(num_tests, num_passed, num_failed)
+
+    ! Test matrix_angle
+    call test_matrix_angle_calc(num_tests, num_passed, num_failed)
 
     print *, ""
     print *, "========================================="
@@ -365,5 +373,114 @@ contains
         deallocate(matrix, coords, trans_vector, rot1, rot2)
 
     end subroutine test_matrix_rmsd_calc
+
+
+    subroutine test_matrix_atoms_dist(num_tests, num_passed, num_failed)
+        integer, intent(inout) :: num_tests, num_passed, num_failed
+        real(kind=8), dimension(:, :), allocatable :: matrix, solute1_crds, solute2_crds, trans_vector, rot1, rot2
+        real(kind=8), dimension(:), allocatable :: array
+        real(kind=8), dimension(3) :: xc1, xc2
+        integer :: n, nb_atoms
+        logical :: test_passed
+
+        print *, ""
+        print *, "Testing matrix_atoms_dist..."
+
+        ! Test 1: Simple translations produce expected min distances
+        num_tests = num_tests + 1
+        n = 2
+        nb_atoms = 1
+        allocate(matrix(n, n), array(n))
+        allocate(solute1_crds(1, 3), solute2_crds(nb_atoms, 3))
+        allocate(trans_vector(n, 3), rot1(n, 3), rot2(n, 3))
+
+        xc1 = [0.0d0, 0.0d0, 0.0d0]
+        xc2 = [0.0d0, 0.0d0, 0.0d0]
+
+        solute1_crds(1, :) = [0.0d0, 0.0d0, 0.0d0]
+        solute2_crds(1, :) = [1.0d0, 0.0d0, 0.0d0]
+
+        trans_vector(1, :) = [0.0d0, 0.0d0, 0.0d0]
+        trans_vector(2, :) = [1.0d0, 0.0d0, 0.0d0]
+        rot1(1, :) = [1.0d0, 0.0d0, 0.0d0]
+        rot1(2, :) = [1.0d0, 0.0d0, 0.0d0]
+        rot2(1, :) = [0.0d0, 1.0d0, 0.0d0]
+        rot2(2, :) = [0.0d0, 1.0d0, 0.0d0]
+
+        call matrix_atoms_dist(matrix, array, n, nb_atoms, xc1, xc2, trans_vector, rot1, rot2, solute1_crds, solute2_crds)
+
+        test_passed = (abs(array(1) - 1.0d0) < 1d-8 .and. abs(array(2) - 2.0d0) < 1d-8 .and. &
+                      abs(matrix(1, 2) - 1.0d0) < 1d-8 .and. abs(matrix(2, 1) - 1.0d0) < 1d-8)
+
+        if (test_passed) then
+            print *, "  [PASS] Test 1: Minimum distance per encounter"
+            num_passed = num_passed + 1
+        else
+            print *, "  [FAIL] Test 1: Minimum distance per encounter"
+            print *, "    array: ", array(1), array(2)
+            print *, "    matrix(1,2): ", matrix(1, 2)
+            num_failed = num_failed + 1
+        end if
+
+        deallocate(matrix, array, solute1_crds, solute2_crds, trans_vector, rot1, rot2)
+
+    end subroutine test_matrix_atoms_dist
+
+
+    subroutine test_matrix_angle_calc(num_tests, num_passed, num_failed)
+        integer, intent(inout) :: num_tests, num_passed, num_failed
+        real(kind=8), dimension(:, :), allocatable :: matrix, trans_vector, rot1, rot2
+        real(kind=8), dimension(:), allocatable :: array
+        real(kind=8), dimension(3) :: xc1, xc2
+        real(kind=8), dimension(3) :: point1a, point1b, point2a, point2b
+        integer :: n, nb_atoms, dimensions
+        logical :: test_passed
+
+        print *, ""
+        print *, "Testing matrix_angle..."
+
+        ! Test 1: 0 and 90 degree angles in 2D
+        num_tests = num_tests + 1
+        n = 2
+        nb_atoms = 2
+        dimensions = 2
+        allocate(matrix(n, n), array(n))
+        allocate(trans_vector(n, 3), rot1(n, 3), rot2(n, 3))
+
+        xc1 = [0.0d0, 0.0d0, 0.0d0]
+        xc2 = [0.0d0, 0.0d0, 0.0d0]
+
+        point1a = [0.0d0, 0.0d0, 0.0d0]
+        point1b = [1.0d0, 0.0d0, 0.0d0]
+        point2a = [0.0d0, 0.0d0, 0.0d0]
+        point2b = [1.0d0, 0.0d0, 0.0d0]
+
+        trans_vector(1, :) = [0.0d0, 0.0d0, 0.0d0]
+        rot1(1, :) = [1.0d0, 0.0d0, 0.0d0]
+        rot2(1, :) = [0.0d0, 1.0d0, 0.0d0]
+
+        trans_vector(2, :) = [0.0d0, 0.0d0, 0.0d0]
+        rot1(2, :) = [0.0d0, 1.0d0, 0.0d0]
+        rot2(2, :) = [-1.0d0, 0.0d0, 0.0d0]
+
+        call matrix_angle(matrix, array, n, nb_atoms, xc1, xc2, trans_vector, rot1, rot2, &
+                          point1a, point1b, point2a, point2b, dimensions)
+
+        test_passed = (abs(array(1) - 0.0d0) < 1d-6 .and. abs(array(2) - 90.0d0) < 1d-6 .and. &
+                      abs(matrix(1, 2) - 90.0d0) < 1d-6 .and. abs(matrix(2, 1) - 90.0d0) < 1d-6)
+
+        if (test_passed) then
+            print *, "  [PASS] Test 1: 2D angles (0 and 90 degrees)"
+            num_passed = num_passed + 1
+        else
+            print *, "  [FAIL] Test 1: 2D angles (0 and 90 degrees)"
+            print *, "    array: ", array(1), array(2)
+            print *, "    matrix(1,2): ", matrix(1, 2)
+            num_failed = num_failed + 1
+        end if
+
+        deallocate(matrix, array, trans_vector, rot1, rot2)
+
+    end subroutine test_matrix_angle_calc
 
 end program test_matrix

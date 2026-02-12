@@ -1,3 +1,9 @@
+!> Mathematical utilities and coordinate transformation routines.
+!!
+!! This module provides fundamental math operations including cross products,
+!! coordinate transformations, angle calculations, and rotation matrices.
+!!
+!! @author Abraham Muñiz-Chicharro
 MODULE maths
 
     USE mod_pdb

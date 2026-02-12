@@ -1,0 +1,68 @@
+\hypertarget{test__matrix_8f90}{}\doxysection{unit\+\_\+test/test\+\_\+matrix.f90 File Reference}
+\label{test__matrix_8f90}\index{unit\_test/test\_matrix.f90@{unit\_test/test\_matrix.f90}}
+\doxysubsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+program \mbox{\hyperlink{test__matrix_8f90_aa6b8ea9c62657512dcf6c95d0993d805}{test\+\_\+matrix}}
+\begin{DoxyCompactList}\small\item\em Unit tests for matrix operations in the \mbox{\hyperlink{namespacemod__matrix}{mod\+\_\+matrix}} module. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{test__matrix_8f90_a8b8214ded8444028181f5c222901f418}{test\+\_\+write\+\_\+read\+\_\+matrix}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
+\item 
+subroutine \mbox{\hyperlink{test__matrix_8f90_a304740808e610c54956dbd55b86e1512}{test\+\_\+write\+\_\+read\+\_\+array}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
+\item 
+subroutine \mbox{\hyperlink{test__matrix_8f90_a775d6fc9b5bd69b64a0203fdfe0e5d60}{test\+\_\+matrix\+\_\+z\+\_\+coord}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
+\item 
+subroutine \mbox{\hyperlink{test__matrix_8f90_a4b04431115fe624aa7e6fc99dc7614f2}{test\+\_\+matrix\+\_\+rmsd\+\_\+calc}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{test__matrix_8f90_aa6b8ea9c62657512dcf6c95d0993d805}\label{test__matrix_8f90_aa6b8ea9c62657512dcf6c95d0993d805}} 
+\index{test\_matrix.f90@{test\_matrix.f90}!test\_matrix@{test\_matrix}}
+\index{test\_matrix@{test\_matrix}!test\_matrix.f90@{test\_matrix.f90}}
+\doxysubsubsection{\texorpdfstring{test\_matrix()}{test\_matrix()}}
+{\footnotesize\ttfamily program test\+\_\+matrix}
+
+
+
+Unit tests for matrix operations in the \mbox{\hyperlink{namespacemod__matrix}{mod\+\_\+matrix}} module. 
+
+Tests include\+:
+\begin{DoxyItemize}
+\item Write and read matrix operations
+\item Write and read array operations
+\item Matrix Z-\/coordinate calculation
+\item R\+M\+SD matrix calculation
+\end{DoxyItemize}
+
+Compile with\+: gfortran -\/fopenmp -\/o test\+\_\+matrix \mbox{\hyperlink{test__matrix_8f90}{test\+\_\+matrix.\+f90}} ../src/mod\+\_\+matrix.f90 ../src/maths.f90 ../src/mod\+\_\+pdb.f90
+
+\begin{DoxyAuthor}{Author}
+Abraham Muñiz-\/\+Chicharro 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\mbox{\Hypertarget{test__matrix_8f90_a4b04431115fe624aa7e6fc99dc7614f2}\label{test__matrix_8f90_a4b04431115fe624aa7e6fc99dc7614f2}} 
+\index{test\_matrix.f90@{test\_matrix.f90}!test\_matrix\_rmsd\_calc@{test\_matrix\_rmsd\_calc}}
+\index{test\_matrix\_rmsd\_calc@{test\_matrix\_rmsd\_calc}!test\_matrix.f90@{test\_matrix.f90}}
+\doxysubsubsection{\texorpdfstring{test\_matrix\_rmsd\_calc()}{test\_matrix\_rmsd\_calc()}}
+{\footnotesize\ttfamily subroutine test\+\_\+matrix\+::test\+\_\+matrix\+\_\+rmsd\+\_\+calc (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{num\+\_\+tests,  }\item[{integer, intent(inout)}]{num\+\_\+passed,  }\item[{integer, intent(inout)}]{num\+\_\+failed }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__matrix_8f90_a775d6fc9b5bd69b64a0203fdfe0e5d60}\label{test__matrix_8f90_a775d6fc9b5bd69b64a0203fdfe0e5d60}} 
+\index{test\_matrix.f90@{test\_matrix.f90}!test\_matrix\_z\_coord@{test\_matrix\_z\_coord}}
+\index{test\_matrix\_z\_coord@{test\_matrix\_z\_coord}!test\_matrix.f90@{test\_matrix.f90}}
+\doxysubsubsection{\texorpdfstring{test\_matrix\_z\_coord()}{test\_matrix\_z\_coord()}}
+{\footnotesize\ttfamily subroutine test\+\_\+matrix\+::test\+\_\+matrix\+\_\+z\+\_\+coord (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{num\+\_\+tests,  }\item[{integer, intent(inout)}]{num\+\_\+passed,  }\item[{integer, intent(inout)}]{num\+\_\+failed }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__matrix_8f90_a304740808e610c54956dbd55b86e1512}\label{test__matrix_8f90_a304740808e610c54956dbd55b86e1512}} 
+\index{test\_matrix.f90@{test\_matrix.f90}!test\_write\_read\_array@{test\_write\_read\_array}}
+\index{test\_write\_read\_array@{test\_write\_read\_array}!test\_matrix.f90@{test\_matrix.f90}}
+\doxysubsubsection{\texorpdfstring{test\_write\_read\_array()}{test\_write\_read\_array()}}
+{\footnotesize\ttfamily subroutine test\+\_\+matrix\+::test\+\_\+write\+\_\+read\+\_\+array (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{num\+\_\+tests,  }\item[{integer, intent(inout)}]{num\+\_\+passed,  }\item[{integer, intent(inout)}]{num\+\_\+failed }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__matrix_8f90_a8b8214ded8444028181f5c222901f418}\label{test__matrix_8f90_a8b8214ded8444028181f5c222901f418}} 
+\index{test\_matrix.f90@{test\_matrix.f90}!test\_write\_read\_matrix@{test\_write\_read\_matrix}}
+\index{test\_write\_read\_matrix@{test\_write\_read\_matrix}!test\_matrix.f90@{test\_matrix.f90}}
+\doxysubsubsection{\texorpdfstring{test\_write\_read\_matrix()}{test\_write\_read\_matrix()}}
+{\footnotesize\ttfamily subroutine test\+\_\+matrix\+::test\+\_\+write\+\_\+read\+\_\+matrix (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{num\+\_\+tests,  }\item[{integer, intent(inout)}]{num\+\_\+passed,  }\item[{integer, intent(inout)}]{num\+\_\+failed }\end{DoxyParamCaption})}
+

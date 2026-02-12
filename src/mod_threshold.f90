@@ -8,6 +8,8 @@ MODULE mod_threshold
   !! thresholds for selecting encounter complexes. Many routines use
   !! OpenMP to parallelize outer loops.
   !!
+  !! @author Abraham Muñiz-Chicharro
+  !!
   USE maths
   USE OMP_LIB
 

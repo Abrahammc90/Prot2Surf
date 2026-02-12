@@ -9,9 +9,9 @@ This directory contains comprehensive unit tests for the Fortran subroutines in 
 ### 1. **test_maths.f90**
 Tests mathematical operations in the `maths` module:
 - **Cross product calculation** (`cross` subroutine) - 4 tests
-  - Standard basis vector products (i×j=k)
-  - Anti-commutativity (v×w = -w×v)
-  - Self-product is zero (v×v=0)
+  - Standard basis vector products (i x j = k)
+  - Anti-commutativity (v x w = -w x v)
+  - Self-product is zero (v x v = 0)
   - Arbitrary vector products
 - **Coordinate transformations** (`update_complex` subroutine) - 7 tests
   - Identity transformations
@@ -28,7 +28,7 @@ Tests mathematical operations in the `maths` module:
   - Identical structures (zero RMSD)
   - Translated structures
   - Rotated structures
-- **Center of geometry** (`calculate_cog` subroutine) - 5 tests
+- **Center of geometry** (`calculate_cog` subroutine) - 4 tests
   - Simple geometries
   - Symmetric point clouds
   - Offset coordinates
@@ -37,12 +37,12 @@ Tests mathematical operations in the `maths` module:
   - Arbitrary vectors
   - Zero distance cases
 
-**Total: 31 tests**
+**Total: 30 tests**
 
 ### 2. **test_matrix.f90**
 Tests matrix operations in the `mod_matrix` module:
 - **Matrix file I/O** (`write_matrix`, `read_matrix`) - 2 tests
-  - Small matrices (5×5)
+  - Small matrices (5 x 5)
   - Symmetric matrix properties
 - **Array file I/O** (`write_array`, `read_array`) - 2 tests
   - Single and double precision arrays
@@ -50,11 +50,15 @@ Tests matrix operations in the `mod_matrix` module:
 - **Z-coordinate matrix calculation** (`matrix_z_coord`) - 2 tests
   - Identity transformation (coordinates unchanged)
   - Translation transformations
-- **RMSD matrix calculation** (`matrix_rmsd_calc`) - 2 tests
+- **RMSD matrix calculation** (`matrix_rmsd`) - 2 tests
   - Symmetry verification
   - Diagonal properties (zeros on diagonal)
+- **Atom distance matrix calculation** (`matrix_atoms_dist`) - 1 test
+  - Minimum distance differences
+- **Angle matrix calculation** (`matrix_angle`) - 1 test
+  - 2D angle differences
 
-**Total: 8 tests**
+**Total: 10 tests**
 
 ### 3. **test_threshold.f90**
 Tests threshold array operations in the `mod_threshold` module:
@@ -80,15 +84,20 @@ Tests PDB file structures and operations in the `mod_pdb` module:
   - File structure allocation
   - Atom array creation
   - Residue array creation
-- **Atom properties** - 3 tests
+- **Atom properties** - 2 tests
   - Coordinate assignment
   - Name and residue information
-  - Occupancy and B-factor values
 - **Residue management** - 2 tests
   - Residue property assignment
   - Atom array allocation within residues
+- **Chain management** - 2 tests
+  - Chain property assignment
+  - Atom/residue array allocation
+- **PDB routines** - 2 tests
+  - count_atoms/count_residues/count_chains
+  - allocate_pdb_object/fill_pdb_object
 
-**Total: 8 tests**
+**Total: 11 tests**
 
 ### 5. **test_clustering.f90**
 Tests clustering algorithms in the `mod_clust_algorithm` module:
@@ -98,11 +107,15 @@ Tests clustering algorithms in the `mod_clust_algorithm` module:
 - **Simple clustering algorithm** (`simple_clustering`) - 2 tests
   - Tight cluster pair detection
   - Identical point handling
+- **Linkage clustering** (`linkage_clustering`) - 3 tests
+  - Minimum linkage
+  - Maximum linkage
+  - Mean linkage
 - **Cluster output** (`write_clusters`) - 1 test
   - File output verification
   - Cluster format validation
 
-**Total: 5 tests**
+**Total: 8 tests**
 
 ### 6. **test_assoc.f90** (NEW)
 Tests association/complexes file reading in the `mod_assoc` module:
@@ -139,10 +152,6 @@ Tests read_input module wrapper functions:
   - Sequential read verification
 
 **Total: 10 tests**
-  - Occupancy and B-factor values
-- **Residue management**
-  - Residue property assignment
-  - Atom array allocation within residues
 
 ## Compilation
 
@@ -219,8 +228,8 @@ Testing coordinate transformation (update_complex)...
 =========================================
 TEST SUMMARY
 =========================================
-Total tests:  6
-Passed:       6
+Total tests:  30
+Passed:       30
 Failed:       0
 =========================================
 ```
@@ -229,34 +238,39 @@ Failed:       0
 
 | Module | Subroutine | Tests | Status |
 |--------|-----------|-------|--------|
-| maths | cross | 4 | Yes |
-| maths | update_complex | 7 | Yes |
-| maths | vectors_angle_3D | 4 | Yes |
-| maths | vectors_angle_2D | 4 | Yes |
-| maths | rmsd | 3 | Yes |
-| maths | calculate_cog | 5 | Yes |
-| maths | calculate_distance | 4 | Yes |
-| mod_matrix | write_matrix / read_matrix | 2 | Yes |
-| mod_matrix | write_array / read_array | 2 | Yes |
-| mod_matrix | matrix_z_coord | 2 | Yes |
-| mod_matrix | matrix_rmsd_calc | 2 | Yes |
-| mod_threshold | array_z_coord | 2 | Yes |
-| mod_threshold | array_atoms_dist | 2 | Yes |
-| mod_threshold | array_angle | 2 | Yes |
-| mod_threshold | sort_array | 3 | Yes |
-| mod_pdb | PDB allocation | 3 | Yes |
-| mod_pdb | atom properties | 3 | Yes |
-| mod_pdb | residue management | 2 | Yes |
-| mod_clust_algorithm | clustering statistics | 2 | Yes |
-| mod_clust_algorithm | simple_clustering | 2 | Yes |
-| mod_clust_algorithm | write_clusters | 1 | Yes |
-| mod_assoc | read_assoc_file | 6 | Yes |
-| mod_assoc | allocate_assoc_object | 3 | Yes |
-| mod_assoc | size_assoc | 2 | Yes |
-| read_input | read_input_assoc | 7 | Yes |
-| read_input | error_handling | 3 | Yes |
+| maths | cross | 4 | Success |
+| maths | update_complex | 7 | Success |
+| maths | vectors_angle_3D | 4 | Success |
+| maths | vectors_angle_2D | 4 | Success |
+| maths | rmsd | 3 | Success |
+| maths | calculate_cog | 4 | Success |
+| maths | calculate_distance | 4 | Success |
+| mod_matrix | write_matrix / read_matrix | 2 | Success |
+| mod_matrix | write_array / read_array | 2 | Success |
+| mod_matrix | matrix_z_coord | 2 | Success |
+| mod_matrix | matrix_rmsd_calc | 2 | Success |
+| mod_matrix | matrix_atoms_dist | 1 | Success |
+| mod_matrix | matrix_angle | 1 | Success |
+| mod_threshold | array_z_coord | 2 | Success |
+| mod_threshold | array_atoms_dist | 2 | Success |
+| mod_threshold | array_angle | 2 | Success |
+| mod_threshold | sort_array | 3 | Success |
+| mod_pdb | PDB allocation | 3 | Success |
+| mod_pdb | atom properties | 2 | Success |
+| mod_pdb | residue management | 2 | Success |
+| mod_pdb | chain management | 2 | Success |
+| mod_pdb | count/allocate/fill | 2 | Success |
+| mod_clust_algorithm | clustering statistics | 2 | Success |
+| mod_clust_algorithm | simple_clustering | 2 | Success |
+| mod_clust_algorithm | linkage_clustering | 3 | Success |
+| mod_clust_algorithm | write_clusters | 1 | Success |
+| mod_assoc | read_assoc_file | 6 | Success |
+| mod_assoc | allocate_assoc_object | 3 | Success |
+| mod_assoc | size_assoc | 2 | Success |
+| read_input | read_input_assoc | 7 | Success |
+| read_input | error_handling | 3 | Success |
 
-**Total: 82 tests**
+**Total: 89 tests**
 
 ## Adding New Tests
 
@@ -291,21 +305,8 @@ To add tests for additional subroutines:
 
 4. **Document test** in this README
 
-## Best Practices
-
-1. **Test isolation**: Each test should be independent
-2. **Clear naming**: Use descriptive test names
-3. **Tolerance handling**: Use appropriate floating-point tolerances (typically 1d-10 or 1d-8)
-4. **Edge cases**: Test boundary conditions and special cases
-5. **Performance**: Consider testing with realistic data sizes
-6. **Documentation**: Include test purpose in comments
 
 ## Troubleshooting
-
-### Compilation errors:
-- Ensure all required modules are compiled first
-- Check for missing `-fopenmp` flag if using OpenMP
-- Verify Fortran standard compatibility
 
 ### Runtime failures:
 - Check for NaN/Inf values in calculations
@@ -315,7 +316,6 @@ To add tests for additional subroutines:
 ### Performance issues:
 - Monitor memory usage for large matrices
 - Use OpenMP pragmas for parallelized loops
-- Profile with `gprof` or similar tools
 
 ## References
 

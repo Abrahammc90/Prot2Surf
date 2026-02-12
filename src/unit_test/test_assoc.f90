@@ -18,6 +18,9 @@
 !! - **File parsing**:
 !!    - Skip comment lines (starting with #)
 !!    - Count data lines correctly
+!!
+!! @author Abraham Muñiz-Chicharro
+!! @version 1.0
 !!    - Extract center coordinates (xc1, xc2)
 !!    - Parse translation vectors
 !!    - Parse rotation vectors

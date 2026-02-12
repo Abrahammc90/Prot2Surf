@@ -3,8 +3,8 @@
 \doxysubsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-subroutine \mbox{\hyperlink{namespacemod__clust__algorithm_ad3054f147cea12efe2d2572d7874cb52}{mean\+\_\+linkage\+\_\+clustering}} (matrix, n, output\+\_\+name, complexes, opt\+\_\+array)
-\begin{DoxyCompactList}\small\item\em Perform mean-\/linkage hierarchical clustering on a distance matrix. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{namespacemod__clust__algorithm_a1939597ea955c2b1a6814d5c56cca364}{linkage\+\_\+clustering}} (matrix, n, linkage\+\_\+type, output\+\_\+name, complexes, opt\+\_\+array)
+\begin{DoxyCompactList}\small\item\em Perform hierarchical clustering on a distance matrix. \end{DoxyCompactList}\item 
 subroutine \mbox{\hyperlink{namespacemod__clust__algorithm_af5f3db6d505ab3f6f1ac125933ec5a3c}{sort\+\_\+complexes}} (tot\+\_\+encounters, cluster\+\_\+indexes, cluster\+\_\+count, active\+\_\+clusters, representative\+\_\+indexes, cluster\+\_\+average, cluster\+\_\+sd, array)
 \begin{DoxyCompactList}\small\item\em Sort clusters and associated arrays by a given key array. \end{DoxyCompactList}\item 
 subroutine \mbox{\hyperlink{namespacemod__clust__algorithm_a965e41f06dee9d67ccc6c21139ec0763}{write\+\_\+cluster\+\_\+elements}} (tot\+\_\+encounters, cluster\+\_\+indexes, cluster\+\_\+count, active\+\_\+clusters, output\+\_\+name)
@@ -16,23 +16,25 @@ subroutine \mbox{\hyperlink{namespacemod__clust__algorithm_a501e1163f4cc18379508
 
 
 \doxysubsection{Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{namespacemod__clust__algorithm_ad3054f147cea12efe2d2572d7874cb52}\label{namespacemod__clust__algorithm_ad3054f147cea12efe2d2572d7874cb52}} 
-\index{mod\_clust\_algorithm@{mod\_clust\_algorithm}!mean\_linkage\_clustering@{mean\_linkage\_clustering}}
-\index{mean\_linkage\_clustering@{mean\_linkage\_clustering}!mod\_clust\_algorithm@{mod\_clust\_algorithm}}
-\doxysubsubsection{\texorpdfstring{mean\_linkage\_clustering()}{mean\_linkage\_clustering()}}
-{\footnotesize\ttfamily subroutine mod\+\_\+clust\+\_\+algorithm\+::mean\+\_\+linkage\+\_\+clustering (\begin{DoxyParamCaption}\item[{real (kind=8), dimension(\+:, \+:), intent(inout)}]{matrix,  }\item[{integer, intent(in)}]{n,  }\item[{character$\ast$128, intent(in)}]{output\+\_\+name,  }\item[{type(\mbox{\hyperlink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}})}]{complexes,  }\item[{real (kind=8), dimension(\+:), intent(inout), optional}]{opt\+\_\+array }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{namespacemod__clust__algorithm_a1939597ea955c2b1a6814d5c56cca364}\label{namespacemod__clust__algorithm_a1939597ea955c2b1a6814d5c56cca364}} 
+\index{mod\_clust\_algorithm@{mod\_clust\_algorithm}!linkage\_clustering@{linkage\_clustering}}
+\index{linkage\_clustering@{linkage\_clustering}!mod\_clust\_algorithm@{mod\_clust\_algorithm}}
+\doxysubsubsection{\texorpdfstring{linkage\_clustering()}{linkage\_clustering()}}
+{\footnotesize\ttfamily subroutine mod\+\_\+clust\+\_\+algorithm\+::linkage\+\_\+clustering (\begin{DoxyParamCaption}\item[{real (kind=8), dimension(\+:, \+:), intent(inout)}]{matrix,  }\item[{integer, intent(in)}]{n,  }\item[{character(len=$\ast$), intent(in)}]{linkage\+\_\+type,  }\item[{character$\ast$128, intent(in)}]{output\+\_\+name,  }\item[{type(\mbox{\hyperlink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}})}]{complexes,  }\item[{real (kind=8), dimension(\+:), intent(inout), optional}]{opt\+\_\+array }\end{DoxyParamCaption})}
 
 
 
-Perform mean-\/linkage hierarchical clustering on a distance matrix. 
+Perform hierarchical clustering on a distance matrix. 
 
-This routine performs average/mean linkage hierarchical clustering on the input {\ttfamily matrix} (shape {\ttfamily (n,n)}) of pairwise distances or similarity scores. The routine mutates {\ttfamily matrix} during merging and terminates merging when clusters are farther apart than an internally computed threshold. Results are written to files named using {\ttfamily output\+\_\+name} and complexes information is optionally recorded via the {\ttfamily complexes} structure.
+This routine performs hierarchical clustering using minimum, maximum, or mean linkage on the input {\ttfamily matrix} (shape {\ttfamily (n,n)}) of pairwise distances or similarity scores. The routine mutates {\ttfamily matrix} during merging and terminates merging when clusters are farther apart than an internally computed threshold. Results are written to files named using {\ttfamily output\+\_\+name} and complexes information is optionally recorded via the {\ttfamily complexes} structure.
 
 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in,out}}  & {\em matrix} & Pairwise distance/similarity matrix (n,n). This matrix is updated during clustering. \\
 \hline
 \mbox{\texttt{ in}}  & {\em n} & Number of elements / encounters (integer). \\
+\hline
+\mbox{\texttt{ in}}  & {\em linkage\+\_\+type} & Type of linkage\+: \textquotesingle{}min\textquotesingle{}, \textquotesingle{}max\textquotesingle{}, or \textquotesingle{}mean\textquotesingle{} (string). \\
 \hline
 \mbox{\texttt{ in}}  & {\em output\+\_\+name} & Base name for output files (string). \\
 \hline

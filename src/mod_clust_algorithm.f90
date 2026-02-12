@@ -2,46 +2,51 @@ module mod_clust_algorithm
 
   !> Clustering algorithms and helpers for processing encounter matrices.
   !!
-  !! This module contains routines to perform mean-linkage hierarchical
-  !! clustering on a distance/similarity matrix, helpers to sort cluster
-  !! results, and routines to write cluster outputs and summaries to
-  !! text files. Parallel regions use OpenMP for some heavy loops.
+  !! This module contains routines to perform hierarchical clustering
+  !! (minimum, maximum, or mean linkage) on a distance/similarity matrix,
+  !! helpers to sort cluster results, and routines to write cluster outputs
+  !! and summaries to text files. Parallel regions use OpenMP for some
+  !! heavy loops.
   !!
   !! Note: Several routines expect arrays sized to `n` or matrices sized to
   !! `(n,n)` where `n` is the number of encounters/complexes.
   !!
   !! See individual subroutines for parameter descriptions.
+  !!
+  !! @author Abraham Muñiz-Chicharro
 
   USE read_input
   USE OMP_LIB
 
   contains
 
-    !> Perform mean-linkage hierarchical clustering on a distance matrix.
+    !> Perform hierarchical clustering on a distance matrix.
     !!
-    !! This routine performs average/mean linkage hierarchical clustering
-    !! on the input `matrix` (shape `(n,n)`) of pairwise distances or
-    !! similarity scores. The routine mutates `matrix` during merging and
-    !! terminates merging when clusters are farther apart than an
-    !! internally computed threshold. Results are written to files named
-    !! using `output_name` and complexes information is optionally
+    !! This routine performs hierarchical clustering using minimum, maximum,
+    !! or mean linkage on the input `matrix` (shape `(n,n)`) of
+    !! pairwise distances or similarity scores. The routine mutates `matrix`
+    !! during merging and terminates merging when clusters are farther apart
+    !! than an internally computed threshold. Results are written to files
+    !! named using `output_name` and complexes information is optionally
     !! recorded via the `complexes` structure.
     !!
-    !! @param[in,out] matrix    Pairwise distance/similarity matrix (n,n).
-    !!                           This matrix is updated during clustering.
-    !! @param[in]     n         Number of elements / encounters (integer).
-    !! @param[in]     output_name Base name for output files (string).
-    !! @param[in]     complexes Structure containing complex text lines/headers.
-    !! @param[in]     opt_array Optional array of per-encounter values used
-    !!                           to compute cluster averages instead of
-    !!                           reading values from `matrix`.
-    subroutine mean_linkage_clustering(matrix, n, output_name, complexes, opt_array)
+    !! @param[in,out] matrix       Pairwise distance/similarity matrix (n,n).
+    !!                              This matrix is updated during clustering.
+    !! @param[in]     n            Number of elements / encounters (integer).
+    !! @param[in]     linkage_type Type of linkage: 'min', 'max', or 'mean' (string).
+    !! @param[in]     output_name  Base name for output files (string).
+    !! @param[in]     complexes    Structure containing complex text lines/headers.
+    !! @param[in]     opt_array    Optional array of per-encounter values used
+    !!                              to compute cluster averages instead of
+    !!                              reading values from `matrix`.
+    subroutine linkage_clustering(matrix, n, linkage_type, output_name, complexes, opt_array)
 
       IMPLICIT NONE
 
       real (kind=8), dimension(:, :), intent(inout) :: matrix
       real (kind=8), dimension(:), intent(inout), optional :: opt_array
       character*128, intent(in) :: output_name
+      character(len=*), intent(in) :: linkage_type
       integer, intent(in) :: n
       type(type_assoc_file) :: complexes
 
@@ -158,7 +163,7 @@ module mod_clust_algorithm
             cluster_size(min_i) = cluster_size(min_i) + cluster_size(min_j)
             remaining_clusters = remaining_clusters - 1
           
-            ! Update distances and statistics using average linkage
+            ! Update distances using selected linkage method
             !$OMP PARALLEL DO REDUCTION(+:sum_dist, sum_sq_dist) PRIVATE(i)
             do i = 1, n
                 if (i == min_i .or. i == min_j .or. .not. active_points(i)) cycle
@@ -166,9 +171,19 @@ module mod_clust_algorithm
                 sum_dist = sum_dist - matrix(min_i, i) - matrix(min_j, i)
                 sum_sq_dist = sum_sq_dist - matrix(min_i, i) ** 2 - matrix(min_j, i) ** 2
 
-                matrix(min_i, i) = (matrix(min_i, i) * cluster_size(min_i) + &
-                matrix(min_j, i) * cluster_size(min_j)) / &
-                                             (cluster_size(min_i) + cluster_size(min_j))
+                ! Apply the selected linkage method
+                if (trim(linkage_type) == 'min') then
+                    ! Minimum linkage (single linkage)
+                    matrix(min_i, i) = min(matrix(min_i, i), matrix(min_j, i))
+                else if (trim(linkage_type) == 'max') then
+                    ! Maximum linkage (complete linkage)
+                    matrix(min_i, i) = max(matrix(min_i, i), matrix(min_j, i))
+                else
+                    ! Mean linkage (average linkage) - default
+                    matrix(min_i, i) = (matrix(min_i, i) * cluster_size(min_i) + &
+                                        matrix(min_j, i) * cluster_size(min_j)) / &
+                                        (cluster_size(min_i) + cluster_size(min_j))
+                end if
                 matrix(i, min_i) = matrix(min_i, i)
 
                 sum_dist = sum_dist + matrix(min_i, i)
@@ -255,7 +270,7 @@ module mod_clust_algorithm
           
         print *, 'Clustering complete.'
     
-    end subroutine mean_linkage_clustering
+    end subroutine linkage_clustering
 
     !> Sort clusters and associated arrays by a given key array.
     !!

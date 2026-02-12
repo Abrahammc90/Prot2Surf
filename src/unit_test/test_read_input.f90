@@ -19,6 +19,9 @@
 !!    - Vector data integrity
 !!    - Error handling for missing files
 !!
+!! @author Abraham Muñiz-Chicharro
+!! @version 1.0
+!!
 !! - **Integration tests**:
 !!    - Sequential reading of multiple files
 !!    - Proper cleanup between reads

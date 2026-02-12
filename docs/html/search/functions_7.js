@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['update_5fcomplex_135',['update_complex',['../da/d63/namespacemaths.html#a63f77e09ffc345c4982ee2558929223b',1,'maths']]]
+  ['size_5fassoc_204',['size_assoc',['../d6/ded/namespacemod__assoc.html#a70fa81635e5e42f227ece48854f9a1ef',1,'mod_assoc']]],
+  ['sort_5farray_205',['sort_array',['../df/d4c/namespacemod__threshold.html#a09bbd97c3ea019b1aed4d594fc263309',1,'mod_threshold']]],
+  ['sort_5fcomplexes_206',['sort_complexes',['../d4/d95/namespacemod__clust__algorithm.html#af5f3db6d505ab3f6f1ac125933ec5a3c',1,'mod_clust_algorithm']]]
 ];

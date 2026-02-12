@@ -18,6 +18,9 @@
 !!
 !! - **3D angle calculations (vectors_angle_3D)**:
 !!    - Parallel vectors (0 degrees)
+!!
+!! @author Abraham Muñiz-Chicharro
+!! @version 1.0
 !!    - Perpendicular vectors (90 degrees)
 !!    - Opposite vectors (180 degrees)
 !!    - 45 degree angles

@@ -1,0 +1,99 @@
+\hypertarget{test__assoc_8f90}{}\doxysection{unit\+\_\+test/test\+\_\+assoc.f90 File Reference}
+\label{test__assoc_8f90}\index{unit\_test/test\_assoc.f90@{unit\_test/test\_assoc.f90}}
+\doxysubsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+program \mbox{\hyperlink{test__assoc_8f90_afa155cb245ff2647fc6729f56b55b735}{test\+\_\+assoc}}
+\begin{DoxyCompactList}\small\item\em Unit tests for reading association/complexes files. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{test__assoc_8f90_a2741b407b0fd132dccb8d8d8720d36b6}{test\+\_\+read\+\_\+assoc\+\_\+file}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
+\item 
+subroutine \mbox{\hyperlink{test__assoc_8f90_acc16f0c7c00dbce3c6540faba1bb0f9a}{test\+\_\+allocate\+\_\+assoc\+\_\+object}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
+\item 
+subroutine \mbox{\hyperlink{test__assoc_8f90_a827759a8aaa296aca03a7db1380b8a41}{test\+\_\+size\+\_\+assoc}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{test__assoc_8f90_acc16f0c7c00dbce3c6540faba1bb0f9a}\label{test__assoc_8f90_acc16f0c7c00dbce3c6540faba1bb0f9a}} 
+\index{test\_assoc.f90@{test\_assoc.f90}!test\_allocate\_assoc\_object@{test\_allocate\_assoc\_object}}
+\index{test\_allocate\_assoc\_object@{test\_allocate\_assoc\_object}!test\_assoc.f90@{test\_assoc.f90}}
+\doxysubsubsection{\texorpdfstring{test\_allocate\_assoc\_object()}{test\_allocate\_assoc\_object()}}
+{\footnotesize\ttfamily subroutine test\+\_\+assoc\+::test\+\_\+allocate\+\_\+assoc\+\_\+object (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{num\+\_\+tests,  }\item[{integer, intent(inout)}]{num\+\_\+passed,  }\item[{integer, intent(inout)}]{num\+\_\+failed }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__assoc_8f90_afa155cb245ff2647fc6729f56b55b735}\label{test__assoc_8f90_afa155cb245ff2647fc6729f56b55b735}} 
+\index{test\_assoc.f90@{test\_assoc.f90}!test\_assoc@{test\_assoc}}
+\index{test\_assoc@{test\_assoc}!test\_assoc.f90@{test\_assoc.f90}}
+\doxysubsubsection{\texorpdfstring{test\_assoc()}{test\_assoc()}}
+{\footnotesize\ttfamily program test\+\_\+assoc}
+
+
+
+Unit tests for reading association/complexes files. 
+
+Comprehensive test suite for reading and parsing association/complexes files in the \mbox{\hyperlink{namespaceread__input}{read\+\_\+input}} and \mbox{\hyperlink{namespacemod__assoc}{mod\+\_\+assoc}} modules including\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{File reading}}\+:
+\begin{DoxyItemize}
+\item Valid assoc file reading
+\item File existence checking
+\item Error handling for missing files
+\item Correct number of encounters parsed
+\end{DoxyItemize}
+\item {\bfseries{Data structure allocation}}\+:
+\begin{DoxyItemize}
+\item Allocate assoc objects with correct sizes
+\item Initialize translation vectors to zero
+\item Initialize rotation vectors (rot1, rot2) to zero
+\item Allocate lines array
+\end{DoxyItemize}
+\item {\bfseries{File parsing}}\+:
+\begin{DoxyItemize}
+\item Skip comment lines (starting with \#)
+\item Count data lines correctly
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\begin{DoxyAuthor}{Author}
+Abraham Muñiz-\/\+Chicharro 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0
+\begin{DoxyItemize}
+\item Extract center coordinates (xc1, xc2)
+\item Parse translation vectors
+\item Parse rotation vectors
+\end{DoxyItemize}
+\end{DoxyVersion}
+
+\begin{DoxyItemize}
+\item {\bfseries{Data integrity}}\+:
+\begin{DoxyItemize}
+\item Verify allocations match encounter count
+\item Check header information is stored
+\item Verify vector values are reasonable
+\item Ensure no data corruption during read
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Compile with\+: gfortran -\/o test\+\_\+assoc \mbox{\hyperlink{test__assoc_8f90}{test\+\_\+assoc.\+f90}} ../src/read\+\_\+input.f90 ../src/mod\+\_\+assoc.f90
+
+\begin{DoxyAuthor}{Author}
+Abraham Muñiz-\/\+Chicharro 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\mbox{\Hypertarget{test__assoc_8f90_a2741b407b0fd132dccb8d8d8720d36b6}\label{test__assoc_8f90_a2741b407b0fd132dccb8d8d8720d36b6}} 
+\index{test\_assoc.f90@{test\_assoc.f90}!test\_read\_assoc\_file@{test\_read\_assoc\_file}}
+\index{test\_read\_assoc\_file@{test\_read\_assoc\_file}!test\_assoc.f90@{test\_assoc.f90}}
+\doxysubsubsection{\texorpdfstring{test\_read\_assoc\_file()}{test\_read\_assoc\_file()}}
+{\footnotesize\ttfamily subroutine test\+\_\+assoc\+::test\+\_\+read\+\_\+assoc\+\_\+file (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{num\+\_\+tests,  }\item[{integer, intent(inout)}]{num\+\_\+passed,  }\item[{integer, intent(inout)}]{num\+\_\+failed }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__assoc_8f90_a827759a8aaa296aca03a7db1380b8a41}\label{test__assoc_8f90_a827759a8aaa296aca03a7db1380b8a41}} 
+\index{test\_assoc.f90@{test\_assoc.f90}!test\_size\_assoc@{test\_size\_assoc}}
+\index{test\_size\_assoc@{test\_size\_assoc}!test\_assoc.f90@{test\_assoc.f90}}
+\doxysubsubsection{\texorpdfstring{test\_size\_assoc()}{test\_size\_assoc()}}
+{\footnotesize\ttfamily subroutine test\+\_\+assoc\+::test\+\_\+size\+\_\+assoc (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{num\+\_\+tests,  }\item[{integer, intent(inout)}]{num\+\_\+passed,  }\item[{integer, intent(inout)}]{num\+\_\+failed }\end{DoxyParamCaption})}
+

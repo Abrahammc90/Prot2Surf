@@ -1,0 +1,211 @@
+\hypertarget{md_unit_test_INDEX_autotoc_md1}{}\doxysection{Test Source Files}\label{md_unit_test_INDEX_autotoc_md1}
+\hypertarget{md_unit_test_INDEX_autotoc_md2}{}\doxysubsection{Core Test Programs (7 files) -\/ U\+P\+D\+A\+T\+ED}\label{md_unit_test_INDEX_autotoc_md2}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{\mbox{\hyperlink{test__maths_8f90}{test\+\_\+maths.\+f90}}}} (29.\+4 KB) -\/ E\+X\+P\+A\+N\+D\+ED
+\begin{DoxyItemize}
+\item Tests\+: 31 tests (updated from 4)
+\item Modules tested\+: {\ttfamily maths}
+\item Features\+: Cross product, coordinate transformations, angle calculations, R\+M\+SD, center of geometry, distance calculations
+\item Dependencies\+: \mbox{\hyperlink{maths_8f90}{maths.\+f90}}, \mbox{\hyperlink{mod__pdb_8f90}{mod\+\_\+pdb.\+f90}}
+\item Lines\+: 850
+\end{DoxyItemize}
+\item {\bfseries{\mbox{\hyperlink{test__matrix_8f90}{test\+\_\+matrix.\+f90}}}} (13.\+1 KB)
+\begin{DoxyItemize}
+\item Tests\+: 8 tests
+\item Modules tested\+: {\ttfamily \mbox{\hyperlink{namespacemod__matrix}{mod\+\_\+matrix}}}
+\item Features\+: Matrix I/O, array I/O, Z-\/coordinate calculations, R\+M\+SD matrix properties
+\item Dependencies\+: \mbox{\hyperlink{mod__matrix_8f90}{mod\+\_\+matrix.\+f90}}, \mbox{\hyperlink{maths_8f90}{maths.\+f90}}, \mbox{\hyperlink{mod__pdb_8f90}{mod\+\_\+pdb.\+f90}}
+\item Lines\+: 370
+\end{DoxyItemize}
+\item {\bfseries{\mbox{\hyperlink{test__threshold_8f90}{test\+\_\+threshold.\+f90}}}} (13.\+3 KB) -\/ U\+P\+D\+A\+T\+ED
+\begin{DoxyItemize}
+\item Tests\+: 9 tests (updated from 6)
+\item Modules tested\+: {\ttfamily \mbox{\hyperlink{namespacemod__threshold}{mod\+\_\+threshold}}}
+\item Features\+: Z-\/coordinate arrays, minimum distance, angle calculations, array sorting
+\item Dependencies\+: \mbox{\hyperlink{mod__threshold_8f90}{mod\+\_\+threshold.\+f90}}, \mbox{\hyperlink{maths_8f90}{maths.\+f90}}
+\item Lines\+: 375
+\end{DoxyItemize}
+\item {\bfseries{\mbox{\hyperlink{test__pdb_8f90}{test\+\_\+pdb.\+f90}}}} (7.\+4 KB)
+\begin{DoxyItemize}
+\item Tests\+: 8 tests
+\item Modules tested\+: {\ttfamily \mbox{\hyperlink{namespacemod__pdb}{mod\+\_\+pdb}}}
+\item Features\+: P\+DB structures, atoms, residues, chains
+\item Dependencies\+: \mbox{\hyperlink{mod__pdb_8f90}{mod\+\_\+pdb.\+f90}}
+\item Lines\+: 210
+\end{DoxyItemize}
+\item {\bfseries{\mbox{\hyperlink{test__clustering_8f90}{test\+\_\+clustering.\+f90}}}} (9.\+8 KB)
+\begin{DoxyItemize}
+\item Tests\+: 5 tests
+\item Modules tested\+: {\ttfamily \mbox{\hyperlink{namespacemod__clust__algorithm}{mod\+\_\+clust\+\_\+algorithm}}}
+\item Features\+: Clustering statistics, simple clustering, cluster output writing
+\item Dependencies\+: \mbox{\hyperlink{mod__clust__algorithm_8f90}{mod\+\_\+clust\+\_\+algorithm.\+f90}}, \mbox{\hyperlink{read__input_8f90}{read\+\_\+input.\+f90}}, \mbox{\hyperlink{mod__pdb_8f90}{mod\+\_\+pdb.\+f90}}, \mbox{\hyperlink{mod__assoc_8f90}{mod\+\_\+assoc.\+f90}}, \mbox{\hyperlink{maths_8f90}{maths.\+f90}}
+\item Lines\+: 275
+\end{DoxyItemize}
+\item {\bfseries{\mbox{\hyperlink{test__assoc_8f90}{test\+\_\+assoc.\+f90}}}} (13.\+5 KB) \mbox{[}N\+EW\mbox{]}
+\begin{DoxyItemize}
+\item Tests\+: 11 tests
+\item Modules tested\+: {\ttfamily \mbox{\hyperlink{namespacemod__assoc}{mod\+\_\+assoc}}}
+\item Features\+: Association file reading, object allocation, file parsing
+\item Dependencies\+: \mbox{\hyperlink{mod__assoc_8f90}{mod\+\_\+assoc.\+f90}}
+\item Lines\+: 380
+\end{DoxyItemize}
+\item {\bfseries{\mbox{\hyperlink{test__read__input_8f90}{test\+\_\+read\+\_\+input.\+f90}}}} (12.\+6 KB) \mbox{[}N\+EW\mbox{]}
+\begin{DoxyItemize}
+\item Tests\+: 10 tests
+\item Modules tested\+: {\ttfamily \mbox{\hyperlink{namespaceread__input}{read\+\_\+input}}} (wrapper module)
+\item Features\+: Input file reading, structure creation, error handling
+\item Dependencies\+: \mbox{\hyperlink{read__input_8f90}{read\+\_\+input.\+f90}}, \mbox{\hyperlink{mod__pdb_8f90}{mod\+\_\+pdb.\+f90}}, \mbox{\hyperlink{mod__assoc_8f90}{mod\+\_\+assoc.\+f90}}
+\item Lines\+: 355
+\end{DoxyItemize}
+\end{DoxyEnumerate}\hypertarget{md_unit_test_INDEX_autotoc_md3}{}\doxysection{Documentation Files}\label{md_unit_test_INDEX_autotoc_md3}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{\mbox{\hyperlink{TESTING_8md}{T\+E\+S\+T\+I\+N\+G.\+md}}}} (7.\+2 KB) -\/ U\+P\+D\+A\+T\+ED
+\begin{DoxyItemize}
+\item Comprehensive testing guide with all 7 test files
+\item Compilation instructions for each test
+\item Updated test coverage table (82 tests total)
+\item Best practices and troubleshooting
+\item Instructions for adding new tests
+\end{DoxyItemize}
+\item {\bfseries{\mbox{\hyperlink{TEST__SUMMARY_8md}{T\+E\+S\+T\+\_\+\+S\+U\+M\+M\+A\+R\+Y.\+md}}}} (6.\+8 KB) -\/ U\+P\+D\+A\+T\+ED
+\begin{DoxyItemize}
+\item Overview of entire test suite with 82 tests
+\item Summary of all 7 test programs
+\item Test coverage matrix with new modules
+\item Example output
+\item Overall statistics table
+\end{DoxyItemize}
+\item {\bfseries{\mbox{\hyperlink{QUICK__TEST_8md}{Q\+U\+I\+C\+K\+\_\+\+T\+E\+S\+T.\+md}}}} (3.\+2 KB) -\/ U\+P\+D\+A\+T\+ED
+\begin{DoxyItemize}
+\item Quick reference for running all 7 test suites
+\item Command summary table with new tests
+\item File overview with test counts
+\item Pro tips
+\end{DoxyItemize}
+\item {\bfseries{\mbox{\hyperlink{README_8md}{R\+E\+A\+D\+M\+E.\+md}}}} (3.\+5 KB) -\/ U\+P\+D\+A\+T\+ED
+\begin{DoxyItemize}
+\item Test framework overview
+\item Directory structure with all 7 test programs
+\item Quick start guide
+\item Test coverage table (82 tests)
+\item Build requirements and verification
+\end{DoxyItemize}
+\item {\bfseries{\mbox{\hyperlink{INDEX_8md}{I\+N\+D\+E\+X.\+md}}}} (This file) -\/ U\+P\+D\+A\+T\+ED
+\begin{DoxyItemize}
+\item File listing and descriptions for all 7 test programs
+\item Documentation index with 5 files
+\end{DoxyItemize}
+\end{DoxyEnumerate}\hypertarget{md_unit_test_INDEX_autotoc_md4}{}\doxysection{Automation Files}\label{md_unit_test_INDEX_autotoc_md4}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{\mbox{\hyperlink{run__all__tests_8sh}{run\+\_\+all\+\_\+tests.\+sh}}}} (2.\+8 KB) -\/ U\+P\+D\+A\+T\+ED
+\begin{DoxyItemize}
+\item Bash script to compile and run all 7 tests
+\item Automatic dependency tracking for new tests
+\item Summary reporting for all test programs
+\item Exit code handling (0 = success, 1 = failure)
+\end{DoxyItemize}
+\end{DoxyEnumerate}\hypertarget{md_unit_test_INDEX_autotoc_md5}{}\doxysection{Modified Files}\label{md_unit_test_INDEX_autotoc_md5}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Makefile}} -\/ U\+P\+D\+A\+T\+ED
+\begin{DoxyItemize}
+\item Added test targets for test\+\_\+assoc and test\+\_\+read\+\_\+input
+\item Updated {\ttfamily test} target to run all 7 tests
+\item Updated {\ttfamily clean\+\_\+tests} target for new executables
+\item Integrated with existing build system
+\end{DoxyItemize}
+\end{DoxyEnumerate}\hypertarget{md_unit_test_INDEX_autotoc_md6}{}\doxysection{Quick Start}\label{md_unit_test_INDEX_autotoc_md6}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd clustering\_program/src/}
+\DoxyCodeLine{}
+\DoxyCodeLine{\# Run all tests}
+\DoxyCodeLine{make test}
+\DoxyCodeLine{}
+\DoxyCodeLine{\# Or use the automated script}
+\DoxyCodeLine{bash run\_all\_tests.sh}
+\DoxyCodeLine{}
+\DoxyCodeLine{\# Individual test}
+\DoxyCodeLine{make test\_maths}
+\DoxyCodeLine{make test\_pdb}
+\end{DoxyCode}
+\hypertarget{md_unit_test_INDEX_autotoc_md7}{}\doxysection{Test Distribution}\label{md_unit_test_INDEX_autotoc_md7}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Mathematical Operations (4 tests)}
+\DoxyCodeLine{-\/ cross product}
+\DoxyCodeLine{-\/ coordinate transformations}
+\DoxyCodeLine{}
+\DoxyCodeLine{Matrix Operations (4 tests)}
+\DoxyCodeLine{-\/ allocation}
+\DoxyCodeLine{-\/ symmetry properties}
+\DoxyCodeLine{}
+\DoxyCodeLine{Array/Threshold Operations (6 tests)}
+\DoxyCodeLine{-\/ statistics}
+\DoxyCodeLine{-\/ bounds checking}
+\DoxyCodeLine{}
+\DoxyCodeLine{PDB Data Structures (8 tests)}
+\DoxyCodeLine{-\/ file allocation}
+\DoxyCodeLine{-\/ atom properties}
+\DoxyCodeLine{-\/ residue management}
+\DoxyCodeLine{}
+\DoxyCodeLine{Clustering Algorithms (6 tests)}
+\DoxyCodeLine{-\/ distance matrix properties}
+\DoxyCodeLine{-\/ clustering helpers}
+\end{DoxyCode}
+\hypertarget{md_unit_test_INDEX_autotoc_md8}{}\doxysection{Testing Workflow}\label{md_unit_test_INDEX_autotoc_md8}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1. Build Tests (make test)}
+\DoxyCodeLine{   |}
+\DoxyCodeLine{   v}
+\DoxyCodeLine{2. Compile each test program}
+\DoxyCodeLine{   -\/ Dependency resolution}
+\DoxyCodeLine{   -\/ Link with required modules}
+\DoxyCodeLine{   |}
+\DoxyCodeLine{   v}
+\DoxyCodeLine{3. Execute tests sequentially}
+\DoxyCodeLine{   -\/ Each test reports pass/fail}
+\DoxyCodeLine{   -\/ Detailed error messages on failure}
+\DoxyCodeLine{   -\/ Summary statistics}
+\DoxyCodeLine{   |}
+\DoxyCodeLine{   v}
+\DoxyCodeLine{4. Report results}
+\DoxyCodeLine{   -\/ Total tests run}
+\DoxyCodeLine{   -\/ Passed count}
+\DoxyCodeLine{   -\/ Failed count}
+\DoxyCodeLine{   -\/ Exit code (0=success, 1=failure)}
+\end{DoxyCode}
+\hypertarget{md_unit_test_INDEX_autotoc_md9}{}\doxysection{Next Steps}\label{md_unit_test_INDEX_autotoc_md9}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Run tests}}\+: {\ttfamily make test}
+\item {\bfseries{Read results}}\+: Check P\+A\+S\+S/\+F\+A\+IL output
+\item {\bfseries{Add tests}}\+: Follow instructions in \mbox{\hyperlink{TESTING_8md}{T\+E\+S\+T\+I\+N\+G.\+md}}
+\item {\bfseries{Integrate CI}}\+: Set up Git\+Hub Actions (optional)
+\item {\bfseries{Performance}}\+: Run with profiling tools if needed
+\end{DoxyEnumerate}\hypertarget{md_unit_test_INDEX_autotoc_md10}{}\doxysection{Files Generated by Tests}\label{md_unit_test_INDEX_autotoc_md10}
+When tests run, the following executables are created (removed by {\ttfamily make clean\+\_\+tests})\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily test\+\_\+maths}
+\item {\ttfamily test\+\_\+matrix}
+\item {\ttfamily test\+\_\+threshold}
+\item {\ttfamily test\+\_\+pdb}
+\item {\ttfamily test\+\_\+clustering}
+\end{DoxyItemize}\hypertarget{md_unit_test_INDEX_autotoc_md11}{}\doxysection{Support \& References}\label{md_unit_test_INDEX_autotoc_md11}
+
+\begin{DoxyItemize}
+\item {\bfseries{\mbox{\hyperlink{TESTING_8md}{T\+E\+S\+T\+I\+N\+G.\+md}}}} -\/ Detailed guide with troubleshooting
+\item {\bfseries{\mbox{\hyperlink{TEST__SUMMARY_8md}{T\+E\+S\+T\+\_\+\+S\+U\+M\+M\+A\+R\+Y.\+md}}}} -\/ Full overview and future enhancements
+\item {\bfseries{\mbox{\hyperlink{QUICK__TEST_8md}{Q\+U\+I\+C\+K\+\_\+\+T\+E\+S\+T.\+md}}}} -\/ Common commands and tips
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+
+
+{\bfseries{Created}}\+: February 2026 {\bfseries{Total Tests}}\+: 28 {\bfseries{Coverage}}\+: 5 modules, 11 functions 

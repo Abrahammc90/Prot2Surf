@@ -70,9 +70,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions/Subroutines</h2></td></tr>
-<tr class="memitem:ad3054f147cea12efe2d2572d7874cb52"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d95/namespacemod__clust__algorithm.html#ad3054f147cea12efe2d2572d7874cb52">mean_linkage_clustering</a> (matrix, n, output_name, complexes, opt_array)</td></tr>
-<tr class="memdesc:ad3054f147cea12efe2d2572d7874cb52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform mean-linkage hierarchical clustering on a distance matrix.  <a href="../../d4/d95/namespacemod__clust__algorithm.html#ad3054f147cea12efe2d2572d7874cb52">More...</a><br /></td></tr>
-<tr class="separator:ad3054f147cea12efe2d2572d7874cb52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1939597ea955c2b1a6814d5c56cca364"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d95/namespacemod__clust__algorithm.html#a1939597ea955c2b1a6814d5c56cca364">linkage_clustering</a> (matrix, n, linkage_type, output_name, complexes, opt_array)</td></tr>
+<tr class="memdesc:a1939597ea955c2b1a6814d5c56cca364"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform hierarchical clustering on a distance matrix.  <a href="../../d4/d95/namespacemod__clust__algorithm.html#a1939597ea955c2b1a6814d5c56cca364">More...</a><br /></td></tr>
+<tr class="separator:a1939597ea955c2b1a6814d5c56cca364"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5f3db6d505ab3f6f1ac125933ec5a3c"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d95/namespacemod__clust__algorithm.html#af5f3db6d505ab3f6f1ac125933ec5a3c">sort_complexes</a> (tot_encounters, cluster_indexes, cluster_count, active_clusters, representative_indexes, cluster_average, cluster_sd, array)</td></tr>
 <tr class="memdesc:af5f3db6d505ab3f6f1ac125933ec5a3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sort clusters and associated arrays by a given key array.  <a href="../../d4/d95/namespacemod__clust__algorithm.html#af5f3db6d505ab3f6f1ac125933ec5a3c">More...</a><br /></td></tr>
 <tr class="separator:af5f3db6d505ab3f6f1ac125933ec5a3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -87,14 +87,14 @@ Functions/Subroutines</h2></td></tr>
 <tr class="separator:a501e1163f4cc183795081022205c65f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function/Subroutine Documentation</h2>
-<a id="ad3054f147cea12efe2d2572d7874cb52"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad3054f147cea12efe2d2572d7874cb52">&#9670;&nbsp;</a></span>mean_linkage_clustering()</h2>
+<a id="a1939597ea955c2b1a6814d5c56cca364"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1939597ea955c2b1a6814d5c56cca364">&#9670;&nbsp;</a></span>linkage_clustering()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">subroutine mod_clust_algorithm::mean_linkage_clustering </td>
+          <td class="memname">subroutine mod_clust_algorithm::linkage_clustering </td>
           <td>(</td>
           <td class="paramtype">real (kind=8), dimension(:, :), intent(inout)&#160;</td>
           <td class="paramname"><em>matrix</em>, </td>
@@ -104,6 +104,12 @@ Functions/Subroutines</h2></td></tr>
           <td></td>
           <td class="paramtype">integer, intent(in)&#160;</td>
           <td class="paramname"><em>n</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">character(len=*), intent(in)&#160;</td>
+          <td class="paramname"><em>linkage_type</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -131,12 +137,13 @@ Functions/Subroutines</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Perform mean-linkage hierarchical clustering on a distance matrix. </p>
-<p>This routine performs average/mean linkage hierarchical clustering on the input <code>matrix</code> (shape <code>(n,n)</code>) of pairwise distances or similarity scores. The routine mutates <code>matrix</code> during merging and terminates merging when clusters are farther apart than an internally computed threshold. Results are written to files named using <code>output_name</code> and complexes information is optionally recorded via the <code>complexes</code> structure.</p>
+<p>Perform hierarchical clustering on a distance matrix. </p>
+<p>This routine performs hierarchical clustering using minimum, maximum, or mean linkage on the input <code>matrix</code> (shape <code>(n,n)</code>) of pairwise distances or similarity scores. The routine mutates <code>matrix</code> during merging and terminates merging when clusters are farther apart than an internally computed threshold. Results are written to files named using <code>output_name</code> and complexes information is optionally recorded via the <code>complexes</code> structure.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in,out]</td><td class="paramname">matrix</td><td>Pairwise distance/similarity matrix (n,n). This matrix is updated during clustering. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>Number of elements / encounters (integer). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">linkage_type</td><td>Type of linkage: 'min', 'max', or 'mean' (string). </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">output_name</td><td>Base name for output files (string). </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">complexes</td><td>Structure containing complex text lines/headers. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">opt_array</td><td>Optional array of per-encounter values used to compute cluster averages instead of reading values from <code>matrix</code>. </td></tr>

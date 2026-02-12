@@ -6,6 +6,8 @@ module read_input
     !! complex files into the project's Fortran derived types. The
     !! routines check file existence, allocate appropriate structures
     !! and fill them using helpers from `mod_pdb` and `mod_assoc`.
+    !!
+    !! @author Abraham Muñiz-Chicharro
 
     USE mod_pdb
     USE mod_assoc

@@ -1,10 +1,6 @@
 var searchData=
 [
-  ['threshold_2ef90_66',['threshold.f90',['../d9/dcc/threshold_8f90.html',1,'']]],
-  ['trans_5fvector_67',['trans_vector',['../df/d2d/structmod__assoc_1_1type__assoc__file.html#aaa4af56dce17ecc5dd26c28c834254ba',1,'mod_assoc::type_assoc_file']]],
-  ['type_5fassoc_5ffile_68',['type_assoc_file',['../df/d2d/structmod__assoc_1_1type__assoc__file.html',1,'mod_assoc']]],
-  ['type_5fpdb_5fatom_69',['type_pdb_atom',['../d6/ddf/structmod__pdb_1_1type__pdb__atom.html',1,'mod_pdb']]],
-  ['type_5fpdb_5fchain_70',['type_pdb_chain',['../dd/dbe/structmod__pdb_1_1type__pdb__chain.html',1,'mod_pdb']]],
-  ['type_5fpdb_5ffile_71',['type_pdb_file',['../d1/d57/structmod__pdb_1_1type__pdb__file.html',1,'mod_pdb']]],
-  ['type_5fpdb_5fresidue_72',['type_pdb_residue',['../d8/d95/structmod__pdb_1_1type__pdb__residue.html',1,'mod_pdb']]]
+  ['size_5fassoc_69',['size_assoc',['../d6/ded/namespacemod__assoc.html#a70fa81635e5e42f227ece48854f9a1ef',1,'mod_assoc']]],
+  ['sort_5farray_70',['sort_array',['../df/d4c/namespacemod__threshold.html#a09bbd97c3ea019b1aed4d594fc263309',1,'mod_threshold']]],
+  ['sort_5fcomplexes_71',['sort_complexes',['../d4/d95/namespacemod__clust__algorithm.html#af5f3db6d505ab3f6f1ac125933ec5a3c',1,'mod_clust_algorithm']]]
 ];

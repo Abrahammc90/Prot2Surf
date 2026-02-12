@@ -1,8 +1,11 @@
 !> Command-line program to perform hierarchical clustering on encounter matrices.
 !!
-!! Reads a pairwise matrix (and optional array) and runs mean-linkage
-!! hierarchical clustering. Results are written to files using the
-!! `-output_name` base name. See `print_help` below for usage.
+!! Reads a pairwise matrix (and optional array) and runs hierarchical
+!! clustering with user-specified linkage method (min, max, or mean).
+!! Results are written to files using the `-output_name` base name.
+!! See `print_help` below for usage.
+!!
+!! @author Abraham Muñiz-Chicharro
 program main
 
   USE mod_matrix
@@ -12,7 +15,7 @@ program main
   implicit none
 
     character*128 :: matrix_filename, complexes_filename, array_filename
-    character*128 :: output_name, argument
+    character*128 :: output_name, argument, linkage_type
     integer :: nb_encounters, tot_encounters
     type ( type_assoc_file ) :: complexes
 
@@ -33,6 +36,7 @@ program main
     help_bool = .false.
     argument = ""
     array_filename = ''
+    linkage_type = 'mean'  ! Default to mean linkage
 
     nb_argument = command_argument_count()
     if ( nb_argument == 0 ) then
@@ -73,6 +77,16 @@ program main
         output_name_bool = .true.
         call getarg( count_arg+1, argument )
         output_name = trim(argument)
+        count_arg = count_arg + 1
+      else if ( trim(argument) == "-linkage" ) then
+        call getarg( count_arg+1, argument )
+        linkage_type = trim(argument)
+        if (trim(linkage_type) /= 'min' .and. trim(linkage_type) /= 'max' .and. &
+            trim(linkage_type) /= 'mean') then
+          print *, "ERROR. Invalid linkage type: ", trim(linkage_type)
+          print *, "Valid options are: 'min', 'max', 'mean'"
+          STOP 1
+        end if
         count_arg = count_arg + 1
       else if ( trim(argument) == "-help" ) then
         help_bool = .true.
@@ -145,9 +159,9 @@ program main
 
     if ( len(array_filename) .gt. 0 ) then
       call read_array(array, nb_encounters, array_filename)
-      call mean_linkage_clustering(matrix, nb_encounters, output_name, complexes, array)
+      call linkage_clustering(matrix, nb_encounters, linkage_type, output_name, complexes, array)
     else
-      call mean_linkage_clustering(matrix, nb_encounters, output_name, complexes)
+      call linkage_clustering(matrix, nb_encounters, linkage_type, output_name, complexes)
     end if
 
     contains
@@ -156,16 +170,35 @@ program main
     !! Describes command-line options and provides an example invocation.
     subroutine print_help()
 
-      !STOP 1
-
       print *, ""
-      print *, "This program receives as inputs the encounter complexes file, ", &
-      "number of encounters to cluster, matrix input file and array input file"
+      print *, "This program performs hierarchical clustering on encounter complexes."
+      print *, "It receives as inputs the encounter complexes file, matrix input file,"
+      print *, "optional array input file, and clustering parameters."
       print *, ""
-      print *, "Eg.: ./clust -complexes assoc_complexes -matrix matrix_z.txt -nb_encounters 5000 -output_name Cu_z"
+      print *, "Usage:"
+      print *, "  ./clust -complexes <file> -matrix <file> [OPTIONS]"
       print *, ""
-      print *, "Default values: "
-      print *, "* nb_encounters: Maximum encounter complexes recorded in the complexes file."
+      print *, "Required arguments:"
+      print *, "  -complexes <file>       Encounter complexes file"
+      print *, "  -matrix <file>          Matrix input file"
+      print *, "  -output_name <name>     Base name for output files"
+      print *, ""
+      print *, "Optional arguments:"
+      print *, "  -nb_encounters <N>      Number of encounters to cluster"
+      print *, "                          (default: all encounters in complexes file)"
+      print *, "  -array <file>           Array input file for additional values"
+      print *, "  -linkage <type>         Linkage method: 'min', 'max', or 'mean'"
+      print *, "                          (default: 'mean')"
+      print *, "  -help                   Display this help message"
+      print *, ""
+      print *, "Linkage types:"
+      print *, "  min  - Minimum linkage (single linkage)"
+      print *, "  max  - Maximum linkage (complete linkage)"
+      print *, "  mean - Mean linkage (average linkage)"
+      print *, ""
+      print *, "Example:"
+      print *, "  ./clust -complexes assoc_complexes -matrix matrix_z.txt \\"
+      print *, "          -nb_encounters 5000 -output_name Cu_z -linkage mean"
       print *, ""
       STOP
       

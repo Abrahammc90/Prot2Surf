@@ -1,0 +1,113 @@
+This directory contains the comprehensive unit testing framework for the clustering program.\hypertarget{md_unit_test_README_autotoc_md23}{}\doxysection{Contents}\label{md_unit_test_README_autotoc_md23}
+\hypertarget{md_unit_test_README_autotoc_md24}{}\doxysubsection{Test Programs}\label{md_unit_test_README_autotoc_md24}
+
+\begin{DoxyItemize}
+\item {\bfseries{\mbox{\hyperlink{test__maths_8f90}{test\+\_\+maths.\+f90}}}} -\/ Tests for mathematical operations (31 tests)
+\item {\bfseries{\mbox{\hyperlink{test__matrix_8f90}{test\+\_\+matrix.\+f90}}}} -\/ Tests for matrix operations (8 tests)
+\item {\bfseries{\mbox{\hyperlink{test__threshold_8f90}{test\+\_\+threshold.\+f90}}}} -\/ Tests for threshold calculations (9 tests)
+\item {\bfseries{\mbox{\hyperlink{test__pdb_8f90}{test\+\_\+pdb.\+f90}}}} -\/ Tests for P\+DB file handling (8 tests)
+\item {\bfseries{\mbox{\hyperlink{test__clustering_8f90}{test\+\_\+clustering.\+f90}}}} -\/ Tests for clustering algorithms (5 tests)
+\item {\bfseries{\mbox{\hyperlink{test__assoc_8f90}{test\+\_\+assoc.\+f90}}}} -\/ Tests for association file reading (11 tests) \mbox{[}N\+EW\mbox{]}
+\item {\bfseries{\mbox{\hyperlink{test__read__input_8f90}{test\+\_\+read\+\_\+input.\+f90}}}} -\/ Tests for \mbox{\hyperlink{namespaceread__input}{read\+\_\+input}} module (10 tests) \mbox{[}N\+EW\mbox{]}
+\end{DoxyItemize}\hypertarget{md_unit_test_README_autotoc_md25}{}\doxysubsection{Test Automation}\label{md_unit_test_README_autotoc_md25}
+
+\begin{DoxyItemize}
+\item {\bfseries{\mbox{\hyperlink{run__all__tests_8sh}{run\+\_\+all\+\_\+tests.\+sh}}}} -\/ Automated script to run all unit tests
+\end{DoxyItemize}\hypertarget{md_unit_test_README_autotoc_md26}{}\doxysubsection{Documentation}\label{md_unit_test_README_autotoc_md26}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Document }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Best For  }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Document }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Best For  }\\\cline{1-3}
+\endhead
+{\bfseries{\mbox{\hyperlink{QUICK__TEST_8md}{Q\+U\+I\+C\+K\+\_\+\+T\+E\+S\+T.\+md}}}} &Quick reference guide &Getting started quickly  \\\cline{1-3}
+{\bfseries{\mbox{\hyperlink{TESTING_8md}{T\+E\+S\+T\+I\+N\+G.\+md}}}} &Comprehensive testing guide &Understanding all details  \\\cline{1-3}
+{\bfseries{\mbox{\hyperlink{TEST__SUMMARY_8md}{T\+E\+S\+T\+\_\+\+S\+U\+M\+M\+A\+R\+Y.\+md}}}} &Test suite overview &High-\/level overview  \\\cline{1-3}
+{\bfseries{\mbox{\hyperlink{UNIT__TESTING__COMPLETE_8md}{U\+N\+I\+T\+\_\+\+T\+E\+S\+T\+I\+N\+G\+\_\+\+C\+O\+M\+P\+L\+E\+T\+E.\+md}}}} &Completion summary &Project status  \\\cline{1-3}
+{\bfseries{\mbox{\hyperlink{INDEX_8md}{I\+N\+D\+E\+X.\+md}}}} &File index and statistics &Navigation  \\\cline{1-3}
+\end{longtabu}
+\hypertarget{md_unit_test_README_autotoc_md27}{}\doxysection{Quick Start}\label{md_unit_test_README_autotoc_md27}
+\hypertarget{md_unit_test_README_autotoc_md28}{}\doxysubsection{Run all tests}\label{md_unit_test_README_autotoc_md28}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd ../src}
+\DoxyCodeLine{make test}
+\end{DoxyCode}
+\hypertarget{md_unit_test_README_autotoc_md29}{}\doxysubsection{Run specific test}\label{md_unit_test_README_autotoc_md29}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd ../src}
+\DoxyCodeLine{make test\_maths    \# or test\_matrix, test\_threshold, test\_pdb, test\_clustering}
+\end{DoxyCode}
+\hypertarget{md_unit_test_README_autotoc_md30}{}\doxysubsection{Clean test executables}\label{md_unit_test_README_autotoc_md30}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd ../src}
+\DoxyCodeLine{make clean\_tests}
+\end{DoxyCode}
+\hypertarget{md_unit_test_README_autotoc_md31}{}\doxysection{Where to Start?}\label{md_unit_test_README_autotoc_md31}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{New to testing?}} -\/ Start with \mbox{\hyperlink{QUICK__TEST_8md}{Q\+U\+I\+C\+K\+\_\+\+T\+E\+ST.md}}
+\item {\bfseries{Need details?}} -\/ Read \mbox{\hyperlink{TESTING_8md}{T\+E\+S\+T\+I\+NG.md}}
+\item {\bfseries{Want overview?}} -\/ See \mbox{\hyperlink{TEST__SUMMARY_8md}{T\+E\+S\+T\+\_\+\+S\+U\+M\+M\+A\+RY.md}}
+\item {\bfseries{Need file list?}} -\/ Check \mbox{\hyperlink{INDEX_8md}{I\+N\+D\+EX.md}}
+\item {\bfseries{Project status?}} -\/ Read \mbox{\hyperlink{UNIT__TESTING__COMPLETE_8md}{U\+N\+I\+T\+\_\+\+T\+E\+S\+T\+I\+N\+G\+\_\+\+C\+O\+M\+P\+L\+E\+TE.md}}
+\end{DoxyEnumerate}\hypertarget{md_unit_test_README_autotoc_md32}{}\doxysection{Test Coverage}\label{md_unit_test_README_autotoc_md32}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Module }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Tests }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Status  }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Module }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Tests }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Status  }\\\cline{1-3}
+\endhead
+\mbox{\hyperlink{maths_8f90}{maths.\+f90}} &31 &Yes  \\\cline{1-3}
+\mbox{\hyperlink{mod__matrix_8f90}{mod\+\_\+matrix.\+f90}} &8 &Yes  \\\cline{1-3}
+\mbox{\hyperlink{mod__threshold_8f90}{mod\+\_\+threshold.\+f90}} &9 &Yes  \\\cline{1-3}
+\mbox{\hyperlink{mod__pdb_8f90}{mod\+\_\+pdb.\+f90}} &8 &Yes  \\\cline{1-3}
+\mbox{\hyperlink{mod__clust__algorithm_8f90}{mod\+\_\+clust\+\_\+algorithm.\+f90}} &5 &Yes  \\\cline{1-3}
+\mbox{\hyperlink{mod__assoc_8f90}{mod\+\_\+assoc.\+f90}} &11 &Yes \mbox{[}N\+EW\mbox{]}  \\\cline{1-3}
+\mbox{\hyperlink{read__input_8f90}{read\+\_\+input.\+f90}} &10 &Yes \mbox{[}N\+EW\mbox{]}  \\\cline{1-3}
+{\bfseries{Total}} &{\bfseries{82}} &{\bfseries{Yes}}  \\\cline{1-3}
+\end{longtabu}
+\hypertarget{md_unit_test_README_autotoc_md33}{}\doxysection{Build Requirements}\label{md_unit_test_README_autotoc_md33}
+
+\begin{DoxyItemize}
+\item gfortran compiler
+\item L\+A\+P\+A\+CK and B\+L\+AS libraries
+\item Open\+MP support
+\end{DoxyItemize}\hypertarget{md_unit_test_README_autotoc_md34}{}\doxysection{Verification}\label{md_unit_test_README_autotoc_md34}
+All 82 unit tests are defined and ready to run. The framework provides\+:
+\begin{DoxyItemize}
+\item Comprehensive test coverage across 7 test files
+\item Assertion helpers for test validation
+\item Pass/fail reporting with detailed output
+\item Error message display
+\item Command-\/line integration via Makefile
+\item Standalone bash script runner
+\end{DoxyItemize}\hypertarget{md_unit_test_README_autotoc_md35}{}\doxysection{Notable Behavior}\label{md_unit_test_README_autotoc_md35}
+{\bfseries{Array Parameter in Clustering\+:}}
+\begin{DoxyItemize}
+\item The {\ttfamily -\/array} option is {\bfseries{mandatory}} for all clustering methods {\bfseries{except R\+M\+SD}}
+\item When using {\ttfamily -\/matrix\+\_\+type rmsd}, the array parameter is {\bfseries{optional}}
+\item When an array is provided, complexes are sorted by the array values
+\item If array is not provided for non-\/\+R\+M\+SD methods, an error is raised
+\item Without an array, cluster averages and standard deviations are computed from the matrix
+\end{DoxyItemize}
+
+{\bfseries{Test File Coverage Updates (February 2026)\+:}}
+\begin{DoxyItemize}
+\item Added comprehensive tests for \mbox{\hyperlink{namespacemod__assoc}{mod\+\_\+assoc}} module (association file reading)
+\item Added comprehensive tests for \mbox{\hyperlink{namespaceread__input}{read\+\_\+input}} module (input file processing)
+\item Expanded maths module tests from 2 to 31 tests with detailed coordinate transformation coverage
+\item Updated all test documentation to reflect current test count (82 total tests)
+\end{DoxyItemize}
+
+For detailed information, see \mbox{\hyperlink{TESTING_8md}{T\+E\+S\+T\+I\+NG.md}} and \mbox{\hyperlink{UNIT__TESTING__COMPLETE_8md}{U\+N\+I\+T\+\_\+\+T\+E\+S\+T\+I\+N\+G\+\_\+\+C\+O\+M\+P\+L\+E\+TE.md}}. 

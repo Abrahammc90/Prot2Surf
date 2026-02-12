@@ -4,21 +4,21 @@
 
 ```bash
 cd clustering_program/src/
-make test          # Compile and run all 82 tests
+make test          # Compile and run all 89 tests
 ```
 
 ## Test Commands
 
 | Command | Description |
 |---------|-------------|
-| `make test` | Compile and run all 82 tests (7 test programs) |
-| `make test_maths` | Test mathematical operations (31 tests) |
-| `make test_matrix` | Test matrix operations (8 tests) |
-| `make test_threshold` | Test threshold arrays (9 tests) |
-| `make test_pdb` | Test PDB structures (8 tests) |
-| `make test_clustering` | Test clustering algorithms (5 tests) |
-| `make test_assoc` | Test association file reading (11 tests) ✓ NEW |
-| `make test_read_input` | Test read_input module (10 tests) ✓ NEW |
+| `make test` | Compile and run all 89 tests (7 test programs) |
+| `make test_maths` | Test mathematical operations (30 tests) |
+| `make test_matrix` | Test matrix distance generator (10 tests) |
+| `make test_threshold` | Test threshold filtering (9 tests) |
+| `make test_pdb` | Test PDB reading (11 tests) |
+| `make test_clustering` | Test clustering algorithms (8 tests) |
+| `make test_assoc` | Test association file reading (11 tests) |
+| `make test_read_input` | Test read_input module (10 tests) |
 | `make clean_tests` | Remove test executables |
 | `bash run_all_tests.sh` | Run all tests with detailed output |
 
@@ -26,13 +26,13 @@ make test          # Compile and run all 82 tests
 
 | File | Tests | Lines | Purpose |
 |------|-------|-------|---------|
-| `test_maths.f90` | 31 | 850 | Cross product, transformations, RMSD, angles, COG, distance |
-| `test_matrix.f90` | 8 | 370 | Matrix I/O, array I/O, Z-coord, RMSD |
+| `test_maths.f90` | 30 | 850 | Cross product, transformations, RMSD, angles, COG, distance |
+| `test_matrix.f90` | 10 | 370 | Matrix I/O, array I/O, Z-coord, atom dist, angle, RMSD |
 | `test_threshold.f90` | 9 | 375 | Z-coord, min distance, angles, sorting |
-| `test_pdb.f90` | 8 | 210 | PDB types, atoms, residues |
-| `test_clustering.f90` | 5 | 275 | Statistics, clustering, output writing |
-| `test_assoc.f90` | 11 | 380 | File reading, allocation, parsing ✓ NEW |
-| `test_read_input.f90` | 10 | 355 | Input wrapper, error handling ✓ NEW |
+| `test_pdb.f90` | 11 | 210 | PDB I/O, PDB structures, chains, residues, atoms |
+| `test_clustering.f90` | 8 | 275 | Statistics, clustering, output writing |
+| `test_assoc.f90` | 11 | 380 | Complexes I/O, allocation, parsing |
+| `test_read_input.f90` | 10 | 355 | Input wrapper, error handling |
 
 ## Expected Output
 
@@ -77,7 +77,7 @@ gfortran -fopenmp -o test_clustering test_clustering.f90
 
 ## Key Features
 
-[x] 82 comprehensive tests (updated from 28)
+[x] 89 comprehensive tests
 [x] 7 test programs (added test_assoc.f90 and test_read_input.f90)
 [x] All major modules covered
 [x] OpenMP compatible

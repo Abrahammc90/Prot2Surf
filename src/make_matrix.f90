@@ -3,6 +3,8 @@
 !! Usage: see `print_help` below. This program reads PDB(s) and an
 !! association/complex file and generates matrices (rmsd, z_coord,
 !! atoms_dist, angle) and arrays derived from encounter transforms.
+!!
+!! @author Abraham Muñiz-Chicharro
 program main
   USE read_input
   USE mod_matrix

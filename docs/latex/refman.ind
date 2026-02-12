@@ -1,286 +1,418 @@
 \begin{theindex}
 
   \item {allocate\_assoc\_object}
-    \subitem {mod\_assoc}, \hyperpage{11}
+    \subitem {mod\_assoc}, \hyperpage{40}
   \item {allocate\_pdb\_object}
-    \subitem {mod\_pdb}, \hyperpage{22}
-  \item {analyze\_residues.f90}, \hyperpage{37}
-    \subitem {main}, \hyperpage{37}
-    \subitem {print\_help}, \hyperpage{37}
+    \subitem {mod\_pdb}, \hyperpage{49}
+  \item {analyze\_residues.f90}, \hyperpage{61}
+    \subitem {main}, \hyperpage{61}
+    \subitem {print\_help}, \hyperpage{61}
   \item {array\_angle}
-    \subitem {mod\_threshold}, \hyperpage{24}
+    \subitem {mod\_threshold}, \hyperpage{51}
   \item {array\_atoms\_dist}
-    \subitem {mod\_threshold}, \hyperpage{25}
+    \subitem {mod\_threshold}, \hyperpage{51}
   \item {array\_z\_coord}
-    \subitem {mod\_threshold}, \hyperpage{25}
+    \subitem {mod\_threshold}, \hyperpage{52}
+  \item {assert\_vector\_equal}
+    \subitem {test\_maths.f90}, \hyperpage{71}
   \item {atoms}
-    \subitem {mod\_pdb::type\_pdb\_file}, \hyperpage{33}
-    \subitem {mod\_pdb::type\_pdb\_residue}, \hyperpage{34}
+    \subitem {mod\_pdb::type\_pdb\_file}, \hyperpage{58}
+    \subitem {mod\_pdb::type\_pdb\_residue}, \hyperpage{59}
 
   \indexspace
 
   \item {beta}
-    \subitem {mod\_pdb::type\_pdb\_atom}, \hyperpage{31}
+    \subitem {mod\_pdb::type\_pdb\_atom}, \hyperpage{56}
 
   \indexspace
 
   \item {calculate\_cog}
-    \subitem {maths}, \hyperpage{7}
+    \subitem {maths}, \hyperpage{37}
   \item {calculate\_distance}
-    \subitem {maths}, \hyperpage{8}
+    \subitem {maths}, \hyperpage{38}
   \item {chainid}
-    \subitem {mod\_pdb::type\_pdb\_atom}, \hyperpage{31}
-    \subitem {mod\_pdb::type\_pdb\_residue}, \hyperpage{35}
+    \subitem {mod\_pdb::type\_pdb\_atom}, \hyperpage{56}
+    \subitem {mod\_pdb::type\_pdb\_residue}, \hyperpage{59}
   \item {chains}
-    \subitem {mod\_pdb::type\_pdb\_file}, \hyperpage{33}
-  \item {clust.f90}, \hyperpage{38}
-    \subitem {main}, \hyperpage{38}
-    \subitem {print\_help}, \hyperpage{38}
+    \subitem {mod\_pdb::type\_pdb\_file}, \hyperpage{58}
+  \item {clust.f90}, \hyperpage{61}
+    \subitem {main}, \hyperpage{62}
+    \subitem {print\_help}, \hyperpage{62}
   \item {coord}
-    \subitem {mod\_pdb::type\_pdb\_atom}, \hyperpage{31}
+    \subitem {mod\_pdb::type\_pdb\_atom}, \hyperpage{57}
   \item {count\_atoms}
-    \subitem {mod\_pdb}, \hyperpage{22}
+    \subitem {mod\_pdb}, \hyperpage{49}
   \item {count\_chains}
-    \subitem {mod\_pdb}, \hyperpage{22}
+    \subitem {mod\_pdb}, \hyperpage{49}
   \item {count\_residues}
-    \subitem {mod\_pdb}, \hyperpage{23}
+    \subitem {mod\_pdb}, \hyperpage{50}
   \item {cross}
-    \subitem {maths}, \hyperpage{8}
+    \subitem {maths}, \hyperpage{38}
 
   \indexspace
 
   \item {fill\_assoc\_object}
-    \subitem {mod\_assoc}, \hyperpage{11}
+    \subitem {mod\_assoc}, \hyperpage{41}
   \item {fill\_pdb\_object}
-    \subitem {mod\_pdb}, \hyperpage{23}
+    \subitem {mod\_pdb}, \hyperpage{50}
 
   \indexspace
 
   \item {head}
-    \subitem {mod\_assoc::type\_assoc\_file}, \hyperpage{29}
+    \subitem {mod\_assoc::type\_assoc\_file}, \hyperpage{55}
 
   \indexspace
 
   \item {id}
-    \subitem {mod\_pdb::type\_pdb\_atom}, \hyperpage{31}
+    \subitem {mod\_pdb::type\_pdb\_atom}, \hyperpage{57}
 
   \indexspace
 
   \item {lines}
-    \subitem {mod\_assoc::type\_assoc\_file}, \hyperpage{30}
+    \subitem {mod\_assoc::type\_assoc\_file}, \hyperpage{55}
+  \item {linkage\_clustering}
+    \subitem {mod\_clust\_algorithm}, \hyperpage{42}
 
   \indexspace
 
   \item {main}
-    \subitem {analyze\_residues.f90}, \hyperpage{37}
-    \subitem {clust.f90}, \hyperpage{38}
-    \subitem {make\_matrix.f90}, \hyperpage{38}
-    \subitem {threshold.f90}, \hyperpage{43}
-  \item {make\_matrix.f90}, \hyperpage{38}
-    \subitem {main}, \hyperpage{38}
-    \subitem {print\_help}, \hyperpage{39}
-    \subitem {read\_atoms\_coord}, \hyperpage{39}
-  \item {maths}, \hyperpage{7}
-    \subitem {calculate\_cog}, \hyperpage{7}
-    \subitem {calculate\_distance}, \hyperpage{8}
-    \subitem {cross}, \hyperpage{8}
-    \subitem {rmsd}, \hyperpage{8}
-    \subitem {update\_complex}, \hyperpage{9}
-    \subitem {vectors\_angle\_2d}, \hyperpage{9}
-    \subitem {vectors\_angle\_3d}, \hyperpage{10}
-  \item {maths.f90}, \hyperpage{39}
+    \subitem {analyze\_residues.f90}, \hyperpage{61}
+    \subitem {clust.f90}, \hyperpage{62}
+    \subitem {make\_matrix.f90}, \hyperpage{62}
+    \subitem {threshold.f90}, \hyperpage{66}
+  \item {make\_matrix.f90}, \hyperpage{62}
+    \subitem {main}, \hyperpage{62}
+    \subitem {print\_help}, \hyperpage{62}
+    \subitem {read\_atoms\_coord}, \hyperpage{62}
+  \item {maths}, \hyperpage{37}
+    \subitem {calculate\_cog}, \hyperpage{37}
+    \subitem {calculate\_distance}, \hyperpage{38}
+    \subitem {cross}, \hyperpage{38}
+    \subitem {rmsd}, \hyperpage{38}
+    \subitem {update\_complex}, \hyperpage{39}
+    \subitem {vectors\_angle\_2d}, \hyperpage{39}
+    \subitem {vectors\_angle\_3d}, \hyperpage{39}
+  \item {maths.f90}, \hyperpage{63}
   \item {matrix\_angle}
-    \subitem {mod\_matrix}, \hyperpage{16}
+    \subitem {mod\_matrix}, \hyperpage{44}
   \item {matrix\_atoms\_dist}
-    \subitem {mod\_matrix}, \hyperpage{17}
+    \subitem {mod\_matrix}, \hyperpage{45}
   \item {matrix\_rmsd}
-    \subitem {mod\_matrix}, \hyperpage{17}
+    \subitem {mod\_matrix}, \hyperpage{46}
   \item {matrix\_z\_coord}
-    \subitem {mod\_matrix}, \hyperpage{18}
-  \item {mean\_linkage\_clustering}
-    \subitem {mod\_clust\_algorithm}, \hyperpage{13}
-  \item {mod\_assoc}, \hyperpage{10}
-    \subitem {allocate\_assoc\_object}, \hyperpage{11}
-    \subitem {fill\_assoc\_object}, \hyperpage{11}
-    \subitem {size\_assoc}, \hyperpage{12}
-  \item {mod\_assoc.f90}, \hyperpage{40}
-  \item {mod\_assoc::type\_assoc\_file}, \hyperpage{29}
-    \subitem {head}, \hyperpage{29}
-    \subitem {lines}, \hyperpage{30}
-    \subitem {nlines}, \hyperpage{30}
-    \subitem {rot1}, \hyperpage{30}
-    \subitem {rot2}, \hyperpage{30}
-    \subitem {trans\_vector}, \hyperpage{30}
-    \subitem {xc1}, \hyperpage{30}
-    \subitem {xc2}, \hyperpage{30}
-  \item {mod\_clust\_algorithm}, \hyperpage{12}
-    \subitem {mean\_linkage\_clustering}, \hyperpage{13}
-    \subitem {sort\_complexes}, \hyperpage{13}
-    \subitem {write\_clust\_info}, \hyperpage{14}
-    \subitem {write\_cluster\_elements}, \hyperpage{14}
-    \subitem {write\_complexes}, \hyperpage{15}
-  \item {mod\_clust\_algorithm.f90}, \hyperpage{40}
-  \item {mod\_matrix}, \hyperpage{15}
-    \subitem {matrix\_angle}, \hyperpage{16}
-    \subitem {matrix\_atoms\_dist}, \hyperpage{17}
-    \subitem {matrix\_rmsd}, \hyperpage{17}
-    \subitem {matrix\_z\_coord}, \hyperpage{18}
-    \subitem {read\_array}, \hyperpage{18}
-    \subitem {read\_matrix}, \hyperpage{20}
-    \subitem {write\_array}, \hyperpage{20}
-    \subitem {write\_matrix}, \hyperpage{20}
-  \item {mod\_matrix.f90}, \hyperpage{41}
-  \item {mod\_pdb}, \hyperpage{21}
-    \subitem {allocate\_pdb\_object}, \hyperpage{22}
-    \subitem {count\_atoms}, \hyperpage{22}
-    \subitem {count\_chains}, \hyperpage{22}
-    \subitem {count\_residues}, \hyperpage{23}
-    \subitem {fill\_pdb\_object}, \hyperpage{23}
-  \item {mod\_pdb.f90}, \hyperpage{42}
-  \item {mod\_pdb::type\_pdb\_atom}, \hyperpage{31}
-    \subitem {beta}, \hyperpage{31}
-    \subitem {chainid}, \hyperpage{31}
-    \subitem {coord}, \hyperpage{31}
-    \subitem {id}, \hyperpage{31}
-    \subitem {name}, \hyperpage{32}
-    \subitem {occ}, \hyperpage{32}
-    \subitem {record}, \hyperpage{32}
-    \subitem {resid}, \hyperpage{32}
-    \subitem {resname}, \hyperpage{32}
-  \item {mod\_pdb::type\_pdb\_chain}, \hyperpage{32}
-  \item {mod\_pdb::type\_pdb\_file}, \hyperpage{33}
-    \subitem {atoms}, \hyperpage{33}
-    \subitem {chains}, \hyperpage{33}
-    \subitem {natoms}, \hyperpage{33}
-    \subitem {nchains}, \hyperpage{33}
-    \subitem {nresidues}, \hyperpage{34}
-    \subitem {residues}, \hyperpage{34}
-  \item {mod\_pdb::type\_pdb\_residue}, \hyperpage{34}
-    \subitem {atoms}, \hyperpage{34}
-    \subitem {chainid}, \hyperpage{35}
-    \subitem {natoms}, \hyperpage{35}
-    \subitem {resid}, \hyperpage{35}
-    \subitem {resname}, \hyperpage{35}
-  \item {mod\_threshold}, \hyperpage{24}
-    \subitem {array\_angle}, \hyperpage{24}
-    \subitem {array\_atoms\_dist}, \hyperpage{25}
-    \subitem {array\_z\_coord}, \hyperpage{25}
-    \subitem {sort\_array}, \hyperpage{26}
-  \item {mod\_threshold.f90}, \hyperpage{42}
+    \subitem {mod\_matrix}, \hyperpage{46}
+  \item {mod\_assoc}, \hyperpage{40}
+    \subitem {allocate\_assoc\_object}, \hyperpage{40}
+    \subitem {fill\_assoc\_object}, \hyperpage{41}
+    \subitem {size\_assoc}, \hyperpage{41}
+  \item {mod\_assoc.f90}, \hyperpage{63}
+  \item {mod\_assoc::type\_assoc\_file}, \hyperpage{55}
+    \subitem {head}, \hyperpage{55}
+    \subitem {lines}, \hyperpage{55}
+    \subitem {nlines}, \hyperpage{55}
+    \subitem {rot1}, \hyperpage{55}
+    \subitem {rot2}, \hyperpage{56}
+    \subitem {trans\_vector}, \hyperpage{56}
+    \subitem {xc1}, \hyperpage{56}
+    \subitem {xc2}, \hyperpage{56}
+  \item {mod\_clust\_algorithm}, \hyperpage{41}
+    \subitem {linkage\_clustering}, \hyperpage{42}
+    \subitem {sort\_complexes}, \hyperpage{42}
+    \subitem {write\_clust\_info}, \hyperpage{43}
+    \subitem {write\_cluster\_elements}, \hyperpage{43}
+    \subitem {write\_complexes}, \hyperpage{43}
+  \item {mod\_clust\_algorithm.f90}, \hyperpage{64}
+  \item {mod\_matrix}, \hyperpage{44}
+    \subitem {matrix\_angle}, \hyperpage{44}
+    \subitem {matrix\_atoms\_dist}, \hyperpage{45}
+    \subitem {matrix\_rmsd}, \hyperpage{46}
+    \subitem {matrix\_z\_coord}, \hyperpage{46}
+    \subitem {read\_array}, \hyperpage{47}
+    \subitem {read\_matrix}, \hyperpage{47}
+    \subitem {write\_array}, \hyperpage{47}
+    \subitem {write\_matrix}, \hyperpage{48}
+  \item {mod\_matrix.f90}, \hyperpage{64}
+  \item {mod\_pdb}, \hyperpage{48}
+    \subitem {allocate\_pdb\_object}, \hyperpage{49}
+    \subitem {count\_atoms}, \hyperpage{49}
+    \subitem {count\_chains}, \hyperpage{49}
+    \subitem {count\_residues}, \hyperpage{50}
+    \subitem {fill\_pdb\_object}, \hyperpage{50}
+  \item {mod\_pdb.f90}, \hyperpage{65}
+  \item {mod\_pdb::type\_pdb\_atom}, \hyperpage{56}
+    \subitem {beta}, \hyperpage{56}
+    \subitem {chainid}, \hyperpage{56}
+    \subitem {coord}, \hyperpage{57}
+    \subitem {id}, \hyperpage{57}
+    \subitem {name}, \hyperpage{57}
+    \subitem {occ}, \hyperpage{57}
+    \subitem {record}, \hyperpage{57}
+    \subitem {resid}, \hyperpage{57}
+    \subitem {resname}, \hyperpage{57}
+  \item {mod\_pdb::type\_pdb\_chain}, \hyperpage{57}
+  \item {mod\_pdb::type\_pdb\_file}, \hyperpage{57}
+    \subitem {atoms}, \hyperpage{58}
+    \subitem {chains}, \hyperpage{58}
+    \subitem {natoms}, \hyperpage{58}
+    \subitem {nchains}, \hyperpage{58}
+    \subitem {nresidues}, \hyperpage{58}
+    \subitem {residues}, \hyperpage{58}
+  \item {mod\_pdb::type\_pdb\_residue}, \hyperpage{58}
+    \subitem {atoms}, \hyperpage{59}
+    \subitem {chainid}, \hyperpage{59}
+    \subitem {natoms}, \hyperpage{59}
+    \subitem {resid}, \hyperpage{59}
+    \subitem {resname}, \hyperpage{59}
+  \item {mod\_threshold}, \hyperpage{50}
+    \subitem {array\_angle}, \hyperpage{51}
+    \subitem {array\_atoms\_dist}, \hyperpage{51}
+    \subitem {array\_z\_coord}, \hyperpage{52}
+    \subitem {sort\_array}, \hyperpage{52}
+  \item {mod\_threshold.f90}, \hyperpage{65}
 
   \indexspace
 
   \item {name}
-    \subitem {mod\_pdb::type\_pdb\_atom}, \hyperpage{32}
+    \subitem {mod\_pdb::type\_pdb\_atom}, \hyperpage{57}
   \item {natoms}
-    \subitem {mod\_pdb::type\_pdb\_file}, \hyperpage{33}
-    \subitem {mod\_pdb::type\_pdb\_residue}, \hyperpage{35}
+    \subitem {mod\_pdb::type\_pdb\_file}, \hyperpage{58}
+    \subitem {mod\_pdb::type\_pdb\_residue}, \hyperpage{59}
   \item {nchains}
-    \subitem {mod\_pdb::type\_pdb\_file}, \hyperpage{33}
+    \subitem {mod\_pdb::type\_pdb\_file}, \hyperpage{58}
   \item {nlines}
-    \subitem {mod\_assoc::type\_assoc\_file}, \hyperpage{30}
+    \subitem {mod\_assoc::type\_assoc\_file}, \hyperpage{55}
   \item {nresidues}
-    \subitem {mod\_pdb::type\_pdb\_file}, \hyperpage{34}
+    \subitem {mod\_pdb::type\_pdb\_file}, \hyperpage{58}
 
   \indexspace
 
   \item {occ}
-    \subitem {mod\_pdb::type\_pdb\_atom}, \hyperpage{32}
+    \subitem {mod\_pdb::type\_pdb\_atom}, \hyperpage{57}
 
   \indexspace
 
   \item {print\_help}
-    \subitem {analyze\_residues.f90}, \hyperpage{37}
-    \subitem {clust.f90}, \hyperpage{38}
-    \subitem {make\_matrix.f90}, \hyperpage{39}
-    \subitem {threshold.f90}, \hyperpage{43}
+    \subitem {analyze\_residues.f90}, \hyperpage{61}
+    \subitem {clust.f90}, \hyperpage{62}
+    \subitem {make\_matrix.f90}, \hyperpage{62}
+    \subitem {threshold.f90}, \hyperpage{66}
 
   \indexspace
 
   \item {read\_array}
-    \subitem {mod\_matrix}, \hyperpage{18}
+    \subitem {mod\_matrix}, \hyperpage{47}
   \item {read\_assoc}
-    \subitem {read\_input}, \hyperpage{26}
+    \subitem {read\_input}, \hyperpage{53}
   \item {read\_atoms\_coord}
-    \subitem {make\_matrix.f90}, \hyperpage{39}
-    \subitem {threshold.f90}, \hyperpage{44}
-  \item {read\_input}, \hyperpage{26}
-    \subitem {read\_assoc}, \hyperpage{26}
-    \subitem {read\_pdb}, \hyperpage{27}
-  \item {read\_input.f90}, \hyperpage{43}
+    \subitem {make\_matrix.f90}, \hyperpage{62}
+    \subitem {threshold.f90}, \hyperpage{66}
+  \item {read\_input}, \hyperpage{53}
+    \subitem {read\_assoc}, \hyperpage{53}
+    \subitem {read\_pdb}, \hyperpage{53}
+  \item {read\_input.f90}, \hyperpage{66}
   \item {read\_matrix}
-    \subitem {mod\_matrix}, \hyperpage{20}
+    \subitem {mod\_matrix}, \hyperpage{47}
   \item {read\_pdb}
-    \subitem {read\_input}, \hyperpage{27}
+    \subitem {read\_input}, \hyperpage{53}
   \item {record}
-    \subitem {mod\_pdb::type\_pdb\_atom}, \hyperpage{32}
+    \subitem {mod\_pdb::type\_pdb\_atom}, \hyperpage{57}
   \item {resid}
-    \subitem {mod\_pdb::type\_pdb\_atom}, \hyperpage{32}
-    \subitem {mod\_pdb::type\_pdb\_residue}, \hyperpage{35}
+    \subitem {mod\_pdb::type\_pdb\_atom}, \hyperpage{57}
+    \subitem {mod\_pdb::type\_pdb\_residue}, \hyperpage{59}
   \item {residues}
-    \subitem {mod\_pdb::type\_pdb\_file}, \hyperpage{34}
+    \subitem {mod\_pdb::type\_pdb\_file}, \hyperpage{58}
   \item {resname}
-    \subitem {mod\_pdb::type\_pdb\_atom}, \hyperpage{32}
-    \subitem {mod\_pdb::type\_pdb\_residue}, \hyperpage{35}
+    \subitem {mod\_pdb::type\_pdb\_atom}, \hyperpage{57}
+    \subitem {mod\_pdb::type\_pdb\_residue}, \hyperpage{59}
   \item {rmsd}
-    \subitem {maths}, \hyperpage{8}
+    \subitem {maths}, \hyperpage{38}
   \item {rot1}
-    \subitem {mod\_assoc::type\_assoc\_file}, \hyperpage{30}
+    \subitem {mod\_assoc::type\_assoc\_file}, \hyperpage{55}
   \item {rot2}
-    \subitem {mod\_assoc::type\_assoc\_file}, \hyperpage{30}
+    \subitem {mod\_assoc::type\_assoc\_file}, \hyperpage{56}
 
   \indexspace
 
   \item {size\_assoc}
-    \subitem {mod\_assoc}, \hyperpage{12}
+    \subitem {mod\_assoc}, \hyperpage{41}
   \item {sort\_array}
-    \subitem {mod\_threshold}, \hyperpage{26}
+    \subitem {mod\_threshold}, \hyperpage{52}
   \item {sort\_complexes}
-    \subitem {mod\_clust\_algorithm}, \hyperpage{13}
+    \subitem {mod\_clust\_algorithm}, \hyperpage{42}
 
   \indexspace
 
-  \item {threshold.f90}, \hyperpage{43}
-    \subitem {main}, \hyperpage{43}
-    \subitem {print\_help}, \hyperpage{43}
-    \subitem {read\_atoms\_coord}, \hyperpage{44}
-    \subitem {write\_array}, \hyperpage{44}
-    \subitem {write\_complexes}, \hyperpage{44}
+  \item {test\_allocate\_assoc\_object}
+    \subitem {test\_assoc.f90}, \hyperpage{67}
+  \item {test\_array\_angle}
+    \subitem {test\_threshold.f90}, \hyperpage{77}
+  \item {test\_array\_atoms\_dist}
+    \subitem {test\_threshold.f90}, \hyperpage{77}
+  \item {test\_array\_z\_coord}
+    \subitem {test\_threshold.f90}, \hyperpage{77}
+  \item {test\_assoc}
+    \subitem {test\_assoc.f90}, \hyperpage{68}
+  \item {test\_assoc.f90}
+    \subitem {test\_allocate\_assoc\_object}, \hyperpage{67}
+    \subitem {test\_assoc}, \hyperpage{68}
+    \subitem {test\_read\_assoc\_file}, \hyperpage{68}
+    \subitem {test\_size\_assoc}, \hyperpage{69}
+  \item {test\_atom\_properties}
+    \subitem {test\_pdb.f90}, \hyperpage{74}
+  \item {test\_calculate\_cog}
+    \subitem {test\_maths.f90}, \hyperpage{71}
+  \item {test\_calculate\_distance}
+    \subitem {test\_maths.f90}, \hyperpage{71}
+  \item {test\_cluster\_writing}
+    \subitem {test\_clustering.f90}, \hyperpage{69}
+  \item {test\_clustering}
+    \subitem {test\_clustering.f90}, \hyperpage{69}
+  \item {test\_clustering.f90}
+    \subitem {test\_cluster\_writing}, \hyperpage{69}
+    \subitem {test\_clustering}, \hyperpage{69}
+    \subitem {test\_clustering\_statistics}, \hyperpage{70}
+    \subitem {test\_maximum\_linkage}, \hyperpage{70}
+    \subitem {test\_mean\_linkage}, \hyperpage{70}
+    \subitem {test\_minimum\_linkage}, \hyperpage{70}
+    \subitem {test\_simple\_clustering}, \hyperpage{70}
+  \item {test\_clustering\_statistics}
+    \subitem {test\_clustering.f90}, \hyperpage{70}
+  \item {test\_cross\_product}
+    \subitem {test\_maths.f90}, \hyperpage{71}
+  \item {test\_error\_handling}
+    \subitem {test\_read\_input.f90}, \hyperpage{75}
+  \item {test\_maths}
+    \subitem {test\_maths.f90}, \hyperpage{71}
+  \item {test\_maths.f90}
+    \subitem {assert\_vector\_equal}, \hyperpage{71}
+    \subitem {test\_calculate\_cog}, \hyperpage{71}
+    \subitem {test\_calculate\_distance}, \hyperpage{71}
+    \subitem {test\_cross\_product}, \hyperpage{71}
+    \subitem {test\_maths}, \hyperpage{71}
+    \subitem {test\_rmsd}, \hyperpage{72}
+    \subitem {test\_update\_complex}, \hyperpage{73}
+    \subitem {test\_vectors\_angle\_2d}, \hyperpage{73}
+    \subitem {test\_vectors\_angle\_3d}, \hyperpage{73}
+  \item {test\_matrix}
+    \subitem {test\_matrix.f90}, \hyperpage{73}
+  \item {test\_matrix.f90}
+    \subitem {test\_matrix}, \hyperpage{73}
+    \subitem {test\_matrix\_rmsd\_calc}, \hyperpage{74}
+    \subitem {test\_matrix\_z\_coord}, \hyperpage{74}
+    \subitem {test\_write\_read\_array}, \hyperpage{74}
+    \subitem {test\_write\_read\_matrix}, \hyperpage{74}
+  \item {test\_matrix\_rmsd\_calc}
+    \subitem {test\_matrix.f90}, \hyperpage{74}
+  \item {test\_matrix\_z\_coord}
+    \subitem {test\_matrix.f90}, \hyperpage{74}
+  \item {test\_maximum\_linkage}
+    \subitem {test\_clustering.f90}, \hyperpage{70}
+  \item {test\_mean\_linkage}
+    \subitem {test\_clustering.f90}, \hyperpage{70}
+  \item {test\_minimum\_linkage}
+    \subitem {test\_clustering.f90}, \hyperpage{70}
+  \item {test\_pdb}
+    \subitem {test\_pdb.f90}, \hyperpage{75}
+  \item {test\_pdb.f90}
+    \subitem {test\_atom\_properties}, \hyperpage{74}
+    \subitem {test\_pdb}, \hyperpage{75}
+    \subitem {test\_pdb\_allocation}, \hyperpage{75}
+    \subitem {test\_residue\_management}, \hyperpage{75}
+  \item {test\_pdb\_allocation}
+    \subitem {test\_pdb.f90}, \hyperpage{75}
+  \item {test\_read\_assoc\_file}
+    \subitem {test\_assoc.f90}, \hyperpage{68}
+  \item {test\_read\_input}
+    \subitem {test\_read\_input.f90}, \hyperpage{76}
+  \item {test\_read\_input.f90}
+    \subitem {test\_error\_handling}, \hyperpage{75}
+    \subitem {test\_read\_input}, \hyperpage{76}
+    \subitem {test\_read\_input\_assoc}, \hyperpage{76}
+  \item {test\_read\_input\_assoc}
+    \subitem {test\_read\_input.f90}, \hyperpage{76}
+  \item {test\_residue\_management}
+    \subitem {test\_pdb.f90}, \hyperpage{75}
+  \item {test\_rmsd}
+    \subitem {test\_maths.f90}, \hyperpage{72}
+  \item {test\_simple\_clustering}
+    \subitem {test\_clustering.f90}, \hyperpage{70}
+  \item {test\_size\_assoc}
+    \subitem {test\_assoc.f90}, \hyperpage{69}
+  \item {test\_sort\_array}
+    \subitem {test\_threshold.f90}, \hyperpage{77}
+  \item {test\_threshold}
+    \subitem {test\_threshold.f90}, \hyperpage{77}
+  \item {test\_threshold.f90}
+    \subitem {test\_array\_angle}, \hyperpage{77}
+    \subitem {test\_array\_atoms\_dist}, \hyperpage{77}
+    \subitem {test\_array\_z\_coord}, \hyperpage{77}
+    \subitem {test\_sort\_array}, \hyperpage{77}
+    \subitem {test\_threshold}, \hyperpage{77}
+  \item {test\_update\_complex}
+    \subitem {test\_maths.f90}, \hyperpage{73}
+  \item {test\_vectors\_angle\_2d}
+    \subitem {test\_maths.f90}, \hyperpage{73}
+  \item {test\_vectors\_angle\_3d}
+    \subitem {test\_maths.f90}, \hyperpage{73}
+  \item {test\_write\_read\_array}
+    \subitem {test\_matrix.f90}, \hyperpage{74}
+  \item {test\_write\_read\_matrix}
+    \subitem {test\_matrix.f90}, \hyperpage{74}
+  \item {threshold.f90}, \hyperpage{66}
+    \subitem {main}, \hyperpage{66}
+    \subitem {print\_help}, \hyperpage{66}
+    \subitem {read\_atoms\_coord}, \hyperpage{66}
+    \subitem {write\_array}, \hyperpage{67}
+    \subitem {write\_complexes}, \hyperpage{67}
   \item {trans\_vector}
-    \subitem {mod\_assoc::type\_assoc\_file}, \hyperpage{30}
+    \subitem {mod\_assoc::type\_assoc\_file}, \hyperpage{56}
 
   \indexspace
 
+  \item {unit\_test/INDEX.md}, \hyperpage{67}
+  \item {unit\_test/QUICK\_TEST.md}, \hyperpage{67}
+  \item {unit\_test/README.md}, \hyperpage{67}
+  \item {unit\_test/run\_all\_tests.sh}, \hyperpage{67}
+  \item {unit\_test/test\_assoc.f90}, \hyperpage{67}
+  \item {unit\_test/test\_clustering.f90}, \hyperpage{69}
+  \item {unit\_test/test\_maths.f90}, \hyperpage{70}
+  \item {unit\_test/test\_matrix.f90}, \hyperpage{73}
+  \item {unit\_test/test\_pdb.f90}, \hyperpage{74}
+  \item {unit\_test/test\_read\_input.f90}, \hyperpage{75}
+  \item {unit\_test/TEST\_SUMMARY.md}, \hyperpage{77}
+  \item {unit\_test/test\_threshold.f90}, \hyperpage{77}
+  \item {unit\_test/TESTING.md}, \hyperpage{78}
+  \item {unit\_test/UNIT\_TESTING\_COMPLETE.md}, \hyperpage{78}
   \item {update\_complex}
-    \subitem {maths}, \hyperpage{9}
+    \subitem {maths}, \hyperpage{39}
 
   \indexspace
 
   \item {vectors\_angle\_2d}
-    \subitem {maths}, \hyperpage{9}
+    \subitem {maths}, \hyperpage{39}
   \item {vectors\_angle\_3d}
-    \subitem {maths}, \hyperpage{10}
+    \subitem {maths}, \hyperpage{39}
 
   \indexspace
 
   \item {write\_array}
-    \subitem {mod\_matrix}, \hyperpage{20}
-    \subitem {threshold.f90}, \hyperpage{44}
+    \subitem {mod\_matrix}, \hyperpage{47}
+    \subitem {threshold.f90}, \hyperpage{67}
   \item {write\_clust\_info}
-    \subitem {mod\_clust\_algorithm}, \hyperpage{14}
+    \subitem {mod\_clust\_algorithm}, \hyperpage{43}
   \item {write\_cluster\_elements}
-    \subitem {mod\_clust\_algorithm}, \hyperpage{14}
+    \subitem {mod\_clust\_algorithm}, \hyperpage{43}
   \item {write\_complexes}
-    \subitem {mod\_clust\_algorithm}, \hyperpage{15}
-    \subitem {threshold.f90}, \hyperpage{44}
+    \subitem {mod\_clust\_algorithm}, \hyperpage{43}
+    \subitem {threshold.f90}, \hyperpage{67}
   \item {write\_matrix}
-    \subitem {mod\_matrix}, \hyperpage{20}
+    \subitem {mod\_matrix}, \hyperpage{48}
 
   \indexspace
 
   \item {xc1}
-    \subitem {mod\_assoc::type\_assoc\_file}, \hyperpage{30}
+    \subitem {mod\_assoc::type\_assoc\_file}, \hyperpage{56}
   \item {xc2}
-    \subitem {mod\_assoc::type\_assoc\_file}, \hyperpage{30}
+    \subitem {mod\_assoc::type\_assoc\_file}, \hyperpage{56}
 
 \end{theindex}

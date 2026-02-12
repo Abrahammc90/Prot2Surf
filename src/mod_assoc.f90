@@ -12,7 +12,7 @@
 !! to the SDA7 sources is retained here. Consult the SDA7 project for
 !! original authorship and licensing details.
 !!
-!! @author Abraham Muñiz
+!! @author Abraham Muñiz-Chicharro
 module mod_assoc
 
     !> Data type for storing binned data (eg. Radial distribution functions)

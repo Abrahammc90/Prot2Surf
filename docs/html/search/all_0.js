@@ -6,5 +6,6 @@ var searchData=
   ['array_5fangle_3',['array_angle',['../df/d4c/namespacemod__threshold.html#a642be7416f7ba53a4aa0f28a6d62049d',1,'mod_threshold']]],
   ['array_5fatoms_5fdist_4',['array_atoms_dist',['../df/d4c/namespacemod__threshold.html#ace0a65c5beea48bd05109321ae7b0372',1,'mod_threshold']]],
   ['array_5fz_5fcoord_5',['array_z_coord',['../df/d4c/namespacemod__threshold.html#a2c4340dbaf64f7e9fc27254f39046a79',1,'mod_threshold']]],
-  ['atoms_6',['atoms',['../d1/d57/structmod__pdb_1_1type__pdb__file.html#a225fe2863ed661ebf1ae5626e0149540',1,'mod_pdb::type_pdb_file::atoms()'],['../dd/dbe/structmod__pdb_1_1type__pdb__chain.html#a9dc0dcd71d2b865f0dfd1202d4d04d8d',1,'mod_pdb::type_pdb_chain::atoms()'],['../d8/d95/structmod__pdb_1_1type__pdb__residue.html#a48194bd0411a764bfdfe0f46ac03ac02',1,'mod_pdb::type_pdb_residue::atoms()']]]
+  ['assert_5fvector_5fequal_6',['assert_vector_equal',['../d3/d20/test__maths_8f90.html#ae2b4380975e8bdd4a8252c4fe0ca34a3',1,'test_maths.f90']]],
+  ['atoms_7',['atoms',['../d1/d57/structmod__pdb_1_1type__pdb__file.html#a225fe2863ed661ebf1ae5626e0149540',1,'mod_pdb::type_pdb_file::atoms()'],['../dd/dbe/structmod__pdb_1_1type__pdb__chain.html#a9dc0dcd71d2b865f0dfd1202d4d04d8d',1,'mod_pdb::type_pdb_chain::atoms()'],['../d8/d95/structmod__pdb_1_1type__pdb__residue.html#a48194bd0411a764bfdfe0f46ac03ac02',1,'mod_pdb::type_pdb_residue::atoms()']]]
 ];
