@@ -1,24 +1,26 @@
-\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md37}{}\doxysection{Summary}\label{md_unit_test_TEST_SUMMARY_autotoc_md37}
-A comprehensive unit testing framework has been created for the Fortran clustering program with {\bfseries{7 test programs}} covering {\bfseries{82 individual tests}} across all major modules.\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md38}{}\doxysection{Test Programs Created}\label{md_unit_test_TEST_SUMMARY_autotoc_md38}
-\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md39}{}\doxysubsection{1. $<$strong$>$test\+\_\+maths.\+f90$<$/strong$>$ (31 tests)}\label{md_unit_test_TEST_SUMMARY_autotoc_md39}
+\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md36}{}\doxysection{Summary}\label{md_unit_test_TEST_SUMMARY_autotoc_md36}
+A comprehensive unit testing framework has been created for the Fortran clustering program with {\bfseries{7 test programs}} covering {\bfseries{89 individual tests}} across all major modules.\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md37}{}\doxysection{Test Programs Created}\label{md_unit_test_TEST_SUMMARY_autotoc_md37}
+\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md38}{}\doxysubsection{1. $<$strong$>$test\+\_\+maths.\+f90$<$/strong$>$ (30 tests)}\label{md_unit_test_TEST_SUMMARY_autotoc_md38}
 
 \begin{DoxyItemize}
 \item Cross product calculation (basis vectors, anti-\/commutativity, self-\/product, arbitrary vectors) -\/ 4 tests
 \item Coordinate transformations (identity, translation, rotation, combinations) -\/ 7 tests
 \item Angle calculations in 3D and 2D -\/ 8 tests
 \item R\+M\+SD calculations -\/ 3 tests
-\item Center of geometry computations -\/ 5 tests
+\item Center of geometry computations -\/ 4 tests
 \item Distance calculations -\/ 4 tests
 \item Tests fundamental mathematical operations used throughout the program
-\end{DoxyItemize}\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md40}{}\doxysubsection{2. $<$strong$>$test\+\_\+matrix.\+f90$<$/strong$>$ (8 tests)}\label{md_unit_test_TEST_SUMMARY_autotoc_md40}
+\end{DoxyItemize}\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md39}{}\doxysubsection{2. $<$strong$>$test\+\_\+matrix.\+f90$<$/strong$>$ (10 tests)}\label{md_unit_test_TEST_SUMMARY_autotoc_md39}
 
 \begin{DoxyItemize}
 \item Matrix file I/O operations (write/read matrix) -\/ 2 tests
 \item Array file I/O operations (write/read array) -\/ 2 tests
 \item Z-\/coordinate matrix calculations -\/ 2 tests
 \item R\+M\+SD matrix calculations with symmetry and diagonal verification -\/ 2 tests
+\item Atom distance matrix calculations -\/ 1 test
+\item Angle matrix calculations -\/ 1 test
 \item Tests core matrix operations for encounter data
-\end{DoxyItemize}\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md41}{}\doxysubsection{3. $<$strong$>$test\+\_\+threshold.\+f90$<$/strong$>$ (9 tests)}\label{md_unit_test_TEST_SUMMARY_autotoc_md41}
+\end{DoxyItemize}\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md40}{}\doxysubsection{3. $<$strong$>$test\+\_\+threshold.\+f90$<$/strong$>$ (9 tests)}\label{md_unit_test_TEST_SUMMARY_autotoc_md40}
 
 \begin{DoxyItemize}
 \item Z-\/coordinate array calculations -\/ 2 tests
@@ -26,52 +28,58 @@ A comprehensive unit testing framework has been created for the Fortran clusteri
 \item Angle calculations across arrays -\/ 2 tests
 \item Array sorting with index tracking -\/ 3 tests
 \item Tests threshold computation infrastructure
-\end{DoxyItemize}\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md42}{}\doxysubsection{4. $<$strong$>$test\+\_\+pdb.\+f90$<$/strong$>$ (8 tests)}\label{md_unit_test_TEST_SUMMARY_autotoc_md42}
+\end{DoxyItemize}\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md41}{}\doxysubsection{4. $<$strong$>$test\+\_\+pdb.\+f90$<$/strong$>$ (11 tests)}\label{md_unit_test_TEST_SUMMARY_autotoc_md41}
 
 \begin{DoxyItemize}
 \item P\+DB structure initialization and allocation -\/ 3 tests
-\item Atom properties (coordinates, names, residue info, occupancy, B-\/factors) -\/ 3 tests
-\item Residue management and chain handling -\/ 2 tests
+\item Atom properties (coordinates, names, residue info) -\/ 2 tests
+\item Residue management -\/ 2 tests
+\item Chain handling -\/ 2 tests
+\item P\+DB count/allocate/fill routines -\/ 2 tests
 \item Tests P\+DB data structure integrity
-\end{DoxyItemize}\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md43}{}\doxysubsection{5. $<$strong$>$test\+\_\+clustering.\+f90$<$/strong$>$ (5 tests)}\label{md_unit_test_TEST_SUMMARY_autotoc_md43}
+\end{DoxyItemize}\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md42}{}\doxysubsection{5. $<$strong$>$test\+\_\+clustering.\+f90$<$/strong$>$ (8 tests)}\label{md_unit_test_TEST_SUMMARY_autotoc_md42}
 
 \begin{DoxyItemize}
 \item Clustering statistics (mean distance, standard deviation) -\/ 2 tests
 \item Simple clustering algorithm with tight cluster detection -\/ 2 tests
+\item Minimum linkage clustering -\/ 1 test
+\item Maximum linkage clustering -\/ 1 test
+\item Mean linkage clustering -\/ 1 test
 \item Cluster output file writing and validation -\/ 1 test
 \item Tests core clustering algorithm components
-\end{DoxyItemize}\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md44}{}\doxysubsection{6. $<$strong$>$test\+\_\+assoc.\+f90$<$/strong$>$ (11 tests) \mbox{[}\+N\+E\+W\mbox{]}}\label{md_unit_test_TEST_SUMMARY_autotoc_md44}
+\end{DoxyItemize}\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md43}{}\doxysubsection{6. $<$strong$>$test\+\_\+assoc.\+f90$<$/strong$>$ (11 tests)}\label{md_unit_test_TEST_SUMMARY_autotoc_md43}
 
 \begin{DoxyItemize}
 \item Association/complexes file reading -\/ 6 tests
 \item Association object allocation -\/ 3 tests
 \item File size and line counting -\/ 2 tests
 \item Tests association file I/O and data structures
-\end{DoxyItemize}\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md45}{}\doxysubsection{7. $<$strong$>$test\+\_\+read\+\_\+input.\+f90$<$/strong$>$ (10 tests) \mbox{[}\+N\+E\+W\mbox{]}}\label{md_unit_test_TEST_SUMMARY_autotoc_md45}
+\end{DoxyItemize}\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md44}{}\doxysubsection{7. $<$strong$>$test\+\_\+read\+\_\+input.\+f90$<$/strong$>$ (10 tests)}\label{md_unit_test_TEST_SUMMARY_autotoc_md44}
 
 \begin{DoxyItemize}
 \item Read input wrapper functions -\/ 7 tests
 \item Error handling and edge cases -\/ 3 tests
 \item Tests input file processing module
-\end{DoxyItemize}\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md46}{}\doxysection{Files Added}\label{md_unit_test_TEST_SUMMARY_autotoc_md46}
+\end{DoxyItemize}\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md45}{}\doxysection{Files}\label{md_unit_test_TEST_SUMMARY_autotoc_md45}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{clustering\_program/unit\_tests/}
-\DoxyCodeLine{-\/ test\_maths.f90           \# Mathematical operations tests (31 tests)}
-\DoxyCodeLine{-\/ test\_matrix.f90          \# Matrix operations tests (8 tests)}
+\DoxyCodeLine{-\/ test\_maths.f90           \# Mathematical operations tests (30 tests)}
+\DoxyCodeLine{-\/ test\_matrix.f90          \# Matrix operations tests (10 tests)}
 \DoxyCodeLine{-\/ test\_threshold.f90       \# Threshold array tests (9 tests)}
-\DoxyCodeLine{-\/ test\_pdb.f90             \# PDB structure tests (8 tests)}
-\DoxyCodeLine{-\/ test\_clustering.f90      \# Clustering algorithm tests (5 tests)}
+\DoxyCodeLine{-\/ test\_pdb.f90             \# PDB structure tests (11 tests)}
+\DoxyCodeLine{-\/ test\_clustering.f90      \# Clustering algorithm tests (8 tests)}
 \DoxyCodeLine{-\/ test\_assoc.f90           \# Association file tests (11 tests) [NEW]}
 \DoxyCodeLine{-\/ test\_read\_input.f90      \# Read input module tests (10 tests) [NEW]}
 \DoxyCodeLine{-\/ run\_all\_tests.sh         \# Automated test runner script}
+\DoxyCodeLine{-\/ INDEX.md                 \# Documentation index}
+\DoxyCodeLine{-\/ QUICK\_TEST.md            \# Quick test reference}
 \DoxyCodeLine{-\/ TESTING.md               \# Comprehensive testing documentation}
 \DoxyCodeLine{-\/ README.md                \# Test suite overview}
 \DoxyCodeLine{-\/ TEST\_SUMMARY.md          \# This file}
-\DoxyCodeLine{-\/ ... (other documentation files)}
 \end{DoxyCode}
-\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md47}{}\doxysection{Building Tests}\label{md_unit_test_TEST_SUMMARY_autotoc_md47}
-\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md48}{}\doxysubsection{Individual tests\+:}\label{md_unit_test_TEST_SUMMARY_autotoc_md48}
+\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md46}{}\doxysection{Building Tests}\label{md_unit_test_TEST_SUMMARY_autotoc_md46}
+\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md47}{}\doxysubsection{Individual tests\+:}\label{md_unit_test_TEST_SUMMARY_autotoc_md47}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{cd clustering\_program/src/}
@@ -85,7 +93,7 @@ A comprehensive unit testing framework has been created for the Fortran clusteri
 \DoxyCodeLine{gfortran -\/o test\_assoc ../unit\_tests/test\_assoc.f90 mod\_assoc.o}
 \DoxyCodeLine{gfortran -\/o test\_read\_input ../unit\_tests/test\_read\_input.f90 read\_input.o mod\_pdb.o mod\_assoc.o}
 \end{DoxyCode}
-\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md49}{}\doxysubsection{Run all tests via Make\+:}\label{md_unit_test_TEST_SUMMARY_autotoc_md49}
+\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md48}{}\doxysubsection{Run all tests via Make\+:}\label{md_unit_test_TEST_SUMMARY_autotoc_md48}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{cd clustering\_program/src/}
@@ -99,13 +107,13 @@ A comprehensive unit testing framework has been created for the Fortran clusteri
 \DoxyCodeLine{make test\_read\_input     \# NEW}
 \DoxyCodeLine{make clean\_tests         \# Remove test executables only}
 \end{DoxyCode}
-\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md50}{}\doxysubsection{Automated test runner\+:}\label{md_unit_test_TEST_SUMMARY_autotoc_md50}
+\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md49}{}\doxysubsection{Automated test runner\+:}\label{md_unit_test_TEST_SUMMARY_autotoc_md49}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{cd clustering\_program/unit\_tests/}
 \DoxyCodeLine{bash run\_all\_tests.sh}
 \end{DoxyCode}
-\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md51}{}\doxysection{Test Coverage Matrix}\label{md_unit_test_TEST_SUMMARY_autotoc_md51}
+\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md50}{}\doxysection{Test Coverage Matrix}\label{md_unit_test_TEST_SUMMARY_autotoc_md50}
 \tabulinesep=1mm
 \begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
 \hline
@@ -130,8 +138,8 @@ mod\+\_\+clustering &helpers &3 &Unit  \\\cline{1-4}
 \end{longtabu}
 
 
-{\bfseries{Total\+: 28 unit tests}}\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md52}{}\doxysection{Test Features}\label{md_unit_test_TEST_SUMMARY_autotoc_md52}
-\mbox{[}x\mbox{]} {\bfseries{Comprehensive coverage}} -\/ Tests mathematical operations, data structures, and algorithms \mbox{[}x\mbox{]} {\bfseries{Floating-\/point tolerance}} -\/ Uses appropriate precision (1d-\/10 to 1d-\/8) for double precision \mbox{[}x\mbox{]} {\bfseries{Edge case handling}} -\/ Tests boundary conditions and special cases \mbox{[}x\mbox{]} {\bfseries{Clear reporting}} -\/ Pass/fail output with detailed diagnostics \mbox{[}x\mbox{]} {\bfseries{Automated execution}} -\/ Makefile targets and shell script runner \mbox{[}x\mbox{]} {\bfseries{Open\+MP compatible}} -\/ Handles parallel compilation flags \mbox{[}x\mbox{]} {\bfseries{Modular design}} -\/ Independent test programs, easy to extend\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md53}{}\doxysection{Example Test Output}\label{md_unit_test_TEST_SUMMARY_autotoc_md53}
+{\bfseries{Total\+: 89 unit tests}}\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md51}{}\doxysection{Test Features}\label{md_unit_test_TEST_SUMMARY_autotoc_md51}
+\mbox{[}x\mbox{]} {\bfseries{Comprehensive coverage}} -\/ Tests mathematical operations, data structures, and algorithms \mbox{[}x\mbox{]} {\bfseries{Floating-\/point tolerance}} -\/ Uses appropriate precision (1d-\/10 to 1d-\/8) for double precision \mbox{[}x\mbox{]} {\bfseries{Edge case handling}} -\/ Tests boundary conditions and special cases \mbox{[}x\mbox{]} {\bfseries{Detailed reporting}} -\/ Pass/fail output with detailed diagnostics \mbox{[}x\mbox{]} {\bfseries{Automated execution}} -\/ Makefile targets and shell script runner \mbox{[}x\mbox{]} {\bfseries{Open\+MP compatible}} -\/ Handles parallel compilation flags \mbox{[}x\mbox{]} {\bfseries{Modular design}} -\/ Independent test programs, easy to extend\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md52}{}\doxysection{Example Test Output}\label{md_unit_test_TEST_SUMMARY_autotoc_md52}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{=========================================}
@@ -151,12 +159,12 @@ mod\+\_\+clustering &helpers &3 &Unit  \\\cline{1-4}
 \DoxyCodeLine{=========================================}
 \DoxyCodeLine{TEST SUMMARY}
 \DoxyCodeLine{=========================================}
-\DoxyCodeLine{Total tests:  6}
-\DoxyCodeLine{Passed:       6}
+\DoxyCodeLine{Total tests:  30}
+\DoxyCodeLine{Passed:       30}
 \DoxyCodeLine{Failed:       0}
 \DoxyCodeLine{=========================================}
 \end{DoxyCode}
-\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md54}{}\doxysection{Example Output}\label{md_unit_test_TEST_SUMMARY_autotoc_md54}
+\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md53}{}\doxysection{Example Output}\label{md_unit_test_TEST_SUMMARY_autotoc_md53}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{=========================================}
@@ -178,17 +186,17 @@ mod\+\_\+clustering &helpers &3 &Unit  \\\cline{1-4}
 \DoxyCodeLine{  [PASS] Test 6: Combined transformations}
 \DoxyCodeLine{  [PASS] Test 7: Matrix operation verification}
 \DoxyCodeLine{}
-\DoxyCodeLine{... (31 total tests in test\_maths.f90)}
+\DoxyCodeLine{... (30 total tests in test\_maths.f90)}
 \DoxyCodeLine{}
 \DoxyCodeLine{=========================================}
 \DoxyCodeLine{TEST SUMMARY FOR MATHS}
 \DoxyCodeLine{=========================================}
-\DoxyCodeLine{Total tests:  31}
-\DoxyCodeLine{Passed:       31}
+\DoxyCodeLine{Total tests:  30}
+\DoxyCodeLine{Passed:       30}
 \DoxyCodeLine{Failed:       0}
 \DoxyCodeLine{=========================================}
 \end{DoxyCode}
-\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md55}{}\doxysection{Overall Statistics}\label{md_unit_test_TEST_SUMMARY_autotoc_md55}
+\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md54}{}\doxysection{Overall Statistics}\label{md_unit_test_TEST_SUMMARY_autotoc_md54}
 \tabulinesep=1mm
 \begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
 \hline
@@ -199,23 +207,23 @@ mod\+\_\+clustering &helpers &3 &Unit  \\\cline{1-4}
 \hline
 \PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Test File }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Tests }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Lines }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Status  }\\\cline{1-4}
 \endhead
-\mbox{\hyperlink{test__maths_8f90}{test\+\_\+maths.\+f90}} &31 &850 &Y\+ES  \\\cline{1-4}
-\mbox{\hyperlink{test__matrix_8f90}{test\+\_\+matrix.\+f90}} &8 &370 &Y\+ES  \\\cline{1-4}
-\mbox{\hyperlink{test__threshold_8f90}{test\+\_\+threshold.\+f90}} &9 &375 &Y\+ES  \\\cline{1-4}
-\mbox{\hyperlink{test__pdb_8f90}{test\+\_\+pdb.\+f90}} &8 &210 &Y\+ES  \\\cline{1-4}
-\mbox{\hyperlink{test__clustering_8f90}{test\+\_\+clustering.\+f90}} &5 &275 &Y\+ES  \\\cline{1-4}
-\mbox{\hyperlink{test__assoc_8f90}{test\+\_\+assoc.\+f90}} &11 &380 &Y\+ES \mbox{[}N\+EW\mbox{]}  \\\cline{1-4}
-\mbox{\hyperlink{test__read__input_8f90}{test\+\_\+read\+\_\+input.\+f90}} &10 &355 &Y\+ES \mbox{[}N\+EW\mbox{]}  \\\cline{1-4}
-{\bfseries{T\+O\+T\+AL}} &{\bfseries{82}} &{\bfseries{2,815}} &{\bfseries{Y\+ES}}  \\\cline{1-4}
+\mbox{\hyperlink{test__maths_8f90}{test\+\_\+maths.\+f90}} &30 &850 &Success  \\\cline{1-4}
+\mbox{\hyperlink{test__matrix_8f90}{test\+\_\+matrix.\+f90}} &10 &370 &Success  \\\cline{1-4}
+\mbox{\hyperlink{test__threshold_8f90}{test\+\_\+threshold.\+f90}} &9 &375 &Success  \\\cline{1-4}
+\mbox{\hyperlink{test__pdb_8f90}{test\+\_\+pdb.\+f90}} &11 &210 &Success  \\\cline{1-4}
+\mbox{\hyperlink{test__clustering_8f90}{test\+\_\+clustering.\+f90}} &8 &Success &Success  \\\cline{1-4}
+\mbox{\hyperlink{test__assoc_8f90}{test\+\_\+assoc.\+f90}} &11 &380 &Success  \\\cline{1-4}
+\mbox{\hyperlink{test__read__input_8f90}{test\+\_\+read\+\_\+input.\+f90}} &10 &355 &Success  \\\cline{1-4}
+{\bfseries{T\+O\+T\+AL}} &{\bfseries{89}} &{\bfseries{2,815}} &{\bfseries{Y\+ES}}  \\\cline{1-4}
 \end{longtabu}
-\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md56}{}\doxysection{Running Tests}\label{md_unit_test_TEST_SUMMARY_autotoc_md56}
-\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md57}{}\doxysubsection{Quick test\+:}\label{md_unit_test_TEST_SUMMARY_autotoc_md57}
+\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md55}{}\doxysection{Running Tests}\label{md_unit_test_TEST_SUMMARY_autotoc_md55}
+\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md56}{}\doxysubsection{Quick test\+:}\label{md_unit_test_TEST_SUMMARY_autotoc_md56}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{cd clustering\_program/src/}
-\DoxyCodeLine{make test          \# Runs all 82 tests across 7 test programs}
+\DoxyCodeLine{make test          \# Runs all 89 tests across 7 test programs}
 \end{DoxyCode}
-\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md58}{}\doxysubsection{Run specific test\+:}\label{md_unit_test_TEST_SUMMARY_autotoc_md58}
+\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md57}{}\doxysubsection{Run specific test\+:}\label{md_unit_test_TEST_SUMMARY_autotoc_md57}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{cd clustering\_program/src/}
@@ -223,20 +231,20 @@ mod\+\_\+clustering &helpers &3 &Unit  \\\cline{1-4}
 \DoxyCodeLine{make test\_assoc    \# Run new association tests}
 \DoxyCodeLine{make test\_read\_input  \# Run new read\_input tests}
 \end{DoxyCode}
-\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md59}{}\doxysubsection{Verbose output\+:}\label{md_unit_test_TEST_SUMMARY_autotoc_md59}
+\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md58}{}\doxysubsection{Verbose output\+:}\label{md_unit_test_TEST_SUMMARY_autotoc_md58}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{cd clustering\_program/unit\_tests/}
 \DoxyCodeLine{bash run\_all\_tests.sh}
 \end{DoxyCode}
-\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md60}{}\doxysubsection{Individual test debugging\+:}\label{md_unit_test_TEST_SUMMARY_autotoc_md60}
+\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md59}{}\doxysubsection{Individual test debugging\+:}\label{md_unit_test_TEST_SUMMARY_autotoc_md59}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{cd clustering\_program/src/}
 \DoxyCodeLine{gfortran -\/fopenmp -\/o test\_matrix ../unit\_tests/test\_matrix.f90 mod\_matrix.o maths.o mod\_pdb.o}
 \DoxyCodeLine{./test\_matrix}
 \end{DoxyCode}
-\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md61}{}\doxysection{Documentation}\label{md_unit_test_TEST_SUMMARY_autotoc_md61}
+\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md60}{}\doxysection{Documentation}\label{md_unit_test_TEST_SUMMARY_autotoc_md60}
 See \mbox{\hyperlink{TESTING_8md}{T\+E\+S\+T\+I\+NG.md}} for\+:
 \begin{DoxyItemize}
 \item Detailed test descriptions
@@ -244,7 +252,7 @@ See \mbox{\hyperlink{TESTING_8md}{T\+E\+S\+T\+I\+NG.md}} for\+:
 \item Troubleshooting guide
 \item Instructions for adding new tests
 \item Best practices and references
-\end{DoxyItemize}\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md62}{}\doxysection{Future Enhancements}\label{md_unit_test_TEST_SUMMARY_autotoc_md62}
+\end{DoxyItemize}\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md61}{}\doxysection{Future Enhancements}\label{md_unit_test_TEST_SUMMARY_autotoc_md61}
 
 \begin{DoxyItemize}
 \item \mbox{[} \mbox{]} Integration tests for multi-\/module workflows
@@ -253,13 +261,13 @@ See \mbox{\hyperlink{TESTING_8md}{T\+E\+S\+T\+I\+NG.md}} for\+:
 \item \mbox{[} \mbox{]} Continuous integration (Git\+Hub Actions)
 \item \mbox{[} \mbox{]} Memory leak detection (valgrind)
 \item \mbox{[} \mbox{]} Additional clustering algorithm tests
-\end{DoxyItemize}\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md63}{}\doxysection{Dependencies}\label{md_unit_test_TEST_SUMMARY_autotoc_md63}
+\end{DoxyItemize}\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md62}{}\doxysection{Dependencies}\label{md_unit_test_TEST_SUMMARY_autotoc_md62}
 
 \begin{DoxyItemize}
 \item gfortran (or other Fortran compiler)
 \item Open\+MP (for parallel tests)
 \item L\+A\+P\+A\+C\+K/\+B\+L\+AS (existing project dependency)
-\end{DoxyItemize}\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md64}{}\doxysection{Notes}\label{md_unit_test_TEST_SUMMARY_autotoc_md64}
+\end{DoxyItemize}\hypertarget{md_unit_test_TEST_SUMMARY_autotoc_md63}{}\doxysection{Notes}\label{md_unit_test_TEST_SUMMARY_autotoc_md63}
 
 \begin{DoxyItemize}
 \item Tests use standard I\+E\+EE 754 double precision (kind=8)
@@ -272,5 +280,5 @@ See \mbox{\hyperlink{TESTING_8md}{T\+E\+S\+T\+I\+NG.md}} for\+:
 
 
 {\bfseries{Created}}\+: February 2026 ~\newline
- {\bfseries{Author}}\+: Abraham Muniz-\/\+Chicharro ~\newline
+ {\bfseries{Author}}\+: Abraham Muñiz-\/\+Chicharro ~\newline
  {\bfseries{Version}}\+: 1.\+0 

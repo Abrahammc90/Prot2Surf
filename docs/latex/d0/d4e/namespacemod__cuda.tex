@@ -1,0 +1,104 @@
+\hypertarget{namespacemod__cuda}{}\doxysection{mod\+\_\+cuda Module Reference}
+\label{namespacemod__cuda}\index{mod\_cuda@{mod\_cuda}}
+\doxysubsection*{Data Types}
+\begin{DoxyCompactItemize}
+\item 
+interface \mbox{\hyperlink{interfacemod__cuda_1_1cuda__finalize__clustering__c}{cuda\+\_\+finalize\+\_\+clustering\+\_\+c}}
+\item 
+interface \mbox{\hyperlink{interfacemod__cuda_1_1cuda__find__and__merge__c}{cuda\+\_\+find\+\_\+and\+\_\+merge\+\_\+c}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+integer function, public \mbox{\hyperlink{namespacemod__cuda_a6e41af3b9f71639766b8e573bcaa16b7}{cuda\+\_\+init\+\_\+clustering}} (matrix, n, active\+\_\+points, cluster\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Initialize G\+PU clustering -\/ transfer matrix to G\+PU once. \end{DoxyCompactList}\item 
+integer function, public \mbox{\hyperlink{namespacemod__cuda_a879c52c6f4bc09b5e8080d8e7aa6576f}{cuda\+\_\+find\+\_\+and\+\_\+merge}} (min\+\_\+dist, min\+\_\+i, min\+\_\+j, linkage\+\_\+str)
+\begin{DoxyCompactList}\small\item\em Find minimum pair and merge on G\+PU. \end{DoxyCompactList}\item 
+subroutine, public \mbox{\hyperlink{namespacemod__cuda_a9bd0616cb42fdac9ae2fb4513e49594e}{cuda\+\_\+finalize\+\_\+clustering}} ()
+\begin{DoxyCompactList}\small\item\em Finalize G\+PU clustering -\/ cleanup G\+PU memory. \end{DoxyCompactList}\item 
+subroutine, public \mbox{\hyperlink{namespacemod__cuda_af235c8f335fe991d0674a2dbf0c50e1f}{cuda\+\_\+find\+\_\+min\+\_\+pair}} (matrix, n, min\+\_\+dist, min\+\_\+i, min\+\_\+j, active\+\_\+points)
+\begin{DoxyCompactList}\small\item\em Find minimum distance pair using C\+U\+DA G\+PU acceleration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespacemod__cuda_a9bd0616cb42fdac9ae2fb4513e49594e}\label{namespacemod__cuda_a9bd0616cb42fdac9ae2fb4513e49594e}} 
+\index{mod\_cuda@{mod\_cuda}!cuda\_finalize\_clustering@{cuda\_finalize\_clustering}}
+\index{cuda\_finalize\_clustering@{cuda\_finalize\_clustering}!mod\_cuda@{mod\_cuda}}
+\doxysubsubsection{\texorpdfstring{cuda\_finalize\_clustering()}{cuda\_finalize\_clustering()}}
+{\footnotesize\ttfamily subroutine, public mod\+\_\+cuda\+::cuda\+\_\+finalize\+\_\+clustering}
+
+
+
+Finalize G\+PU clustering -\/ cleanup G\+PU memory. 
+
+\mbox{\Hypertarget{namespacemod__cuda_a879c52c6f4bc09b5e8080d8e7aa6576f}\label{namespacemod__cuda_a879c52c6f4bc09b5e8080d8e7aa6576f}} 
+\index{mod\_cuda@{mod\_cuda}!cuda\_find\_and\_merge@{cuda\_find\_and\_merge}}
+\index{cuda\_find\_and\_merge@{cuda\_find\_and\_merge}!mod\_cuda@{mod\_cuda}}
+\doxysubsubsection{\texorpdfstring{cuda\_find\_and\_merge()}{cuda\_find\_and\_merge()}}
+{\footnotesize\ttfamily integer function, public mod\+\_\+cuda\+::cuda\+\_\+find\+\_\+and\+\_\+merge (\begin{DoxyParamCaption}\item[{real(kind=8), intent(out)}]{min\+\_\+dist,  }\item[{integer, intent(out)}]{min\+\_\+i,  }\item[{integer, intent(out)}]{min\+\_\+j,  }\item[{character(len=$\ast$), intent(in)}]{linkage\+\_\+str }\end{DoxyParamCaption})}
+
+
+
+Find minimum pair and merge on G\+PU. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em min\+\_\+dist} & Minimum distance value \\
+\hline
+\mbox{\texttt{ out}}  & {\em min\+\_\+i,min\+\_\+j} & Indices of minimum pair (1-\/based) \\
+\hline
+\mbox{\texttt{ in}}  & {\em linkage\+\_\+str} & Linkage type (\textquotesingle{}min\textquotesingle{}, \textquotesingle{}max\textquotesingle{}, or \textquotesingle{}mean\textquotesingle{}) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 on error 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacemod__cuda_af235c8f335fe991d0674a2dbf0c50e1f}\label{namespacemod__cuda_af235c8f335fe991d0674a2dbf0c50e1f}} 
+\index{mod\_cuda@{mod\_cuda}!cuda\_find\_min\_pair@{cuda\_find\_min\_pair}}
+\index{cuda\_find\_min\_pair@{cuda\_find\_min\_pair}!mod\_cuda@{mod\_cuda}}
+\doxysubsubsection{\texorpdfstring{cuda\_find\_min\_pair()}{cuda\_find\_min\_pair()}}
+{\footnotesize\ttfamily subroutine, public mod\+\_\+cuda\+::cuda\+\_\+find\+\_\+min\+\_\+pair (\begin{DoxyParamCaption}\item[{real(kind=8), dimension(\+:, \+:), intent(in), target}]{matrix,  }\item[{integer, intent(in)}]{n,  }\item[{real(kind=8), intent(out)}]{min\+\_\+dist,  }\item[{integer, intent(out)}]{min\+\_\+i,  }\item[{integer, intent(out)}]{min\+\_\+j,  }\item[{logical, dimension(\+:), intent(in)}]{active\+\_\+points }\end{DoxyParamCaption})}
+
+
+
+Find minimum distance pair using C\+U\+DA G\+PU acceleration. 
+
+Offloads the minimum pair search to N\+V\+I\+D\+IA G\+PU using C\+U\+DA. Falls back to C\+PU if G\+PU is unavailable or on error.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em matrix} & Distance matrix (n x n, column-\/major) \\
+\hline
+\mbox{\texttt{ in}}  & {\em n} & Matrix dimension \\
+\hline
+\mbox{\texttt{ out}}  & {\em min\+\_\+dist} & Minimum distance value \\
+\hline
+\mbox{\texttt{ out}}  & {\em min\+\_\+i,min\+\_\+j} & Indices of minimum pair (1-\/based) \\
+\hline
+\mbox{\texttt{ in}}  & {\em active\+\_\+points} & Logical array of active clusters \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacemod__cuda_a6e41af3b9f71639766b8e573bcaa16b7}\label{namespacemod__cuda_a6e41af3b9f71639766b8e573bcaa16b7}} 
+\index{mod\_cuda@{mod\_cuda}!cuda\_init\_clustering@{cuda\_init\_clustering}}
+\index{cuda\_init\_clustering@{cuda\_init\_clustering}!mod\_cuda@{mod\_cuda}}
+\doxysubsubsection{\texorpdfstring{cuda\_init\_clustering()}{cuda\_init\_clustering()}}
+{\footnotesize\ttfamily integer function, public mod\+\_\+cuda\+::cuda\+\_\+init\+\_\+clustering (\begin{DoxyParamCaption}\item[{real(kind=8), dimension(\+:, \+:), intent(in), target}]{matrix,  }\item[{integer, intent(in)}]{n,  }\item[{logical, dimension(\+:), intent(in)}]{active\+\_\+points,  }\item[{integer, dimension(\+:), intent(in), target}]{cluster\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Initialize G\+PU clustering -\/ transfer matrix to G\+PU once. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em matrix} & Distance matrix (n x n, column-\/major) \\
+\hline
+\mbox{\texttt{ in}}  & {\em n} & Matrix dimension \\
+\hline
+\mbox{\texttt{ in}}  & {\em active\+\_\+points} & Logical array of active clusters \\
+\hline
+\mbox{\texttt{ in}}  & {\em cluster\+\_\+size} & Integer array of cluster sizes \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 on error 
+\end{DoxyReturn}

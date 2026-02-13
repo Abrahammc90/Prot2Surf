@@ -83,6 +83,10 @@ Functions/Subroutines</h2></td></tr>
 <tr class="separator:a50b6b2a9367dabd83dacab325bfdfcab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3d63eabebb7461d794fbb5ab92675fd"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de4/test__pdb_8f90.html#ad3d63eabebb7461d794fbb5ab92675fd">test_residue_management</a> (num_tests, num_passed, num_failed)</td></tr>
 <tr class="separator:ad3d63eabebb7461d794fbb5ab92675fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cca6a557b616932ef54a70b665a4f02"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de4/test__pdb_8f90.html#a1cca6a557b616932ef54a70b665a4f02">test_chain_management</a> (num_tests, num_passed, num_failed)</td></tr>
+<tr class="separator:a1cca6a557b616932ef54a70b665a4f02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b10f6491dd69b004364ad2ebc98cef3"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/de4/test__pdb_8f90.html#a3b10f6491dd69b004364ad2ebc98cef3">test_mod_pdb_routines</a> (num_tests, num_passed, num_failed)</td></tr>
+<tr class="separator:a3b10f6491dd69b004364ad2ebc98cef3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function/Subroutine Documentation</h2>
 <a id="a50b6b2a9367dabd83dacab325bfdfcab"></a>
@@ -93,6 +97,74 @@ Functions/Subroutines</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">subroutine test_pdb::test_atom_properties </td>
+          <td>(</td>
+          <td class="paramtype">integer, intent(inout)&#160;</td>
+          <td class="paramname"><em>num_tests</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(inout)&#160;</td>
+          <td class="paramname"><em>num_passed</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(inout)&#160;</td>
+          <td class="paramname"><em>num_failed</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1cca6a557b616932ef54a70b665a4f02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cca6a557b616932ef54a70b665a4f02">&#9670;&nbsp;</a></span>test_chain_management()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine test_pdb::test_chain_management </td>
+          <td>(</td>
+          <td class="paramtype">integer, intent(inout)&#160;</td>
+          <td class="paramname"><em>num_tests</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(inout)&#160;</td>
+          <td class="paramname"><em>num_passed</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(inout)&#160;</td>
+          <td class="paramname"><em>num_failed</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3b10f6491dd69b004364ad2ebc98cef3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b10f6491dd69b004364ad2ebc98cef3">&#9670;&nbsp;</a></span>test_mod_pdb_routines()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine test_pdb::test_mod_pdb_routines </td>
           <td>(</td>
           <td class="paramtype">integer, intent(inout)&#160;</td>
           <td class="paramname"><em>num_tests</em>, </td>
@@ -135,7 +207,8 @@ Functions/Subroutines</h2></td></tr>
 <p>Tests include:</p><ul>
 <li>PDB type allocation and initialization</li>
 <li>Atom and residue management</li>
-<li>Chain structure handling</li>
+<li>Residue structure handling</li>
+<li>Reading PDB files and filling the PDB data structure</li>
 </ul>
 <p>Compile with: gfortran -o test_pdb <a class="el" href="../../d7/de4/test__pdb_8f90.html">test_pdb.f90</a> <a class="el" href="../../d3/dc0/mod__pdb_8f90.html">mod_pdb.f90</a></p>
 <dl class="section author"><dt>Author</dt><dd>Abraham Muñiz-Chicharro </dd></dl>

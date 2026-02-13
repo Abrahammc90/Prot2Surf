@@ -10,6 +10,10 @@ subroutine \mbox{\hyperlink{test__pdb_8f90_a21a98c177d89df17cedef258b9c806e9}{te
 subroutine \mbox{\hyperlink{test__pdb_8f90_a50b6b2a9367dabd83dacab325bfdfcab}{test\+\_\+atom\+\_\+properties}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
 \item 
 subroutine \mbox{\hyperlink{test__pdb_8f90_ad3d63eabebb7461d794fbb5ab92675fd}{test\+\_\+residue\+\_\+management}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
+\item 
+subroutine \mbox{\hyperlink{test__pdb_8f90_a1cca6a557b616932ef54a70b665a4f02}{test\+\_\+chain\+\_\+management}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
+\item 
+subroutine \mbox{\hyperlink{test__pdb_8f90_a3b10f6491dd69b004364ad2ebc98cef3}{test\+\_\+mod\+\_\+pdb\+\_\+routines}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
 \end{DoxyCompactItemize}
 
 
@@ -19,6 +23,18 @@ subroutine \mbox{\hyperlink{test__pdb_8f90_ad3d63eabebb7461d794fbb5ab92675fd}{te
 \index{test\_atom\_properties@{test\_atom\_properties}!test\_pdb.f90@{test\_pdb.f90}}
 \doxysubsubsection{\texorpdfstring{test\_atom\_properties()}{test\_atom\_properties()}}
 {\footnotesize\ttfamily subroutine test\+\_\+pdb\+::test\+\_\+atom\+\_\+properties (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{num\+\_\+tests,  }\item[{integer, intent(inout)}]{num\+\_\+passed,  }\item[{integer, intent(inout)}]{num\+\_\+failed }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__pdb_8f90_a1cca6a557b616932ef54a70b665a4f02}\label{test__pdb_8f90_a1cca6a557b616932ef54a70b665a4f02}} 
+\index{test\_pdb.f90@{test\_pdb.f90}!test\_chain\_management@{test\_chain\_management}}
+\index{test\_chain\_management@{test\_chain\_management}!test\_pdb.f90@{test\_pdb.f90}}
+\doxysubsubsection{\texorpdfstring{test\_chain\_management()}{test\_chain\_management()}}
+{\footnotesize\ttfamily subroutine test\+\_\+pdb\+::test\+\_\+chain\+\_\+management (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{num\+\_\+tests,  }\item[{integer, intent(inout)}]{num\+\_\+passed,  }\item[{integer, intent(inout)}]{num\+\_\+failed }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__pdb_8f90_a3b10f6491dd69b004364ad2ebc98cef3}\label{test__pdb_8f90_a3b10f6491dd69b004364ad2ebc98cef3}} 
+\index{test\_pdb.f90@{test\_pdb.f90}!test\_mod\_pdb\_routines@{test\_mod\_pdb\_routines}}
+\index{test\_mod\_pdb\_routines@{test\_mod\_pdb\_routines}!test\_pdb.f90@{test\_pdb.f90}}
+\doxysubsubsection{\texorpdfstring{test\_mod\_pdb\_routines()}{test\_mod\_pdb\_routines()}}
+{\footnotesize\ttfamily subroutine test\+\_\+pdb\+::test\+\_\+mod\+\_\+pdb\+\_\+routines (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{num\+\_\+tests,  }\item[{integer, intent(inout)}]{num\+\_\+passed,  }\item[{integer, intent(inout)}]{num\+\_\+failed }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{test__pdb_8f90_a9fb4796291212684c55ffdd71dbdea98}\label{test__pdb_8f90_a9fb4796291212684c55ffdd71dbdea98}} 
 \index{test\_pdb.f90@{test\_pdb.f90}!test\_pdb@{test\_pdb}}
@@ -34,7 +50,8 @@ Tests include\+:
 \begin{DoxyItemize}
 \item P\+DB type allocation and initialization
 \item Atom and residue management
-\item Chain structure handling
+\item Residue structure handling
+\item Reading P\+DB files and filling the P\+DB data structure
 \end{DoxyItemize}
 
 Compile with\+: gfortran -\/o test\+\_\+pdb \mbox{\hyperlink{test__pdb_8f90}{test\+\_\+pdb.\+f90}} \mbox{\hyperlink{mod__pdb_8f90}{mod\+\_\+pdb.\+f90}}

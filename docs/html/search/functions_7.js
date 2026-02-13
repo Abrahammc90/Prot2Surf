@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['size_5fassoc_204',['size_assoc',['../d6/ded/namespacemod__assoc.html#a70fa81635e5e42f227ece48854f9a1ef',1,'mod_assoc']]],
-  ['sort_5farray_205',['sort_array',['../df/d4c/namespacemod__threshold.html#a09bbd97c3ea019b1aed4d594fc263309',1,'mod_threshold']]],
-  ['sort_5fcomplexes_206',['sort_complexes',['../d4/d95/namespacemod__clust__algorithm.html#af5f3db6d505ab3f6f1ac125933ec5a3c',1,'mod_clust_algorithm']]]
+  ['read_5farray_235',['read_array',['../db/d1d/namespacemod__matrix.html#ac1de0cca9f7e7e3a990a58890627351d',1,'mod_matrix']]],
+  ['read_5fassoc_236',['read_assoc',['../d9/d5d/namespaceread__input.html#aef5b94c19f4622328ca9662303682902',1,'read_input']]],
+  ['read_5fatoms_5fcoord_237',['read_atoms_coord',['../d9/d1f/clust__all_8f90.html#ace7f5f1598411c674b11802b24f608b6',1,'read_atoms_coord(atoms_array, atoms_coord, tot_atoms, pdb, pdb_filename):&#160;clust_all.f90'],['../d4/dd7/make__matrix_8f90.html#ad0df42f74407d652097e6e433eea2dc8',1,'read_atoms_coord(atoms_array, atoms_coord, tot_atoms, pdb, pdb_filename):&#160;make_matrix.f90'],['../d9/dcc/threshold_8f90.html#ad0df42f74407d652097e6e433eea2dc8',1,'read_atoms_coord(atoms_array, atoms_coord, tot_atoms, pdb, pdb_filename):&#160;threshold.f90']]],
+  ['read_5fmatrix_238',['read_matrix',['../db/d1d/namespacemod__matrix.html#ab379913b1ccff8141ffd78808dc8148b',1,'mod_matrix']]],
+  ['read_5fpdb_239',['read_pdb',['../d9/d5d/namespaceread__input.html#a7787652b1f311a4f954bba0bcf15cde8',1,'read_input']]],
+  ['rmsd_240',['rmsd',['../da/d63/namespacemaths.html#a0027059d7d932be06e4246f1ea65549f',1,'maths']]]
 ];

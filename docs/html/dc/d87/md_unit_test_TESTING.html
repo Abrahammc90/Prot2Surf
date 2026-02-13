@@ -65,12 +65,12 @@ $(function() {
 <div class="title">Unit Testing Guide for Clustering Program </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md67"></a>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md66"></a>
 Overview</h1>
 <p>This directory contains comprehensive unit tests for the Fortran subroutines in the clustering program. The tests verify correctness of mathematical operations, data structures, and algorithmic components.</p>
-<h1><a class="anchor" id="autotoc_md68"></a>
+<h1><a class="anchor" id="autotoc_md67"></a>
 Test Files</h1>
-<h2><a class="anchor" id="autotoc_md69"></a>
+<h2><a class="anchor" id="autotoc_md68"></a>
 1. &lt;strong&gt;test_maths.f90&lt;/strong&gt;</h2>
 <p>Tests mathematical operations in the <code>maths</code> module:</p><ul>
 <li><b>Cross product calculation</b> (<code>cross</code> subroutine) - 4 tests<ul>
@@ -101,7 +101,7 @@ Test Files</h1>
 <li>Rotated structures</li>
 </ul>
 </li>
-<li><b>Center of geometry</b> (<code>calculate_cog</code> subroutine) - 5 tests<ul>
+<li><b>Center of geometry</b> (<code>calculate_cog</code> subroutine) - 4 tests<ul>
 <li>Simple geometries</li>
 <li>Symmetric point clouds</li>
 <li>Offset coordinates</li>
@@ -114,8 +114,8 @@ Test Files</h1>
 </ul>
 </li>
 </ul>
-<p><b>Total: 31 tests</b></p>
-<h2><a class="anchor" id="autotoc_md70"></a>
+<p><b>Total: 30 tests</b></p>
+<h2><a class="anchor" id="autotoc_md69"></a>
 2. &lt;strong&gt;test_matrix.f90&lt;/strong&gt;</h2>
 <p>Tests matrix operations in the <code><a class="el" href="../../db/d1d/namespacemod__matrix.html">mod_matrix</a></code> module:</p><ul>
 <li><b>Matrix file I/O</b> (<code>write_matrix</code>, <code>read_matrix</code>) - 2 tests<ul>
@@ -133,14 +133,22 @@ Test Files</h1>
 <li>Translation transformations</li>
 </ul>
 </li>
-<li><b>RMSD matrix calculation</b> (<code>matrix_rmsd_calc</code>) - 2 tests<ul>
+<li><b>RMSD matrix calculation</b> (<code>matrix_rmsd</code>) - 2 tests<ul>
 <li>Symmetry verification</li>
 <li>Diagonal properties (zeros on diagonal)</li>
 </ul>
 </li>
+<li><b>Atom distance matrix calculation</b> (<code>matrix_atoms_dist</code>) - 1 test<ul>
+<li>Minimum distance differences</li>
 </ul>
-<p><b>Total: 8 tests</b></p>
-<h2><a class="anchor" id="autotoc_md71"></a>
+</li>
+<li><b>Angle matrix calculation</b> (<code>matrix_angle</code>) - 1 test<ul>
+<li>2D angle differences</li>
+</ul>
+</li>
+</ul>
+<p><b>Total: 10 tests</b></p>
+<h2><a class="anchor" id="autotoc_md70"></a>
 3. &lt;strong&gt;test_threshold.f90&lt;/strong&gt;</h2>
 <p>Tests threshold array operations in the <code><a class="el" href="../../df/d4c/namespacemod__threshold.html">mod_threshold</a></code> module:</p><ul>
 <li><b>Z-coordinate array calculation</b> (<code>array_z_coord</code>) - 2 tests<ul>
@@ -166,7 +174,7 @@ Test Files</h1>
 </li>
 </ul>
 <p><b>Total: 9 tests</b></p>
-<h2><a class="anchor" id="autotoc_md72"></a>
+<h2><a class="anchor" id="autotoc_md71"></a>
 4. &lt;strong&gt;test_pdb.f90&lt;/strong&gt;</h2>
 <p>Tests PDB file structures and operations in the <code><a class="el" href="../../dd/d00/namespacemod__pdb.html" title="Module to define a pdb type and pdb reading routine for tools.">mod_pdb</a></code> module:</p><ul>
 <li><b>PDB type initialization</b> - 3 tests<ul>
@@ -175,10 +183,9 @@ Test Files</h1>
 <li>Residue array creation</li>
 </ul>
 </li>
-<li><b>Atom properties</b> - 3 tests<ul>
+<li><b>Atom properties</b> - 2 tests<ul>
 <li>Coordinate assignment</li>
 <li>Name and residue information</li>
-<li>Occupancy and B-factor values</li>
 </ul>
 </li>
 <li><b>Residue management</b> - 2 tests<ul>
@@ -186,9 +193,19 @@ Test Files</h1>
 <li>Atom array allocation within residues</li>
 </ul>
 </li>
+<li><b>Chain management</b> - 2 tests<ul>
+<li>Chain property assignment</li>
+<li>Atom/residue array allocation</li>
 </ul>
-<p><b>Total: 8 tests</b></p>
-<h2><a class="anchor" id="autotoc_md73"></a>
+</li>
+<li><b>PDB routines</b> - 2 tests<ul>
+<li>count_atoms/count_residues/count_chains</li>
+<li>allocate_pdb_object/fill_pdb_object</li>
+</ul>
+</li>
+</ul>
+<p><b>Total: 11 tests</b></p>
+<h2><a class="anchor" id="autotoc_md72"></a>
 5. &lt;strong&gt;test_clustering.f90&lt;/strong&gt;</h2>
 <p>Tests clustering algorithms in the <code><a class="el" href="../../d4/d95/namespacemod__clust__algorithm.html">mod_clust_algorithm</a></code> module:</p><ul>
 <li><b>Clustering statistics</b> (<code>calculate_mean_distance</code>, <code>calculate_std_deviation</code>) - 2 tests<ul>
@@ -201,14 +218,20 @@ Test Files</h1>
 <li>Identical point handling</li>
 </ul>
 </li>
+<li><b>Linkage clustering</b> (<code>linkage_clustering</code>) - 3 tests<ul>
+<li>Minimum linkage</li>
+<li>Maximum linkage</li>
+<li>Mean linkage</li>
+</ul>
+</li>
 <li><b>Cluster output</b> (<code>write_clusters</code>) - 1 test<ul>
 <li>File output verification</li>
 <li>Cluster format validation</li>
 </ul>
 </li>
 </ul>
-<p><b>Total: 5 tests</b></p>
-<h2><a class="anchor" id="autotoc_md74"></a>
+<p><b>Total: 8 tests</b></p>
+<h2><a class="anchor" id="autotoc_md73"></a>
 6. &lt;strong&gt;test_assoc.f90&lt;/strong&gt; (NEW)</h2>
 <p>Tests association/complexes file reading in the <code><a class="el" href="../../d6/ded/namespacemod__assoc.html" title="Association/complexes file utilities.">mod_assoc</a></code> module:</p><ul>
 <li><b>File reading</b> (<code>read_assoc_file</code>) - 6 tests<ul>
@@ -233,7 +256,7 @@ Test Files</h1>
 </li>
 </ul>
 <p><b>Total: 11 tests</b></p>
-<h2><a class="anchor" id="autotoc_md75"></a>
+<h2><a class="anchor" id="autotoc_md74"></a>
 7. &lt;strong&gt;test_read_input.f90&lt;/strong&gt; (NEW)</h2>
 <p>Tests <a class="el" href="../../d9/d5d/namespaceread__input.html">read_input</a> module wrapper functions:</p><ul>
 <li><b>Association file reading</b> (<code>read_input_assoc</code>) - 7 tests<ul>
@@ -253,16 +276,10 @@ Test Files</h1>
 </ul>
 </li>
 </ul>
-<p><b>Total: 10 tests</b></p><ul>
-<li>Occupancy and B-factor values</li>
-</ul>
-<p><b>Residue management</b></p><ul>
-<li>Residue property assignment</li>
-<li>Atom array allocation within residues</li>
-</ul>
-<h1><a class="anchor" id="autotoc_md76"></a>
+<p><b>Total: 10 tests</b></p>
+<h1><a class="anchor" id="autotoc_md75"></a>
 Compilation</h1>
-<h2><a class="anchor" id="autotoc_md77"></a>
+<h2><a class="anchor" id="autotoc_md76"></a>
 Compile individual tests:</h2>
 <div class="fragment"><div class="line"># Test mathematical operations (requires maths.f90 and mod_pdb.f90)</div>
 <div class="line">gfortran -fopenmp -o test_maths test_maths.f90 ../src/maths.o ../src/mod_pdb.o</div>
@@ -284,26 +301,26 @@ Compile individual tests:</h2>
 <div class="line"> </div>
 <div class="line"># Test read_input module (requires read_input.f90, mod_pdb.f90, mod_assoc.f90)</div>
 <div class="line">gfortran -o test_read_input test_read_input.f90 ../src/read_input.o ../src/mod_pdb.o ../src/mod_assoc.o</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md78"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md77"></a>
 Compile all tests at once:</h2>
 <div class="fragment"><div class="line"># Using make (from src directory)</div>
 <div class="line">make test</div>
 <div class="line"> </div>
 <div class="line"># Or using the test runner script (from unit_tests directory)</div>
 <div class="line">bash run_all_tests.sh</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md79"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md78"></a>
 Running Tests</h1>
-<h2><a class="anchor" id="autotoc_md80"></a>
+<h2><a class="anchor" id="autotoc_md79"></a>
 Run individual tests:</h2>
 <div class="fragment"><div class="line">./test_maths</div>
 <div class="line">./test_matrix</div>
 <div class="line">./test_threshold</div>
 <div class="line">./test_pdb</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md81"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md80"></a>
 Run all tests:</h2>
 <div class="fragment"><div class="line"># Create a simple test runner script</div>
 <div class="line">bash run_all_tests.sh</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md82"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md81"></a>
 Example Output</h1>
 <div class="fragment"><div class="line">=========================================</div>
 <div class="line">UNIT TESTS FOR MATHS MODULE</div>
@@ -322,70 +339,80 @@ Example Output</h1>
 <div class="line">=========================================</div>
 <div class="line">TEST SUMMARY</div>
 <div class="line">=========================================</div>
-<div class="line">Total tests:  6</div>
-<div class="line">Passed:       6</div>
+<div class="line">Total tests:  30</div>
+<div class="line">Passed:       30</div>
 <div class="line">Failed:       0</div>
 <div class="line">=========================================</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md83"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md82"></a>
 Test Coverage</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Module </th><th class="markdownTableHeadNone">Subroutine </th><th class="markdownTableHeadNone">Tests </th><th class="markdownTableHeadNone">Status  </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">maths </td><td class="markdownTableBodyNone">cross </td><td class="markdownTableBodyNone">4 </td><td class="markdownTableBodyNone">Yes  </td></tr>
+<td class="markdownTableBodyNone">maths </td><td class="markdownTableBodyNone">cross </td><td class="markdownTableBodyNone">4 </td><td class="markdownTableBodyNone">Success  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">maths </td><td class="markdownTableBodyNone">update_complex </td><td class="markdownTableBodyNone">7 </td><td class="markdownTableBodyNone">Yes  </td></tr>
+<td class="markdownTableBodyNone">maths </td><td class="markdownTableBodyNone">update_complex </td><td class="markdownTableBodyNone">7 </td><td class="markdownTableBodyNone">Success  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">maths </td><td class="markdownTableBodyNone">vectors_angle_3D </td><td class="markdownTableBodyNone">4 </td><td class="markdownTableBodyNone">Yes  </td></tr>
+<td class="markdownTableBodyNone">maths </td><td class="markdownTableBodyNone">vectors_angle_3D </td><td class="markdownTableBodyNone">4 </td><td class="markdownTableBodyNone">Success  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">maths </td><td class="markdownTableBodyNone">vectors_angle_2D </td><td class="markdownTableBodyNone">4 </td><td class="markdownTableBodyNone">Yes  </td></tr>
+<td class="markdownTableBodyNone">maths </td><td class="markdownTableBodyNone">vectors_angle_2D </td><td class="markdownTableBodyNone">4 </td><td class="markdownTableBodyNone">Success  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">maths </td><td class="markdownTableBodyNone">rmsd </td><td class="markdownTableBodyNone">3 </td><td class="markdownTableBodyNone">Yes  </td></tr>
+<td class="markdownTableBodyNone">maths </td><td class="markdownTableBodyNone">rmsd </td><td class="markdownTableBodyNone">3 </td><td class="markdownTableBodyNone">Success  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">maths </td><td class="markdownTableBodyNone">calculate_cog </td><td class="markdownTableBodyNone">5 </td><td class="markdownTableBodyNone">Yes  </td></tr>
+<td class="markdownTableBodyNone">maths </td><td class="markdownTableBodyNone">calculate_cog </td><td class="markdownTableBodyNone">4 </td><td class="markdownTableBodyNone">Success  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">maths </td><td class="markdownTableBodyNone">calculate_distance </td><td class="markdownTableBodyNone">4 </td><td class="markdownTableBodyNone">Yes  </td></tr>
+<td class="markdownTableBodyNone">maths </td><td class="markdownTableBodyNone">calculate_distance </td><td class="markdownTableBodyNone">4 </td><td class="markdownTableBodyNone">Success  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="../../db/d1d/namespacemod__matrix.html">mod_matrix</a> </td><td class="markdownTableBodyNone">write_matrix / read_matrix </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Yes  </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="../../db/d1d/namespacemod__matrix.html">mod_matrix</a> </td><td class="markdownTableBodyNone">write_matrix / read_matrix </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Success  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="../../db/d1d/namespacemod__matrix.html">mod_matrix</a> </td><td class="markdownTableBodyNone">write_array / read_array </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Yes  </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="../../db/d1d/namespacemod__matrix.html">mod_matrix</a> </td><td class="markdownTableBodyNone">write_array / read_array </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Success  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="../../db/d1d/namespacemod__matrix.html">mod_matrix</a> </td><td class="markdownTableBodyNone">matrix_z_coord </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Yes  </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="../../db/d1d/namespacemod__matrix.html">mod_matrix</a> </td><td class="markdownTableBodyNone">matrix_z_coord </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Success  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="../../db/d1d/namespacemod__matrix.html">mod_matrix</a> </td><td class="markdownTableBodyNone">matrix_rmsd_calc </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Yes  </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="../../db/d1d/namespacemod__matrix.html">mod_matrix</a> </td><td class="markdownTableBodyNone">matrix_rmsd_calc </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Success  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="../../df/d4c/namespacemod__threshold.html">mod_threshold</a> </td><td class="markdownTableBodyNone">array_z_coord </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Yes  </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="../../db/d1d/namespacemod__matrix.html">mod_matrix</a> </td><td class="markdownTableBodyNone">matrix_atoms_dist </td><td class="markdownTableBodyNone">1 </td><td class="markdownTableBodyNone">Success  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="../../df/d4c/namespacemod__threshold.html">mod_threshold</a> </td><td class="markdownTableBodyNone">array_atoms_dist </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Yes  </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="../../db/d1d/namespacemod__matrix.html">mod_matrix</a> </td><td class="markdownTableBodyNone">matrix_angle </td><td class="markdownTableBodyNone">1 </td><td class="markdownTableBodyNone">Success  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="../../df/d4c/namespacemod__threshold.html">mod_threshold</a> </td><td class="markdownTableBodyNone">array_angle </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Yes  </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="../../df/d4c/namespacemod__threshold.html">mod_threshold</a> </td><td class="markdownTableBodyNone">array_z_coord </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Success  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="../../df/d4c/namespacemod__threshold.html">mod_threshold</a> </td><td class="markdownTableBodyNone">sort_array </td><td class="markdownTableBodyNone">3 </td><td class="markdownTableBodyNone">Yes  </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="../../df/d4c/namespacemod__threshold.html">mod_threshold</a> </td><td class="markdownTableBodyNone">array_atoms_dist </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Success  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="../../dd/d00/namespacemod__pdb.html" title="Module to define a pdb type and pdb reading routine for tools.">mod_pdb</a> </td><td class="markdownTableBodyNone">PDB allocation </td><td class="markdownTableBodyNone">3 </td><td class="markdownTableBodyNone">Yes  </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="../../df/d4c/namespacemod__threshold.html">mod_threshold</a> </td><td class="markdownTableBodyNone">array_angle </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Success  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="../../dd/d00/namespacemod__pdb.html" title="Module to define a pdb type and pdb reading routine for tools.">mod_pdb</a> </td><td class="markdownTableBodyNone">atom properties </td><td class="markdownTableBodyNone">3 </td><td class="markdownTableBodyNone">Yes  </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="../../df/d4c/namespacemod__threshold.html">mod_threshold</a> </td><td class="markdownTableBodyNone">sort_array </td><td class="markdownTableBodyNone">3 </td><td class="markdownTableBodyNone">Success  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="../../dd/d00/namespacemod__pdb.html" title="Module to define a pdb type and pdb reading routine for tools.">mod_pdb</a> </td><td class="markdownTableBodyNone">residue management </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Yes  </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="../../dd/d00/namespacemod__pdb.html" title="Module to define a pdb type and pdb reading routine for tools.">mod_pdb</a> </td><td class="markdownTableBodyNone">PDB allocation </td><td class="markdownTableBodyNone">3 </td><td class="markdownTableBodyNone">Success  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="../../d4/d95/namespacemod__clust__algorithm.html">mod_clust_algorithm</a> </td><td class="markdownTableBodyNone">clustering statistics </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Yes  </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="../../dd/d00/namespacemod__pdb.html" title="Module to define a pdb type and pdb reading routine for tools.">mod_pdb</a> </td><td class="markdownTableBodyNone">atom properties </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Success  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="../../d4/d95/namespacemod__clust__algorithm.html">mod_clust_algorithm</a> </td><td class="markdownTableBodyNone">simple_clustering </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Yes  </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="../../dd/d00/namespacemod__pdb.html" title="Module to define a pdb type and pdb reading routine for tools.">mod_pdb</a> </td><td class="markdownTableBodyNone">residue management </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Success  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="../../d4/d95/namespacemod__clust__algorithm.html">mod_clust_algorithm</a> </td><td class="markdownTableBodyNone">write_clusters </td><td class="markdownTableBodyNone">1 </td><td class="markdownTableBodyNone">Yes  </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="../../dd/d00/namespacemod__pdb.html" title="Module to define a pdb type and pdb reading routine for tools.">mod_pdb</a> </td><td class="markdownTableBodyNone">chain management </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Success  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="../../d6/ded/namespacemod__assoc.html" title="Association/complexes file utilities.">mod_assoc</a> </td><td class="markdownTableBodyNone">read_assoc_file </td><td class="markdownTableBodyNone">6 </td><td class="markdownTableBodyNone">Yes  </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="../../dd/d00/namespacemod__pdb.html" title="Module to define a pdb type and pdb reading routine for tools.">mod_pdb</a> </td><td class="markdownTableBodyNone">count/allocate/fill </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Success  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="../../d6/ded/namespacemod__assoc.html" title="Association/complexes file utilities.">mod_assoc</a> </td><td class="markdownTableBodyNone">allocate_assoc_object </td><td class="markdownTableBodyNone">3 </td><td class="markdownTableBodyNone">Yes  </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="../../d4/d95/namespacemod__clust__algorithm.html">mod_clust_algorithm</a> </td><td class="markdownTableBodyNone">clustering statistics </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Success  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="../../d6/ded/namespacemod__assoc.html" title="Association/complexes file utilities.">mod_assoc</a> </td><td class="markdownTableBodyNone">size_assoc </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Yes  </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="../../d4/d95/namespacemod__clust__algorithm.html">mod_clust_algorithm</a> </td><td class="markdownTableBodyNone">simple_clustering </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Success  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="../../d9/d5d/namespaceread__input.html">read_input</a> </td><td class="markdownTableBodyNone">read_input_assoc </td><td class="markdownTableBodyNone">7 </td><td class="markdownTableBodyNone">Yes  </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="../../d4/d95/namespacemod__clust__algorithm.html">mod_clust_algorithm</a> </td><td class="markdownTableBodyNone">linkage_clustering </td><td class="markdownTableBodyNone">3 </td><td class="markdownTableBodyNone">Success  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="../../d9/d5d/namespaceread__input.html">read_input</a> </td><td class="markdownTableBodyNone">error_handling </td><td class="markdownTableBodyNone">3 </td><td class="markdownTableBodyNone">Yes  </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="../../d4/d95/namespacemod__clust__algorithm.html">mod_clust_algorithm</a> </td><td class="markdownTableBodyNone">write_clusters </td><td class="markdownTableBodyNone">1 </td><td class="markdownTableBodyNone">Success  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="../../d6/ded/namespacemod__assoc.html" title="Association/complexes file utilities.">mod_assoc</a> </td><td class="markdownTableBodyNone">read_assoc_file </td><td class="markdownTableBodyNone">6 </td><td class="markdownTableBodyNone">Success  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="../../d6/ded/namespacemod__assoc.html" title="Association/complexes file utilities.">mod_assoc</a> </td><td class="markdownTableBodyNone">allocate_assoc_object </td><td class="markdownTableBodyNone">3 </td><td class="markdownTableBodyNone">Success  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="../../d6/ded/namespacemod__assoc.html" title="Association/complexes file utilities.">mod_assoc</a> </td><td class="markdownTableBodyNone">size_assoc </td><td class="markdownTableBodyNone">2 </td><td class="markdownTableBodyNone">Success  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="../../d9/d5d/namespaceread__input.html">read_input</a> </td><td class="markdownTableBodyNone">read_input_assoc </td><td class="markdownTableBodyNone">7 </td><td class="markdownTableBodyNone">Success  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="../../d9/d5d/namespaceread__input.html">read_input</a> </td><td class="markdownTableBodyNone">error_handling </td><td class="markdownTableBodyNone">3 </td><td class="markdownTableBodyNone">Success  </td></tr>
 </table>
-<p><b>Total: 82 tests</b></p>
-<h1><a class="anchor" id="autotoc_md84"></a>
+<p><b>Total: 89 tests</b></p>
+<h1><a class="anchor" id="autotoc_md83"></a>
 Adding New Tests</h1>
 <p>To add tests for additional subroutines:</p>
 <ol type="1">
@@ -411,40 +438,22 @@ Adding New Tests</h1>
 <li><b>Add compilation rule</b> to Makefile</li>
 <li><b>Document test</b> in this README</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md85"></a>
-Best Practices</h1>
-<ol type="1">
-<li><b>Test isolation</b>: Each test should be independent</li>
-<li><b>Clear naming</b>: Use descriptive test names</li>
-<li><b>Tolerance handling</b>: Use appropriate floating-point tolerances (typically 1d-10 or 1d-8)</li>
-<li><b>Edge cases</b>: Test boundary conditions and special cases</li>
-<li><b>Performance</b>: Consider testing with realistic data sizes</li>
-<li><b>Documentation</b>: Include test purpose in comments</li>
-</ol>
-<h1><a class="anchor" id="autotoc_md86"></a>
+<h1><a class="anchor" id="autotoc_md84"></a>
 Troubleshooting</h1>
-<h2><a class="anchor" id="autotoc_md87"></a>
-Compilation errors:</h2>
-<ul>
-<li>Ensure all required modules are compiled first</li>
-<li>Check for missing <code>-fopenmp</code> flag if using OpenMP</li>
-<li>Verify Fortran standard compatibility</li>
-</ul>
-<h2><a class="anchor" id="autotoc_md88"></a>
+<h2><a class="anchor" id="autotoc_md85"></a>
 Runtime failures:</h2>
 <ul>
 <li>Check for NaN/Inf values in calculations</li>
 <li>Verify array bounds and allocation</li>
 <li>Review floating-point tolerance settings</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md89"></a>
+<h2><a class="anchor" id="autotoc_md86"></a>
 Performance issues:</h2>
 <ul>
 <li>Monitor memory usage for large matrices</li>
 <li>Use OpenMP pragmas for parallelized loops</li>
-<li>Profile with <code>gprof</code> or similar tools</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md90"></a>
+<h1><a class="anchor" id="autotoc_md87"></a>
 References</h1>
 <ul>
 <li><a href="https://stdlib.fortran-lang.org/">Fortran Standard Library</a></li>
@@ -452,7 +461,7 @@ References</h1>
 <li><a href="https://www.wwpdb.org/documentation/file-format">PDB File Format</a></li>
 </ul>
 <hr  />
-<p><b>Author</b>: Abraham Muniz-Chicharro <br  />
+<p><b>Author</b>: Abraham Muñiz-Chicharro <br  />
  <b>Version</b>: 1.0 <br  />
  <b>Date</b>: February 2026 </p>
 </div></div><!-- contents -->

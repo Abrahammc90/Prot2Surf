@@ -1,6 +1,6 @@
-\hypertarget{md_unit_test_TESTING_autotoc_md67}{}\doxysection{Overview}\label{md_unit_test_TESTING_autotoc_md67}
-This directory contains comprehensive unit tests for the Fortran subroutines in the clustering program. The tests verify correctness of mathematical operations, data structures, and algorithmic components.\hypertarget{md_unit_test_TESTING_autotoc_md68}{}\doxysection{Test Files}\label{md_unit_test_TESTING_autotoc_md68}
-\hypertarget{md_unit_test_TESTING_autotoc_md69}{}\doxysubsection{1. $<$strong$>$test\+\_\+maths.\+f90$<$/strong$>$}\label{md_unit_test_TESTING_autotoc_md69}
+\hypertarget{md_unit_test_TESTING_autotoc_md66}{}\doxysection{Overview}\label{md_unit_test_TESTING_autotoc_md66}
+This directory contains comprehensive unit tests for the Fortran subroutines in the clustering program. The tests verify correctness of mathematical operations, data structures, and algorithmic components.\hypertarget{md_unit_test_TESTING_autotoc_md67}{}\doxysection{Test Files}\label{md_unit_test_TESTING_autotoc_md67}
+\hypertarget{md_unit_test_TESTING_autotoc_md68}{}\doxysubsection{1. $<$strong$>$test\+\_\+maths.\+f90$<$/strong$>$}\label{md_unit_test_TESTING_autotoc_md68}
 Tests mathematical operations in the {\ttfamily maths} module\+:
 \begin{DoxyItemize}
 \item {\bfseries{Cross product calculation}} ({\ttfamily cross} subroutine) -\/ 4 tests
@@ -31,7 +31,7 @@ Tests mathematical operations in the {\ttfamily maths} module\+:
 \item Translated structures
 \item Rotated structures
 \end{DoxyItemize}
-\item {\bfseries{Center of geometry}} ({\ttfamily calculate\+\_\+cog} subroutine) -\/ 5 tests
+\item {\bfseries{Center of geometry}} ({\ttfamily calculate\+\_\+cog} subroutine) -\/ 4 tests
 \begin{DoxyItemize}
 \item Simple geometries
 \item Symmetric point clouds
@@ -45,7 +45,7 @@ Tests mathematical operations in the {\ttfamily maths} module\+:
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-{\bfseries{Total\+: 31 tests}}\hypertarget{md_unit_test_TESTING_autotoc_md70}{}\doxysubsection{2. $<$strong$>$test\+\_\+matrix.\+f90$<$/strong$>$}\label{md_unit_test_TESTING_autotoc_md70}
+{\bfseries{Total\+: 30 tests}}\hypertarget{md_unit_test_TESTING_autotoc_md69}{}\doxysubsection{2. $<$strong$>$test\+\_\+matrix.\+f90$<$/strong$>$}\label{md_unit_test_TESTING_autotoc_md69}
 Tests matrix operations in the {\ttfamily \mbox{\hyperlink{namespacemod__matrix}{mod\+\_\+matrix}}} module\+:
 \begin{DoxyItemize}
 \item {\bfseries{Matrix file I/O}} ({\ttfamily write\+\_\+matrix}, {\ttfamily read\+\_\+matrix}) -\/ 2 tests
@@ -63,14 +63,22 @@ Tests matrix operations in the {\ttfamily \mbox{\hyperlink{namespacemod__matrix}
 \item Identity transformation (coordinates unchanged)
 \item Translation transformations
 \end{DoxyItemize}
-\item {\bfseries{R\+M\+SD matrix calculation}} ({\ttfamily matrix\+\_\+rmsd\+\_\+calc}) -\/ 2 tests
+\item {\bfseries{R\+M\+SD matrix calculation}} ({\ttfamily matrix\+\_\+rmsd}) -\/ 2 tests
 \begin{DoxyItemize}
 \item Symmetry verification
 \item Diagonal properties (zeros on diagonal)
 \end{DoxyItemize}
+\item {\bfseries{Atom distance matrix calculation}} ({\ttfamily matrix\+\_\+atoms\+\_\+dist}) -\/ 1 test
+\begin{DoxyItemize}
+\item Minimum distance differences
+\end{DoxyItemize}
+\item {\bfseries{Angle matrix calculation}} ({\ttfamily matrix\+\_\+angle}) -\/ 1 test
+\begin{DoxyItemize}
+\item 2D angle differences
+\end{DoxyItemize}
 \end{DoxyItemize}
 
-{\bfseries{Total\+: 8 tests}}\hypertarget{md_unit_test_TESTING_autotoc_md71}{}\doxysubsection{3. $<$strong$>$test\+\_\+threshold.\+f90$<$/strong$>$}\label{md_unit_test_TESTING_autotoc_md71}
+{\bfseries{Total\+: 10 tests}}\hypertarget{md_unit_test_TESTING_autotoc_md70}{}\doxysubsection{3. $<$strong$>$test\+\_\+threshold.\+f90$<$/strong$>$}\label{md_unit_test_TESTING_autotoc_md70}
 Tests threshold array operations in the {\ttfamily \mbox{\hyperlink{namespacemod__threshold}{mod\+\_\+threshold}}} module\+:
 \begin{DoxyItemize}
 \item {\bfseries{Z-\/coordinate array calculation}} ({\ttfamily array\+\_\+z\+\_\+coord}) -\/ 2 tests
@@ -96,7 +104,7 @@ Tests threshold array operations in the {\ttfamily \mbox{\hyperlink{namespacemod
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-{\bfseries{Total\+: 9 tests}}\hypertarget{md_unit_test_TESTING_autotoc_md72}{}\doxysubsection{4. $<$strong$>$test\+\_\+pdb.\+f90$<$/strong$>$}\label{md_unit_test_TESTING_autotoc_md72}
+{\bfseries{Total\+: 9 tests}}\hypertarget{md_unit_test_TESTING_autotoc_md71}{}\doxysubsection{4. $<$strong$>$test\+\_\+pdb.\+f90$<$/strong$>$}\label{md_unit_test_TESTING_autotoc_md71}
 Tests P\+DB file structures and operations in the {\ttfamily \mbox{\hyperlink{namespacemod__pdb}{mod\+\_\+pdb}}} module\+:
 \begin{DoxyItemize}
 \item {\bfseries{P\+DB type initialization}} -\/ 3 tests
@@ -105,20 +113,29 @@ Tests P\+DB file structures and operations in the {\ttfamily \mbox{\hyperlink{na
 \item Atom array creation
 \item Residue array creation
 \end{DoxyItemize}
-\item {\bfseries{Atom properties}} -\/ 3 tests
+\item {\bfseries{Atom properties}} -\/ 2 tests
 \begin{DoxyItemize}
 \item Coordinate assignment
 \item Name and residue information
-\item Occupancy and B-\/factor values
 \end{DoxyItemize}
 \item {\bfseries{Residue management}} -\/ 2 tests
 \begin{DoxyItemize}
 \item Residue property assignment
 \item Atom array allocation within residues
 \end{DoxyItemize}
+\item {\bfseries{Chain management}} -\/ 2 tests
+\begin{DoxyItemize}
+\item Chain property assignment
+\item Atom/residue array allocation
+\end{DoxyItemize}
+\item {\bfseries{P\+DB routines}} -\/ 2 tests
+\begin{DoxyItemize}
+\item count\+\_\+atoms/count\+\_\+residues/count\+\_\+chains
+\item allocate\+\_\+pdb\+\_\+object/fill\+\_\+pdb\+\_\+object
+\end{DoxyItemize}
 \end{DoxyItemize}
 
-{\bfseries{Total\+: 8 tests}}\hypertarget{md_unit_test_TESTING_autotoc_md73}{}\doxysubsection{5. $<$strong$>$test\+\_\+clustering.\+f90$<$/strong$>$}\label{md_unit_test_TESTING_autotoc_md73}
+{\bfseries{Total\+: 11 tests}}\hypertarget{md_unit_test_TESTING_autotoc_md72}{}\doxysubsection{5. $<$strong$>$test\+\_\+clustering.\+f90$<$/strong$>$}\label{md_unit_test_TESTING_autotoc_md72}
 Tests clustering algorithms in the {\ttfamily \mbox{\hyperlink{namespacemod__clust__algorithm}{mod\+\_\+clust\+\_\+algorithm}}} module\+:
 \begin{DoxyItemize}
 \item {\bfseries{Clustering statistics}} ({\ttfamily calculate\+\_\+mean\+\_\+distance}, {\ttfamily calculate\+\_\+std\+\_\+deviation}) -\/ 2 tests
@@ -131,6 +148,12 @@ Tests clustering algorithms in the {\ttfamily \mbox{\hyperlink{namespacemod__clu
 \item Tight cluster pair detection
 \item Identical point handling
 \end{DoxyItemize}
+\item {\bfseries{Linkage clustering}} ({\ttfamily linkage\+\_\+clustering}) -\/ 3 tests
+\begin{DoxyItemize}
+\item Minimum linkage
+\item Maximum linkage
+\item Mean linkage
+\end{DoxyItemize}
 \item {\bfseries{Cluster output}} ({\ttfamily write\+\_\+clusters}) -\/ 1 test
 \begin{DoxyItemize}
 \item File output verification
@@ -138,7 +161,7 @@ Tests clustering algorithms in the {\ttfamily \mbox{\hyperlink{namespacemod__clu
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-{\bfseries{Total\+: 5 tests}}\hypertarget{md_unit_test_TESTING_autotoc_md74}{}\doxysubsection{6. $<$strong$>$test\+\_\+assoc.\+f90$<$/strong$>$ (\+N\+E\+W)}\label{md_unit_test_TESTING_autotoc_md74}
+{\bfseries{Total\+: 8 tests}}\hypertarget{md_unit_test_TESTING_autotoc_md73}{}\doxysubsection{6. $<$strong$>$test\+\_\+assoc.\+f90$<$/strong$>$ (\+N\+E\+W)}\label{md_unit_test_TESTING_autotoc_md73}
 Tests association/complexes file reading in the {\ttfamily \mbox{\hyperlink{namespacemod__assoc}{mod\+\_\+assoc}}} module\+:
 \begin{DoxyItemize}
 \item {\bfseries{File reading}} ({\ttfamily read\+\_\+assoc\+\_\+file}) -\/ 6 tests
@@ -163,7 +186,7 @@ Tests association/complexes file reading in the {\ttfamily \mbox{\hyperlink{name
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-{\bfseries{Total\+: 11 tests}}\hypertarget{md_unit_test_TESTING_autotoc_md75}{}\doxysubsection{7. $<$strong$>$test\+\_\+read\+\_\+input.\+f90$<$/strong$>$ (\+N\+E\+W)}\label{md_unit_test_TESTING_autotoc_md75}
+{\bfseries{Total\+: 11 tests}}\hypertarget{md_unit_test_TESTING_autotoc_md74}{}\doxysubsection{7. $<$strong$>$test\+\_\+read\+\_\+input.\+f90$<$/strong$>$ (\+N\+E\+W)}\label{md_unit_test_TESTING_autotoc_md74}
 Tests \mbox{\hyperlink{namespaceread__input}{read\+\_\+input}} module wrapper functions\+:
 \begin{DoxyItemize}
 \item {\bfseries{Association file reading}} ({\ttfamily read\+\_\+input\+\_\+assoc}) -\/ 7 tests
@@ -184,17 +207,8 @@ Tests \mbox{\hyperlink{namespaceread__input}{read\+\_\+input}} module wrapper fu
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-{\bfseries{Total\+: 10 tests}}
-\begin{DoxyItemize}
-\item Occupancy and B-\/factor values
-\end{DoxyItemize}
-
-{\bfseries{Residue management}}
-\begin{DoxyItemize}
-\item Residue property assignment
-\item Atom array allocation within residues
-\end{DoxyItemize}\hypertarget{md_unit_test_TESTING_autotoc_md76}{}\doxysection{Compilation}\label{md_unit_test_TESTING_autotoc_md76}
-\hypertarget{md_unit_test_TESTING_autotoc_md77}{}\doxysubsection{Compile individual tests\+:}\label{md_unit_test_TESTING_autotoc_md77}
+{\bfseries{Total\+: 10 tests}}\hypertarget{md_unit_test_TESTING_autotoc_md75}{}\doxysection{Compilation}\label{md_unit_test_TESTING_autotoc_md75}
+\hypertarget{md_unit_test_TESTING_autotoc_md76}{}\doxysubsection{Compile individual tests\+:}\label{md_unit_test_TESTING_autotoc_md76}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\# Test mathematical operations (requires maths.f90 and mod\_pdb.f90)}
@@ -218,7 +232,7 @@ Tests \mbox{\hyperlink{namespaceread__input}{read\+\_\+input}} module wrapper fu
 \DoxyCodeLine{\# Test read\_input module (requires read\_input.f90, mod\_pdb.f90, mod\_assoc.f90)}
 \DoxyCodeLine{gfortran -\/o test\_read\_input test\_read\_input.f90 ../src/read\_input.o ../src/mod\_pdb.o ../src/mod\_assoc.o}
 \end{DoxyCode}
-\hypertarget{md_unit_test_TESTING_autotoc_md78}{}\doxysubsection{Compile all tests at once\+:}\label{md_unit_test_TESTING_autotoc_md78}
+\hypertarget{md_unit_test_TESTING_autotoc_md77}{}\doxysubsection{Compile all tests at once\+:}\label{md_unit_test_TESTING_autotoc_md77}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\# Using make (from src directory)}
@@ -227,8 +241,8 @@ Tests \mbox{\hyperlink{namespaceread__input}{read\+\_\+input}} module wrapper fu
 \DoxyCodeLine{\# Or using the test runner script (from unit\_tests directory)}
 \DoxyCodeLine{bash run\_all\_tests.sh}
 \end{DoxyCode}
-\hypertarget{md_unit_test_TESTING_autotoc_md79}{}\doxysection{Running Tests}\label{md_unit_test_TESTING_autotoc_md79}
-\hypertarget{md_unit_test_TESTING_autotoc_md80}{}\doxysubsection{Run individual tests\+:}\label{md_unit_test_TESTING_autotoc_md80}
+\hypertarget{md_unit_test_TESTING_autotoc_md78}{}\doxysection{Running Tests}\label{md_unit_test_TESTING_autotoc_md78}
+\hypertarget{md_unit_test_TESTING_autotoc_md79}{}\doxysubsection{Run individual tests\+:}\label{md_unit_test_TESTING_autotoc_md79}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{./test\_maths}
@@ -236,13 +250,13 @@ Tests \mbox{\hyperlink{namespaceread__input}{read\+\_\+input}} module wrapper fu
 \DoxyCodeLine{./test\_threshold}
 \DoxyCodeLine{./test\_pdb}
 \end{DoxyCode}
-\hypertarget{md_unit_test_TESTING_autotoc_md81}{}\doxysubsection{Run all tests\+:}\label{md_unit_test_TESTING_autotoc_md81}
+\hypertarget{md_unit_test_TESTING_autotoc_md80}{}\doxysubsection{Run all tests\+:}\label{md_unit_test_TESTING_autotoc_md80}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\# Create a simple test runner script}
 \DoxyCodeLine{bash run\_all\_tests.sh}
 \end{DoxyCode}
-\hypertarget{md_unit_test_TESTING_autotoc_md82}{}\doxysection{Example Output}\label{md_unit_test_TESTING_autotoc_md82}
+\hypertarget{md_unit_test_TESTING_autotoc_md81}{}\doxysection{Example Output}\label{md_unit_test_TESTING_autotoc_md81}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{=========================================}
@@ -262,12 +276,12 @@ Tests \mbox{\hyperlink{namespaceread__input}{read\+\_\+input}} module wrapper fu
 \DoxyCodeLine{=========================================}
 \DoxyCodeLine{TEST SUMMARY}
 \DoxyCodeLine{=========================================}
-\DoxyCodeLine{Total tests:  6}
-\DoxyCodeLine{Passed:       6}
+\DoxyCodeLine{Total tests:  30}
+\DoxyCodeLine{Passed:       30}
 \DoxyCodeLine{Failed:       0}
 \DoxyCodeLine{=========================================}
 \end{DoxyCode}
-\hypertarget{md_unit_test_TESTING_autotoc_md83}{}\doxysection{Test Coverage}\label{md_unit_test_TESTING_autotoc_md83}
+\hypertarget{md_unit_test_TESTING_autotoc_md82}{}\doxysection{Test Coverage}\label{md_unit_test_TESTING_autotoc_md82}
 \tabulinesep=1mm
 \begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
 \hline
@@ -278,36 +292,41 @@ Tests \mbox{\hyperlink{namespaceread__input}{read\+\_\+input}} module wrapper fu
 \hline
 \PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Module }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Subroutine }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Tests }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Status  }\\\cline{1-4}
 \endhead
-maths &cross &4 &Yes  \\\cline{1-4}
-maths &update\+\_\+complex &7 &Yes  \\\cline{1-4}
-maths &vectors\+\_\+angle\+\_\+3D &4 &Yes  \\\cline{1-4}
-maths &vectors\+\_\+angle\+\_\+2D &4 &Yes  \\\cline{1-4}
-maths &rmsd &3 &Yes  \\\cline{1-4}
-maths &calculate\+\_\+cog &5 &Yes  \\\cline{1-4}
-maths &calculate\+\_\+distance &4 &Yes  \\\cline{1-4}
-\mbox{\hyperlink{namespacemod__matrix}{mod\+\_\+matrix}} &write\+\_\+matrix / read\+\_\+matrix &2 &Yes  \\\cline{1-4}
-\mbox{\hyperlink{namespacemod__matrix}{mod\+\_\+matrix}} &write\+\_\+array / read\+\_\+array &2 &Yes  \\\cline{1-4}
-\mbox{\hyperlink{namespacemod__matrix}{mod\+\_\+matrix}} &matrix\+\_\+z\+\_\+coord &2 &Yes  \\\cline{1-4}
-\mbox{\hyperlink{namespacemod__matrix}{mod\+\_\+matrix}} &matrix\+\_\+rmsd\+\_\+calc &2 &Yes  \\\cline{1-4}
-\mbox{\hyperlink{namespacemod__threshold}{mod\+\_\+threshold}} &array\+\_\+z\+\_\+coord &2 &Yes  \\\cline{1-4}
-\mbox{\hyperlink{namespacemod__threshold}{mod\+\_\+threshold}} &array\+\_\+atoms\+\_\+dist &2 &Yes  \\\cline{1-4}
-\mbox{\hyperlink{namespacemod__threshold}{mod\+\_\+threshold}} &array\+\_\+angle &2 &Yes  \\\cline{1-4}
-\mbox{\hyperlink{namespacemod__threshold}{mod\+\_\+threshold}} &sort\+\_\+array &3 &Yes  \\\cline{1-4}
-\mbox{\hyperlink{namespacemod__pdb}{mod\+\_\+pdb}} &P\+DB allocation &3 &Yes  \\\cline{1-4}
-\mbox{\hyperlink{namespacemod__pdb}{mod\+\_\+pdb}} &atom properties &3 &Yes  \\\cline{1-4}
-\mbox{\hyperlink{namespacemod__pdb}{mod\+\_\+pdb}} &residue management &2 &Yes  \\\cline{1-4}
-\mbox{\hyperlink{namespacemod__clust__algorithm}{mod\+\_\+clust\+\_\+algorithm}} &clustering statistics &2 &Yes  \\\cline{1-4}
-\mbox{\hyperlink{namespacemod__clust__algorithm}{mod\+\_\+clust\+\_\+algorithm}} &simple\+\_\+clustering &2 &Yes  \\\cline{1-4}
-\mbox{\hyperlink{namespacemod__clust__algorithm}{mod\+\_\+clust\+\_\+algorithm}} &write\+\_\+clusters &1 &Yes  \\\cline{1-4}
-\mbox{\hyperlink{namespacemod__assoc}{mod\+\_\+assoc}} &read\+\_\+assoc\+\_\+file &6 &Yes  \\\cline{1-4}
-\mbox{\hyperlink{namespacemod__assoc}{mod\+\_\+assoc}} &allocate\+\_\+assoc\+\_\+object &3 &Yes  \\\cline{1-4}
-\mbox{\hyperlink{namespacemod__assoc}{mod\+\_\+assoc}} &size\+\_\+assoc &2 &Yes  \\\cline{1-4}
-\mbox{\hyperlink{namespaceread__input}{read\+\_\+input}} &read\+\_\+input\+\_\+assoc &7 &Yes  \\\cline{1-4}
-\mbox{\hyperlink{namespaceread__input}{read\+\_\+input}} &error\+\_\+handling &3 &Yes  \\\cline{1-4}
+maths &cross &4 &Success  \\\cline{1-4}
+maths &update\+\_\+complex &7 &Success  \\\cline{1-4}
+maths &vectors\+\_\+angle\+\_\+3D &4 &Success  \\\cline{1-4}
+maths &vectors\+\_\+angle\+\_\+2D &4 &Success  \\\cline{1-4}
+maths &rmsd &3 &Success  \\\cline{1-4}
+maths &calculate\+\_\+cog &4 &Success  \\\cline{1-4}
+maths &calculate\+\_\+distance &4 &Success  \\\cline{1-4}
+\mbox{\hyperlink{namespacemod__matrix}{mod\+\_\+matrix}} &write\+\_\+matrix / read\+\_\+matrix &2 &Success  \\\cline{1-4}
+\mbox{\hyperlink{namespacemod__matrix}{mod\+\_\+matrix}} &write\+\_\+array / read\+\_\+array &2 &Success  \\\cline{1-4}
+\mbox{\hyperlink{namespacemod__matrix}{mod\+\_\+matrix}} &matrix\+\_\+z\+\_\+coord &2 &Success  \\\cline{1-4}
+\mbox{\hyperlink{namespacemod__matrix}{mod\+\_\+matrix}} &matrix\+\_\+rmsd\+\_\+calc &2 &Success  \\\cline{1-4}
+\mbox{\hyperlink{namespacemod__matrix}{mod\+\_\+matrix}} &matrix\+\_\+atoms\+\_\+dist &1 &Success  \\\cline{1-4}
+\mbox{\hyperlink{namespacemod__matrix}{mod\+\_\+matrix}} &matrix\+\_\+angle &1 &Success  \\\cline{1-4}
+\mbox{\hyperlink{namespacemod__threshold}{mod\+\_\+threshold}} &array\+\_\+z\+\_\+coord &2 &Success  \\\cline{1-4}
+\mbox{\hyperlink{namespacemod__threshold}{mod\+\_\+threshold}} &array\+\_\+atoms\+\_\+dist &2 &Success  \\\cline{1-4}
+\mbox{\hyperlink{namespacemod__threshold}{mod\+\_\+threshold}} &array\+\_\+angle &2 &Success  \\\cline{1-4}
+\mbox{\hyperlink{namespacemod__threshold}{mod\+\_\+threshold}} &sort\+\_\+array &3 &Success  \\\cline{1-4}
+\mbox{\hyperlink{namespacemod__pdb}{mod\+\_\+pdb}} &P\+DB allocation &3 &Success  \\\cline{1-4}
+\mbox{\hyperlink{namespacemod__pdb}{mod\+\_\+pdb}} &atom properties &2 &Success  \\\cline{1-4}
+\mbox{\hyperlink{namespacemod__pdb}{mod\+\_\+pdb}} &residue management &2 &Success  \\\cline{1-4}
+\mbox{\hyperlink{namespacemod__pdb}{mod\+\_\+pdb}} &chain management &2 &Success  \\\cline{1-4}
+\mbox{\hyperlink{namespacemod__pdb}{mod\+\_\+pdb}} &count/allocate/fill &2 &Success  \\\cline{1-4}
+\mbox{\hyperlink{namespacemod__clust__algorithm}{mod\+\_\+clust\+\_\+algorithm}} &clustering statistics &2 &Success  \\\cline{1-4}
+\mbox{\hyperlink{namespacemod__clust__algorithm}{mod\+\_\+clust\+\_\+algorithm}} &simple\+\_\+clustering &2 &Success  \\\cline{1-4}
+\mbox{\hyperlink{namespacemod__clust__algorithm}{mod\+\_\+clust\+\_\+algorithm}} &linkage\+\_\+clustering &3 &Success  \\\cline{1-4}
+\mbox{\hyperlink{namespacemod__clust__algorithm}{mod\+\_\+clust\+\_\+algorithm}} &write\+\_\+clusters &1 &Success  \\\cline{1-4}
+\mbox{\hyperlink{namespacemod__assoc}{mod\+\_\+assoc}} &read\+\_\+assoc\+\_\+file &6 &Success  \\\cline{1-4}
+\mbox{\hyperlink{namespacemod__assoc}{mod\+\_\+assoc}} &allocate\+\_\+assoc\+\_\+object &3 &Success  \\\cline{1-4}
+\mbox{\hyperlink{namespacemod__assoc}{mod\+\_\+assoc}} &size\+\_\+assoc &2 &Success  \\\cline{1-4}
+\mbox{\hyperlink{namespaceread__input}{read\+\_\+input}} &read\+\_\+input\+\_\+assoc &7 &Success  \\\cline{1-4}
+\mbox{\hyperlink{namespaceread__input}{read\+\_\+input}} &error\+\_\+handling &3 &Success  \\\cline{1-4}
 \end{longtabu}
 
 
-{\bfseries{Total\+: 82 tests}}\hypertarget{md_unit_test_TESTING_autotoc_md84}{}\doxysection{Adding New Tests}\label{md_unit_test_TESTING_autotoc_md84}
+{\bfseries{Total\+: 89 tests}}\hypertarget{md_unit_test_TESTING_autotoc_md83}{}\doxysection{Adding New Tests}\label{md_unit_test_TESTING_autotoc_md83}
 To add tests for additional subroutines\+:
 
 
@@ -339,35 +358,19 @@ To add tests for additional subroutines\+:
 
 \item {\bfseries{Add compilation rule}} to Makefile
 \item {\bfseries{Document test}} in this R\+E\+A\+D\+ME
-\end{DoxyEnumerate}\hypertarget{md_unit_test_TESTING_autotoc_md85}{}\doxysection{Best Practices}\label{md_unit_test_TESTING_autotoc_md85}
-
-\begin{DoxyEnumerate}
-\item {\bfseries{Test isolation}}\+: Each test should be independent
-\item {\bfseries{Clear naming}}\+: Use descriptive test names
-\item {\bfseries{Tolerance handling}}\+: Use appropriate floating-\/point tolerances (typically 1d-\/10 or 1d-\/8)
-\item {\bfseries{Edge cases}}\+: Test boundary conditions and special cases
-\item {\bfseries{Performance}}\+: Consider testing with realistic data sizes
-\item {\bfseries{Documentation}}\+: Include test purpose in comments
-\end{DoxyEnumerate}\hypertarget{md_unit_test_TESTING_autotoc_md86}{}\doxysection{Troubleshooting}\label{md_unit_test_TESTING_autotoc_md86}
-\hypertarget{md_unit_test_TESTING_autotoc_md87}{}\doxysubsection{Compilation errors\+:}\label{md_unit_test_TESTING_autotoc_md87}
-
-\begin{DoxyItemize}
-\item Ensure all required modules are compiled first
-\item Check for missing {\ttfamily -\/fopenmp} flag if using Open\+MP
-\item Verify Fortran standard compatibility
-\end{DoxyItemize}\hypertarget{md_unit_test_TESTING_autotoc_md88}{}\doxysubsection{Runtime failures\+:}\label{md_unit_test_TESTING_autotoc_md88}
+\end{DoxyEnumerate}\hypertarget{md_unit_test_TESTING_autotoc_md84}{}\doxysection{Troubleshooting}\label{md_unit_test_TESTING_autotoc_md84}
+\hypertarget{md_unit_test_TESTING_autotoc_md85}{}\doxysubsection{Runtime failures\+:}\label{md_unit_test_TESTING_autotoc_md85}
 
 \begin{DoxyItemize}
 \item Check for Na\+N/\+Inf values in calculations
 \item Verify array bounds and allocation
 \item Review floating-\/point tolerance settings
-\end{DoxyItemize}\hypertarget{md_unit_test_TESTING_autotoc_md89}{}\doxysubsection{Performance issues\+:}\label{md_unit_test_TESTING_autotoc_md89}
+\end{DoxyItemize}\hypertarget{md_unit_test_TESTING_autotoc_md86}{}\doxysubsection{Performance issues\+:}\label{md_unit_test_TESTING_autotoc_md86}
 
 \begin{DoxyItemize}
 \item Monitor memory usage for large matrices
 \item Use Open\+MP pragmas for parallelized loops
-\item Profile with {\ttfamily gprof} or similar tools
-\end{DoxyItemize}\hypertarget{md_unit_test_TESTING_autotoc_md90}{}\doxysection{References}\label{md_unit_test_TESTING_autotoc_md90}
+\end{DoxyItemize}\hypertarget{md_unit_test_TESTING_autotoc_md87}{}\doxysection{References}\label{md_unit_test_TESTING_autotoc_md87}
 
 \begin{DoxyItemize}
 \item \href{https://stdlib.fortran-lang.org/}{\texttt{ Fortran Standard Library}}
@@ -378,6 +381,6 @@ To add tests for additional subroutines\+:
 \DoxyHorRuler{0}
 
 
-{\bfseries{Author}}\+: Abraham Muniz-\/\+Chicharro ~\newline
+{\bfseries{Author}}\+: Abraham Muñiz-\/\+Chicharro ~\newline
  {\bfseries{Version}}\+: 1.\+0 ~\newline
  {\bfseries{Date}}\+: February 2026 

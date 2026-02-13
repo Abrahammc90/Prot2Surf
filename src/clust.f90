@@ -24,12 +24,16 @@ program main
     integer :: ios, nb_argument, count_arg
     logical :: complexes_bool, nb_encounters_bool, help_bool
     logical :: matrix_bool, array_bool, output_name_bool
+    logical :: use_cuda_bool
 
     nb_argument = 0
     nb_encounters = 0
     count_arg = 1
     complexes_bool = .false.
     matrix_bool = .false.
+    array_bool = .false.
+    output_name_bool = .false.
+    use_cuda_bool = .false.
     array_bool = .false.
     output_name_bool = .false.
     nb_encounters_bool = .false.
@@ -90,6 +94,8 @@ program main
         count_arg = count_arg + 1
       else if ( trim(argument) == "-help" ) then
         help_bool = .true.
+      else if ( trim(argument) == "-cuda" ) then
+        use_cuda_bool = .true.
       else
         print *,  "ERROR. Argument ", trim(argument), " not recognized."
         print *, "For more information, please use the -help option:"
@@ -159,9 +165,9 @@ program main
 
     if ( len(array_filename) .gt. 0 ) then
       call read_array(array, nb_encounters, array_filename)
-      call linkage_clustering(matrix, nb_encounters, linkage_type, output_name, complexes, array)
+      call linkage_clustering(matrix, nb_encounters, linkage_type, output_name, complexes, array, use_cuda_bool)
     else
-      call linkage_clustering(matrix, nb_encounters, linkage_type, output_name, complexes)
+      call linkage_clustering(matrix, nb_encounters, linkage_type, output_name, complexes, use_cuda=use_cuda_bool)
     end if
 
     contains
@@ -189,6 +195,7 @@ program main
       print *, "  -array <file>           Array input file for additional values"
       print *, "  -linkage <type>         Linkage method: 'min', 'max', or 'mean'"
       print *, "                          (default: 'mean')"
+      print *, "  -cuda                   Use hybrid CPU/GPU acceleration"
       print *, "  -help                   Display this help message"
       print *, ""
       print *, "Linkage types:"

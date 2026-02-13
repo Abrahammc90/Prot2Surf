@@ -1,21 +1,5 @@
 var searchData=
 [
-  ['main_26',['main',['../d5/d92/analyze__residues_8f90.html#a8ec2266d83cd6c0b762cbcbc92c0af3d',1,'main:&#160;analyze_residues.f90'],['../da/da3/clust_8f90.html#a8ec2266d83cd6c0b762cbcbc92c0af3d',1,'main:&#160;clust.f90'],['../d4/dd7/make__matrix_8f90.html#a8ec2266d83cd6c0b762cbcbc92c0af3d',1,'main:&#160;make_matrix.f90'],['../d9/dcc/threshold_8f90.html#a8ec2266d83cd6c0b762cbcbc92c0af3d',1,'main:&#160;threshold.f90']]],
-  ['make_5fmatrix_2ef90_27',['make_matrix.f90',['../d4/dd7/make__matrix_8f90.html',1,'']]],
-  ['maths_28',['maths',['../da/d63/namespacemaths.html',1,'']]],
-  ['maths_2ef90_29',['maths.f90',['../d1/d53/maths_8f90.html',1,'']]],
-  ['matrix_5fangle_30',['matrix_angle',['../db/d1d/namespacemod__matrix.html#a83c35621a4e33d0e6e6ae8e4a76a3cb8',1,'mod_matrix']]],
-  ['matrix_5fatoms_5fdist_31',['matrix_atoms_dist',['../db/d1d/namespacemod__matrix.html#a487f996f27bc33883c050522fdf40c3d',1,'mod_matrix']]],
-  ['matrix_5frmsd_32',['matrix_rmsd',['../db/d1d/namespacemod__matrix.html#a10eab892b87e949df1b1df1152106585',1,'mod_matrix']]],
-  ['matrix_5fz_5fcoord_33',['matrix_z_coord',['../db/d1d/namespacemod__matrix.html#a9de83edad93118cfe2ad02d916b0148f',1,'mod_matrix']]],
-  ['mod_5fassoc_34',['mod_assoc',['../d6/ded/namespacemod__assoc.html',1,'']]],
-  ['mod_5fassoc_2ef90_35',['mod_assoc.f90',['../d4/d05/mod__assoc_8f90.html',1,'']]],
-  ['mod_5fclust_5falgorithm_36',['mod_clust_algorithm',['../d4/d95/namespacemod__clust__algorithm.html',1,'']]],
-  ['mod_5fclust_5falgorithm_2ef90_37',['mod_clust_algorithm.f90',['../d6/d16/mod__clust__algorithm_8f90.html',1,'']]],
-  ['mod_5fmatrix_38',['mod_matrix',['../db/d1d/namespacemod__matrix.html',1,'']]],
-  ['mod_5fmatrix_2ef90_39',['mod_matrix.f90',['../d7/d71/mod__matrix_8f90.html',1,'']]],
-  ['mod_5fpdb_40',['mod_pdb',['../dd/d00/namespacemod__pdb.html',1,'']]],
-  ['mod_5fpdb_2ef90_41',['mod_pdb.f90',['../d3/dc0/mod__pdb_8f90.html',1,'']]],
-  ['mod_5fthreshold_42',['mod_threshold',['../df/d4c/namespacemod__threshold.html',1,'']]],
-  ['mod_5fthreshold_2ef90_43',['mod_threshold.f90',['../d6/d37/mod__threshold_8f90.html',1,'']]]
+  ['lines_37',['lines',['../df/d2d/structmod__assoc_1_1type__assoc__file.html#a6db9351e06be826de02a8346ba9e7760',1,'mod_assoc::type_assoc_file']]],
+  ['linkage_5fclustering_38',['linkage_clustering',['../d4/d95/namespacemod__clust__algorithm.html#a18403d98b3cc6c67118169d780fd4578',1,'mod_clust_algorithm']]]
 ];

@@ -1,19 +1,24 @@
 # Compiler and flags
 FC = gfortran
+NVCC = nvcc
 #FLAGS = -O0 -Wall -fno-fast-math
 FLAGS = -O0 -Wall -llapack -lblas -fopenmp -march=native -funroll-loops -fno-fast-math
+CUDA_FLAGS = -O2 -arch=sm_86 -std=c++11
 
 # Source files
 MOD_PDB_SRC = mod_pdb.f90
 MOD_ASSOC_SRC = mod_assoc.f90
 READ_INPUT_SRC = read_input.f90
 MATHS_SRC = maths.f90
+MOD_CUDA_SRC = mod_cuda.f90
+CUDA_KERNELS_SRC = cuda_kernels.cu
 MOD_MATRIX_SRC = mod_matrix.f90
 MOD_CLUST_ALGORITHM_SRC = mod_clust_algorithm.f90
 MOD_THRESHOLD_SRC = mod_threshold.f90
 MAKE_MATRIX_SRC = make_matrix.f90
 ANALYZE_RESIDUES_SRC = analyze_residues.f90
 CLUST_SRC = clust.f90
+CLUST_ALL_SRC = clust_all.f90
 THRESH_SRC = threshold.f90
 
 # Object files
@@ -21,12 +26,15 @@ MOD_PDB_OBJ = mod_pdb.o
 MOD_ASSOC_OBJ = mod_assoc.o
 READ_INPUT_OBJ = read_input.o
 MATHS_OBJ = maths.o
+MOD_CUDA_OBJ = mod_cuda.o
+CUDA_KERNELS_OBJ = cuda_kernels.o
 MOD_MATRIX_OBJ = mod_matrix.o
 MOD_CLUST_ALGORITHM_OBJ = mod_clust_algorithm.o
 MOD_THRESHOLD_OBJ = mod_threshold.o
 MAKE_MATRIX_OBJ = make_matrix.o
 ANALYZE_RESIDUES_OBJ = analyze_residues.o
 CLUST_OBJ = clust.o
+CLUST_ALL_OBJ = clust_all.o
 THRESH_OBJ = threshold.o
 
 # Executable
@@ -35,9 +43,10 @@ EXE1 = $(BIN_DIR)/make_matrix
 EXE2 = $(BIN_DIR)/clust
 EXE3 = $(BIN_DIR)/analyze_residues
 EXE4 = $(BIN_DIR)/threshold
+EXE5 = $(BIN_DIR)/clust_all
 
 # Default target: build the executable and documentation
-all: $(EXE1) $(EXE2) $(EXE3) $(EXE4) docs
+all: $(EXE1) $(EXE2) $(EXE3) $(EXE4) $(EXE5) docs
 
 # Rule to compile mod_pdb
 $(MOD_PDB_OBJ): $(MOD_PDB_SRC)
@@ -47,12 +56,20 @@ $(MOD_PDB_OBJ): $(MOD_PDB_SRC)
 $(MOD_ASSOC_OBJ): $(MOD_ASSOC_SRC)
 	$(FC) $(FLAGS) -c $(MOD_ASSOC_SRC)
 
+# Rule to compile CUDA kernels
+$(CUDA_KERNELS_OBJ): $(CUDA_KERNELS_SRC)
+	$(NVCC) $(CUDA_FLAGS) -c $(CUDA_KERNELS_SRC) -o $(CUDA_KERNELS_OBJ)
+
+# Rule to compile mod_cuda (depends on CUDA kernels)
+$(MOD_CUDA_OBJ): $(MOD_CUDA_SRC) $(CUDA_KERNELS_OBJ)
+	$(FC) $(FLAGS) -c $(MOD_CUDA_SRC)
+
 # Rule to compile read_input (depends on mod_pdb and mod_assoc)
 $(READ_INPUT_OBJ): $(READ_INPUT_SRC) $(MOD_PDB_OBJ) $(MOD_ASSOC_OBJ)
 	$(FC) $(FLAGS) -c $(READ_INPUT_SRC)
 
-# Rule to compile mod_clust_algorithm (depends on read_input)
-$(MOD_CLUST_ALGORITHM_OBJ): $(MOD_CLUST_ALGORITHM_SRC) $(READ_INPUT_OBJ) $(MOD_PDB_OBJ) $(MOD_ASSOC_OBJ)
+# Rule to compile mod_clust_algorithm (depends on read_input and mod_cuda)
+$(MOD_CLUST_ALGORITHM_OBJ): $(MOD_CLUST_ALGORITHM_SRC) $(READ_INPUT_OBJ) $(MOD_CUDA_OBJ) $(MOD_PDB_OBJ) $(MOD_ASSOC_OBJ)
 	$(FC) $(FLAGS) -c $(MOD_CLUST_ALGORITHM_SRC)
 
 # Rule to compile maths
@@ -76,8 +93,12 @@ $(MAKE_MATRIX_OBJ): $(MAKE_MATRIX_SRC) $(MOD_PDB_OBJ) $(MOD_ASSOC_OBJ) $(MOD_MAT
 	$(FC) $(FLAGS) -c $(MAKE_MATRIX_SRC)
 
 # Rule to compile clust (depends on mod_matrix and mod_clust_algorithm)
-$(CLUST_OBJ): $(CLUST_SRC) $(MOD_CLUST_ALGORITHM_OBJ) $(READ_INPUT_OBJ) $(MOD_PDB_OBJ) $(MOD_ASSOC_OBJ) $(MOD_MATRIX_OBJ) $(MATHS_OBJ)
+$(CLUST_OBJ): $(CLUST_SRC) $(MOD_CLUST_ALGORITHM_OBJ) $(READ_INPUT_OBJ) $(MOD_PDB_OBJ) $(MOD_ASSOC_OBJ) $(MOD_MATRIX_OBJ) $(MOD_CUDA_OBJ) $(CUDA_KERNELS_OBJ) $(MATHS_OBJ)
 	$(FC) $(FLAGS) -c $(CLUST_SRC)
+
+# Rule to compile clust_all (depends on mod_matrix and mod_clust_algorithm)
+$(CLUST_ALL_OBJ): $(CLUST_ALL_SRC) $(MOD_MATRIX_OBJ) $(MOD_CLUST_ALGORITHM_OBJ) $(READ_INPUT_OBJ) $(MOD_PDB_OBJ) $(MOD_ASSOC_OBJ) $(MOD_CUDA_OBJ) $(CUDA_KERNELS_OBJ) $(MATHS_OBJ)
+	$(FC) $(FLAGS) -c $(CLUST_ALL_SRC)
 
 # Rule to compile analyze_residues (depends on read_input and maths)
 $(ANALYZE_RESIDUES_OBJ): $(ANALYZE_RESIDUES_SRC) $(MATHS_OBJ) $(READ_INPUT_OBJ) $(MOD_PDB_OBJ) $(MOD_ASSOC_OBJ)
@@ -92,16 +113,20 @@ $(EXE1): $(MAKE_MATRIX_OBJ) $(MOD_PDB_OBJ) $(MOD_ASSOC_OBJ) $(MOD_MATRIX_OBJ) $(
 	$(FC) $(FLAGS) -o $(EXE1) $(MAKE_MATRIX_OBJ) $(MOD_PDB_OBJ) $(MOD_ASSOC_OBJ) $(MOD_MATRIX_OBJ) $(READ_INPUT_OBJ) $(MATHS_OBJ)
 
 # Rule to link the clust executable (depends on mod_matrix and mod_clust_algorithm)
-$(EXE2): $(CLUST_OBJ) $(MOD_CLUST_ALGORITHM_OBJ) $(READ_INPUT_OBJ) $(MOD_PDB_OBJ) $(MOD_ASSOC_OBJ) $(MOD_MATRIX_OBJ) $(MATHS_OBJ)
-	$(FC) $(FLAGS) -o $(EXE2) $(CLUST_OBJ) $(MOD_CLUST_ALGORITHM_OBJ) $(READ_INPUT_OBJ) $(MOD_MATRIX_OBJ) $(MATHS_OBJ) $(MOD_PDB_OBJ) $(MOD_ASSOC_OBJ)
+$(EXE2): $(CLUST_OBJ) $(MOD_CLUST_ALGORITHM_OBJ) $(READ_INPUT_OBJ) $(MOD_PDB_OBJ) $(MOD_ASSOC_OBJ) $(MOD_MATRIX_OBJ) $(MOD_CUDA_OBJ) $(CUDA_KERNELS_OBJ) $(MATHS_OBJ)
+	$(FC) $(FLAGS) -o $(EXE2) $(CLUST_OBJ) $(MOD_CLUST_ALGORITHM_OBJ) $(READ_INPUT_OBJ) $(MOD_MATRIX_OBJ) $(MATHS_OBJ) $(MOD_CUDA_OBJ) $(CUDA_KERNELS_OBJ) $(MOD_PDB_OBJ) $(MOD_ASSOC_OBJ) -L/usr/local/cuda/lib64 -lcudart -lstdc++
 
 # Rule to link the analyze_residues executable (depends on mod_matrix and mod_clust_algorithm)
 $(EXE3): $(ANALYZE_RESIDUES_OBJ) $(MATHS_OBJ) $(READ_INPUT_OBJ) $(MOD_PDB_OBJ) $(MOD_ASSOC_OBJ)
 	$(FC) $(FLAGS) -o $(EXE3) $(ANALYZE_RESIDUES_OBJ) $(MATHS_OBJ) $(READ_INPUT_OBJ) $(MOD_PDB_OBJ) $(MOD_ASSOC_OBJ)
 
-# Rule to link the make_matrix executable (depends on all object files)
+# Rule to link the threshold executable (depends on all object files)
 $(EXE4): $(THRESH_OBJ) $(MOD_PDB_OBJ) $(MOD_ASSOC_OBJ) $(MOD_THRESHOLD_OBJ) $(READ_INPUT_OBJ) $(MATHS_OBJ)
 	$(FC) $(FLAGS) -o $(EXE4) $(THRESH_OBJ) $(MOD_PDB_OBJ) $(MOD_ASSOC_OBJ) $(MOD_THRESHOLD_OBJ) $(READ_INPUT_OBJ) $(MATHS_OBJ)
+
+# Rule to link the clust_all executable (depends on mod_matrix and mod_clust_algorithm)
+$(EXE5): $(CLUST_ALL_OBJ) $(MOD_MATRIX_OBJ) $(MOD_CLUST_ALGORITHM_OBJ) $(READ_INPUT_OBJ) $(MOD_PDB_OBJ) $(MOD_ASSOC_OBJ) $(MOD_CUDA_OBJ) $(CUDA_KERNELS_OBJ) $(MATHS_OBJ)
+	$(FC) $(FLAGS) -o $(EXE5) $(CLUST_ALL_OBJ) $(MOD_MATRIX_OBJ) $(MOD_CLUST_ALGORITHM_OBJ) $(READ_INPUT_OBJ) $(MOD_PDB_OBJ) $(MOD_ASSOC_OBJ) $(MATHS_OBJ) $(MOD_CUDA_OBJ) $(CUDA_KERNELS_OBJ) -L/usr/local/cuda/lib64 -lcudart -lstdc++
 
 # Unit test targets - Fortran tests
 UNIT_TESTS_DIR = unit_test
@@ -169,7 +194,7 @@ docs:
 
 # Clean target: remove all compiled files (including test executables)
 clean:
-	rm -f $(EXE1) $(EXE2) $(EXE3) $(EXE4) *.o *.mod
+	rm -f $(EXE1) $(EXE2) $(EXE3) $(EXE4) $(EXE5) *.o *.mod
 	rm -f $(TEST_MATHS) $(TEST_MATRIX) $(TEST_THRESHOLD) $(TEST_PDB) $(TEST_CLUSTERING) $(TEST_ASSOC) $(TEST_READ_INPUT)
 	rm -rf ../docs/doxygen
 

@@ -65,57 +65,57 @@ $(function() {
 <div class="title">Quick Reference: Running Unit Tests </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md14"></a>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md13"></a>
 TL;DR</h1>
 <div class="fragment"><div class="line">cd clustering_program/src/</div>
-<div class="line">make test          # Compile and run all 82 tests</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md15"></a>
+<div class="line">make test          # Compile and run all 89 tests</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md14"></a>
 Test Commands</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Command </th><th class="markdownTableHeadNone">Description  </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>make test</code> </td><td class="markdownTableBodyNone">Compile and run all 82 tests (7 test programs)  </td></tr>
+<td class="markdownTableBodyNone"><code>make test</code> </td><td class="markdownTableBodyNone">Compile and run all 89 tests (7 test programs)  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>make test_maths</code> </td><td class="markdownTableBodyNone">Test mathematical operations (31 tests)  </td></tr>
+<td class="markdownTableBodyNone"><code>make test_maths</code> </td><td class="markdownTableBodyNone">Test mathematical operations (30 tests)  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>make test_matrix</code> </td><td class="markdownTableBodyNone">Test matrix operations (8 tests)  </td></tr>
+<td class="markdownTableBodyNone"><code>make test_matrix</code> </td><td class="markdownTableBodyNone">Test matrix distance generator (10 tests)  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>make test_threshold</code> </td><td class="markdownTableBodyNone">Test threshold arrays (9 tests)  </td></tr>
+<td class="markdownTableBodyNone"><code>make test_threshold</code> </td><td class="markdownTableBodyNone">Test threshold filtering (9 tests)  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>make test_pdb</code> </td><td class="markdownTableBodyNone">Test PDB structures (8 tests)  </td></tr>
+<td class="markdownTableBodyNone"><code>make test_pdb</code> </td><td class="markdownTableBodyNone">Test PDB reading (11 tests)  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>make test_clustering</code> </td><td class="markdownTableBodyNone">Test clustering algorithms (5 tests)  </td></tr>
+<td class="markdownTableBodyNone"><code>make test_clustering</code> </td><td class="markdownTableBodyNone">Test clustering algorithms (8 tests)  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>make test_assoc</code> </td><td class="markdownTableBodyNone">Test association file reading (11 tests) [NEW]  </td></tr>
+<td class="markdownTableBodyNone"><code>make test_assoc</code> </td><td class="markdownTableBodyNone">Test association file reading (11 tests)  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>make test_read_input</code> </td><td class="markdownTableBodyNone">Test <a class="el" href="../../d9/d5d/namespaceread__input.html">read_input</a> module (10 tests) [NEW]  </td></tr>
+<td class="markdownTableBodyNone"><code>make test_read_input</code> </td><td class="markdownTableBodyNone">Test <a class="el" href="../../d9/d5d/namespaceread__input.html">read_input</a> module (10 tests)  </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code>make clean_tests</code> </td><td class="markdownTableBodyNone">Remove test executables  </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>bash <a class="el" href="../../dd/d48/run__all__tests_8sh.html">run_all_tests.sh</a></code> </td><td class="markdownTableBodyNone">Run all tests with detailed output  </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md16"></a>
+<h1><a class="anchor" id="autotoc_md15"></a>
 Test Files</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">File </th><th class="markdownTableHeadNone">Tests </th><th class="markdownTableHeadNone">Lines </th><th class="markdownTableHeadNone">Purpose  </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code><a class="el" href="../../d3/d20/test__maths_8f90.html">test_maths.f90</a></code> </td><td class="markdownTableBodyNone">31 </td><td class="markdownTableBodyNone">850 </td><td class="markdownTableBodyNone">Cross product, transformations, RMSD, angles, COG, distance  </td></tr>
+<td class="markdownTableBodyNone"><code><a class="el" href="../../d3/d20/test__maths_8f90.html">test_maths.f90</a></code> </td><td class="markdownTableBodyNone">30 </td><td class="markdownTableBodyNone">850 </td><td class="markdownTableBodyNone">Cross product, transformations, RMSD, angles, COG, distance  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code><a class="el" href="../../da/d82/test__matrix_8f90.html">test_matrix.f90</a></code> </td><td class="markdownTableBodyNone">8 </td><td class="markdownTableBodyNone">370 </td><td class="markdownTableBodyNone">Matrix I/O, array I/O, Z-coord, RMSD  </td></tr>
+<td class="markdownTableBodyNone"><code><a class="el" href="../../da/d82/test__matrix_8f90.html">test_matrix.f90</a></code> </td><td class="markdownTableBodyNone">10 </td><td class="markdownTableBodyNone">370 </td><td class="markdownTableBodyNone">Matrix I/O, array I/O, Z-coord, atom dist, angle, RMSD  </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code><a class="el" href="../../d3/d9f/test__threshold_8f90.html">test_threshold.f90</a></code> </td><td class="markdownTableBodyNone">9 </td><td class="markdownTableBodyNone">375 </td><td class="markdownTableBodyNone">Z-coord, min distance, angles, sorting  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code><a class="el" href="../../d7/de4/test__pdb_8f90.html">test_pdb.f90</a></code> </td><td class="markdownTableBodyNone">8 </td><td class="markdownTableBodyNone">210 </td><td class="markdownTableBodyNone">PDB types, atoms, residues  </td></tr>
+<td class="markdownTableBodyNone"><code><a class="el" href="../../d7/de4/test__pdb_8f90.html">test_pdb.f90</a></code> </td><td class="markdownTableBodyNone">11 </td><td class="markdownTableBodyNone">210 </td><td class="markdownTableBodyNone">PDB I/O, PDB structures, chains, residues, atoms  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code><a class="el" href="../../de/d3f/test__clustering_8f90.html">test_clustering.f90</a></code> </td><td class="markdownTableBodyNone">5 </td><td class="markdownTableBodyNone">275 </td><td class="markdownTableBodyNone">Statistics, clustering, output writing  </td></tr>
+<td class="markdownTableBodyNone"><code><a class="el" href="../../de/d3f/test__clustering_8f90.html">test_clustering.f90</a></code> </td><td class="markdownTableBodyNone">8 </td><td class="markdownTableBodyNone">275 </td><td class="markdownTableBodyNone">Statistics, clustering, output writing  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code><a class="el" href="../../de/d65/test__assoc_8f90.html">test_assoc.f90</a></code> </td><td class="markdownTableBodyNone">11 </td><td class="markdownTableBodyNone">380 </td><td class="markdownTableBodyNone">File reading, allocation, parsing [NEW]  </td></tr>
+<td class="markdownTableBodyNone"><code><a class="el" href="../../de/d65/test__assoc_8f90.html">test_assoc.f90</a></code> </td><td class="markdownTableBodyNone">11 </td><td class="markdownTableBodyNone">380 </td><td class="markdownTableBodyNone">Complexes I/O, allocation, parsing  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code><a class="el" href="../../dc/d0a/test__read__input_8f90.html">test_read_input.f90</a></code> </td><td class="markdownTableBodyNone">10 </td><td class="markdownTableBodyNone">355 </td><td class="markdownTableBodyNone">Input wrapper, error handling [NEW]  </td></tr>
+<td class="markdownTableBodyNone"><code><a class="el" href="../../dc/d0a/test__read__input_8f90.html">test_read_input.f90</a></code> </td><td class="markdownTableBodyNone">10 </td><td class="markdownTableBodyNone">355 </td><td class="markdownTableBodyNone">Input wrapper, error handling  </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md17"></a>
+<h1><a class="anchor" id="autotoc_md16"></a>
 Expected Output</h1>
 <p>All tests pass with output like:</p>
 <div class="fragment"><div class="line">[PASS] Test 1: Test description</div>
@@ -127,7 +127,7 @@ Expected Output</h1>
 <div class="line">Passed:       N</div>
 <div class="line">Failed:       0</div>
 <div class="line">=========================================</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md18"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md17"></a>
 Individual Compilation</h1>
 <div class="fragment"><div class="line"># Manual compilation (if not using Make)</div>
 <div class="line">gfortran -o test_maths test_maths.f90 maths.f90 mod_pdb.f90</div>
@@ -144,15 +144,15 @@ Individual Compilation</h1>
 <div class="line"> </div>
 <div class="line">gfortran -fopenmp -o test_clustering test_clustering.f90</div>
 <div class="line">./test_clustering</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md19"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md18"></a>
 Documentation</h1>
 <ul>
 <li><a class="el" href="../../df/d66/TEST__SUMMARY_8md.html">TEST_SUMMARY.md</a> - Overview of test suite</li>
 <li><a class="el" href="../../de/d00/TESTING_8md.html">TESTING.md</a> - Detailed testing guide</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md20"></a>
+<h1><a class="anchor" id="autotoc_md19"></a>
 Key Features</h1>
-<p>[x] 82 comprehensive tests (updated from 28) [x] 7 test programs (added <a class="el" href="../../de/d65/test__assoc_8f90.html">test_assoc.f90</a> and <a class="el" href="../../dc/d0a/test__read__input_8f90.html">test_read_input.f90</a>) [x] All major modules covered [x] OpenMP compatible [x] No external data files needed [x] Fast execution (&lt; 2 seconds) [x] Clear pass/fail reporting [x] Easy to extend</p>
+<p>[x] 89 comprehensive tests [x] 7 test programs (added <a class="el" href="../../de/d65/test__assoc_8f90.html">test_assoc.f90</a> and <a class="el" href="../../dc/d0a/test__read__input_8f90.html">test_read_input.f90</a>) [x] All major modules covered [x] OpenMP compatible [x] No external data files needed [x] Fast execution (&lt; 2 seconds) [x] Clear pass/fail reporting [x] Easy to extend</p>
 <hr  />
 <p><b>Pro Tip</b>: Use <code>make test 2&gt;&amp;1 | tee test_results.log</code> to save test output to a file. </p>
 </div></div><!-- contents -->

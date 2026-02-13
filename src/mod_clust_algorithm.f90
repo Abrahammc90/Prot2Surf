@@ -17,6 +17,7 @@ module mod_clust_algorithm
 
   USE read_input
   USE OMP_LIB
+  USE mod_cuda, ONLY: cuda_init_clustering, cuda_find_and_merge, cuda_finalize_clustering
 
   contains
 
@@ -39,7 +40,7 @@ module mod_clust_algorithm
     !! @param[in]     opt_array    Optional array of per-encounter values used
     !!                              to compute cluster averages instead of
     !!                              reading values from `matrix`.
-    subroutine linkage_clustering(matrix, n, linkage_type, output_name, complexes, opt_array)
+    subroutine linkage_clustering(matrix, n, linkage_type, output_name, complexes, opt_array, use_cuda)
 
       IMPLICIT NONE
 
@@ -48,6 +49,7 @@ module mod_clust_algorithm
       character*128, intent(in) :: output_name
       character(len=*), intent(in) :: linkage_type
       integer, intent(in) :: n
+      logical, intent(in), optional :: use_cuda
       type(type_assoc_file) :: complexes
 
         integer :: i, j, k, min_i, min_j, merge_counter, remaining_clusters, num_dist
@@ -67,8 +69,16 @@ module mod_clust_algorithm
         integer :: local_min_i, local_min_j
 
         real (kind=8) :: alpha
+        logical :: use_cuda_accel
 
     
+        ! Handle optional use_cuda parameter
+        if (present(use_cuda)) then
+            use_cuda_accel = use_cuda
+        else
+            use_cuda_accel = .false.
+        end if
+
         active_points = .true.
         cluster_size = 1
         remaining_clusters = n
@@ -99,9 +109,16 @@ module mod_clust_algorithm
         standard_deviation = sqrt((sum_sq_dist / num_dist) - mean_dist ** 2)
 
         alpha = standard_deviation / sqrt(standard_deviation**2 + mean_dist**2)
-
         dist_threshold = alpha*mean_dist - (1-alpha)*standard_deviation
       
+        ! Initialize GPU clustering if CUDA is enabled
+        if (use_cuda_accel) then
+            if (cuda_init_clustering(matrix, n, active_points, cluster_size) /= 0) then
+                print *, "WARNING: CUDA initialization failed, falling back to CPU"
+                use_cuda_accel = .false.
+            end if
+        end if
+
         ! Main clustering loop
         do while (remaining_clusters > 1)
 
@@ -110,37 +127,45 @@ module mod_clust_algorithm
             min_i = -1
             min_j = -1
 
-            !$OMP PARALLEL PRIVATE(i, j, dist, local_min_dist, local_min_i, local_min_j) SHARED(min_dist, min_i, min_j)
-                ! Initialize local private variables at the start of each thread
-                local_min_dist = huge(1.0)  ! Set to a very large number
-                local_min_i = -1
-                local_min_j = -1
+            if (use_cuda_accel) then
+                ! Find minimum and merge on GPU - matrix updated on GPU automatically
+                if (cuda_find_and_merge(min_dist, min_i, min_j, linkage_type) /= 0) then
+                    print *, "ERROR: CUDA find_and_merge failed"
+                    exit
+                end if
+            else
 
-                !$OMP DO
-                do i = 1, n
-                    if (.not. active_points(i)) cycle
-                    do j = i + 1, n
-                        if (.not. active_points(j)) cycle
-                        dist = matrix(i, j)
-                        if (dist < local_min_dist) then
-                            local_min_dist = dist
-                            local_min_i = i
-                            local_min_j = j
-                        end if
+                !$OMP PARALLEL PRIVATE(i, j, dist, local_min_dist, local_min_i, local_min_j) SHARED(min_dist, min_i, min_j)
+                    ! Initialize local private variables at the start of each thread
+                    local_min_dist = huge(1.0)  ! Set to a very large number
+                    local_min_i = -1
+                    local_min_j = -1
+
+                    !$OMP DO
+                    do i = 1, n
+                        if (.not. active_points(i)) cycle
+                        do j = i + 1, n
+                            if (.not. active_points(j)) cycle
+                            dist = matrix(i, j)
+                            if (dist < local_min_dist) then
+                                local_min_dist = dist
+                                local_min_i = i
+                                local_min_j = j
+                            end if
+                        end do
                     end do
-                end do
-                !$OMP END DO
-              
-                ! After the parallel loop ends, update the global minimum in a thread-safe manner
-                !$OMP CRITICAL
-                    if (local_min_dist < min_dist) then
-                        min_dist = local_min_dist
-                        min_i = local_min_i
-                        min_j = local_min_j
-                    end if
-                !$OMP END CRITICAL
-            !$OMP END PARALLEL
-
+                    !$OMP END DO
+                
+                    ! After the parallel loop ends, update the global minimum in a thread-safe manner
+                    !$OMP CRITICAL
+                        if (local_min_dist < min_dist) then
+                            min_dist = local_min_dist
+                            min_i = local_min_i
+                            min_j = local_min_j
+                        end if
+                    !$OMP END CRITICAL
+                !$OMP END PARALLEL
+            end if
           
             ! Stop merging if clusters are too far apart
             if (min_dist > dist_threshold) exit
@@ -164,26 +189,28 @@ module mod_clust_algorithm
             remaining_clusters = remaining_clusters - 1
           
             ! Update distances using selected linkage method
-            !$OMP PARALLEL DO REDUCTION(+:sum_dist, sum_sq_dist) PRIVATE(i)
-            do i = 1, n
-                if (i == min_i .or. i == min_j .or. .not. active_points(i)) cycle
+            ! Skip if using CUDA - matrix already updated on GPU
+            if (.not. use_cuda_accel) then
+                !$OMP PARALLEL DO REDUCTION(+:sum_dist, sum_sq_dist) PRIVATE(i)
+                do i = 1, n
+                    if (i == min_i .or. i == min_j .or. .not. active_points(i)) cycle
 
-                sum_dist = sum_dist - matrix(min_i, i) - matrix(min_j, i)
-                sum_sq_dist = sum_sq_dist - matrix(min_i, i) ** 2 - matrix(min_j, i) ** 2
+                    sum_dist = sum_dist - matrix(min_i, i) - matrix(min_j, i)
+                    sum_sq_dist = sum_sq_dist - matrix(min_i, i) ** 2 - matrix(min_j, i) ** 2
 
-                ! Apply the selected linkage method
-                if (trim(linkage_type) == 'min') then
-                    ! Minimum linkage (single linkage)
-                    matrix(min_i, i) = min(matrix(min_i, i), matrix(min_j, i))
-                else if (trim(linkage_type) == 'max') then
-                    ! Maximum linkage (complete linkage)
-                    matrix(min_i, i) = max(matrix(min_i, i), matrix(min_j, i))
-                else
-                    ! Mean linkage (average linkage) - default
-                    matrix(min_i, i) = (matrix(min_i, i) * cluster_size(min_i) + &
-                                        matrix(min_j, i) * cluster_size(min_j)) / &
-                                        (cluster_size(min_i) + cluster_size(min_j))
-                end if
+                    ! Apply the selected linkage method
+                    if (trim(linkage_type) == 'min') then
+                        ! Minimum linkage (single linkage)
+                        matrix(min_i, i) = min(matrix(min_i, i), matrix(min_j, i))
+                    else if (trim(linkage_type) == 'max') then
+                        ! Maximum linkage (complete linkage)
+                        matrix(min_i, i) = max(matrix(min_i, i), matrix(min_j, i))
+                    else
+                        ! Mean linkage (average linkage) - default
+                        matrix(min_i, i) = (matrix(min_i, i) * cluster_size(min_i) + &
+                                            matrix(min_j, i) * cluster_size(min_j)) / &
+                                            (cluster_size(min_i) + cluster_size(min_j))
+                    end if
                 matrix(i, min_i) = matrix(min_i, i)
 
                 sum_dist = sum_dist + matrix(min_i, i)
@@ -194,6 +221,7 @@ module mod_clust_algorithm
             sum_dist = sum_dist - min_dist
             sum_sq_dist = sum_sq_dist - min_dist ** 2
             num_dist = num_dist - 1
+          end if  ! end if (.not. use_cuda_accel)
           
           
             if (mod(remaining_clusters, 100) == 0) then
@@ -201,6 +229,11 @@ module mod_clust_algorithm
             end if
         end do
       
+        ! Cleanup GPU resources if CUDA was used
+        if (use_cuda_accel) then
+            call cuda_finalize_clustering()
+        end if
+
         ! Find the most representative value
         !$OMP PARALLEL DO PRIVATE(i, j, k, dist, min_dist)
         do i = 1, n
