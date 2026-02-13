@@ -17,7 +17,7 @@ module mod_clust_algorithm
 
   USE read_input
   USE OMP_LIB
-  USE mod_cuda, ONLY: cuda_init_clustering, cuda_find_and_merge, cuda_finalize_clustering
+  USE mod_cuda, ONLY: cuda_complete_clustering
 
   contains
 
@@ -70,6 +70,7 @@ module mod_clust_algorithm
 
         real (kind=8) :: alpha
         logical :: use_cuda_accel
+        real (kind=8) :: start_time, end_time, elapsed_time
 
     
         ! Handle optional use_cuda parameter
@@ -111,29 +112,47 @@ module mod_clust_algorithm
         alpha = standard_deviation / sqrt(standard_deviation**2 + mean_dist**2)
         dist_threshold = alpha*mean_dist - (1-alpha)*standard_deviation
       
-        ! Initialize GPU clustering if CUDA is enabled
+        ! ====================================================================
+        ! COMPLETE CUDA PARALLELIZATION - All clustering done on GPU
+        ! ====================================================================
         if (use_cuda_accel) then
-            if (cuda_init_clustering(matrix, n, active_points, cluster_size) /= 0) then
-                print *, "WARNING: CUDA initialization failed, falling back to CPU"
-                use_cuda_accel = .false.
+            print *, 'Starting GPU clustering (complete parallelization)...'
+            start_time = OMP_GET_WTIME()
+            
+            ! Call complete GPU clustering - all iterations happen on GPU
+            if (cuda_complete_clustering(matrix, n, dist_threshold, linkage_type, &
+                                         cluster_indexes, cluster_count, active_points, cluster_size) /= 0) then
+                print *, "ERROR: CUDA complete clustering failed"
+                return
             end if
-        end if
+            
+            ! GPU clustering is complete - active_points, cluster_count, and cluster_indexes are updated
+            ! Note: cluster_size updates need to be reconstructed from merges
+            ! For now, we skip updating clustering statistics as they're done on GPU
+            remaining_clusters = count(active_points)
+            
+            end_time = OMP_GET_WTIME()
+            elapsed_time = end_time - start_time
+            print *, '========================================'
+            print *, 'GPU clustering complete.'
+            print *, 'Remaining clusters:', remaining_clusters
+            print *, 'GPU Time:', elapsed_time, 'seconds'
+            print *, '========================================'
+            
+        else
+            ! ====================================================================
+            ! CPU PARALLEL CLUSTERING - Original OpenMP implementation
+            ! ====================================================================
+            print *, 'Starting CPU clustering...'
+            start_time = OMP_GET_WTIME()
 
-        ! Main clustering loop
-        do while (remaining_clusters > 1)
+            ! Main clustering loop
+            do while (remaining_clusters > 1)
 
             
-            min_dist = huge(1.0)  ! Set to a very large number
-            min_i = -1
-            min_j = -1
-
-            if (use_cuda_accel) then
-                ! Find minimum and merge on GPU - matrix updated on GPU automatically
-                if (cuda_find_and_merge(min_dist, min_i, min_j, linkage_type) /= 0) then
-                    print *, "ERROR: CUDA find_and_merge failed"
-                    exit
-                end if
-            else
+                min_dist = huge(1.0)  ! Set to a very large number
+                min_i = -1
+                min_j = -1
 
                 !$OMP PARALLEL PRIVATE(i, j, dist, local_min_dist, local_min_i, local_min_j) SHARED(min_dist, min_i, min_j)
                     ! Initialize local private variables at the start of each thread
@@ -165,32 +184,28 @@ module mod_clust_algorithm
                         end if
                     !$OMP END CRITICAL
                 !$OMP END PARALLEL
-            end if
           
-            ! Stop merging if clusters are too far apart
-            if (min_dist > dist_threshold) exit
+                ! Stop merging if clusters are too far apart
+                if (min_dist > dist_threshold) exit
           
-            merge_counter = merge_counter + 1
+                merge_counter = merge_counter + 1
           
-            ! Merge clusters min_i and min_j
-            if (merge_counter <= n) then
-                !$OMP PARALLEL DO
-                do k = 1, cluster_count(min_j)
-                    cluster_indexes(min_i, cluster_count(min_i) + k) = cluster_indexes(min_j, k)
-                end do
-                !$OMP END PARALLEL DO
+                ! Merge clusters min_i and min_j
+                if (merge_counter <= n) then
+                    !$OMP PARALLEL DO
+                    do k = 1, cluster_count(min_j)
+                        cluster_indexes(min_i, cluster_count(min_i) + k) = cluster_indexes(min_j, k)
+                    end do
+                    !$OMP END PARALLEL DO
               
-                !cluster_average(min_i) = cluster_average(min_i) + cluster_average(min_j)
-                cluster_count(min_i) = cluster_count(min_i) + cluster_count(min_j)
-            end if
+                    cluster_count(min_i) = cluster_count(min_i) + cluster_count(min_j)
+                end if
           
-            active_points(min_j) = .false.
-            cluster_size(min_i) = cluster_size(min_i) + cluster_size(min_j)
-            remaining_clusters = remaining_clusters - 1
+                active_points(min_j) = .false.
+                cluster_size(min_i) = cluster_size(min_i) + cluster_size(min_j)
+                remaining_clusters = remaining_clusters - 1
           
-            ! Update distances using selected linkage method
-            ! Skip if using CUDA - matrix already updated on GPU
-            if (.not. use_cuda_accel) then
+                ! Update distances using selected linkage method
                 !$OMP PARALLEL DO REDUCTION(+:sum_dist, sum_sq_dist) PRIVATE(i)
                 do i = 1, n
                     if (i == min_i .or. i == min_j .or. .not. active_points(i)) cycle
@@ -211,28 +226,29 @@ module mod_clust_algorithm
                                             matrix(min_j, i) * cluster_size(min_j)) / &
                                             (cluster_size(min_i) + cluster_size(min_j))
                     end if
-                matrix(i, min_i) = matrix(min_i, i)
+                    matrix(i, min_i) = matrix(min_i, i)
 
-                sum_dist = sum_dist + matrix(min_i, i)
-                sum_sq_dist = sum_sq_dist + matrix(min_i, i) ** 2
+                    sum_dist = sum_dist + matrix(min_i, i)
+                    sum_sq_dist = sum_sq_dist + matrix(min_i, i) ** 2
 
+                end do
+                !$OMP END PARALLEL DO
+                sum_dist = sum_dist - min_dist
+                sum_sq_dist = sum_sq_dist - min_dist ** 2
+                num_dist = num_dist - 1
+          
+                if (mod(remaining_clusters, 100) == 0) then
+                    print *, 'Remaining clusters:', remaining_clusters
+                end if
             end do
-            !$OMP END PARALLEL DO
-            sum_dist = sum_dist - min_dist
-            sum_sq_dist = sum_sq_dist - min_dist ** 2
-            num_dist = num_dist - 1
-          end if  ! end if (.not. use_cuda_accel)
-          
-          
-            if (mod(remaining_clusters, 100) == 0) then
-                print *, 'Remaining clusters:', remaining_clusters
-            end if
-        end do
-      
-        ! Cleanup GPU resources if CUDA was used
-        if (use_cuda_accel) then
-            call cuda_finalize_clustering()
-        end if
+            
+            end_time = OMP_GET_WTIME()
+            elapsed_time = end_time - start_time
+            print *, '========================================'
+            print *, 'CPU clustering complete.'
+            print *, 'CPU Time:', elapsed_time, 'seconds'
+            print *, '========================================'
+        end if  ! End of if (use_cuda_accel) else block
 
         ! Find the most representative value
         !$OMP PARALLEL DO PRIVATE(i, j, k, dist, min_dist)

@@ -8,6 +8,7 @@ module mod_cuda
 
   private
   public :: cuda_init_clustering, cuda_find_and_merge, cuda_finalize_clustering
+  public :: cuda_complete_clustering  ! New function for complete clustering outside loop
 
   interface
     function cuda_init_clustering_c(d_matrix, d_active_points, d_cluster_size, n) &
@@ -30,6 +31,23 @@ module mod_cuda
       integer(c_int), value :: linkage_type
       integer(c_int) :: cuda_find_and_merge_c
     end function cuda_find_and_merge_c
+
+    function cuda_complete_clustering_c(h_matrix, h_active_points, h_cluster_size, &
+        h_cluster_indexes, h_cluster_count, h_active_clusters, n, dist_threshold, linkage_type) &
+        bind(C, name='cuda_complete_clustering_c')
+      use iso_c_binding
+      implicit none
+      type(c_ptr), value :: h_matrix
+      type(c_ptr), value :: h_active_points
+      type(c_ptr), value :: h_cluster_size
+      type(c_ptr), value :: h_cluster_indexes
+      type(c_ptr), value :: h_cluster_count
+      type(c_ptr), value :: h_active_clusters
+      integer(c_int), value :: n
+      real(c_double), value :: dist_threshold
+      integer(c_int), value :: linkage_type
+      integer(c_int) :: cuda_complete_clustering_c
+    end function cuda_complete_clustering_c
 
     subroutine cuda_finalize_clustering_c() &
         bind(C, name='cuda_finalize_clustering_c')
@@ -150,6 +168,89 @@ contains
     end if
 
   end function cuda_find_and_merge
+
+  !> Perform complete GPU clustering - all iterations on GPU
+  !!
+  !! @param[in]     matrix              Distance matrix (n x n, column-major)
+  !! @param[in]     n                   Matrix dimension
+  !! @param[in]     dist_threshold      Distance threshold for stopping
+  !! @param[in]     linkage_str         Linkage type ('min', 'max', or 'mean')
+  !! @param[in,out] cluster_indexes     Output cluster membership (n x n)
+  !! @param[in,out] cluster_count       Output cluster sizes (n)
+  !! @param[in,out] active_points       Output active clusters (n)
+  !! @param[in,out] cluster_size        Cluster sizes for linkage computation
+  !! @return        0 on success, -1 on error
+  
+  function cuda_complete_clustering(matrix, n, dist_threshold, linkage_str, &
+                                     cluster_indexes, cluster_count, active_points, cluster_size) result(status)
+
+    implicit none
+
+    real(kind=8), dimension(:, :), intent(in), target :: matrix
+    integer, intent(in) :: n
+    real(kind=8), intent(in) :: dist_threshold
+    character(len=*), intent(in) :: linkage_str
+    integer, dimension(:, :), intent(inout), target :: cluster_indexes
+    integer, dimension(:), intent(inout), target :: cluster_count
+    logical, dimension(:), intent(inout) :: active_points
+    integer, dimension(:), intent(in), target :: cluster_size
+    integer :: status
+
+    integer :: i
+    integer(c_int) :: cuda_n, cuda_status, linkage_type
+    integer(c_int), allocatable, target :: c_active_in(:), c_active_out(:)
+    real(c_double) :: cuda_threshold
+    integer :: stat
+
+    ! Convert active_points from logical to integer for C
+    allocate(c_active_in(n), c_active_out(n), stat=stat)
+    if (stat /= 0) then
+      status = -1
+      return
+    end if
+
+    do i = 1, n
+      c_active_in(i) = merge(1, 0, active_points(i))
+    end do
+
+    ! Convert linkage string to integer code
+    select case (trim(linkage_str))
+      case ('min')
+        linkage_type = 0
+      case ('max')
+        linkage_type = 1
+      case ('mean')
+        linkage_type = 2
+      case default
+        linkage_type = 2  ! Default to mean
+    end select
+
+    ! Convert dimension and threshold to C types
+    cuda_n = int(n, c_int)
+    cuda_threshold = real(dist_threshold, c_double)
+
+    ! Call CUDA complete clustering
+    cuda_status = cuda_complete_clustering_c( &
+      c_loc(matrix(1, 1)), &
+      c_loc(c_active_in(1)), &
+      c_loc(cluster_size(1)), &
+      c_loc(cluster_indexes(1, 1)), &
+      c_loc(cluster_count(1)), &
+      c_loc(c_active_out(1)), &
+      cuda_n, &
+      cuda_threshold, &
+      linkage_type &
+    )
+
+    ! Convert active clusters back to logical
+    do i = 1, n
+      active_points(i) = (c_active_out(i) /= 0)
+    end do
+
+    deallocate(c_active_in, c_active_out)
+    status = int(cuda_status)
+
+  end function cuda_complete_clustering
 
   !> Finalize GPU clustering - cleanup GPU memory
   
