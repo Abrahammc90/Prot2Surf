@@ -53,8 +53,10 @@ MODULE mod_threshold
         ! Ensure orderly printing using an atomic increment
         !$OMP CRITICAL
         progress_index = progress_index + 1
-        ! Print the progress after the atomic increment
-        write(*,*) 'Encounters processed: ', progress_index
+        ! Print the progress every 100 iterations
+        if (mod(progress_index, 100) == 0) then
+          write(*,*) 'Encounters processed: ', progress_index
+        end if
         !$OMP END CRITICAL
 
       end do
@@ -111,8 +113,10 @@ MODULE mod_threshold
         ! Ensure orderly printing using an atomic increment
         !$OMP CRITICAL
         progress_index = progress_index + 1
-        ! Print the progress after the atomic increment
-        write(*,*) 'Encounters processed: ', progress_index
+        ! Print the progress every 100 iterations
+        if (mod(progress_index, 100) == 0) then
+          write(*,*) 'Encounters processed: ', progress_index
+        end if
         !$OMP END CRITICAL
 
       end do
@@ -208,8 +212,10 @@ MODULE mod_threshold
         ! Ensure orderly printing using an atomic increment
         !$OMP CRITICAL
         progress_index = progress_index + 1
-        ! Print the progress after the atomic increment
-        write(*,*) 'Encounters processed: ', progress_index
+        ! Print the progress every 100 iterations
+        if (mod(progress_index, 100) == 0) then
+          write(*,*) 'Encounters processed: ', progress_index
+        end if
         !$OMP END CRITICAL
 
       end do

@@ -63,8 +63,10 @@ MODULE mod_matrix
         ! Ensure orderly printing using an atomic increment
         !$OMP CRITICAL
         progress_index = progress_index + 1
-        ! Print the progress after the atomic increment
-        write(*,*) 'Encounters processed: ', progress_index
+        ! Print the progress every 100 iterations
+        if (mod(progress_index, 100) == 0) then
+          write(*,*) 'Encounters processed: ', progress_index
+        end if
         !$OMP END CRITICAL
 
       end do
@@ -140,8 +142,10 @@ MODULE mod_matrix
         ! Ensure orderly printing using an atomic increment
         !$OMP CRITICAL
         progress_index = progress_index + 1
-        ! Print the progress after the atomic increment
-        write(*,*) 'Encounters processed: ', progress_index
+        ! Print the progress every 100 iterations
+        if (mod(progress_index, 100) == 0) then
+          write(*,*) 'Encounters processed: ', progress_index
+        end if
         !$OMP END CRITICAL
 
       end do
@@ -264,8 +268,10 @@ MODULE mod_matrix
         ! Ensure orderly printing using an atomic increment
         !$OMP CRITICAL
         progress_index = progress_index + 1
-        ! Print the progress after the atomic increment
-        write(*,*) 'Encounters processed: ', progress_index
+        ! Print the progress every 100 iterations
+        if (mod(progress_index, 100) == 0) then
+          write(*,*) 'Encounters processed: ', progress_index
+        end if
         !$OMP END CRITICAL
 
       end do
@@ -313,7 +319,9 @@ MODULE mod_matrix
         if (mod(i, n/100) == 0) then
           percentage = (real(i)/real(n))*100 
         end if
-        write(*,*) 'Encounters processed: ', i
+        if (mod(i, n/100) == 0) then
+          write(*,*) 'Encounters processed: ', i
+        end if
       end do
 
     end subroutine matrix_rmsd
