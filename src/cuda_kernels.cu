@@ -160,6 +160,31 @@ __global__ void update_cluster_size_kernel(
     cluster_size[merge_i] += cluster_size[merge_j];
 }
 
+// Kernel to merge cluster indexes - copies members from cluster_j to cluster_i
+// Fortran uses column-major order: array(row, col) -> offset = (row-1) + (col-1)*n
+__global__ void merge_cluster_indexes_kernel(
+    int *cluster_indexes,
+    int *cluster_count,
+    int n,
+    int merge_i,
+    int merge_j
+) {
+    int old_count_i = cluster_count[merge_i];
+    int count_j = cluster_count[merge_j];
+    
+    // Copy all members from cluster_j to cluster_i
+    // Fortran column-major: cluster_indexes(row, col) = cluster_indexes[(row-1) + (col-1)*n]
+    // Note: merge_i and merge_j are 0-based C indices, but stored values are 1-based for Fortran
+    for (int k = 0; k < count_j; k++) {
+        // Source: cluster_indexes(merge_j+1, k+1) in Fortran
+        // Dest:   cluster_indexes(merge_i+1, old_count_i+k+1) in Fortran
+        cluster_indexes[merge_i + (old_count_i + k) * n] = cluster_indexes[merge_j + k * n];
+    }
+    
+    // Update cluster count
+    cluster_count[merge_i] = old_count_i + count_j;
+}
+
 extern "C" {
 
 // Initialize GPU clustering with matrix transfer
@@ -327,10 +352,12 @@ int cuda_complete_clustering_c(
     cudaMemcpy(state.d_cluster_size, h_cluster_size, n * sizeof(int), cudaMemcpyHostToDevice);
     
     // Initialize cluster_indexes: each cluster starts with just itself
+    // Fortran uses column-major and 1-based indexing
+    // cluster_indexes(i, 1) = i in Fortran -> h_init_indexes[i-1] = i in C
     int *h_init_indexes = new int[n * n]();
     int *h_init_count = new int[n];
     for (int i = 0; i < n; i++) {
-        h_init_indexes[i * n] = i;  // First element is itself
+        h_init_indexes[i] = i + 1;  // Store 1-based index for Fortran (column 0, row i)
         h_init_count[i] = 1;
     }
     cudaMemcpy(d_cluster_indexes, h_init_indexes, n * n * sizeof(int), cudaMemcpyHostToDevice);
@@ -350,6 +377,10 @@ int cuda_complete_clustering_c(
     int remaining_clusters = n;
     int merge_counter = 0;
     int max_iterations = n - 1;  // Maximum possible merges
+    
+    // Track merge history for CPU-side cluster index reconstruction
+    int *merge_history_i = new int[max_iterations];
+    int *merge_history_j = new int[max_iterations];
     
     while (remaining_clusters > 1 && merge_counter < max_iterations) {
         // Find minimum pair on GPU
@@ -386,9 +417,22 @@ int cuda_complete_clustering_c(
             break;
         }
         
+        // Store merge history for cluster index reconstruction
+        merge_history_i[merge_counter] = result_i;
+        merge_history_j[merge_counter] = result_j;
+        
         // Merge clusters on GPU
         update_cluster_size_kernel<<<1, 1>>>(
             state.d_cluster_size,
+            result_i,
+            result_j
+        );
+        
+        // Merge cluster membership on GPU
+        merge_cluster_indexes_kernel<<<1, 1>>>(
+            d_cluster_indexes,
+            d_cluster_count,
+            n,
             result_i,
             result_j
         );
@@ -406,9 +450,6 @@ int cuda_complete_clustering_c(
             state.d_active_points,
             result_j
         );
-        
-        // Note: Cluster index merging done on CPU after loop completes
-        // to avoid complex GPU operations
         
         cudaDeviceSynchronize();
         
@@ -432,10 +473,9 @@ int cuda_complete_clustering_c(
     int *h_cluster_size_out = new int[n];
     cudaMemcpy(h_cluster_size_out, state.d_cluster_size, n * sizeof(int), cudaMemcpyDeviceToHost);
     
-    // Note: Cluster membership tracking needs CPU-side merge tracking
-    // This is handled by copying back partial results and doing final merge on CPU
-    
     delete[] h_cluster_size_out;
+    delete[] merge_history_i;
+    delete[] merge_history_j;
     
     // Free device memory
     cudaFree(state.d_matrix);
