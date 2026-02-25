@@ -101,102 +101,102 @@
 \contentsline {subsubsection}{\numberline {9.1.2.5}update\_complex()}{33}{subsubsection.9.1.2.5}%
 \contentsline {subsubsection}{\numberline {9.1.2.6}vectors\_angle\_2d()}{33}{subsubsection.9.1.2.6}%
 \contentsline {subsubsection}{\numberline {9.1.2.7}vectors\_angle\_3d()}{33}{subsubsection.9.1.2.7}%
-\contentsline {section}{\numberline {9.2}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}assoc Module Reference}{34}{section.9.2}%
-\contentsline {subsection}{\numberline {9.2.1}Detailed Description}{34}{subsection.9.2.1}%
-\contentsline {subsection}{\numberline {9.2.2}Function/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Subroutine Documentation}{34}{subsection.9.2.2}%
-\contentsline {subsubsection}{\numberline {9.2.2.1}allocate\_assoc\_object()}{34}{subsubsection.9.2.2.1}%
-\contentsline {subsubsection}{\numberline {9.2.2.2}fill\_assoc\_object()}{35}{subsubsection.9.2.2.2}%
-\contentsline {subsubsection}{\numberline {9.2.2.3}size\_assoc()}{35}{subsubsection.9.2.2.3}%
-\contentsline {section}{\numberline {9.3}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}clust\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}algorithm Module Reference}{35}{section.9.3}%
-\contentsline {subsection}{\numberline {9.3.1}Function/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Subroutine Documentation}{36}{subsection.9.3.1}%
-\contentsline {subsubsection}{\numberline {9.3.1.1}linkage\_clustering()}{36}{subsubsection.9.3.1.1}%
-\contentsline {subsubsection}{\numberline {9.3.1.2}sort\_complexes()}{36}{subsubsection.9.3.1.2}%
-\contentsline {subsubsection}{\numberline {9.3.1.3}write\_clust\_info()}{37}{subsubsection.9.3.1.3}%
-\contentsline {subsubsection}{\numberline {9.3.1.4}write\_cluster\_elements()}{37}{subsubsection.9.3.1.4}%
-\contentsline {subsubsection}{\numberline {9.3.1.5}write\_complexes()}{38}{subsubsection.9.3.1.5}%
-\contentsline {section}{\numberline {9.4}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cuda Module Reference}{38}{section.9.4}%
-\contentsline {subsection}{\numberline {9.4.1}Function/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Subroutine Documentation}{38}{subsection.9.4.1}%
-\contentsline {subsubsection}{\numberline {9.4.1.1}cuda\_finalize\_clustering()}{38}{subsubsection.9.4.1.1}%
-\contentsline {subsubsection}{\numberline {9.4.1.2}cuda\_find\_and\_merge()}{39}{subsubsection.9.4.1.2}%
-\contentsline {subsubsection}{\numberline {9.4.1.3}cuda\_find\_min\_pair()}{39}{subsubsection.9.4.1.3}%
-\contentsline {subsubsection}{\numberline {9.4.1.4}cuda\_init\_clustering()}{39}{subsubsection.9.4.1.4}%
-\contentsline {section}{\numberline {9.5}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}gpu\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}accelerate Module Reference}{40}{section.9.5}%
-\contentsline {subsection}{\numberline {9.5.1}Function/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Subroutine Documentation}{40}{subsection.9.5.1}%
-\contentsline {subsubsection}{\numberline {9.5.1.1}gpu\_available()}{40}{subsubsection.9.5.1.1}%
-\contentsline {subsubsection}{\numberline {9.5.1.2}gpu\_find\_min\_pair()}{40}{subsubsection.9.5.1.2}%
-\contentsline {subsubsection}{\numberline {9.5.1.3}gpu\_find\_min\_pair\_managed()}{41}{subsubsection.9.5.1.3}%
-\contentsline {subsubsection}{\numberline {9.5.1.4}gpu\_print\_info()}{41}{subsubsection.9.5.1.4}%
-\contentsline {subsubsection}{\numberline {9.5.1.5}gpu\_update\_distances()}{41}{subsubsection.9.5.1.5}%
-\contentsline {section}{\numberline {9.6}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}matrix Module Reference}{42}{section.9.6}%
-\contentsline {subsection}{\numberline {9.6.1}Function/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Subroutine Documentation}{42}{subsection.9.6.1}%
-\contentsline {subsubsection}{\numberline {9.6.1.1}matrix\_angle()}{42}{subsubsection.9.6.1.1}%
-\contentsline {subsubsection}{\numberline {9.6.1.2}matrix\_atoms\_dist()}{43}{subsubsection.9.6.1.2}%
+\contentsline {section}{\numberline {9.2}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}array Module Reference}{34}{section.9.2}%
+\contentsline {subsection}{\numberline {9.2.1}Function/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Subroutine Documentation}{34}{subsection.9.2.1}%
+\contentsline {subsubsection}{\numberline {9.2.1.1}array\_angle()}{34}{subsubsection.9.2.1.1}%
+\contentsline {subsubsection}{\numberline {9.2.1.2}array\_atoms\_dist()}{35}{subsubsection.9.2.1.2}%
+\contentsline {subsubsection}{\numberline {9.2.1.3}array\_z\_coord()}{35}{subsubsection.9.2.1.3}%
+\contentsline {subsubsection}{\numberline {9.2.1.4}merge\_sorted\_segments()}{36}{subsubsection.9.2.1.4}%
+\contentsline {subsubsection}{\numberline {9.2.1.5}read\_array()}{36}{subsubsection.9.2.1.5}%
+\contentsline {subsubsection}{\numberline {9.2.1.6}write\_array()}{37}{subsubsection.9.2.1.6}%
+\contentsline {section}{\numberline {9.3}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}assoc Module Reference}{37}{section.9.3}%
+\contentsline {subsection}{\numberline {9.3.1}Detailed Description}{37}{subsection.9.3.1}%
+\contentsline {subsection}{\numberline {9.3.2}Function/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Subroutine Documentation}{37}{subsection.9.3.2}%
+\contentsline {subsubsection}{\numberline {9.3.2.1}allocate\_assoc\_object()}{37}{subsubsection.9.3.2.1}%
+\contentsline {subsubsection}{\numberline {9.3.2.2}fill\_assoc\_object()}{38}{subsubsection.9.3.2.2}%
+\contentsline {subsubsection}{\numberline {9.3.2.3}size\_assoc()}{38}{subsubsection.9.3.2.3}%
+\contentsline {subsubsection}{\numberline {9.3.2.4}write\_complexes()}{38}{subsubsection.9.3.2.4}%
+\contentsline {section}{\numberline {9.4}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}clust\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}algorithm Module Reference}{38}{section.9.4}%
+\contentsline {subsection}{\numberline {9.4.1}Function/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Subroutine Documentation}{39}{subsection.9.4.1}%
+\contentsline {subsubsection}{\numberline {9.4.1.1}linkage\_clustering\_from\_array()}{39}{subsubsection.9.4.1.1}%
+\contentsline {subsubsection}{\numberline {9.4.1.2}linkage\_clustering\_from\_matrix()}{39}{subsubsection.9.4.1.2}%
+\contentsline {subsubsection}{\numberline {9.4.1.3}sort\_complexes()}{40}{subsubsection.9.4.1.3}%
+\contentsline {subsubsection}{\numberline {9.4.1.4}write\_clust\_info()}{40}{subsubsection.9.4.1.4}%
+\contentsline {subsubsection}{\numberline {9.4.1.5}write\_cluster\_complexes()}{41}{subsubsection.9.4.1.5}%
+\contentsline {subsubsection}{\numberline {9.4.1.6}write\_cluster\_elements()}{41}{subsubsection.9.4.1.6}%
+\contentsline {section}{\numberline {9.5}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cuda Module Reference}{42}{section.9.5}%
+\contentsline {subsection}{\numberline {9.5.1}Function/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Subroutine Documentation}{42}{subsection.9.5.1}%
+\contentsline {subsubsection}{\numberline {9.5.1.1}cuda\_matrix\_clustering()}{42}{subsubsection.9.5.1.1}%
+\contentsline {section}{\numberline {9.6}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}matrix Module Reference}{43}{section.9.6}%
+\contentsline {subsection}{\numberline {9.6.1}Function/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Subroutine Documentation}{43}{subsection.9.6.1}%
+\contentsline {subsubsection}{\numberline {9.6.1.1}matrix\_angle()}{43}{subsubsection.9.6.1.1}%
+\contentsline {subsubsection}{\numberline {9.6.1.2}matrix\_atoms\_dist()}{44}{subsubsection.9.6.1.2}%
 \contentsline {subsubsection}{\numberline {9.6.1.3}matrix\_rmsd()}{44}{subsubsection.9.6.1.3}%
-\contentsline {subsubsection}{\numberline {9.6.1.4}matrix\_z\_coord()}{44}{subsubsection.9.6.1.4}%
-\contentsline {subsubsection}{\numberline {9.6.1.5}read\_array()}{45}{subsubsection.9.6.1.5}%
-\contentsline {subsubsection}{\numberline {9.6.1.6}read\_matrix()}{45}{subsubsection.9.6.1.6}%
-\contentsline {subsubsection}{\numberline {9.6.1.7}write\_array()}{45}{subsubsection.9.6.1.7}%
-\contentsline {subsubsection}{\numberline {9.6.1.8}write\_matrix()}{45}{subsubsection.9.6.1.8}%
-\contentsline {section}{\numberline {9.7}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}pdb Module Reference}{46}{section.9.7}%
-\contentsline {subsection}{\numberline {9.7.1}Detailed Description}{46}{subsection.9.7.1}%
-\contentsline {subsection}{\numberline {9.7.2}Function/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Subroutine Documentation}{46}{subsection.9.7.2}%
-\contentsline {subsubsection}{\numberline {9.7.2.1}allocate\_pdb\_object()}{47}{subsubsection.9.7.2.1}%
-\contentsline {subsubsection}{\numberline {9.7.2.2}count\_atoms()}{47}{subsubsection.9.7.2.2}%
-\contentsline {subsubsection}{\numberline {9.7.2.3}count\_chains()}{47}{subsubsection.9.7.2.3}%
-\contentsline {subsubsection}{\numberline {9.7.2.4}count\_residues()}{48}{subsubsection.9.7.2.4}%
-\contentsline {subsubsection}{\numberline {9.7.2.5}fill\_pdb\_object()}{48}{subsubsection.9.7.2.5}%
-\contentsline {section}{\numberline {9.8}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}threshold Module Reference}{48}{section.9.8}%
-\contentsline {subsection}{\numberline {9.8.1}Function/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Subroutine Documentation}{48}{subsection.9.8.1}%
-\contentsline {subsubsection}{\numberline {9.8.1.1}array\_angle()}{48}{subsubsection.9.8.1.1}%
-\contentsline {subsubsection}{\numberline {9.8.1.2}array\_atoms\_dist()}{49}{subsubsection.9.8.1.2}%
-\contentsline {subsubsection}{\numberline {9.8.1.3}array\_z\_coord()}{50}{subsubsection.9.8.1.3}%
-\contentsline {subsubsection}{\numberline {9.8.1.4}sort\_array()}{50}{subsubsection.9.8.1.4}%
-\contentsline {section}{\numberline {9.9}read\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}input Module Reference}{50}{section.9.9}%
+\contentsline {subsubsection}{\numberline {9.6.1.4}matrix\_z\_coord()}{45}{subsubsection.9.6.1.4}%
+\contentsline {subsubsection}{\numberline {9.6.1.5}read\_matrix()}{45}{subsubsection.9.6.1.5}%
+\contentsline {subsubsection}{\numberline {9.6.1.6}write\_matrix()}{46}{subsubsection.9.6.1.6}%
+\contentsline {section}{\numberline {9.7}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}memory Module Reference}{46}{section.9.7}%
+\contentsline {subsection}{\numberline {9.7.1}Function/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Subroutine Documentation}{46}{subsection.9.7.1}%
+\contentsline {subsubsection}{\numberline {9.7.1.1}calculate\_max\_batch\_size()}{46}{subsubsection.9.7.1.1}%
+\contentsline {subsubsection}{\numberline {9.7.1.2}get\_available\_memory()}{47}{subsubsection.9.7.1.2}%
+\contentsline {section}{\numberline {9.8}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}pdb Module Reference}{47}{section.9.8}%
+\contentsline {subsection}{\numberline {9.8.1}Detailed Description}{48}{subsection.9.8.1}%
+\contentsline {subsection}{\numberline {9.8.2}Function/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Subroutine Documentation}{48}{subsection.9.8.2}%
+\contentsline {subsubsection}{\numberline {9.8.2.1}allocate\_pdb\_object()}{48}{subsubsection.9.8.2.1}%
+\contentsline {subsubsection}{\numberline {9.8.2.2}count\_atoms()}{48}{subsubsection.9.8.2.2}%
+\contentsline {subsubsection}{\numberline {9.8.2.3}count\_chains()}{49}{subsubsection.9.8.2.3}%
+\contentsline {subsubsection}{\numberline {9.8.2.4}count\_residues()}{49}{subsubsection.9.8.2.4}%
+\contentsline {subsubsection}{\numberline {9.8.2.5}fill\_pdb\_object()}{49}{subsubsection.9.8.2.5}%
+\contentsline {section}{\numberline {9.9}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}threshold Module Reference}{49}{section.9.9}%
 \contentsline {subsection}{\numberline {9.9.1}Function/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Subroutine Documentation}{50}{subsection.9.9.1}%
-\contentsline {subsubsection}{\numberline {9.9.1.1}read\_assoc()}{51}{subsubsection.9.9.1.1}%
-\contentsline {subsubsection}{\numberline {9.9.1.2}read\_pdb()}{51}{subsubsection.9.9.1.2}%
+\contentsline {subsubsection}{\numberline {9.9.1.1}array\_angle()}{50}{subsubsection.9.9.1.1}%
+\contentsline {subsubsection}{\numberline {9.9.1.2}array\_atoms\_dist()}{50}{subsubsection.9.9.1.2}%
+\contentsline {subsubsection}{\numberline {9.9.1.3}array\_z\_coord()}{51}{subsubsection.9.9.1.3}%
+\contentsline {subsubsection}{\numberline {9.9.1.4}sort\_array()}{51}{subsubsection.9.9.1.4}%
+\contentsline {section}{\numberline {9.10}read\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}input Module Reference}{52}{section.9.10}%
+\contentsline {subsection}{\numberline {9.10.1}Function/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Subroutine Documentation}{52}{subsection.9.10.1}%
+\contentsline {subsubsection}{\numberline {9.10.1.1}read\_assoc()}{52}{subsubsection.9.10.1.1}%
+\contentsline {subsubsection}{\numberline {9.10.1.2}read\_pdb()}{52}{subsubsection.9.10.1.2}%
 \contentsline {chapter}{\numberline {10}Data Type Documentation}{53}{chapter.10}%
-\contentsline {section}{\numberline {10.1}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cuda\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::cuda\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}finalize\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}clustering\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}c Interface Reference}{53}{section.10.1}%
-\contentsline {section}{\numberline {10.2}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cuda\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::cuda\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}find\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}and\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}merge\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}c Interface Reference}{53}{section.10.2}%
-\contentsline {section}{\numberline {10.3}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}assoc\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::type\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}assoc\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}file Type Reference}{53}{section.10.3}%
-\contentsline {subsection}{\numberline {10.3.1}Detailed Description}{53}{subsection.10.3.1}%
-\contentsline {subsection}{\numberline {10.3.2}Member Data Documentation}{53}{subsection.10.3.2}%
-\contentsline {subsubsection}{\numberline {10.3.2.1}head}{54}{subsubsection.10.3.2.1}%
-\contentsline {subsubsection}{\numberline {10.3.2.2}lines}{54}{subsubsection.10.3.2.2}%
-\contentsline {subsubsection}{\numberline {10.3.2.3}nlines}{54}{subsubsection.10.3.2.3}%
-\contentsline {subsubsection}{\numberline {10.3.2.4}rot1}{54}{subsubsection.10.3.2.4}%
-\contentsline {subsubsection}{\numberline {10.3.2.5}rot2}{54}{subsubsection.10.3.2.5}%
-\contentsline {subsubsection}{\numberline {10.3.2.6}trans\_vector}{54}{subsubsection.10.3.2.6}%
-\contentsline {subsubsection}{\numberline {10.3.2.7}xc1}{54}{subsubsection.10.3.2.7}%
-\contentsline {subsubsection}{\numberline {10.3.2.8}xc2}{54}{subsubsection.10.3.2.8}%
-\contentsline {section}{\numberline {10.4}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}pdb\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::type\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}pdb\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}atom Type Reference}{54}{section.10.4}%
-\contentsline {subsection}{\numberline {10.4.1}Member Data Documentation}{55}{subsection.10.4.1}%
-\contentsline {subsubsection}{\numberline {10.4.1.1}beta}{55}{subsubsection.10.4.1.1}%
-\contentsline {subsubsection}{\numberline {10.4.1.2}chainid}{55}{subsubsection.10.4.1.2}%
-\contentsline {subsubsection}{\numberline {10.4.1.3}coord}{55}{subsubsection.10.4.1.3}%
-\contentsline {subsubsection}{\numberline {10.4.1.4}id}{55}{subsubsection.10.4.1.4}%
-\contentsline {subsubsection}{\numberline {10.4.1.5}name}{55}{subsubsection.10.4.1.5}%
-\contentsline {subsubsection}{\numberline {10.4.1.6}occ}{55}{subsubsection.10.4.1.6}%
-\contentsline {subsubsection}{\numberline {10.4.1.7}record}{55}{subsubsection.10.4.1.7}%
-\contentsline {subsubsection}{\numberline {10.4.1.8}resid}{55}{subsubsection.10.4.1.8}%
-\contentsline {subsubsection}{\numberline {10.4.1.9}resname}{55}{subsubsection.10.4.1.9}%
-\contentsline {section}{\numberline {10.5}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}pdb\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::type\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}pdb\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}chain Type Reference}{56}{section.10.5}%
-\contentsline {section}{\numberline {10.6}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}pdb\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::type\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}pdb\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}file Type Reference}{56}{section.10.6}%
-\contentsline {subsection}{\numberline {10.6.1}Detailed Description}{56}{subsection.10.6.1}%
-\contentsline {subsection}{\numberline {10.6.2}Member Data Documentation}{56}{subsection.10.6.2}%
-\contentsline {subsubsection}{\numberline {10.6.2.1}atoms}{56}{subsubsection.10.6.2.1}%
-\contentsline {subsubsection}{\numberline {10.6.2.2}chains}{56}{subsubsection.10.6.2.2}%
-\contentsline {subsubsection}{\numberline {10.6.2.3}natoms}{56}{subsubsection.10.6.2.3}%
-\contentsline {subsubsection}{\numberline {10.6.2.4}nchains}{56}{subsubsection.10.6.2.4}%
-\contentsline {subsubsection}{\numberline {10.6.2.5}nresidues}{56}{subsubsection.10.6.2.5}%
-\contentsline {subsubsection}{\numberline {10.6.2.6}residues}{57}{subsubsection.10.6.2.6}%
-\contentsline {section}{\numberline {10.7}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}pdb\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::type\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}pdb\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}residue Type Reference}{57}{section.10.7}%
-\contentsline {subsection}{\numberline {10.7.1}Member Data Documentation}{57}{subsection.10.7.1}%
-\contentsline {subsubsection}{\numberline {10.7.1.1}atoms}{57}{subsubsection.10.7.1.1}%
-\contentsline {subsubsection}{\numberline {10.7.1.2}chainid}{57}{subsubsection.10.7.1.2}%
-\contentsline {subsubsection}{\numberline {10.7.1.3}natoms}{57}{subsubsection.10.7.1.3}%
-\contentsline {subsubsection}{\numberline {10.7.1.4}resid}{57}{subsubsection.10.7.1.4}%
-\contentsline {subsubsection}{\numberline {10.7.1.5}resname}{57}{subsubsection.10.7.1.5}%
+\contentsline {section}{\numberline {10.1}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}assoc\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::type\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}assoc\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}file Type Reference}{53}{section.10.1}%
+\contentsline {subsection}{\numberline {10.1.1}Detailed Description}{53}{subsection.10.1.1}%
+\contentsline {subsection}{\numberline {10.1.2}Member Data Documentation}{53}{subsection.10.1.2}%
+\contentsline {subsubsection}{\numberline {10.1.2.1}head}{53}{subsubsection.10.1.2.1}%
+\contentsline {subsubsection}{\numberline {10.1.2.2}lines}{53}{subsubsection.10.1.2.2}%
+\contentsline {subsubsection}{\numberline {10.1.2.3}nlines}{53}{subsubsection.10.1.2.3}%
+\contentsline {subsubsection}{\numberline {10.1.2.4}rot1}{54}{subsubsection.10.1.2.4}%
+\contentsline {subsubsection}{\numberline {10.1.2.5}rot2}{54}{subsubsection.10.1.2.5}%
+\contentsline {subsubsection}{\numberline {10.1.2.6}trans\_vector}{54}{subsubsection.10.1.2.6}%
+\contentsline {subsubsection}{\numberline {10.1.2.7}xc1}{54}{subsubsection.10.1.2.7}%
+\contentsline {subsubsection}{\numberline {10.1.2.8}xc2}{54}{subsubsection.10.1.2.8}%
+\contentsline {section}{\numberline {10.2}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}pdb\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::type\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}pdb\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}atom Type Reference}{54}{section.10.2}%
+\contentsline {subsection}{\numberline {10.2.1}Member Data Documentation}{54}{subsection.10.2.1}%
+\contentsline {subsubsection}{\numberline {10.2.1.1}beta}{54}{subsubsection.10.2.1.1}%
+\contentsline {subsubsection}{\numberline {10.2.1.2}chainid}{55}{subsubsection.10.2.1.2}%
+\contentsline {subsubsection}{\numberline {10.2.1.3}coord}{55}{subsubsection.10.2.1.3}%
+\contentsline {subsubsection}{\numberline {10.2.1.4}id}{55}{subsubsection.10.2.1.4}%
+\contentsline {subsubsection}{\numberline {10.2.1.5}name}{55}{subsubsection.10.2.1.5}%
+\contentsline {subsubsection}{\numberline {10.2.1.6}occ}{55}{subsubsection.10.2.1.6}%
+\contentsline {subsubsection}{\numberline {10.2.1.7}record}{55}{subsubsection.10.2.1.7}%
+\contentsline {subsubsection}{\numberline {10.2.1.8}resid}{55}{subsubsection.10.2.1.8}%
+\contentsline {subsubsection}{\numberline {10.2.1.9}resname}{55}{subsubsection.10.2.1.9}%
+\contentsline {section}{\numberline {10.3}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}pdb\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::type\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}pdb\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}chain Type Reference}{55}{section.10.3}%
+\contentsline {section}{\numberline {10.4}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}pdb\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::type\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}pdb\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}file Type Reference}{55}{section.10.4}%
+\contentsline {subsection}{\numberline {10.4.1}Detailed Description}{56}{subsection.10.4.1}%
+\contentsline {subsection}{\numberline {10.4.2}Member Data Documentation}{56}{subsection.10.4.2}%
+\contentsline {subsubsection}{\numberline {10.4.2.1}atoms}{56}{subsubsection.10.4.2.1}%
+\contentsline {subsubsection}{\numberline {10.4.2.2}chains}{56}{subsubsection.10.4.2.2}%
+\contentsline {subsubsection}{\numberline {10.4.2.3}natoms}{56}{subsubsection.10.4.2.3}%
+\contentsline {subsubsection}{\numberline {10.4.2.4}nchains}{56}{subsubsection.10.4.2.4}%
+\contentsline {subsubsection}{\numberline {10.4.2.5}nresidues}{56}{subsubsection.10.4.2.5}%
+\contentsline {subsubsection}{\numberline {10.4.2.6}residues}{56}{subsubsection.10.4.2.6}%
+\contentsline {section}{\numberline {10.5}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}pdb\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::type\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}pdb\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}residue Type Reference}{56}{section.10.5}%
+\contentsline {subsection}{\numberline {10.5.1}Member Data Documentation}{57}{subsection.10.5.1}%
+\contentsline {subsubsection}{\numberline {10.5.1.1}atoms}{57}{subsubsection.10.5.1.1}%
+\contentsline {subsubsection}{\numberline {10.5.1.2}chainid}{57}{subsubsection.10.5.1.2}%
+\contentsline {subsubsection}{\numberline {10.5.1.3}natoms}{57}{subsubsection.10.5.1.3}%
+\contentsline {subsubsection}{\numberline {10.5.1.4}resid}{57}{subsubsection.10.5.1.4}%
+\contentsline {subsubsection}{\numberline {10.5.1.5}resname}{57}{subsubsection.10.5.1.5}%
 \contentsline {chapter}{\numberline {11}File Documentation}{59}{chapter.11}%
 \contentsline {section}{\numberline {11.1}analyze\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}residues.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}f90 File Reference}{59}{section.11.1}%
 \contentsline {subsection}{\numberline {11.1.1}Function/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Subroutine Documentation}{59}{subsection.11.1.1}%
@@ -211,19 +211,19 @@
 \contentsline {subsubsection}{\numberline {11.3.1.1}clust\_all()}{60}{subsubsection.11.3.1.1}%
 \contentsline {subsubsection}{\numberline {11.3.1.2}print\_help()}{60}{subsubsection.11.3.1.2}%
 \contentsline {subsubsection}{\numberline {11.3.1.3}read\_atoms\_coord()}{61}{subsubsection.11.3.1.3}%
-\contentsline {section}{\numberline {11.4}make\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}matrix.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}f90 File Reference}{61}{section.11.4}%
+\contentsline {section}{\numberline {11.4}make\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}data.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}f90 File Reference}{61}{section.11.4}%
 \contentsline {subsection}{\numberline {11.4.1}Function/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Subroutine Documentation}{61}{subsection.11.4.1}%
 \contentsline {subsubsection}{\numberline {11.4.1.1}main()}{61}{subsubsection.11.4.1.1}%
 \contentsline {subsubsection}{\numberline {11.4.1.2}print\_help()}{61}{subsubsection.11.4.1.2}%
 \contentsline {subsubsection}{\numberline {11.4.1.3}read\_atoms\_coord()}{61}{subsubsection.11.4.1.3}%
 \contentsline {section}{\numberline {11.5}maths.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}f90 File Reference}{62}{section.11.5}%
-\contentsline {section}{\numberline {11.6}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}assoc.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}f90 File Reference}{62}{section.11.6}%
-\contentsline {section}{\numberline {11.7}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}clust\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}algorithm.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}f90 File Reference}{63}{section.11.7}%
-\contentsline {section}{\numberline {11.8}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cuda.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}f90 File Reference}{63}{section.11.8}%
-\contentsline {section}{\numberline {11.9}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cuda\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}old.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}f90 File Reference}{63}{section.11.9}%
-\contentsline {section}{\numberline {11.10}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}gpu\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}accelerate.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}f90 File Reference}{64}{section.11.10}%
-\contentsline {section}{\numberline {11.11}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}matrix.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}f90 File Reference}{64}{section.11.11}%
-\contentsline {section}{\numberline {11.12}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}pdb.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}f90 File Reference}{65}{section.11.12}%
+\contentsline {section}{\numberline {11.6}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}array.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}f90 File Reference}{62}{section.11.6}%
+\contentsline {section}{\numberline {11.7}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}assoc.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}f90 File Reference}{63}{section.11.7}%
+\contentsline {section}{\numberline {11.8}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}clust\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}algorithm.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}f90 File Reference}{63}{section.11.8}%
+\contentsline {section}{\numberline {11.9}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cuda.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}f90 File Reference}{63}{section.11.9}%
+\contentsline {section}{\numberline {11.10}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}matrix.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}f90 File Reference}{64}{section.11.10}%
+\contentsline {section}{\numberline {11.11}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}memory.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}f90 File Reference}{64}{section.11.11}%
+\contentsline {section}{\numberline {11.12}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}pdb.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}f90 File Reference}{64}{section.11.12}%
 \contentsline {section}{\numberline {11.13}mod\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}threshold.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}f90 File Reference}{65}{section.11.13}%
 \contentsline {section}{\numberline {11.14}read\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}input.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}f90 File Reference}{65}{section.11.14}%
 \contentsline {section}{\numberline {11.15}threshold.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}f90 File Reference}{66}{section.11.15}%
@@ -231,8 +231,8 @@
 \contentsline {subsubsection}{\numberline {11.15.1.1}main()}{66}{subsubsection.11.15.1.1}%
 \contentsline {subsubsection}{\numberline {11.15.1.2}print\_help()}{66}{subsubsection.11.15.1.2}%
 \contentsline {subsubsection}{\numberline {11.15.1.3}read\_atoms\_coord()}{66}{subsubsection.11.15.1.3}%
-\contentsline {subsubsection}{\numberline {11.15.1.4}write\_array()}{67}{subsubsection.11.15.1.4}%
-\contentsline {subsubsection}{\numberline {11.15.1.5}write\_complexes()}{67}{subsubsection.11.15.1.5}%
+\contentsline {subsubsection}{\numberline {11.15.1.4}write\_array()}{66}{subsubsection.11.15.1.4}%
+\contentsline {subsubsection}{\numberline {11.15.1.5}write\_cutoff\_complexes()}{67}{subsubsection.11.15.1.5}%
 \contentsline {section}{\numberline {11.16}unit\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}test/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}EX.md File Reference}{67}{section.11.16}%
 \contentsline {section}{\numberline {11.17}unit\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}test/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Q\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}U\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}C\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}K\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}T\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}E\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ST.md File Reference}{67}{section.11.17}%
 \contentsline {section}{\numberline {11.18}unit\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}test/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}R\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}E\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ME.md File Reference}{67}{section.11.18}%
@@ -242,25 +242,25 @@
 \contentsline {subsubsection}{\numberline {11.20.1.1}test\_allocate\_assoc\_object()}{67}{subsubsection.11.20.1.1}%
 \contentsline {subsubsection}{\numberline {11.20.1.2}test\_assoc()}{67}{subsubsection.11.20.1.2}%
 \contentsline {subsubsection}{\numberline {11.20.1.3}test\_read\_assoc\_file()}{68}{subsubsection.11.20.1.3}%
-\contentsline {subsubsection}{\numberline {11.20.1.4}test\_size\_assoc()}{69}{subsubsection.11.20.1.4}%
+\contentsline {subsubsection}{\numberline {11.20.1.4}test\_size\_assoc()}{68}{subsubsection.11.20.1.4}%
 \contentsline {section}{\numberline {11.21}unit\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}test/test\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}clustering.f90 File Reference}{69}{section.11.21}%
 \contentsline {subsection}{\numberline {11.21.1}Function/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Subroutine Documentation}{69}{subsection.11.21.1}%
 \contentsline {subsubsection}{\numberline {11.21.1.1}test\_cluster\_writing()}{69}{subsubsection.11.21.1.1}%
 \contentsline {subsubsection}{\numberline {11.21.1.2}test\_clustering()}{69}{subsubsection.11.21.1.2}%
-\contentsline {subsubsection}{\numberline {11.21.1.3}test\_clustering\_statistics()}{70}{subsubsection.11.21.1.3}%
+\contentsline {subsubsection}{\numberline {11.21.1.3}test\_clustering\_statistics()}{69}{subsubsection.11.21.1.3}%
 \contentsline {subsubsection}{\numberline {11.21.1.4}test\_maximum\_linkage()}{70}{subsubsection.11.21.1.4}%
 \contentsline {subsubsection}{\numberline {11.21.1.5}test\_mean\_linkage()}{70}{subsubsection.11.21.1.5}%
 \contentsline {subsubsection}{\numberline {11.21.1.6}test\_minimum\_linkage()}{70}{subsubsection.11.21.1.6}%
 \contentsline {subsubsection}{\numberline {11.21.1.7}test\_simple\_clustering()}{70}{subsubsection.11.21.1.7}%
 \contentsline {section}{\numberline {11.22}unit\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}test/test\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}maths.f90 File Reference}{70}{section.11.22}%
 \contentsline {subsection}{\numberline {11.22.1}Function/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Subroutine Documentation}{70}{subsection.11.22.1}%
-\contentsline {subsubsection}{\numberline {11.22.1.1}assert\_vector\_equal()}{71}{subsubsection.11.22.1.1}%
+\contentsline {subsubsection}{\numberline {11.22.1.1}assert\_vector\_equal()}{70}{subsubsection.11.22.1.1}%
 \contentsline {subsubsection}{\numberline {11.22.1.2}test\_calculate\_cog()}{71}{subsubsection.11.22.1.2}%
 \contentsline {subsubsection}{\numberline {11.22.1.3}test\_calculate\_distance()}{71}{subsubsection.11.22.1.3}%
 \contentsline {subsubsection}{\numberline {11.22.1.4}test\_cross\_product()}{71}{subsubsection.11.22.1.4}%
 \contentsline {subsubsection}{\numberline {11.22.1.5}test\_maths()}{71}{subsubsection.11.22.1.5}%
 \contentsline {subsubsection}{\numberline {11.22.1.6}test\_rmsd()}{72}{subsubsection.11.22.1.6}%
-\contentsline {subsubsection}{\numberline {11.22.1.7}test\_update\_complex()}{73}{subsubsection.11.22.1.7}%
+\contentsline {subsubsection}{\numberline {11.22.1.7}test\_update\_complex()}{72}{subsubsection.11.22.1.7}%
 \contentsline {subsubsection}{\numberline {11.22.1.8}test\_vectors\_angle\_2d()}{73}{subsubsection.11.22.1.8}%
 \contentsline {subsubsection}{\numberline {11.22.1.9}test\_vectors\_angle\_3d()}{73}{subsubsection.11.22.1.9}%
 \contentsline {section}{\numberline {11.23}unit\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}test/test\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}matrix.f90 File Reference}{73}{section.11.23}%
@@ -272,13 +272,13 @@
 \contentsline {subsubsection}{\numberline {11.23.1.5}test\_matrix\_z\_coord()}{74}{subsubsection.11.23.1.5}%
 \contentsline {subsubsection}{\numberline {11.23.1.6}test\_write\_read\_array()}{74}{subsubsection.11.23.1.6}%
 \contentsline {subsubsection}{\numberline {11.23.1.7}test\_write\_read\_matrix()}{74}{subsubsection.11.23.1.7}%
-\contentsline {section}{\numberline {11.24}unit\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}test/test\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}pdb.f90 File Reference}{75}{section.11.24}%
+\contentsline {section}{\numberline {11.24}unit\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}test/test\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}pdb.f90 File Reference}{74}{section.11.24}%
 \contentsline {subsection}{\numberline {11.24.1}Function/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Subroutine Documentation}{75}{subsection.11.24.1}%
 \contentsline {subsubsection}{\numberline {11.24.1.1}test\_atom\_properties()}{75}{subsubsection.11.24.1.1}%
 \contentsline {subsubsection}{\numberline {11.24.1.2}test\_chain\_management()}{75}{subsubsection.11.24.1.2}%
 \contentsline {subsubsection}{\numberline {11.24.1.3}test\_mod\_pdb\_routines()}{75}{subsubsection.11.24.1.3}%
 \contentsline {subsubsection}{\numberline {11.24.1.4}test\_pdb()}{75}{subsubsection.11.24.1.4}%
-\contentsline {subsubsection}{\numberline {11.24.1.5}test\_pdb\_allocation()}{76}{subsubsection.11.24.1.5}%
+\contentsline {subsubsection}{\numberline {11.24.1.5}test\_pdb\_allocation()}{75}{subsubsection.11.24.1.5}%
 \contentsline {subsubsection}{\numberline {11.24.1.6}test\_residue\_management()}{76}{subsubsection.11.24.1.6}%
 \contentsline {section}{\numberline {11.25}unit\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}test/test\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}read\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}input.f90 File Reference}{76}{section.11.25}%
 \contentsline {subsection}{\numberline {11.25.1}Function/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Subroutine Documentation}{76}{subsection.11.25.1}%
@@ -289,9 +289,9 @@
 \contentsline {section}{\numberline {11.27}unit\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}test/test\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}threshold.f90 File Reference}{77}{section.11.27}%
 \contentsline {subsection}{\numberline {11.27.1}Function/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Subroutine Documentation}{77}{subsection.11.27.1}%
 \contentsline {subsubsection}{\numberline {11.27.1.1}test\_array\_angle()}{77}{subsubsection.11.27.1.1}%
-\contentsline {subsubsection}{\numberline {11.27.1.2}test\_array\_atoms\_dist()}{78}{subsubsection.11.27.1.2}%
+\contentsline {subsubsection}{\numberline {11.27.1.2}test\_array\_atoms\_dist()}{77}{subsubsection.11.27.1.2}%
 \contentsline {subsubsection}{\numberline {11.27.1.3}test\_array\_z\_coord()}{78}{subsubsection.11.27.1.3}%
 \contentsline {subsubsection}{\numberline {11.27.1.4}test\_sort\_array()}{78}{subsubsection.11.27.1.4}%
 \contentsline {subsubsection}{\numberline {11.27.1.5}test\_threshold()}{78}{subsubsection.11.27.1.5}%
 \contentsline {section}{\numberline {11.28}unit\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}test/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}T\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}E\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}T\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}NG.md File Reference}{78}{section.11.28}%
-\contentsline {chapter}{Index}{79}{section*.52}%
+\contentsline {chapter}{Index}{79}{section*.51}%

@@ -13,7 +13,7 @@ program main
   implicit none
       
 
-    character*128 :: pdb1_filename, pdb2_filename, complexes_filename, output_complexes_filename, array_filename
+    character*128 :: pdb1_filename, pdb2_filename, complexes_filename, output_complexes_filename, datadist_filename
     character*128 :: threshold_type
     character*128 :: argument
     character*128, dimension(:), allocatable :: arr_atoms1a, arr_atoms1b, arr_atoms2a, arr_atoms2b
@@ -89,7 +89,7 @@ program main
       else if ( trim(argument) == "-array" ) then
         array_bool = .true.
         call getarg( count_arg+1, argument )
-        array_filename = trim(argument)
+        datadist_filename = trim(argument)
         count_arg = count_arg + 1
       else if ( trim(argument) == "-complexes_output" ) then
         output_complexes_bool = .true.
@@ -402,8 +402,8 @@ program main
 
     call sort_array(distarray, encounter_indexes)
 
-    call write_array(distarray, array_filename, cutoff)
-    call write_complexes(complexes, distarray, encounter_indexes, nb_encounters, cutoff, output_complexes_filename)
+    call write_array(distarray, datadist_filename, cutoff)
+    call write_cutoff_complexes(complexes, distarray, encounter_indexes, nb_encounters, cutoff, output_complexes_filename)
 
     print *, 'Threshold complete and encounters stored in ', output_complexes_filename
   
@@ -568,7 +568,8 @@ program main
     !! encounter lines (from `complexes%lines`) in the order provided
     !! by `encounter_indexes` until a value exceeding `cutoff` is
     !! encountered.
-    subroutine write_complexes(complexes_arg, distarray_arg, encounter_indexes_arg, nb_encounters_arg, cutoff_arg, output_name_arg)
+    subroutine write_cutoff_complexes(complexes_arg, distarray_arg, encounter_indexes_arg, nb_encounters_arg, &
+                                      cutoff_arg, output_name_arg)
 
       IMPLICIT NONE
       type(type_assoc_file), intent(in) :: complexes_arg
@@ -596,7 +597,7 @@ program main
       ! Close the file
       close(unit_number)
 
-    end subroutine write_complexes
+    end subroutine write_cutoff_complexes
 
     !> Write array values up to a cutoff to a formatted file.
     !!

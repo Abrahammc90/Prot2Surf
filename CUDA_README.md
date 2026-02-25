@@ -25,7 +25,7 @@ make clean
 make all USE_CUDA=1
 ```
 
-Note: The CUDA implementation will automatically detect if your GPU has the required compute capability (sm_86 for RTX 3060, or adjust in Makefile if needed).
+Note: The CUDA implementation will automatically detect if your GPU has the required compute capability.
 
 ## Usage
 

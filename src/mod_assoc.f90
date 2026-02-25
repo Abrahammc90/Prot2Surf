@@ -202,5 +202,32 @@ module mod_assoc
 
     end subroutine fill_assoc_object
 
+    subroutine write_complexes(complexes, nb_encounters, complexes_filename)
+      type(type_assoc_file), intent(in) :: complexes
+      integer, intent(in) :: nb_encounters
+      character(len=*), intent(in) :: complexes_filename
+
+      integer :: i
+      integer :: stat
+      integer :: assoc_file = 20
+
+      open(unit=assoc_file, file=complexes_filename, status='replace', action='write', iostat=stat)
+      if (stat /= 0) then
+        write(*,*) "Error opening complexes output file for writing: ", complexes_filename
+        STOP 1
+      end if
+
+      ! Write header lines
+      do i = 1, 4
+        write(assoc_file, '(a)') complexes%head(i)
+      end do
+
+      do i = 1, nb_encounters
+         write(assoc_file, "(a)") complexes % lines(i)
+      end do
+      close(assoc_file)
+
+    end subroutine write_complexes
+
   
  end module mod_assoc

@@ -407,7 +407,7 @@ contains
         rot2(1, :) = [0.0d0, 1.0d0, 0.0d0]
         rot2(2, :) = [0.0d0, 1.0d0, 0.0d0]
 
-        call matrix_atoms_dist(matrix, array, n, nb_atoms, xc1, xc2, trans_vector, rot1, rot2, solute1_crds, solute2_crds)
+        call array_atoms_dist(matrix, array, n, nb_atoms, xc1, xc2, trans_vector, rot1, rot2, solute1_crds, solute2_crds)
 
         test_passed = (abs(array(1) - 1.0d0) < 1d-8 .and. abs(array(2) - 2.0d0) < 1d-8 .and. &
                       abs(matrix(1, 2) - 1.0d0) < 1d-8 .and. abs(matrix(2, 1) - 1.0d0) < 1d-8)

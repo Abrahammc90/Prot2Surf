@@ -1,0 +1,58 @@
+\hypertarget{namespacemod__memory}{}\doxysection{mod\+\_\+memory Module Reference}
+\label{namespacemod__memory}\index{mod\_memory@{mod\_memory}}
+\doxysubsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+integer(kind=8) function, public \mbox{\hyperlink{namespacemod__memory_ac1a35e63fa3c3787a2ae6a1497b095fb}{get\+\_\+available\+\_\+memory}} ()
+\begin{DoxyCompactList}\small\item\em Utilities for memory management and batch processing. \end{DoxyCompactList}\item 
+integer function, public \mbox{\hyperlink{namespacemod__memory_a9bdf83ceeb81ce17b3bb48c80cb73672}{calculate\+\_\+max\+\_\+batch\+\_\+size}} (available\+\_\+memory, nb\+\_\+total\+\_\+encounters, reserve\+\_\+percent)
+\begin{DoxyCompactList}\small\item\em Calculate maximum batch size for matrix processing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespacemod__memory_a9bdf83ceeb81ce17b3bb48c80cb73672}\label{namespacemod__memory_a9bdf83ceeb81ce17b3bb48c80cb73672}} 
+\index{mod\_memory@{mod\_memory}!calculate\_max\_batch\_size@{calculate\_max\_batch\_size}}
+\index{calculate\_max\_batch\_size@{calculate\_max\_batch\_size}!mod\_memory@{mod\_memory}}
+\doxysubsubsection{\texorpdfstring{calculate\_max\_batch\_size()}{calculate\_max\_batch\_size()}}
+{\footnotesize\ttfamily integer function, public mod\+\_\+memory\+::calculate\+\_\+max\+\_\+batch\+\_\+size (\begin{DoxyParamCaption}\item[{integer(kind=8), intent(in)}]{available\+\_\+memory,  }\item[{integer, intent(in)}]{nb\+\_\+total\+\_\+encounters,  }\item[{integer, intent(in), optional}]{reserve\+\_\+percent }\end{DoxyParamCaption})}
+
+
+
+Calculate maximum batch size for matrix processing. 
+
+Given available memory and memory to leave free (in percentage), calculates the maximum number of encounters that can be processed.
+
+Formula\+: usable\+\_\+memory = available\+\_\+memory $\ast$ (1 -\/ reserve\+\_\+percent/100) bytes\+\_\+per\+\_\+encounter = nb\+\_\+total\+\_\+encounters $\ast$ 8 + other\+\_\+overhead max\+\_\+batch = usable\+\_\+memory / bytes\+\_\+per\+\_\+encounter
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em available\+\_\+memory} & Available system R\+AM in bytes \\
+\hline
+\mbox{\texttt{ in}}  & {\em nb\+\_\+total\+\_\+encounters} & Total number of encounters to process \\
+\hline
+\mbox{\texttt{ in}}  & {\em reserve\+\_\+percent} & Percentage of memory to keep free (default 20)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+maximum batch size (number of encounters per batch) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacemod__memory_ac1a35e63fa3c3787a2ae6a1497b095fb}\label{namespacemod__memory_ac1a35e63fa3c3787a2ae6a1497b095fb}} 
+\index{mod\_memory@{mod\_memory}!get\_available\_memory@{get\_available\_memory}}
+\index{get\_available\_memory@{get\_available\_memory}!mod\_memory@{mod\_memory}}
+\doxysubsubsection{\texorpdfstring{get\_available\_memory()}{get\_available\_memory()}}
+{\footnotesize\ttfamily integer(kind=8) function, public mod\+\_\+memory\+::get\+\_\+available\+\_\+memory}
+
+
+
+Utilities for memory management and batch processing. 
+
+This module provides routines to detect available system memory, calculate batch sizes for large datasets, and manage memory-\/efficient processing of large matrices.
+
+\begin{DoxyAuthor}{Author}
+Abraham Muñiz-\/\+Chicharro Get available system memory in bytes
+\end{DoxyAuthor}
+Detects available R\+AM on Linux systems by parsing /proc/meminfo. On other systems, returns -\/1.
+
+\begin{DoxyReturn}{Returns}
+available memory in bytes, or -\/1 if cannot be determined 
+\end{DoxyReturn}

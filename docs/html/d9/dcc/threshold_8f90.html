@@ -79,9 +79,9 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memitem:ad0df42f74407d652097e6e433eea2dc8"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dcc/threshold_8f90.html#ad0df42f74407d652097e6e433eea2dc8">read_atoms_coord</a> (atoms_array, atoms_coord, tot_atoms, pdb, pdb_filename)</td></tr>
 <tr class="memdesc:ad0df42f74407d652097e6e433eea2dc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read coordinates for a specified list of atoms (names or indices).  <a href="../../d9/dcc/threshold_8f90.html#ad0df42f74407d652097e6e433eea2dc8">More...</a><br /></td></tr>
 <tr class="separator:ad0df42f74407d652097e6e433eea2dc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad04de6cff47de94926a29611e69af5b1"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dcc/threshold_8f90.html#ad04de6cff47de94926a29611e69af5b1">write_complexes</a> (complexes_arg, distarray_arg, encounter_indexes_arg, nb_encounters_arg, cutoff_arg, output_name_arg)</td></tr>
-<tr class="memdesc:ad04de6cff47de94926a29611e69af5b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write selected encounter complexes to an output file.  <a href="../../d9/dcc/threshold_8f90.html#ad04de6cff47de94926a29611e69af5b1">More...</a><br /></td></tr>
-<tr class="separator:ad04de6cff47de94926a29611e69af5b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a241309bb0c3b176ef1f50e8f506031f0"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dcc/threshold_8f90.html#a241309bb0c3b176ef1f50e8f506031f0">write_cutoff_complexes</a> (complexes_arg, distarray_arg, encounter_indexes_arg, nb_encounters_arg, cutoff_arg, output_name_arg)</td></tr>
+<tr class="memdesc:a241309bb0c3b176ef1f50e8f506031f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write selected encounter complexes to an output file.  <a href="../../d9/dcc/threshold_8f90.html#a241309bb0c3b176ef1f50e8f506031f0">More...</a><br /></td></tr>
+<tr class="separator:a241309bb0c3b176ef1f50e8f506031f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ce58677d1b4a380e504f22141ae31a8"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dcc/threshold_8f90.html#a5ce58677d1b4a380e504f22141ae31a8">write_array</a> (array_arg, filename_arg, cutoff_arg)</td></tr>
 <tr class="memdesc:a5ce58677d1b4a380e504f22141ae31a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write array values up to a cutoff to a formatted file.  <a href="../../d9/dcc/threshold_8f90.html#a5ce58677d1b4a380e504f22141ae31a8">More...</a><br /></td></tr>
 <tr class="separator:a5ce58677d1b4a380e504f22141ae31a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -153,7 +153,7 @@ Functions/Subroutines</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">type ( <a class="el" href="../../d1/d57/structmod__pdb_1_1type__pdb__file.html">type_pdb_file</a> ), intent(in)&#160;</td>
+          <td class="paramtype">type ( type_pdb_file ), intent(in)&#160;</td>
           <td class="paramname"><em>pdb</em>, </td>
         </tr>
         <tr>
@@ -212,16 +212,16 @@ Functions/Subroutines</h2></td></tr>
 
 </div>
 </div>
-<a id="ad04de6cff47de94926a29611e69af5b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad04de6cff47de94926a29611e69af5b1">&#9670;&nbsp;</a></span>write_complexes()</h2>
+<a id="a241309bb0c3b176ef1f50e8f506031f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a241309bb0c3b176ef1f50e8f506031f0">&#9670;&nbsp;</a></span>write_cutoff_complexes()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">subroutine main::write_complexes </td>
+          <td class="memname">subroutine main::write_cutoff_complexes </td>
           <td>(</td>
-          <td class="paramtype">type(type_assoc_file), intent(in)&#160;</td>
+          <td class="paramtype">type(<a class="el" href="../../df/d2d/structmod__assoc_1_1type__assoc__file.html">type_assoc_file</a>), intent(in)&#160;</td>
           <td class="paramname"><em>complexes_arg</em>, </td>
         </tr>
         <tr>

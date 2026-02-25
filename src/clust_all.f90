@@ -7,13 +7,14 @@
 program clust_all
   USE read_input
   USE mod_matrix
+  USE mod_array
   USE mod_clust_algorithm
   USE mod_assoc
 
   implicit none
       
-    character*128 :: pdb1_filename, pdb2_filename, complexes_filename
-    character*128 :: matrix_type, array_filename
+    character*128 :: pdb1_filename, pdb2_filename, complexes_filename, sorted_complexes_filename
+    character*128 :: data_type, datadist_filename
     character*128 :: linkage_type, output_name
     character*128 :: argument
     character*128, dimension(:), allocatable :: arr_atoms1a, arr_atoms1b, arr_atoms2a, arr_atoms2b
@@ -33,8 +34,8 @@ program clust_all
     real (kind=8), dimension(3) :: cog1a, cog1b, cog2a, cog2b
     integer :: nb_argument, count_arg, n_atoms
     integer :: ios
-    logical :: pdb1_bool, pdb2_bool, complexes_bool, atoms1_bool, atoms2_bool
-    logical :: matrixtype_bool, array_bool, nb_encounters_bool, help_bool
+    logical :: pdb1_bool, pdb2_bool, complexes_bool, atoms1_bool, atoms2_bool, datadist_filename_bool
+    logical :: datatype_bool, nb_encounters_bool, help_bool
     logical :: arr_atoms1a_bool, arr_atoms1b_bool, arr_atoms2a_bool, arr_atoms2b_bool
     logical :: linkage_bool, output_bool, use_cuda_bool
 
@@ -46,8 +47,7 @@ program clust_all
     complexes_bool = .false.
     atoms1_bool = .false.
     atoms2_bool = .false.
-    matrixtype_bool = .false.
-    array_bool = .false.
+    datatype_bool = .false.
     nb_encounters_bool = .false.
     arr_atoms1a_bool = .false.
     arr_atoms1b_bool = .false.
@@ -95,15 +95,15 @@ program clust_all
           print *, "ERROR. Integer expected for the -nb_encounters argument."
         end if
         count_arg = count_arg + 1
-      else if ( trim(argument) == "-matrix_type" ) then
-        matrixtype_bool = .true.
+      else if ( trim(argument) == "-data_type" ) then
+        datatype_bool = .true.
         call getarg( count_arg+1, argument )
-        matrix_type = trim(argument)
+        data_type = trim(argument)
         count_arg = count_arg + 1
-      else if ( trim(argument) == "-array" ) then
-        array_bool = .true.
+      else if ( trim(argument) == "-datadist" ) then
+        datadist_filename_bool = .true.
         call getarg( count_arg+1, argument )
-        array_filename = trim(argument)
+        datadist_filename = trim(argument)
         count_arg = count_arg + 1
       else if ( trim(argument) == "-linkage" ) then
         linkage_bool = .true.
@@ -212,8 +212,8 @@ program clust_all
     end do
 
     if ( help_bool ) then
-      if (matrixtype_bool) then
-        call print_help(matrix_type)
+      if (datatype_bool) then
+        call print_help(data_type)
       else
         call print_help("main")
       end if
@@ -237,9 +237,15 @@ program clust_all
       print *, "For more information, please use the -help option:"
       print *, "./clust_all -help"
       STOP 1
-    else if ( .not. matrixtype_bool ) then
-      print *, "ERROR. Matrix type not given."
-      print *, "Please, provide the matrix type with the '-matrix_type' option"
+    else if ( .not. datatype_bool ) then
+      print *, "ERROR. Data type not given."
+      print *, "Please, provide the data type with the '-data_type' option"
+      print *, "For more information, please use the -help option:"
+      print *, "./clust_all -help"
+      STOP 1
+    else if ( .not. datadist_filename_bool ) then
+      print *, "ERROR. Output array filename not given."
+      print *, "Please, provide the output array filename with the '-input' option"
       print *, "For more information, please use the -help option:"
       print *, "./clust_all -help"
       STOP 1
@@ -274,27 +280,21 @@ program clust_all
 
     allocate(distmatrix (nb_encounters, nb_encounters))
     allocate(distarray (nb_encounters))
+    sorted_complexes_filename = "sorted_" // trim(complexes_filename)
 
-    print *, 'Building ', trim(matrix_type), ' matrix in memory'
+    print *, 'Building ', trim(data_type), ' matrix in memory'
 
-    if (trim(adjustl(matrix_type)) == "z_coord") then
-
-      if (.not. array_bool) then
-        print *, "ERROR. Array output filename not given."
-        print *, "Please provide the array output file with the '-array option'"
-        print *, "For more information, please use the -help option:"
-        print *, "./clust_all -matrix_type z_coord -help"
-        STOP 1
-      end if
+    if (trim(adjustl(data_type)) == "z_coord") then
 
       call read_atoms_coord(arr_atoms2a, atoms2a_coords, tot_atoms2, pdb2, pdb2_filename)
 
-      call matrix_z_coord(distmatrix, distarray, nb_encounters, 1, complexes % xc1, complexes % xc2, &
+      call array_z_coord(complexes, distarray, nb_encounters, 1, complexes % xc1, complexes % xc2, &
       complexes % trans_vector, complexes % rot1, complexes % rot2, atoms2a_coords)
 
-      ! call write_array(distarray, array_filename)
+      call write_array(distarray, datadist_filename)
+      call write_complexes(complexes, nb_encounters, complexes_filename)
 
-    else if (trim(adjustl(matrix_type)) == "rmsd") then
+    else if (trim(adjustl(data_type)) == "rmsd") then
 
       call read_atoms_coord(arr_atoms2a, atoms2a_coords, tot_atoms2, pdb2, pdb2_filename)
 
@@ -302,26 +302,20 @@ program clust_all
       complexes % xc1, complexes % xc2, complexes % trans_vector, &
       complexes % rot1, complexes % rot2, atoms2a_coords)
 
-    else if (trim(adjustl(matrix_type)) == "3D_angle" .or. trim(adjustl(matrix_type)) == "2D_angle") then
+    else if (trim(adjustl(data_type)) == "3D_angle" .or. trim(adjustl(data_type)) == "2D_angle") then
 
       if (.not. pdb1_bool) then
         print *, "ERROR. Just one PDB provided. It is necessary to provide two pdbs ", &
         "to generate the angle matrix."
         print *, "Please provide the two pdb files with '-pdb1' and '-pdb2' options."
         print *, "For more information, please use the -help option:"
-        print *, "./clust_all -matrix_type angle -help"
+        print *, "./clust_all -data_type angle -help"
         STOP 1
       else if (.not. arr_atoms1a_bool .or. .not. arr_atoms1b_bool .or. .not. arr_atoms2b_bool) then 
         print *, "ERROR. Not all necessary group of atoms given"
         print *, "Please provide all group of atoms with '-atoms1a', '-atoms1b', '-atoms2a' and '-atoms2b' options"
         print *, "For more information, please use the -help option:"
-        print *, "./clust_all -matrix_type angle -help"
-        STOP 1
-      else if (.not. array_bool) then
-        print *, "ERROR. Array output filename not given."
-        print *, "Please provide the array output file with the '-array option'"
-        print *, "For more information, please use the -help option:"
-        print *, "./clust_all -matrix_type angle -help"
+        print *, "./clust_all -data_type angle -help"
         STOP 1
       end if
 
@@ -337,38 +331,33 @@ program clust_all
       call calculate_cog(cog2a, atoms2a_coords, size(atoms2a_coords(:, 3)))
       call calculate_cog(cog2b, atoms2b_coords, size(atoms2b_coords(:, 3)))
       
-      if (trim(adjustl(matrix_type)) == "2D_angle") then
-        call matrix_angle(distmatrix, distarray, nb_encounters, 2, &
+      if (trim(adjustl(data_type)) == "2D_angle") then
+        call array_angle(complexes, distarray, nb_encounters, 2, &
         complexes % xc1, complexes % xc2, complexes % trans_vector, complexes % rot1, complexes % rot2, &
         cog1a, cog1b, cog2a, cog2b, 2)
-      else if (trim(adjustl(matrix_type)) == "3D_angle") then
-        call matrix_angle(distmatrix, distarray, nb_encounters, 2, &
+      else if (trim(adjustl(data_type)) == "3D_angle") then
+        call array_angle(complexes, distarray, nb_encounters, 2, &
         complexes % xc1, complexes % xc2, complexes % trans_vector, complexes % rot1, complexes % rot2, &
         cog1a, cog1b, cog2a, cog2b, 3)
       end if
 
-      ! call write_array(distarray, array_filename)
+      call write_array(distarray, datadist_filename)
+      call write_complexes(complexes, nb_encounters, sorted_complexes_filename)
 
-    else if (trim(adjustl(matrix_type)) == "atoms_dist") then
+    else if (trim(adjustl(data_type)) == "atoms_dist") then
 
       if (.not. pdb1_bool) then
         print *, "ERROR. Just one PDB provided. It is necessary to provide two pdbs ", &
         "to generate the atoms_dist matrix."
         print *, "Please provide the two pdb files with '-pdb1' and '-pdb2' options"
         print *, "For more information, please use the -help option:"
-        print *, "./clust_all -matrix_type atoms_dist -help"
+        print *, "./clust_all -data_type atoms_dist -help"
         STOP 1
       else if (.not. arr_atoms1a_bool ) then 
         print *, "ERROR. Not all necessary group of atoms given"
         print *, "Please provide the group of atoms with '-atoms1' and '-atoms2' options"
         print *, "For more information, please use the -help option:"
-        print *, "./clust_all -matrix_type atoms_dist -help"
-        STOP 1
-      else if (.not. array_bool) then
-        print *, "ERROR. Array output filename not given."
-        print *, "Please provide the array output file with the '-array option'"
-        print *, "For more information, please use the -help option:"
-        print *, "./clust_all -matrix_type atoms_dist -help"
+        print *, "./clust_all -data_type atoms_dist -help"
         STOP 1
       end if
 
@@ -376,29 +365,31 @@ program clust_all
       call read_atoms_coord(arr_atoms1a, atoms1a_coords, tot_atoms1, pdb1, pdb1_filename)
       call read_atoms_coord(arr_atoms2a, atoms2a_coords, tot_atoms2, pdb2, pdb2_filename)
 
-      call matrix_atoms_dist(distmatrix, distarray, nb_encounters, 1, complexes % xc1, complexes % xc2, &
-      complexes % trans_vector, complexes % rot1, complexes % rot2, atoms1a_coords, atoms2a_coords)
+      call array_atoms_dist(complexes, distarray, nb_encounters, 1, &
+                            complexes % xc1, complexes % xc2, complexes % trans_vector, &
+                            complexes % rot1, complexes % rot2, atoms1a_coords, atoms2a_coords)
 
-    !   call write_array(distarray, array_filename)
+      call write_array(distarray, datadist_filename)
+      call write_complexes(complexes, nb_encounters, sorted_complexes_filename)
 
     else
-      print *, 'ERROR: ', trim(adjustl(matrix_type)), ' matrix not implemented'
+      print *, 'ERROR: ', trim(adjustl(data_type)), ' matrix not implemented'
       print *, "To know more about the type of matrices available, please run:"
       print *, "./clust_all -help"
       STOP
     end if
 
-    print *, 'Matrix generation complete'
+    print *, 'Data generation complete'
     print *, 'Starting clustering with linkage type: ', trim(linkage_type)
     write(*,*)
 
     ! Perform clustering directly on the in-memory matrix
-    if (array_bool) then
-      call linkage_clustering(distmatrix, nb_encounters, linkage_type, output_name, &
-                              complexes, distarray, use_cuda_bool)
-    else
-      call linkage_clustering(distmatrix, nb_encounters, linkage_type, output_name, &
+    if (trim(adjustl(data_type)) == "rmsd") then
+      call linkage_clustering_from_matrix(distmatrix, nb_encounters, linkage_type, output_name, &
                               complexes, use_cuda=use_cuda_bool)
+    else
+      call linkage_clustering_from_array(distarray, nb_encounters, linkage_type, output_name, &
+                              complexes)
     end if
 
     print *, 'Clustering complete'

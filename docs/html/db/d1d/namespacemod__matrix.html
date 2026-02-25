@@ -85,15 +85,9 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memitem:a2ac28315cb206a31cad2f5e63c3afba1"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1d/namespacemod__matrix.html#a2ac28315cb206a31cad2f5e63c3afba1">write_matrix</a> (matrix, filename)</td></tr>
 <tr class="memdesc:a2ac28315cb206a31cad2f5e63c3afba1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a numeric matrix to a formatted text file.  <a href="../../db/d1d/namespacemod__matrix.html#a2ac28315cb206a31cad2f5e63c3afba1">More...</a><br /></td></tr>
 <tr class="separator:a2ac28315cb206a31cad2f5e63c3afba1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef26b22e384e323e35a8c17584808790"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1d/namespacemod__matrix.html#aef26b22e384e323e35a8c17584808790">write_array</a> (array, filename)</td></tr>
-<tr class="memdesc:aef26b22e384e323e35a8c17584808790"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a numeric array to a formatted text file.  <a href="../../db/d1d/namespacemod__matrix.html#aef26b22e384e323e35a8c17584808790">More...</a><br /></td></tr>
-<tr class="separator:aef26b22e384e323e35a8c17584808790"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab379913b1ccff8141ffd78808dc8148b"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1d/namespacemod__matrix.html#ab379913b1ccff8141ffd78808dc8148b">read_matrix</a> (matrix, n, filename)</td></tr>
-<tr class="memdesc:ab379913b1ccff8141ffd78808dc8148b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a square numeric matrix from a formatted text file.  <a href="../../db/d1d/namespacemod__matrix.html#ab379913b1ccff8141ffd78808dc8148b">More...</a><br /></td></tr>
+<tr class="memdesc:ab379913b1ccff8141ffd78808dc8148b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a numeric array to a formatted text file.  <a href="../../db/d1d/namespacemod__matrix.html#ab379913b1ccff8141ffd78808dc8148b">More...</a><br /></td></tr>
 <tr class="separator:ab379913b1ccff8141ffd78808dc8148b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1de0cca9f7e7e3a990a58890627351d"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1d/namespacemod__matrix.html#ac1de0cca9f7e7e3a990a58890627351d">read_array</a> (array, n, filename)</td></tr>
-<tr class="memdesc:ac1de0cca9f7e7e3a990a58890627351d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a numeric array from a formatted text file.  <a href="../../db/d1d/namespacemod__matrix.html#ac1de0cca9f7e7e3a990a58890627351d">More...</a><br /></td></tr>
-<tr class="separator:ac1de0cca9f7e7e3a990a58890627351d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function/Subroutine Documentation</h2>
 <a id="a83c35621a4e33d0e6e6ae8e4a76a3cb8"></a>
@@ -491,51 +485,6 @@ Functions/Subroutines</h2></td></tr>
 
 </div>
 </div>
-<a id="ac1de0cca9f7e7e3a990a58890627351d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac1de0cca9f7e7e3a990a58890627351d">&#9670;&nbsp;</a></span>read_array()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">subroutine mod_matrix::read_array </td>
-          <td>(</td>
-          <td class="paramtype">real(kind=8), dimension(:), intent(out), allocatable&#160;</td>
-          <td class="paramname"><em>array</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, intent(inout)&#160;</td>
-          <td class="paramname"><em>n</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">character*128, intent(in)&#160;</td>
-          <td class="paramname"><em>filename</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Read a numeric array from a formatted text file. </p>
-<p>Parses a single-row formatted array file produced by <code>write_array</code>.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">array</td><td>Output array read from file (allocated) </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">n</td><td>Number of encounters (adjusted if file is smaller) </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filename</td><td>Input filename </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="ab379913b1ccff8141ffd78808dc8148b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab379913b1ccff8141ffd78808dc8148b">&#9670;&nbsp;</a></span>read_matrix()</h2>
 
@@ -568,51 +517,21 @@ Functions/Subroutines</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Read a square numeric matrix from a formatted text file. </p>
+<p>Write a numeric array to a formatted text file. </p>
+<p>Writes <code>array</code> as a single formatted line using <code>F10.4</code> floats.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">array</td><td>Input array to write </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">filename</td><td>Output filename Read a square numeric matrix from a formatted text file.</td></tr>
+  </table>
+  </dd>
+</dl>
 <p>Reads the file line-by-line to determine matrix size and parses rows with the expected <code>F10.4</code> formatting.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">matrix</td><td>Output matrix read from file (allocated) </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">n</td><td>Number of encounters (adjusted if file is smaller) </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">filename</td><td>Input filename </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="aef26b22e384e323e35a8c17584808790"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aef26b22e384e323e35a8c17584808790">&#9670;&nbsp;</a></span>write_array()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">subroutine mod_matrix::write_array </td>
-          <td>(</td>
-          <td class="paramtype">real(kind=8), dimension(:), intent(in)&#160;</td>
-          <td class="paramname"><em>array</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">character*128, intent(in)&#160;</td>
-          <td class="paramname"><em>filename</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Write a numeric array to a formatted text file. </p>
-<p>Writes <code>array</code> as a single formatted line using <code>F10.4</code> floats.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">array</td><td>Input array to write </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filename</td><td>Output filename </td></tr>
   </table>
   </dd>
 </dl>

@@ -18,7 +18,9 @@ subroutine \mbox{\hyperlink{namespacemod__assoc_a4a968c7006ecdff5091a50c0a3c96ee
 integer function \mbox{\hyperlink{namespacemod__assoc_a70fa81635e5e42f227ece48854f9a1ef}{size\+\_\+assoc}} (assoc\+\_\+file)
 \begin{DoxyCompactList}\small\item\em Count encounter records in an association/complexes file. \end{DoxyCompactList}\item 
 subroutine \mbox{\hyperlink{namespacemod__assoc_a713069bd94bf35d163fef1017c31b84c}{fill\+\_\+assoc\+\_\+object}} (this, assoc\+\_\+file)
-\begin{DoxyCompactList}\small\item\em Read an association/complexes file and populate {\ttfamily \mbox{\hyperlink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Read an association/complexes file and populate {\ttfamily \mbox{\hyperlink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}}}. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{namespacemod__assoc_a1a078920eaad8dbf34e84a3948283c74}{write\+\_\+complexes}} (complexes, nb\+\_\+encounters, complexes\+\_\+filename)
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -92,3 +94,9 @@ Scans {\ttfamily assoc\+\_\+file} (a Fortran unit number) and counts the number 
 \begin{DoxyReturn}{Returns}
 nlines Number of encounter records found 
 \end{DoxyReturn}
+\mbox{\Hypertarget{namespacemod__assoc_a1a078920eaad8dbf34e84a3948283c74}\label{namespacemod__assoc_a1a078920eaad8dbf34e84a3948283c74}} 
+\index{mod\_assoc@{mod\_assoc}!write\_complexes@{write\_complexes}}
+\index{write\_complexes@{write\_complexes}!mod\_assoc@{mod\_assoc}}
+\doxysubsubsection{\texorpdfstring{write\_complexes()}{write\_complexes()}}
+{\footnotesize\ttfamily subroutine mod\+\_\+assoc\+::write\+\_\+complexes (\begin{DoxyParamCaption}\item[{type(\mbox{\hyperlink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}}), intent(in)}]{complexes,  }\item[{integer, intent(in)}]{nb\+\_\+encounters,  }\item[{character(len=$\ast$), intent(in)}]{complexes\+\_\+filename }\end{DoxyParamCaption})}
+

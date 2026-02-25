@@ -1,0 +1,160 @@
+\hypertarget{namespacemod__array}{}\doxysection{mod\+\_\+array Module Reference}
+\label{namespacemod__array}\index{mod\_array@{mod\_array}}
+\doxysubsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine \mbox{\hyperlink{namespacemod__array_a0512310f27e9489dc1e167fabfdf9b90}{array\+\_\+z\+\_\+coord}} (complexes, array\+\_\+sorted, n, nb\+\_\+atoms, xc1, xc2, trans\+\_\+vector, rot1, rot2, solute\+\_\+crds)
+\begin{DoxyCompactList}\small\item\em Build a matrix of absolute differences of Z-\/coordinates per encounter. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{namespacemod__array_ac4a24f268360771a9b9d8390e4723701}{array\+\_\+atoms\+\_\+dist}} (complexes, array\+\_\+sorted, n, nb\+\_\+atoms, xc1, xc2, trans\+\_\+vector, rot1, rot2, solute1\+\_\+crds, solute2\+\_\+crds)
+\begin{DoxyCompactList}\small\item\em Build matrix from minimum inter-\/atomic distances between two solutes. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{namespacemod__array_a72770445fe69eaf840bf0297cbed0ba6}{array\+\_\+angle}} (complexes, array\+\_\+sorted, n, nb\+\_\+atoms, xc1, xc2, trans\+\_\+vector, rot1, rot2, point1a, point1b, point2a, point2b, dimensions)
+\begin{DoxyCompactList}\small\item\em Build matrix of angular differences between encounters. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{namespacemod__array_a778a88da7e7c643a241f2c142acd007e}{write\+\_\+array}} (array, filename)
+\item 
+subroutine \mbox{\hyperlink{namespacemod__array_a6fab57a7f87ff1a8058f8fbe5a7b9343}{read\+\_\+array}} (array, n, filename)
+\item 
+subroutine \mbox{\hyperlink{namespacemod__array_ae14ba9dbefc566101146df079981137a}{merge\+\_\+sorted\+\_\+segments}} (arr, complexes, tmp\+\_\+arr, tmp\+\_\+comp, left, mid, right)
+\begin{DoxyCompactList}\small\item\em Merge two adjacent sorted segments of arrays in place. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespacemod__array_a72770445fe69eaf840bf0297cbed0ba6}\label{namespacemod__array_a72770445fe69eaf840bf0297cbed0ba6}} 
+\index{mod\_array@{mod\_array}!array\_angle@{array\_angle}}
+\index{array\_angle@{array\_angle}!mod\_array@{mod\_array}}
+\doxysubsubsection{\texorpdfstring{array\_angle()}{array\_angle()}}
+{\footnotesize\ttfamily subroutine mod\+\_\+array\+::array\+\_\+angle (\begin{DoxyParamCaption}\item[{type(\mbox{\hyperlink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}}), intent(inout)}]{complexes,  }\item[{real(kind=8), dimension(n), intent(out)}]{array\+\_\+sorted,  }\item[{integer, intent(in)}]{n,  }\item[{integer, intent(in)}]{nb\+\_\+atoms,  }\item[{real(kind=8), dimension(3), intent(in)}]{xc1,  }\item[{real(kind=8), dimension(3), intent(in)}]{xc2,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{trans\+\_\+vector,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{rot1,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{rot2,  }\item[{real(kind=8), dimension(\+:), intent(in)}]{point1a,  }\item[{real(kind=8), dimension(\+:), intent(in)}]{point1b,  }\item[{real(kind=8), dimension(\+:), intent(in)}]{point2a,  }\item[{real(kind=8), dimension(\+:), intent(in)}]{point2b,  }\item[{integer, intent(in)}]{dimensions }\end{DoxyParamCaption})}
+
+
+
+Build matrix of angular differences between encounters. 
+
+Computes the angle (2D or 3D) for each encounter and fills the pairwise absolute difference matrix.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em matrix} & Output (n,n) matrix of pairwise angular differences \\
+\hline
+\mbox{\texttt{ out}}  & {\em array} & Output (n) array with per-\/encounter angles \\
+\hline
+\mbox{\texttt{ in}}  & {\em n} & Number of encounters \\
+\hline
+\mbox{\texttt{ in}}  & {\em nb\+\_\+atoms} & Number of atoms in solute 2 to transform \\
+\hline
+\mbox{\texttt{ in}}  & {\em xc1,xc2} & Solute centers used for translation transformations \\
+\hline
+\mbox{\texttt{ in}}  & {\em trans\+\_\+vector} & Transform translation vectors (n,3) \\
+\hline
+\mbox{\texttt{ in}}  & {\em rot1,rot2} & Transform rotation arrays (n,3) \\
+\hline
+\mbox{\texttt{ in}}  & {\em point1a} & First point defining reference vector \\
+\hline
+\mbox{\texttt{ in}}  & {\em point1b} & Second point defining reference vector \\
+\hline
+\mbox{\texttt{ in}}  & {\em point2a} & First point of vector to be transformed \\
+\hline
+\mbox{\texttt{ in}}  & {\em point2b} & Second point of vector to be transformed \\
+\hline
+\mbox{\texttt{ in}}  & {\em dimensions} & Dimensionality of angle calculation (2 or 3) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacemod__array_ac4a24f268360771a9b9d8390e4723701}\label{namespacemod__array_ac4a24f268360771a9b9d8390e4723701}} 
+\index{mod\_array@{mod\_array}!array\_atoms\_dist@{array\_atoms\_dist}}
+\index{array\_atoms\_dist@{array\_atoms\_dist}!mod\_array@{mod\_array}}
+\doxysubsubsection{\texorpdfstring{array\_atoms\_dist()}{array\_atoms\_dist()}}
+{\footnotesize\ttfamily subroutine mod\+\_\+array\+::array\+\_\+atoms\+\_\+dist (\begin{DoxyParamCaption}\item[{type(\mbox{\hyperlink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}}), intent(inout)}]{complexes,  }\item[{real(kind=8), dimension(n), intent(out)}]{array\+\_\+sorted,  }\item[{integer, intent(in)}]{n,  }\item[{integer, intent(in)}]{nb\+\_\+atoms,  }\item[{real(kind=8), dimension(3), intent(in)}]{xc1,  }\item[{real(kind=8), dimension(3), intent(in)}]{xc2,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{trans\+\_\+vector,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{rot1,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{rot2,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{solute1\+\_\+crds,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{solute2\+\_\+crds }\end{DoxyParamCaption})}
+
+
+
+Build matrix from minimum inter-\/atomic distances between two solutes. 
+
+For each encounter, the second solute is transformed and the minimum distance to {\ttfamily solute1\+\_\+crds} is computed; pairwise absolute differences of these minima populate {\ttfamily matrix}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em matrix} & Output (n,n) matrix of pairwise values \\
+\hline
+\mbox{\texttt{ out}}  & {\em array} & Output (n) array with per-\/encounter minimum distances \\
+\hline
+\mbox{\texttt{ in}}  & {\em n} & Number of encounters \\
+\hline
+\mbox{\texttt{ in}}  & {\em nb\+\_\+atoms} & Number of atoms in solute 2 to transform \\
+\hline
+\mbox{\texttt{ in}}  & {\em xc1,xc2} & Solute centers used for translation transformations \\
+\hline
+\mbox{\texttt{ in}}  & {\em trans\+\_\+vector} & Transform translation vectors (n,3) \\
+\hline
+\mbox{\texttt{ in}}  & {\em rot1,rot2} & Transform rotation arrays (n,3) \\
+\hline
+\mbox{\texttt{ in}}  & {\em solute1\+\_\+crds} & Coordinates of first solute atoms \\
+\hline
+\mbox{\texttt{ in}}  & {\em solute2\+\_\+crds} & Coordinates of second solute atoms \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacemod__array_a0512310f27e9489dc1e167fabfdf9b90}\label{namespacemod__array_a0512310f27e9489dc1e167fabfdf9b90}} 
+\index{mod\_array@{mod\_array}!array\_z\_coord@{array\_z\_coord}}
+\index{array\_z\_coord@{array\_z\_coord}!mod\_array@{mod\_array}}
+\doxysubsubsection{\texorpdfstring{array\_z\_coord()}{array\_z\_coord()}}
+{\footnotesize\ttfamily subroutine mod\+\_\+array\+::array\+\_\+z\+\_\+coord (\begin{DoxyParamCaption}\item[{type(\mbox{\hyperlink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}}), intent(inout)}]{complexes,  }\item[{real(kind=8), dimension(n), intent(out)}]{array\+\_\+sorted,  }\item[{integer, intent(in)}]{n,  }\item[{integer, intent(in)}]{nb\+\_\+atoms,  }\item[{real(kind=8), dimension(3), intent(in)}]{xc1,  }\item[{real(kind=8), dimension(3), intent(in)}]{xc2,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{trans\+\_\+vector,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{rot1,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{rot2,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{solute\+\_\+crds }\end{DoxyParamCaption})}
+
+
+
+Build a matrix of absolute differences of Z-\/coordinates per encounter. 
+
+Computes the Z coordinate for each encounter (as in {\ttfamily array\+\_\+z\+\_\+coord}) and fills {\ttfamily matrix(i,j) = $\vert$z\+\_\+i -\/ z\+\_\+j$\vert$} for i$<$j (symmetrically).
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em array} & Output array with per-\/encounter Z values \\
+\hline
+\mbox{\texttt{ in}}  & {\em n} & Number of encounters \\
+\hline
+\mbox{\texttt{ in}}  & {\em nb\+\_\+atoms} & Number of atoms in {\ttfamily solute\+\_\+crds} \\
+\hline
+\mbox{\texttt{ in}}  & {\em xc1,xc2} & Solute centers used for translation transformations \\
+\hline
+\mbox{\texttt{ in}}  & {\em trans\+\_\+vector,rot1,rot2} & Transform arrays (n,3) \\
+\hline
+\mbox{\texttt{ in}}  & {\em solute\+\_\+crds} & Coordinates of solute atoms \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacemod__array_ae14ba9dbefc566101146df079981137a}\label{namespacemod__array_ae14ba9dbefc566101146df079981137a}} 
+\index{mod\_array@{mod\_array}!merge\_sorted\_segments@{merge\_sorted\_segments}}
+\index{merge\_sorted\_segments@{merge\_sorted\_segments}!mod\_array@{mod\_array}}
+\doxysubsubsection{\texorpdfstring{merge\_sorted\_segments()}{merge\_sorted\_segments()}}
+{\footnotesize\ttfamily subroutine mod\+\_\+array\+::merge\+\_\+sorted\+\_\+segments (\begin{DoxyParamCaption}\item[{real(kind=8), dimension(\+:), intent(inout)}]{arr,  }\item[{type(\mbox{\hyperlink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}}), intent(inout)}]{complexes,  }\item[{real(kind=8), dimension(\+:), intent(inout)}]{tmp\+\_\+arr,  }\item[{character(len=217), dimension(\+:), intent(inout)}]{tmp\+\_\+comp,  }\item[{integer, intent(in)}]{left,  }\item[{integer, intent(in)}]{mid,  }\item[{integer, intent(in)}]{right }\end{DoxyParamCaption})}
+
+
+
+Merge two adjacent sorted segments of arrays in place. 
+
+Merges {\ttfamily arr(left\+:mid)} and {\ttfamily arr(mid+1\+:right)} into a single sorted segment {\ttfamily arr(left\+:right)}, reordering {\ttfamily comp} in the same way.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em arr} & Array of values being sorted \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em comp} & Companion array reordered alongside {\ttfamily arr} \\
+\hline
+\mbox{\texttt{ out}}  & {\em tmp\+\_\+arr} & Temporary buffer for values (at least size {\ttfamily right}) \\
+\hline
+\mbox{\texttt{ out}}  & {\em tmp\+\_\+comp} & Temporary buffer for companion (at least size {\ttfamily right}) \\
+\hline
+\mbox{\texttt{ in}}  & {\em left} & Start index of the first segment \\
+\hline
+\mbox{\texttt{ in}}  & {\em mid} & End index of the first segment \\
+\hline
+\mbox{\texttt{ in}}  & {\em right} & End index of the second segment \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacemod__array_a6fab57a7f87ff1a8058f8fbe5a7b9343}\label{namespacemod__array_a6fab57a7f87ff1a8058f8fbe5a7b9343}} 
+\index{mod\_array@{mod\_array}!read\_array@{read\_array}}
+\index{read\_array@{read\_array}!mod\_array@{mod\_array}}
+\doxysubsubsection{\texorpdfstring{read\_array()}{read\_array()}}
+{\footnotesize\ttfamily subroutine mod\+\_\+array\+::read\+\_\+array (\begin{DoxyParamCaption}\item[{real(kind=8), dimension(\+:), intent(out), allocatable}]{array,  }\item[{integer, intent(inout)}]{n,  }\item[{character$\ast$128, intent(in)}]{filename }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacemod__array_a778a88da7e7c643a241f2c142acd007e}\label{namespacemod__array_a778a88da7e7c643a241f2c142acd007e}} 
+\index{mod\_array@{mod\_array}!write\_array@{write\_array}}
+\index{write\_array@{write\_array}!mod\_array@{mod\_array}}
+\doxysubsubsection{\texorpdfstring{write\_array()}{write\_array()}}
+{\footnotesize\ttfamily subroutine mod\+\_\+array\+::write\+\_\+array (\begin{DoxyParamCaption}\item[{real(kind=8), dimension(\+:), intent(in)}]{array,  }\item[{character$\ast$128, intent(in)}]{filename }\end{DoxyParamCaption})}
+

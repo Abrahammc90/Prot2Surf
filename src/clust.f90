@@ -9,12 +9,13 @@
 program main
 
   USE mod_matrix
+  USE mod_array
   USE mod_clust_algorithm
   USE read_input
 
   implicit none
 
-    character*128 :: matrix_filename, complexes_filename, array_filename
+    character*128 :: datadist_filename, complexes_filename
     character*128 :: output_name, argument, linkage_type
     integer :: nb_encounters, tot_encounters
     type ( type_assoc_file ) :: complexes
@@ -25,6 +26,8 @@ program main
     logical :: complexes_bool, nb_encounters_bool, help_bool
     logical :: matrix_bool, array_bool, output_name_bool
     logical :: use_cuda_bool
+    integer :: detect_unit, detect_stat, nlines
+    character(len=1) :: dummy
 
     nb_argument = 0
     nb_encounters = 0
@@ -34,12 +37,11 @@ program main
     array_bool = .false.
     output_name_bool = .false.
     use_cuda_bool = .false.
-    array_bool = .false.
     output_name_bool = .false.
     nb_encounters_bool = .false.
     help_bool = .false.
     argument = ""
-    array_filename = ''
+    datadist_filename = ''
     linkage_type = 'mean'  ! Default to mean linkage
 
     nb_argument = command_argument_count()
@@ -67,15 +69,9 @@ program main
           "argument."
         end if
         count_arg = count_arg + 1
-      else if ( trim(argument) == "-matrix" ) then
-        matrix_bool = .true.
+      else if ( trim(argument) == "-input" ) then
         call getarg( count_arg+1, argument )
-        matrix_filename = trim(argument)
-        count_arg = count_arg + 1
-      else if ( trim(argument) == "-array" ) then
-        array_bool = .true.
-        call getarg( count_arg+1, argument )
-        array_filename = trim(argument)
+        datadist_filename = trim(argument)
         count_arg = count_arg + 1
       else if ( trim(argument) == "-output_name" ) then
         output_name_bool = .true.
@@ -117,19 +113,17 @@ program main
       print *, "For more information, please use the -help option:"
       print *, "./clust -help"
       STOP 1
-    else if ( .not. array_bool ) then
-      print *, "WARNING. Array input file not provided."
-      print *, "Proceeding with clustering using only the matrix input file."
-      print *, "If you want to provide an array input file, please use the '-array' option"
-      print *, "For more information, please use the -help option:"
-      print *, "./clust -help"
-    else if ( .not. matrix_bool ) then
-      print *, "ERROR. Matrix input file not provided."
-      print *, "Please, provide the matrix input file with the '-matrix' option"
+    end if
+
+    if ( len_trim(datadist_filename) == 0 ) then
+      print *, "ERROR. No input file provided."
+      print *, "Please provide an input file (matrix or array) with '-input'"
       print *, "For more information, please use the -help option:"
       print *, "./clust -help"
       STOP 1
-    else if ( .not. output_name_bool ) then
+    end if
+
+    if ( .not. output_name_bool ) then
       print *, "ERROR. Output name not provided."
       print *, "Please, provide the output_name with the '-output_name' option"
       print *, "For more information, please use the -help option:"
@@ -161,13 +155,38 @@ program main
       write(*,*) ''
     end if
 
-    call read_matrix(matrix, nb_encounters, matrix_filename)
+    ! Auto-detect input format: 1 line = array, >1 lines = matrix
+    detect_unit = 99
+    open(detect_unit, file=trim(datadist_filename), status='old', iostat=detect_stat)
+    if (detect_stat /= 0) then
+      print *, "ERROR. Cannot open input file: ", trim(datadist_filename)
+      STOP 1
+    end if
+    nlines = 0
+    do
+      read(detect_unit, '(A)', iostat=detect_stat) dummy
+      if (detect_stat /= 0) exit
+      nlines = nlines + 1
+    end do
+    close(detect_unit)
 
-    if ( len(array_filename) .gt. 0 ) then
-      call read_array(array, nb_encounters, array_filename)
-      call linkage_clustering(matrix, nb_encounters, linkage_type, output_name, complexes, array, use_cuda_bool)
+    if (nlines == 0) then
+      print *, "ERROR. Input file is empty: ", trim(datadist_filename)
+      STOP 1
+    else if (nlines == 1) then
+      array_bool = .true.
+      write(*,*) 'Detected input as 1D array (single line)'
     else
-      call linkage_clustering(matrix, nb_encounters, linkage_type, output_name, complexes, use_cuda=use_cuda_bool)
+      matrix_bool = .true.
+      write(*,*) 'Detected input as 2D matrix (', nlines, ' lines)'
+    end if
+
+    if ( array_bool ) then
+      call read_array(array, nb_encounters, datadist_filename)
+      call linkage_clustering_from_array(array, nb_encounters, linkage_type, output_name, complexes)
+    else
+      call read_matrix(matrix, nb_encounters, datadist_filename)
+      call linkage_clustering_from_matrix(matrix, nb_encounters, linkage_type, output_name, complexes, use_cuda=use_cuda_bool)
     end if
 
     contains
@@ -182,17 +201,16 @@ program main
       print *, "optional array input file, and clustering parameters."
       print *, ""
       print *, "Usage:"
-      print *, "  ./clust -complexes <file> -matrix <file> [OPTIONS]"
+      print *, "  ./clust -complexes <file> -input <file> [OPTIONS]"
       print *, ""
       print *, "Required arguments:"
       print *, "  -complexes <file>       Encounter complexes file"
-      print *, "  -matrix <file>          Matrix input file"
+      print *, "  -input <file>           Input file (matrix or array, auto-detected)"
       print *, "  -output_name <name>     Base name for output files"
       print *, ""
       print *, "Optional arguments:"
       print *, "  -nb_encounters <N>      Number of encounters to cluster"
       print *, "                          (default: all encounters in complexes file)"
-      print *, "  -array <file>           Array input file for additional values"
       print *, "  -linkage <type>         Linkage method: 'min', 'max', or 'mean'"
       print *, "                          (default: 'mean')"
       print *, "  -cuda                   Use hybrid CPU/GPU acceleration"
@@ -203,8 +221,12 @@ program main
       print *, "  max  - Maximum linkage (complete linkage)"
       print *, "  mean - Mean linkage (average linkage)"
       print *, ""
+      print *, "The input format is auto-detected:"
+      print *, "  - 1 line  -> treated as a 1D array"
+      print *, "  - N lines -> treated as an NxN distance matrix"
+      print *, ""
       print *, "Example:"
-      print *, "  ./clust -complexes assoc_complexes -matrix matrix_z.txt \\"
+      print *, "  ./clust -complexes assoc_complexes -input matrix_z.txt \\"
       print *, "          -nb_encounters 5000 -output_name Cu_z -linkage mean"
       print *, ""
       STOP

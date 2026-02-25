@@ -13,12 +13,8 @@ subroutine \mbox{\hyperlink{namespacemod__matrix_a10eab892b87e949df1b1df11521065
 \begin{DoxyCompactList}\small\item\em Build R\+M\+S\+D-\/based pairwise matrix between transformed coordinates. \end{DoxyCompactList}\item 
 subroutine \mbox{\hyperlink{namespacemod__matrix_a2ac28315cb206a31cad2f5e63c3afba1}{write\+\_\+matrix}} (matrix, filename)
 \begin{DoxyCompactList}\small\item\em Write a numeric matrix to a formatted text file. \end{DoxyCompactList}\item 
-subroutine \mbox{\hyperlink{namespacemod__matrix_aef26b22e384e323e35a8c17584808790}{write\+\_\+array}} (array, filename)
-\begin{DoxyCompactList}\small\item\em Write a numeric array to a formatted text file. \end{DoxyCompactList}\item 
 subroutine \mbox{\hyperlink{namespacemod__matrix_ab379913b1ccff8141ffd78808dc8148b}{read\+\_\+matrix}} (matrix, n, filename)
-\begin{DoxyCompactList}\small\item\em Read a square numeric matrix from a formatted text file. \end{DoxyCompactList}\item 
-subroutine \mbox{\hyperlink{namespacemod__matrix_ac1de0cca9f7e7e3a990a58890627351d}{read\+\_\+array}} (array, n, filename)
-\begin{DoxyCompactList}\small\item\em Read a numeric array from a formatted text file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Write a numeric array to a formatted text file. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function/\+Subroutine Documentation}
@@ -152,53 +148,11 @@ Computes the Z coordinate for each encounter (as in {\ttfamily array\+\_\+z\+\_\
 \mbox{\texttt{ in}}  & {\em solute\+\_\+crds} & Coordinates of solute atoms \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{namespacemod__matrix_ac1de0cca9f7e7e3a990a58890627351d}\label{namespacemod__matrix_ac1de0cca9f7e7e3a990a58890627351d}} 
-\index{mod\_matrix@{mod\_matrix}!read\_array@{read\_array}}
-\index{read\_array@{read\_array}!mod\_matrix@{mod\_matrix}}
-\doxysubsubsection{\texorpdfstring{read\_array()}{read\_array()}}
-{\footnotesize\ttfamily subroutine mod\+\_\+matrix\+::read\+\_\+array (\begin{DoxyParamCaption}\item[{real(kind=8), dimension(\+:), intent(out), allocatable}]{array,  }\item[{integer, intent(inout)}]{n,  }\item[{character$\ast$128, intent(in)}]{filename }\end{DoxyParamCaption})}
-
-
-
-Read a numeric array from a formatted text file. 
-
-Parses a single-\/row formatted array file produced by {\ttfamily write\+\_\+array}.
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ out}}  & {\em array} & Output array read from file (allocated) \\
-\hline
-\mbox{\texttt{ in,out}}  & {\em n} & Number of encounters (adjusted if file is smaller) \\
-\hline
-\mbox{\texttt{ in}}  & {\em filename} & Input filename \\
-\hline
-\end{DoxyParams}
 \mbox{\Hypertarget{namespacemod__matrix_ab379913b1ccff8141ffd78808dc8148b}\label{namespacemod__matrix_ab379913b1ccff8141ffd78808dc8148b}} 
 \index{mod\_matrix@{mod\_matrix}!read\_matrix@{read\_matrix}}
 \index{read\_matrix@{read\_matrix}!mod\_matrix@{mod\_matrix}}
 \doxysubsubsection{\texorpdfstring{read\_matrix()}{read\_matrix()}}
 {\footnotesize\ttfamily subroutine mod\+\_\+matrix\+::read\+\_\+matrix (\begin{DoxyParamCaption}\item[{real(kind=8), dimension(\+:, \+:), intent(out), allocatable}]{matrix,  }\item[{integer, intent(inout)}]{n,  }\item[{character$\ast$128, intent(in)}]{filename }\end{DoxyParamCaption})}
-
-
-
-Read a square numeric matrix from a formatted text file. 
-
-Reads the file line-\/by-\/line to determine matrix size and parses rows with the expected {\ttfamily F10.\+4} formatting.
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ out}}  & {\em matrix} & Output matrix read from file (allocated) \\
-\hline
-\mbox{\texttt{ in,out}}  & {\em n} & Number of encounters (adjusted if file is smaller) \\
-\hline
-\mbox{\texttt{ in}}  & {\em filename} & Input filename \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{namespacemod__matrix_aef26b22e384e323e35a8c17584808790}\label{namespacemod__matrix_aef26b22e384e323e35a8c17584808790}} 
-\index{mod\_matrix@{mod\_matrix}!write\_array@{write\_array}}
-\index{write\_array@{write\_array}!mod\_matrix@{mod\_matrix}}
-\doxysubsubsection{\texorpdfstring{write\_array()}{write\_array()}}
-{\footnotesize\ttfamily subroutine mod\+\_\+matrix\+::write\+\_\+array (\begin{DoxyParamCaption}\item[{real(kind=8), dimension(\+:), intent(in)}]{array,  }\item[{character$\ast$128, intent(in)}]{filename }\end{DoxyParamCaption})}
 
 
 
@@ -210,7 +164,18 @@ Writes {\ttfamily array} as a single formatted line using {\ttfamily F10.\+4} fl
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em array} & Input array to write \\
 \hline
-\mbox{\texttt{ in}}  & {\em filename} & Output filename \\
+\mbox{\texttt{ in}}  & {\em filename} & Output filename Read a square numeric matrix from a formatted text file.\\
+\hline
+\end{DoxyParams}
+Reads the file line-\/by-\/line to determine matrix size and parses rows with the expected {\ttfamily F10.\+4} formatting.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em matrix} & Output matrix read from file (allocated) \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em n} & Number of encounters (adjusted if file is smaller) \\
+\hline
+\mbox{\texttt{ in}}  & {\em filename} & Input filename \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{namespacemod__matrix_a2ac28315cb206a31cad2f5e63c3afba1}\label{namespacemod__matrix_a2ac28315cb206a31cad2f5e63c3afba1}} 

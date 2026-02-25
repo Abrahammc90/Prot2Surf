@@ -69,183 +69,59 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Data Types</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/ddc/interfacemod__cuda_1_1cuda__finalize__clustering__c.html">cuda_finalize_clustering_c</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dff/interfacemod__cuda_1_1cuda__find__and__merge__c.html">cuda_find_and_merge_c</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions/Subroutines</h2></td></tr>
-<tr class="memitem:a6e41af3b9f71639766b8e573bcaa16b7"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d4e/namespacemod__cuda.html#a6e41af3b9f71639766b8e573bcaa16b7">cuda_init_clustering</a> (matrix, n, active_points, cluster_size)</td></tr>
-<tr class="memdesc:a6e41af3b9f71639766b8e573bcaa16b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize GPU clustering - transfer matrix to GPU once.  <a href="../../d0/d4e/namespacemod__cuda.html#a6e41af3b9f71639766b8e573bcaa16b7">More...</a><br /></td></tr>
-<tr class="separator:a6e41af3b9f71639766b8e573bcaa16b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a879c52c6f4bc09b5e8080d8e7aa6576f"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d4e/namespacemod__cuda.html#a879c52c6f4bc09b5e8080d8e7aa6576f">cuda_find_and_merge</a> (min_dist, min_i, min_j, linkage_str)</td></tr>
-<tr class="memdesc:a879c52c6f4bc09b5e8080d8e7aa6576f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find minimum pair and merge on GPU.  <a href="../../d0/d4e/namespacemod__cuda.html#a879c52c6f4bc09b5e8080d8e7aa6576f">More...</a><br /></td></tr>
-<tr class="separator:a879c52c6f4bc09b5e8080d8e7aa6576f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9bd0616cb42fdac9ae2fb4513e49594e"><td class="memItemLeft" align="right" valign="top">subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d4e/namespacemod__cuda.html#a9bd0616cb42fdac9ae2fb4513e49594e">cuda_finalize_clustering</a> ()</td></tr>
-<tr class="memdesc:a9bd0616cb42fdac9ae2fb4513e49594e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalize GPU clustering - cleanup GPU memory.  <a href="../../d0/d4e/namespacemod__cuda.html#a9bd0616cb42fdac9ae2fb4513e49594e">More...</a><br /></td></tr>
-<tr class="separator:a9bd0616cb42fdac9ae2fb4513e49594e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af235c8f335fe991d0674a2dbf0c50e1f"><td class="memItemLeft" align="right" valign="top">subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d4e/namespacemod__cuda.html#af235c8f335fe991d0674a2dbf0c50e1f">cuda_find_min_pair</a> (matrix, n, min_dist, min_i, min_j, active_points)</td></tr>
-<tr class="memdesc:af235c8f335fe991d0674a2dbf0c50e1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find minimum distance pair using CUDA GPU acceleration.  <a href="../../d0/d4e/namespacemod__cuda.html#af235c8f335fe991d0674a2dbf0c50e1f">More...</a><br /></td></tr>
-<tr class="separator:af235c8f335fe991d0674a2dbf0c50e1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affdf9c36be5881d9bc9123646b3bf339"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d4e/namespacemod__cuda.html#affdf9c36be5881d9bc9123646b3bf339">cuda_matrix_clustering</a> (matrix, n, dist_threshold, linkage_str, cluster_parent, cluster_count, active_points, cluster_size)</td></tr>
+<tr class="memdesc:affdf9c36be5881d9bc9123646b3bf339"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize GPU clustering - transfer matrix to GPU once.  <a href="../../d0/d4e/namespacemod__cuda.html#affdf9c36be5881d9bc9123646b3bf339">More...</a><br /></td></tr>
+<tr class="separator:affdf9c36be5881d9bc9123646b3bf339"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function/Subroutine Documentation</h2>
-<a id="a9bd0616cb42fdac9ae2fb4513e49594e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9bd0616cb42fdac9ae2fb4513e49594e">&#9670;&nbsp;</a></span>cuda_finalize_clustering()</h2>
+<a id="affdf9c36be5881d9bc9123646b3bf339"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affdf9c36be5881d9bc9123646b3bf339">&#9670;&nbsp;</a></span>cuda_matrix_clustering()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">subroutine, public mod_cuda::cuda_finalize_clustering</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Finalize GPU clustering - cleanup GPU memory. </p>
-
-</div>
-</div>
-<a id="a879c52c6f4bc09b5e8080d8e7aa6576f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a879c52c6f4bc09b5e8080d8e7aa6576f">&#9670;&nbsp;</a></span>cuda_find_and_merge()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">integer function, public mod_cuda::cuda_find_and_merge </td>
+          <td class="memname">integer function, public mod_cuda::cuda_matrix_clustering </td>
           <td>(</td>
-          <td class="paramtype">real(kind=8), intent(out)&#160;</td>
-          <td class="paramname"><em>min_dist</em>, </td>
+          <td class="paramtype">real(kind=8), dimension(:, :), intent(in), target&#160;</td>
+          <td class="paramname"><em>matrix</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">integer, intent(out)&#160;</td>
-          <td class="paramname"><em>min_i</em>, </td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>n</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">integer, intent(out)&#160;</td>
-          <td class="paramname"><em>min_j</em>, </td>
+          <td class="paramtype">real(kind=8), intent(in)&#160;</td>
+          <td class="paramname"><em>dist_threshold</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">character(len=*), intent(in)&#160;</td>
-          <td class="paramname"><em>linkage_str</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Find minimum pair and merge on GPU. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">min_dist</td><td>Minimum distance value </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">min_i,min_j</td><td>Indices of minimum pair (1-based) </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">linkage_str</td><td>Linkage type ('min', 'max', or 'mean') </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>0 on success, -1 on error </dd></dl>
-
-</div>
-</div>
-<a id="af235c8f335fe991d0674a2dbf0c50e1f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af235c8f335fe991d0674a2dbf0c50e1f">&#9670;&nbsp;</a></span>cuda_find_min_pair()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">subroutine, public mod_cuda::cuda_find_min_pair </td>
-          <td>(</td>
-          <td class="paramtype">real(kind=8), dimension(:, :), intent(in), target&#160;</td>
-          <td class="paramname"><em>matrix</em>, </td>
+          <td class="paramname"><em>linkage_str</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">integer, intent(in)&#160;</td>
-          <td class="paramname"><em>n</em>, </td>
+          <td class="paramtype">integer, dimension(:), intent(inout), target&#160;</td>
+          <td class="paramname"><em>cluster_parent</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">real(kind=8), intent(out)&#160;</td>
-          <td class="paramname"><em>min_dist</em>, </td>
+          <td class="paramtype">integer, dimension(:), intent(inout), target&#160;</td>
+          <td class="paramname"><em>cluster_count</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">integer, intent(out)&#160;</td>
-          <td class="paramname"><em>min_i</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, intent(out)&#160;</td>
-          <td class="paramname"><em>min_j</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">logical, dimension(:), intent(in)&#160;</td>
-          <td class="paramname"><em>active_points</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Find minimum distance pair using CUDA GPU acceleration. </p>
-<p>Offloads the minimum pair search to NVIDIA GPU using CUDA. Falls back to CPU if GPU is unavailable or on error.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">matrix</td><td>Distance matrix (n x n, column-major) </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>Matrix dimension </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">min_dist</td><td>Minimum distance value </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">min_i,min_j</td><td>Indices of minimum pair (1-based) </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">active_points</td><td>Logical array of active clusters </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a6e41af3b9f71639766b8e573bcaa16b7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6e41af3b9f71639766b8e573bcaa16b7">&#9670;&nbsp;</a></span>cuda_init_clustering()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">integer function, public mod_cuda::cuda_init_clustering </td>
-          <td>(</td>
-          <td class="paramtype">real(kind=8), dimension(:, :), intent(in), target&#160;</td>
-          <td class="paramname"><em>matrix</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, intent(in)&#160;</td>
-          <td class="paramname"><em>n</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">logical, dimension(:), intent(in)&#160;</td>
+          <td class="paramtype">logical, dimension(:), intent(inout)&#160;</td>
           <td class="paramname"><em>active_points</em>, </td>
         </tr>
         <tr>
@@ -269,6 +145,29 @@ Functions/Subroutines</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>Matrix dimension </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">active_points</td><td>Logical array of active clusters </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">cluster_size</td><td>Integer array of cluster sizes </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, -1 on error Find minimum pair and merge on GPU</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">min_dist</td><td>Minimum distance value </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">min_i,min_j</td><td>Indices of minimum pair (1-based) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">linkage_str</td><td>Linkage type ('min', 'max', or 'mean') </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, -1 on error Perform complete GPU clustering - all iterations on GPU</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">matrix</td><td>Distance matrix (n x n, column-major) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>Matrix dimension </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dist_threshold</td><td>Distance threshold for stopping </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">linkage_str</td><td>Linkage type ('min', 'max', or 'mean') </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">cluster_parent</td><td>Output cluster parent for each point (n) - O(n) tracking </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">cluster_count</td><td>Output cluster sizes (n) </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">active_points</td><td>Output active clusters (n) </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">cluster_size</td><td>Cluster sizes for linkage computation </td></tr>
   </table>
   </dd>
 </dl>

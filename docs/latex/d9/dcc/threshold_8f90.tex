@@ -9,7 +9,7 @@ subroutine \mbox{\hyperlink{threshold_8f90_a9c89be8ab0718c0b4d3d7857380231a3}{pr
 \begin{DoxyCompactList}\small\item\em Print usage/help text for {\ttfamily threshold}. \end{DoxyCompactList}\item 
 subroutine \mbox{\hyperlink{threshold_8f90_ad0df42f74407d652097e6e433eea2dc8}{read\+\_\+atoms\+\_\+coord}} (atoms\+\_\+array, atoms\+\_\+coord, tot\+\_\+atoms, pdb, pdb\+\_\+filename)
 \begin{DoxyCompactList}\small\item\em Read coordinates for a specified list of atoms (names or indices). \end{DoxyCompactList}\item 
-subroutine \mbox{\hyperlink{threshold_8f90_ad04de6cff47de94926a29611e69af5b1}{write\+\_\+complexes}} (complexes\+\_\+arg, distarray\+\_\+arg, encounter\+\_\+indexes\+\_\+arg, nb\+\_\+encounters\+\_\+arg, cutoff\+\_\+arg, output\+\_\+name\+\_\+arg)
+subroutine \mbox{\hyperlink{threshold_8f90_a241309bb0c3b176ef1f50e8f506031f0}{write\+\_\+cutoff\+\_\+complexes}} (complexes\+\_\+arg, distarray\+\_\+arg, encounter\+\_\+indexes\+\_\+arg, nb\+\_\+encounters\+\_\+arg, cutoff\+\_\+arg, output\+\_\+name\+\_\+arg)
 \begin{DoxyCompactList}\small\item\em Write selected encounter complexes to an output file. \end{DoxyCompactList}\item 
 subroutine \mbox{\hyperlink{threshold_8f90_a5ce58677d1b4a380e504f22141ae31a8}{write\+\_\+array}} (array\+\_\+arg, filename\+\_\+arg, cutoff\+\_\+arg)
 \begin{DoxyCompactList}\small\item\em Write array values up to a cutoff to a formatted file. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -45,7 +45,7 @@ Explains command-\/line options and provides examples per threshold type. \mbox{
 \index{threshold.f90@{threshold.f90}!read\_atoms\_coord@{read\_atoms\_coord}}
 \index{read\_atoms\_coord@{read\_atoms\_coord}!threshold.f90@{threshold.f90}}
 \doxysubsubsection{\texorpdfstring{read\_atoms\_coord()}{read\_atoms\_coord()}}
-{\footnotesize\ttfamily subroutine main\+::read\+\_\+atoms\+\_\+coord (\begin{DoxyParamCaption}\item[{character(len=$\ast$), dimension(\+:), intent(in)}]{atoms\+\_\+array,  }\item[{real(kind=8), dimension(\+:, \+:), intent(out), allocatable}]{atoms\+\_\+coord,  }\item[{integer, intent(in)}]{tot\+\_\+atoms,  }\item[{type ( \mbox{\hyperlink{structmod__pdb_1_1type__pdb__file}{type\+\_\+pdb\+\_\+file}} ), intent(in)}]{pdb,  }\item[{character(len=$\ast$), intent(in)}]{pdb\+\_\+filename }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily subroutine main\+::read\+\_\+atoms\+\_\+coord (\begin{DoxyParamCaption}\item[{character(len=$\ast$), dimension(\+:), intent(in)}]{atoms\+\_\+array,  }\item[{real(kind=8), dimension(\+:, \+:), intent(out), allocatable}]{atoms\+\_\+coord,  }\item[{integer, intent(in)}]{tot\+\_\+atoms,  }\item[{type ( type\+\_\+pdb\+\_\+file ), intent(in)}]{pdb,  }\item[{character(len=$\ast$), intent(in)}]{pdb\+\_\+filename }\end{DoxyParamCaption})}
 
 
 
@@ -61,11 +61,11 @@ Similar to the helper in {\ttfamily make\+\_\+matrix}. Returns an allocated {\tt
 
 Write array values up to a cutoff to a formatted file. 
 
-Writes values from {\ttfamily array} (in ascending order) until {\ttfamily cutoff} is reached and stores them in {\ttfamily filename} using {\ttfamily F10.\+4} formatting. \mbox{\Hypertarget{threshold_8f90_ad04de6cff47de94926a29611e69af5b1}\label{threshold_8f90_ad04de6cff47de94926a29611e69af5b1}} 
-\index{threshold.f90@{threshold.f90}!write\_complexes@{write\_complexes}}
-\index{write\_complexes@{write\_complexes}!threshold.f90@{threshold.f90}}
-\doxysubsubsection{\texorpdfstring{write\_complexes()}{write\_complexes()}}
-{\footnotesize\ttfamily subroutine main\+::write\+\_\+complexes (\begin{DoxyParamCaption}\item[{type(type\+\_\+assoc\+\_\+file), intent(in)}]{complexes\+\_\+arg,  }\item[{real (kind=8), dimension(\+:), intent(in)}]{distarray\+\_\+arg,  }\item[{integer, dimension(\+:), intent(in)}]{encounter\+\_\+indexes\+\_\+arg,  }\item[{integer, intent(in)}]{nb\+\_\+encounters\+\_\+arg,  }\item[{real(kind=8), intent(in)}]{cutoff\+\_\+arg,  }\item[{character$\ast$128, intent(in)}]{output\+\_\+name\+\_\+arg }\end{DoxyParamCaption})}
+Writes values from {\ttfamily array} (in ascending order) until {\ttfamily cutoff} is reached and stores them in {\ttfamily filename} using {\ttfamily F10.\+4} formatting. \mbox{\Hypertarget{threshold_8f90_a241309bb0c3b176ef1f50e8f506031f0}\label{threshold_8f90_a241309bb0c3b176ef1f50e8f506031f0}} 
+\index{threshold.f90@{threshold.f90}!write\_cutoff\_complexes@{write\_cutoff\_complexes}}
+\index{write\_cutoff\_complexes@{write\_cutoff\_complexes}!threshold.f90@{threshold.f90}}
+\doxysubsubsection{\texorpdfstring{write\_cutoff\_complexes()}{write\_cutoff\_complexes()}}
+{\footnotesize\ttfamily subroutine main\+::write\+\_\+cutoff\+\_\+complexes (\begin{DoxyParamCaption}\item[{type(\mbox{\hyperlink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}}), intent(in)}]{complexes\+\_\+arg,  }\item[{real (kind=8), dimension(\+:), intent(in)}]{distarray\+\_\+arg,  }\item[{integer, dimension(\+:), intent(in)}]{encounter\+\_\+indexes\+\_\+arg,  }\item[{integer, intent(in)}]{nb\+\_\+encounters\+\_\+arg,  }\item[{real(kind=8), intent(in)}]{cutoff\+\_\+arg,  }\item[{character$\ast$128, intent(in)}]{output\+\_\+name\+\_\+arg }\end{DoxyParamCaption})}
 
 
 

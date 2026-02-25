@@ -8,13 +8,14 @@
 program main
   USE read_input
   USE mod_matrix
+  USE mod_array
 
 
   implicit none
       
 
-    character*128 :: pdb1_filename, pdb2_filename, complexes_filename
-    character*128 :: matrix_type, matrix_filename, array_filename
+    character*128 :: pdb1_filename, pdb2_filename, complexes_filename, sorted_complexes_filename
+    character*128 :: data_type, datadist_filename
     character*128 :: argument
     character*128, dimension(:), allocatable :: arr_atoms1a, arr_atoms1b, arr_atoms2a, arr_atoms2b
 
@@ -35,7 +36,7 @@ program main
     !real (kind=8), dimension(:, :), allocatable :: residues_cog, residue_crds
     integer :: ios
     logical :: pdb1_bool, pdb2_bool, complexes_bool, atoms1_bool, atoms2_bool
-    logical :: matrix_bool, matrixtype_bool, array_bool, nb_encounters_bool, help_bool
+    logical :: matrix_bool, datatype_bool, nb_encounters_bool, help_bool
     logical :: arr_atoms1a_bool, arr_atoms1b_bool, arr_atoms2a_bool, arr_atoms2b_bool
 
     nb_argument = 0
@@ -47,8 +48,7 @@ program main
     atoms1_bool = .false.
     atoms2_bool = .false.
     matrix_bool = .false.
-    matrixtype_bool = .false.
-    array_bool = .false.
+    datatype_bool = .false.
     nb_encounters_bool = .false.
     arr_atoms1a_bool = .false.
     arr_atoms1b_bool = .false.
@@ -94,20 +94,15 @@ program main
           "argument."
         end if
         count_arg = count_arg + 1
-      else if ( trim(argument) == "-matrix" ) then
+      else if ( trim(argument) == "-input" ) then
         matrix_bool = .true.
         call getarg( count_arg+1, argument )
-        matrix_filename = trim(argument)
+        datadist_filename = trim(argument)
         count_arg = count_arg + 1
-      else if ( trim(argument) == "-matrix_type" ) then
-        matrixtype_bool = .true.
+      else if ( trim(argument) == "-data_type" ) then
+        datatype_bool = .true.
         call getarg( count_arg+1, argument )
-        matrix_type = trim(argument)
-        count_arg = count_arg + 1
-      else if ( trim(argument) == "-array" ) then
-        array_bool = .true.
-        call getarg( count_arg+1, argument )
-        array_filename = trim(argument)
+        data_type = trim(argument)
         count_arg = count_arg + 1
 
       else if ( trim(argument) == "-atoms1" .or. trim(argument) == "-atoms1a" ) then
@@ -196,7 +191,7 @@ program main
         print *, ""
         print *,  "ERROR. Argument ", trim(argument), " not recognized."
         print *, "For more information, please use the -help option:"
-        print *, "./make_matrix -help"
+        print *, "./make_data -help"
         STOP 1
       end if
 
@@ -205,8 +200,8 @@ program main
     end do
 
     if ( help_bool ) then
-      if (matrixtype_bool) then
-        call print_help(matrix_type)
+      if (datatype_bool) then
+        call print_help(data_type)
       else
         call print_help("main")
       end if
@@ -216,31 +211,31 @@ program main
       print *, "ERROR. PDB not provided."
       print *, "Please provide a pdb file with '-pdb2' option"
       print *, "For more information, please use the -help option:"
-      print *, "./make_matrix -help"
+      print *, "./make_data -help"
       STOP 1
     else if ( .not. arr_atoms2a_bool ) then 
       print *, "ERROR. PDB2 provided but atoms2 not provided."
       print *, "Please provide a group of atoms with '-atoms2' option"
       print *, "For more information, please use the -help option:"
-      print *, "./make_matrix -help"
+      print *, "./make_data -help"
       STOP 1
     else if ( .not. complexes_bool ) then
       print *, "ERROR. Encounter complexes file not provided."
       print *, "Please provide the complexes file with the '-complexes' option"
       print *, "For more information, please use the -help option:"
-      print *, "./make_matrix -help"
+      print *, "./make_data -help"
       STOP 1
     else if ( .not. matrix_bool ) then
       print *, "ERROR. Matrix output filename not provided."
       print *, "Please, provide the matrix outupt name with the '-matrix' option"
       print *, "For more information, please use the -help option:"
-      print *, "./make_matrix -help"
+      print *, "./make_data -help"
       STOP 1
-    else if ( .not. matrixtype_bool ) then
+    else if ( .not. datatype_bool ) then
       print *, "ERROR. Matrix type not given."
       print *, "Please, provide the matrix type with the '-matrix_type' option"
       print *, "For more information, please use the -help option:"
-      print *, "./make_matrix -help"
+      print *, "./make_data -help"
       STOP 1
     end if
 
@@ -275,59 +270,50 @@ program main
     end if
 
 
-    allocate(distmatrix (nb_encounters, nb_encounters))
-    allocate(distarray (nb_encounters))
+    sorted_complexes_filename = "sorted_" // trim(complexes_filename)
 
-    print *, 'Building ', trim(matrix_type), ' matrix'
+    print *, 'Building ', trim(data_type), ' matrix'
 
-    if (trim(adjustl(matrix_type)) == "z_coord") then
+    if (trim(adjustl(data_type)) == "z_coord") then
 
-      if (.not. array_bool) then
-        print *, "ERROR. Array output filename not given."
-        print *, "Please provide the array output file with the '-array option'"
-        print *, "For more information, please use the -help option:"
-        print *, "./make_matrix -matrix angle -help"
-        STOP 1
-      end if
-
+      allocate(distarray (nb_encounters))
       call read_atoms_coord(arr_atoms2a, atoms2a_coords, tot_atoms2, pdb2, pdb2_filename)
 
-      call matrix_z_coord(distmatrix, distarray, nb_encounters, 1, complexes % xc1, complexes % xc2, &
+      call array_z_coord(complexes, distarray, nb_encounters, 1, complexes % xc1, complexes % xc2, &
       complexes % trans_vector, complexes % rot1, complexes % rot2, atoms2a_coords)
 
-      call write_array(distarray, array_filename)
+      call write_array(distarray, datadist_filename)
+      call write_complexes(complexes, nb_encounters, complexes_filename)
 
-    else if (trim(adjustl(matrix_type)) == "rmsd") then
+    else if (trim(adjustl(data_type)) == "rmsd") then
 
+      allocate(distmatrix (nb_encounters, nb_encounters))
       call read_atoms_coord(arr_atoms2a, atoms2a_coords, tot_atoms2, pdb2, pdb2_filename)
 
       call matrix_rmsd(distmatrix, nb_encounters, tot_coords, &
       complexes % xc1, complexes % xc2, complexes % trans_vector, &
       complexes % rot1, complexes % rot2, atoms2a_coords)
 
-    else if (trim(adjustl(matrix_type)) == "3D_angle" .or. trim(adjustl(matrix_type)) == "2D_angle") then
+      call write_matrix(distmatrix, datadist_filename)
+
+    else if (trim(adjustl(data_type)) == "3D_angle" .or. trim(adjustl(data_type)) == "2D_angle") then
 
       if (.not. pdb1_bool) then
         print *, "ERROR. Just one PDB provided. It is necessary to provide two pdbs ", &
         "to generate the angle matrix."
         print *, "Please provide the two pdb files with '-pdb1' and '-pdb2' options."
         print *, "For more information, please use the -help option:"
-        print *, "./make_matrix -matrix angle -help"
+        print *, "./make_data -matrix angle -help"
         STOP 1
       else if (.not. arr_atoms1a_bool .or. .not. arr_atoms1b_bool .or. .not. arr_atoms2b_bool) then 
         print *, "ERROR. Not all necessary group of atoms given"
         print *, "Please provide all group of atoms with '-atoms1a', '-atoms1b', '-atoms2a' and '-atoms2b' options"
         print *, "For more information, please use the -help option:"
-        print *, "./make_matrix -matrix angle -help"
-        STOP 1
-      else if (.not. array_bool) then
-        print *, "ERROR. Array output filename not given."
-        print *, "Please provide the array output file with the '-array option'"
-        print *, "For more information, please use the -help option:"
-        print *, "./make_matrix -matrix angle -help"
+        print *, "./make_data -matrix angle -help"
         STOP 1
       end if
 
+      allocate(distarray (nb_encounters))
       call read_pdb(pdb1, pdb1_filename, tot_atoms1, tot_residues1, tot_chains1)
 
       call read_atoms_coord(arr_atoms1a, atoms1a_coords, tot_atoms1, pdb1, pdb1_filename)
@@ -340,41 +326,37 @@ program main
       call calculate_cog(cog2a, atoms2a_coords, size(atoms2a_coords(:, 3)))
       call calculate_cog(cog2b, atoms2b_coords, size(atoms2b_coords(:, 3)))
       
-      if (trim(adjustl(matrix_type)) == "2D_angle") then
-        call matrix_angle(distmatrix, distarray, nb_encounters, 2, &
+      if (trim(adjustl(data_type)) == "2D_angle") then
+        call array_angle(complexes, distarray, nb_encounters, 2, &
         complexes % xc1, complexes % xc2, complexes % trans_vector, complexes % rot1, complexes % rot2, &
         cog1a, cog1b, cog2a, cog2b, 2)
-      else if (trim(adjustl(matrix_type)) == "3D_angle") then
-        call matrix_angle(distmatrix, distarray, nb_encounters, 2, &
+      else if (trim(adjustl(data_type)) == "3D_angle") then
+        call array_angle(complexes, distarray, nb_encounters, 2, &
         complexes % xc1, complexes % xc2, complexes % trans_vector, complexes % rot1, complexes % rot2, &
         cog1a, cog1b, cog2a, cog2b, 3)
       end if
 
-      call write_array(distarray, array_filename)
+      call write_array(distarray, datadist_filename)
+      call write_complexes(complexes, nb_encounters, sorted_complexes_filename)
 
-    else if (trim(adjustl(matrix_type)) == "atoms_dist") then
+    else if (trim(adjustl(data_type)) == "atoms_dist") then
 
       if (.not. pdb1_bool) then
         print *, "ERROR. Just one PDB provided. It is necessary to provide two pdbs ", &
         "to generate the angle matrix."
         print *, "Please provide the two pdb files with '-pdb1' and '-pdb2' options"
         print *, "For more information, please use the -help option:"
-        print *, "./make_matrix -matrix atoms_dist -help"
+        print *, "./make_data -matrix atoms_dist -help"
         STOP 1
       else if (.not. arr_atoms1a_bool ) then 
         print *, "ERROR. Not all necessary group of atoms given"
         print *, "Please provide the group of atoms with '-atoms1' and '-atoms2' options"
         print *, "For more information, please use the -help option:"
-        print *, "./make_matrix -matrix atoms_dist -help"
-        STOP 1
-      else if (.not. array_bool) then
-        print *, "ERROR. Array output filename not given."
-        print *, "Please provide the array output file with the '-array option'"
-        print *, "For more information, please use the -help option:"
-        print *, "./make_matrix -matrix angle -help"
+        print *, "./make_data -matrix atoms_dist -help"
         STOP 1
       end if
 
+      allocate(distarray (nb_encounters))
       call read_pdb(pdb1, pdb1_filename, tot_atoms1, tot_residues1, tot_chains1)
       call read_atoms_coord(arr_atoms1a, atoms1a_coords, tot_atoms1, pdb1, pdb1_filename)
       !STOP 1
@@ -383,27 +365,24 @@ program main
       
       !STOP 1
 
-      
-
-      call matrix_atoms_dist(distmatrix, distarray, nb_encounters, 1, complexes % xc1, complexes % xc2, &
+      call array_atoms_dist(complexes, distarray, nb_encounters, 1, complexes % xc1, complexes % xc2, &
       complexes % trans_vector, complexes % rot1, complexes % rot2, atoms1a_coords, atoms2a_coords)
 
-      call write_array(distarray, array_filename)
+      call write_array(distarray, datadist_filename)
+      call write_complexes(complexes, nb_encounters, sorted_complexes_filename)
 
     else
-      print *, 'ERROR: ', trim(adjustl(matrix_type)), ' matrix not implemented'
+      print *, 'ERROR: ', trim(adjustl(data_type)), ' data not implemented'
       print *, "To know more about the type of matrices available, please run:"
-      print *, "./make_matrix -help"
+      print *, "./make_data -help"
       STOP
     end if
 
-    call write_matrix(distmatrix, matrix_filename)
-
-    print *, 'Matrix complete and stored in ', matrix_filename
+    print *, 'Data processed and stored in ', datadist_filename
   
 
   contains
-    !> Print usage/help text for `make_matrix`.
+    !> Print usage/help text for `make_data`.
     !!
     !! Provides short usage examples for the main program and for each
     !! supported matrix type.
@@ -420,9 +399,9 @@ program main
         "encounter complexes file, number of encounters to make the matrix distance, ", &
         "matrix type, array output file and matrix output file."
         print *, "If you want instructions on how to create a specific type of matrix, type:"
-        print *, "./make_matrix -matrix_type <type of matrix> -help"
+        print *, "./make_data -matrix_type <type of matrix> -help"
         print *, ""
-        print *, "Eg.: ./make_matrix -matrix_type rmsd -help"
+        print *, "Eg.: ./make_data -matrix_type rmsd -help"
         print *, ""
         print *, "The type of matrices currently available are:"
         print *, "* rmsd"
@@ -437,7 +416,7 @@ program main
         "atoms (either indexes or atomnames), the encounter complexes file, number of encounters, ", &
          "matrix type and matrix output file."
         print *, ""
-        print *, "Eg: ./make_matrix -pdb2 p2_noh.pdb -atoms2 C N O CA -complexes assoc_complexes ", &
+        print *, "Eg: ./make_data -pdb2 p2_noh.pdb -atoms2 C N O CA -complexes assoc_complexes ", &
         "-matrix_type rmsd -matrix matrix_rmsd.txt"
         print *, ""
         STOP
@@ -447,7 +426,7 @@ program main
         "one group of atoms (either indexes or atomnames), the encounter complexes file, ", &
         "number of encounters, matrix type, array output file and matrix output file."
         print *, ""
-        print *, "Eg.: ./make_matrix -pdb2 p2_noh.pdb -atoms2 Cu -complexes assoc_complexes ", &
+        print *, "Eg.: ./make_data -pdb2 p2_noh.pdb -atoms2 Cu -complexes assoc_complexes ", &
         "-matrix_type z_coord -matrix matrix_z.txt -array array_z.txt"
         print *, ""
         STOP
@@ -457,7 +436,7 @@ program main
         "(either indexes or atomnames), the encounter complexes file, number of encounters, matrix type, ", &
         "array output file and matrix output file."
         print *, ""
-        print *, "Eg.: ./make_matrix -pdb1 p1_noh.pdb -pdb2 p2_noh.pdb -complexes ", &
+        print *, "Eg.: ./make_data -pdb1 p1_noh.pdb -pdb2 p2_noh.pdb -complexes ", &
         "assoc_complexes -atoms1 C1 C4 -atoms2 Cu -matrix_type atoms_dist -matrix matrix_dist.txt ", &
         "-array array_dist.txt"
         print *, ""
@@ -468,7 +447,7 @@ program main
         "(either indexes or atomnames), the encounter complexes file, number of encounters, matrix ", & 
         "type, array output file and matrix output file."
         print *, ""
-        print *, "Eg.: ./make_matrix -pdb1 p1_noh.pdb -pdb2 p2_noh.pdb -complexes ", &
+        print *, "Eg.: ./make_data -pdb1 p1_noh.pdb -pdb2 p2_noh.pdb -complexes ", &
         "assoc_complexes -atoms1a 1 -atoms1b 411 -atoms2a Cu -atoms2b 4 5 6 7 8 -matrix_type angle ", &
         "-matrix matrix_angle.txt -array array_angle.txt"
         print *, ""

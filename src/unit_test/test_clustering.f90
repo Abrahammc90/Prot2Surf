@@ -283,7 +283,7 @@ contains
         output_name = "test_min_linkage"
         
         ! Run minimum linkage clustering
-        call linkage_clustering(test_matrix, n, 'min', output_name, complexes)
+        call linkage_clustering_from_array(test_matrix, n, 'min', output_name, complexes)
         
         ! For minimum linkage, the inter-cluster distance should be the minimum
         ! After merging within clusters, check that structure makes sense
@@ -351,7 +351,7 @@ contains
         output_name = "test_max_linkage"
         
         ! Run maximum linkage clustering
-        call linkage_clustering(test_matrix, n, 'max', output_name, complexes)
+        call linkage_clustering_from_array(test_matrix, n, 'max', output_name, complexes)
         
         ! For maximum linkage, the inter-cluster distance should be the maximum
         test_passed = .true.  ! Basic test: just verify it completes without error
@@ -418,7 +418,7 @@ contains
         output_name = "test_mean_linkage"
         
         ! Run mean linkage clustering
-        call linkage_clustering(test_matrix, n, 'mean', output_name, complexes)
+        call linkage_clustering_from_array(test_matrix, n, 'mean', output_name, complexes)
         
         ! For mean linkage, the inter-cluster distance is weighted average
         test_passed = .true.  ! Basic test: just verify it completes without error

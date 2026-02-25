@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2024.8.26)  12 FEB 2026 23:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2024.8.26)  18 FEB 2026 13:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1402,79 +1402,91 @@ LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <8> not available
 (Font)              Font shape `T1/pcr/m/sl' tried instead on input line 42.
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <7> not available
 (Font)              Font shape `T1/pcr/m/sl' tried instead on input line 42.
-[31] [32] [33]) (./d6/ded/namespacemod__assoc.tex
+[31] [32] [33]) (./d4/d74/namespacemod__array.tex [34] [35] [36])
+(./d6/ded/namespacemod__assoc.tex
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <9> not available
 (Font)              Font shape `T1/pcr/m/sl' tried instead on input line 21.
 
-Underfull \hbox (badness 10000) detected at line 31
+Underfull \hbox (badness 10000) detected at line 33
 [][][]
  []
 
-[34]
-Underfull \hbox (badness 10000) detected at line 92
+[37]
+Underfull \hbox (badness 10000) detected at line 94
 [][][]
  []
 
-) (./d4/d95/namespacemod__clust__algorithm.tex [35] [36]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [37])
-(./d0/d4e/namespacemod__cuda.tex [38]
-Underfull \hbox (badness 10000) detected at line 53
-[][][]
+) (./d4/d95/namespacemod__clust__algorithm.tex [38] [39] [40])
+(./d0/d4e/namespacemod__cuda.tex
+Underfull \hbox (badness 1163) in paragraph at lines 6--7
+[]\T1/phv/m/n/10 integer func-tion, pub-lic [] (ma-trix, n, dist[]_[]threshold,
+ linkage[]_[]str, cluster[]_[]parent,
  []
 
-[39]
-Underfull \hbox (badness 10000) detected at line 102
-[][][]
- []
-
-) (./d1/d19/namespacemod__gpu__accelerate.tex
-Underfull \hbox (badness 10000) detected at line 31
+[41]
+Underfull \hbox (badness 10000) detected at line 32
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 46
+Underfull \hbox (badness 10000) detected at line 44
 [][][]
  []
 
-[40] [41]) (./db/d1d/namespacemod__matrix.tex [42]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+[42]
+Underfull \hbox (badness 10000) detected at line 66
+[][][]
+ []
 
- [43]
-[44] [45]) (./dd/d00/namespacemod__pdb.tex
+) (./db/d1d/namespacemod__matrix.tex [43] [44] [45])
+(./d0/d8c/namespacemod__memory.tex [46]
+Underfull \hbox (badness 10000) detected at line 36
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 51
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 56
+[][][]
+ []
+
+) (./dd/d00/namespacemod__pdb.tex [47]
 Underfull \hbox (badness 10000) detected at line 41
 [][][]
  []
 
-[46]
+
 Underfull \hbox (badness 10000) detected at line 89
 [][][]
  []
 
-
+[48]
 Underfull \hbox (badness 10000) detected at line 109
 [][][]
  []
 
-[47]
+
 Underfull \hbox (badness 10000) detected at line 129
 [][][]
  []
 
-) (./df/d4c/namespacemod__threshold.tex [48] [49])
-(./d9/d5d/namespaceread__input.tex [50]) [51] [52
+) (./df/d4c/namespacemod__threshold.tex [49] [50] [51])
+(./d9/d5d/namespaceread__input.tex)
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-]
+ [52]
 Chapter 10.
-(./d3/ddc/interfacemod__cuda_1_1cuda__finalize__clustering__c.tex)
-(./d6/dff/interfacemod__cuda_1_1cuda__find__and__merge__c.tex)
-(./df/d2d/structmod__assoc_1_1type__assoc__file.tex [53])
+(./df/d2d/structmod__assoc_1_1type__assoc__file.tex [53
+
+])
 (./d6/ddf/structmod__pdb_1_1type__pdb__atom.tex [54])
 (./dd/dbe/structmod__pdb_1_1type__pdb__chain.tex)
-(./d1/d57/structmod__pdb_1_1type__pdb__file.tex [55] [56])
-(./d8/d95/structmod__pdb_1_1type__pdb__residue.tex) [57] [58
+(./d1/d57/structmod__pdb_1_1type__pdb__file.tex [55])
+(./d8/d95/structmod__pdb_1_1type__pdb__residue.tex [56]) [57] [58
 
 ]
 Chapter 11.
@@ -1493,17 +1505,33 @@ Underfull \hbox (badness 10000) detected at line 27
 [][][]
  []
 
-[60]) (./d4/dd7/make__matrix_8f90.tex
+[60]) (./db/dd1/make__data_8f90.tex
 Underfull \hbox (badness 10000) detected at line 27
 [][][]
  []
 
-[61]) (./d1/d53/maths_8f90.tex) (./d4/d05/mod__assoc_8f90.tex)
-(./d6/d16/mod__clust__algorithm_8f90.tex [62]) (./de/dbb/mod__cuda_8f90.tex)
-(./df/d2c/mod__cuda__old_8f90.tex) (./d8/d6e/mod__gpu__accelerate_8f90.tex
-[63]) (./d7/d71/mod__matrix_8f90.tex) (./d3/dc0/mod__pdb_8f90.tex [64])
-(./d6/d37/mod__threshold_8f90.tex) (./db/dea/read__input_8f90.tex [65])
-(./d9/dcc/threshold_8f90.tex
+[61]) (./d1/d53/maths_8f90.tex) (./de/df3/mod__array_8f90.tex)
+(./d4/d05/mod__assoc_8f90.tex [62]) (./d6/d16/mod__clust__algorithm_8f90.tex
+Underfull \hbox (badness 816) in paragraph at lines 11--12
+[]\T1/phv/m/n/10 subroutine [] (ma-trix, n, linkage[]_[]type, output[]_[]name,
+ []
+
+
+Underfull \hbox (badness 1742) in paragraph at lines 17--18
+[]\T1/phv/m/n/10 subroutine [] (tot[]_[]encounters, cluster[]_[]parent, cluster
+[]_[]count,
+ []
+
+) (./de/dbb/mod__cuda_8f90.tex [63]) (./d7/d71/mod__matrix_8f90.tex)
+(./d9/de2/mod__memory_8f90.tex) (./d3/dc0/mod__pdb_8f90.tex [64])
+(./d6/d37/mod__threshold_8f90.tex) (./db/dea/read__input_8f90.tex)
+(./d9/dcc/threshold_8f90.tex [65]
+Underfull \hbox (badness 10000) in paragraph at lines 12--13
+[]\T1/phv/m/n/10 subroutine [] (complexes[]_[]arg, distarray[]_[]arg, encounter
+[]_[]indexes[]_[]arg, nb[]_[]
+ []
+
+
 Underfull \hbox (badness 10000) detected at line 31
 [][][]
  []
@@ -1540,7 +1568,7 @@ Underfull \hbox (badness 10000) detected at line 56
 [][][]
  []
 
-[69]) (./d3/d20/test__maths_8f90.tex [70] [71]
+[69]) (./d3/d20/test__maths_8f90.tex [70]
 Underfull \hbox (badness 10000) detected at line 91
 [][][]
  []
@@ -1550,7 +1578,7 @@ Underfull \hbox (badness 10000) detected at line 94
 [][][]
  []
 
-
+[71]
 Underfull \hbox (badness 10000) detected at line 135
 [][][]
  []
@@ -1560,7 +1588,7 @@ Underfull \hbox (badness 10000) detected at line 138
 [][][]
  []
 
-[72]) (./da/d82/test__matrix_8f90.tex [73]
+[72]) (./da/d82/test__matrix_8f90.tex
 Underfull \hbox (badness 10000) detected at line 45
 [][][]
  []
@@ -1570,7 +1598,7 @@ Underfull \hbox (badness 10000) detected at line 48
 [][][]
  []
 
-) (./d7/de4/test__pdb_8f90.tex [74]
+[73]) (./d7/de4/test__pdb_8f90.tex [74]
 Underfull \hbox (badness 10000) detected at line 59
 [][][]
  []
@@ -1580,12 +1608,12 @@ Underfull \hbox (badness 10000) detected at line 62
 [][][]
  []
 
-[75]) (./dc/d0a/test__read__input_8f90.tex [76]
+[75]) (./dc/d0a/test__read__input_8f90.tex
 Underfull \hbox (badness 10000) detected at line 55
 [][][]
  []
 
-
+[76]
 Underfull \hbox (badness 10000) detected at line 58
 [][][]
  []
@@ -1615,23 +1643,23 @@ Underfull \hbox (badness 10000) detected at line 66
 
 
 ] [80] [81] [82])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 257.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 257.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 256.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 256.
 
 (./refman.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 257.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 257.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 256.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 256.
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: D550722A40550DB71B14FE7DFD48BB08;63540.
+(rerunfilecheck)             Checksum: A5019E28844AB1E1EC78E4D1478D2587;63329.
  ) 
 Here is how much of TeX's memory you used:
- 18062 strings out of 481239
- 278499 string characters out of 5920377
- 637445 words of memory out of 5000000
+ 18059 strings out of 481239
+ 277894 string characters out of 5920377
+ 636352 words of memory out of 5000000
  32098 multiletter control sequences out of 15000+600000
  594085 words of font info for 103 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,15n,96p,1032b,629s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,15n,96p,1072b,629s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist
@@ -1644,10 +1672,10 @@ sr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/urw/helvetic/uhvro8a.pfb>
-Output written on refman.pdf (92 pages, 332511 bytes).
+Output written on refman.pdf (92 pages, 336720 bytes).
 PDF statistics:
- 3361 PDF objects out of 3580 (max. 8388607)
- 3100 compressed objects within 31 object streams
+ 3358 PDF objects out of 3580 (max. 8388607)
+ 3097 compressed objects within 31 object streams
  757 named destinations out of 1000 (max. 500000)
  2369 words of extra memory for PDF output out of 10000 (max. 10000000)
 

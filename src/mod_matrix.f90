@@ -367,30 +367,30 @@ MODULE mod_matrix
     !!
     !! @param[in]  array     Input array to write
     !! @param[in]  filename  Output filename
-    subroutine write_array(array, filename)
+    ! subroutine write_array(array, filename)
 
-      IMPLICIT NONE
-      real(kind=8), dimension(:), intent(in) :: array
-      character*128, intent(in) :: filename
-      character*128 :: fmt
+    !   IMPLICIT NONE
+    !   real(kind=8), dimension(:), intent(in) :: array
+    !   character*128, intent(in) :: filename
+    !   character*128 :: fmt
       
-      integer :: i
-      integer :: unit = 15
-      integer :: nelements
+    !   integer :: i
+    !   integer :: unit = 15
+    !   integer :: nelements
       
-      nelements = size(array(:))
+    !   nelements = size(array(:))
 
-      open(unit, file=trim(filename), status='replace', action='write')
+    !   open(unit, file=trim(filename), status='replace', action='write')
 
-      write(fmt, '(I0, A)') nelements, 'F10.4'
-      fmt = '(' // trim(fmt) // ')'
+    !   write(fmt, '(I0, A)') nelements, 'F10.4'
+    !   fmt = '(' // trim(fmt) // ')'
 
-      ! Write matrix row by row
-      write(unit, fmt) (array(i), i = 1, nelements)
+    !   ! Write matrix row by row
+    !   write(unit, fmt) (array(i), i = 1, nelements)
     
-      close(unit)
+    !   close(unit)
       
-    end subroutine write_array
+    ! end subroutine write_array
 
     !> Read a square numeric matrix from a formatted text file.
     !!
@@ -482,82 +482,82 @@ MODULE mod_matrix
     !! @param[out]    array     Output array read from file (allocated)
     !! @param[inout]  n         Number of encounters (adjusted if file is smaller)
     !! @param[in]     filename  Input filename
-    subroutine read_array(array, n, filename)
-      implicit none
-      real(kind=8), dimension(:), allocatable, intent(out) :: array
-      integer, intent(inout) :: n
-      character*128, intent(in) :: filename
-      logical :: file_ex
-      integer :: input_array, array_stat, array_size
-      integer :: i, j, m, line_length
-      !integer :: float_length, line_length, actual_length
-      character(len=:), allocatable :: line_buffer
-      real(kind=8), allocatable :: temp_row(:)
-      character*128 :: fmt
+    ! subroutine read_array(array, n, filename)
+    !   implicit none
+    !   real(kind=8), dimension(:), allocatable, intent(out) :: array
+    !   integer, intent(inout) :: n
+    !   character*128, intent(in) :: filename
+    !   logical :: file_ex
+    !   integer :: input_array, array_stat, array_size
+    !   integer :: i, j, m, line_length
+    !   !integer :: float_length, line_length, actual_length
+    !   character(len=:), allocatable :: line_buffer
+    !   real(kind=8), allocatable :: temp_row(:)
+    !   character*128 :: fmt
 
-      !float_length = 10
-      !line_length = n*float_length
+    !   !float_length = 10
+    !   !line_length = n*float_length
 
-      inquire(FILE=filename,EXIST=file_ex)
-      if (.NOT.file_ex) then
-        write(*,*) "Array file not found"
-        STOP 1
-      end if
+    !   inquire(FILE=filename,EXIST=file_ex)
+    !   if (.NOT.file_ex) then
+    !     write(*,*) "Array file not found"
+    !     STOP 1
+    !   end if
 
-      open (input_array,FILE=filename,FORM='FORMATTED',STATUS='OLD',IOSTAT=array_stat)
-      if (array_stat.NE.0) then
-          write (*,*) "Error opening array file"
-          STOP 1
-      end if
+    !   open (input_array,FILE=filename,FORM='FORMATTED',STATUS='OLD',IOSTAT=array_stat)
+    !   if (array_stat.NE.0) then
+    !       write (*,*) "Error opening array file"
+    !       STOP 1
+    !   end if
       
-      !Determine the full size of the array (m)
-      array_stat = 1
-      m = n+1
-      do while (array_stat.NE.0)
-        m = m -1
-        line_length = m*10
-        allocate(character(len=line_length) :: line_buffer)
-        write(fmt, '(I0, A)') m, 'F10.4'
-        read(input_array, '(A)', IOSTAT=array_stat) line_buffer
-        deallocate(line_buffer)
-        !m = len(line_buffer) / 10 !Floats stored in string have 10.4F format
-      end do
+    !   !Determine the full size of the array (m)
+    !   array_stat = 1
+    !   m = n+1
+    !   do while (array_stat.NE.0)
+    !     m = m -1
+    !     line_length = m*10
+    !     allocate(character(len=line_length) :: line_buffer)
+    !     write(fmt, '(I0, A)') m, 'F10.4'
+    !     read(input_array, '(A)', IOSTAT=array_stat) line_buffer
+    !     deallocate(line_buffer)
+    !     !m = len(line_buffer) / 10 !Floats stored in string have 10.4F format
+    !   end do
 
-      rewind(input_array)
+    !   rewind(input_array)
 
-      ! Check if n is valid
-      if ( n .gt. m ) then
-        write(*,*) "WARNING: number of encounters provided greater than"
-        write(*,*) "the size of the matrix stored in ", filename
-        write(*,*) "Setting the number of encounters to the size of the array"
-        write(*,*) ""
+    !   ! Check if n is valid
+    !   if ( n .gt. m ) then
+    !     write(*,*) "WARNING: number of encounters provided greater than"
+    !     write(*,*) "the size of the matrix stored in ", filename
+    !     write(*,*) "Setting the number of encounters to the size of the array"
+    !     write(*,*) ""
         
-        n = m
-      end if
+    !     n = m
+    !   end if
 
-      ! Allocate matrix and temporary row
-      allocate(array(n))
-      allocate(temp_row(m))
+    !   ! Allocate matrix and temporary row
+    !   allocate(array(n))
+    !   allocate(temp_row(m))
       
 
-      write(fmt, '(I0, A)') m, 'F10.4'
-      fmt = '(' // trim(fmt) // ')'
+    !   write(fmt, '(I0, A)') m, 'F10.4'
+    !   fmt = '(' // trim(fmt) // ')'
 
 
-      !do i = 1, n
-      read(input_array, fmt, IOSTAT=array_stat) temp_row
-      if (array_stat /= 0) then
-        write(*, *) "Error reading array "
-        stop
-      end if
-      array(:) = temp_row(1:n)
-      !end do
+    !   !do i = 1, n
+    !   read(input_array, fmt, IOSTAT=array_stat) temp_row
+    !   if (array_stat /= 0) then
+    !     write(*, *) "Error reading array "
+    !     stop
+    !   end if
+    !   array(:) = temp_row(1:n)
+    !   !end do
 
 
-      ! Clean up
-      close(input_array)
-      deallocate(temp_row)
+    !   ! Clean up
+    !   close(input_array)
+    !   deallocate(temp_row)
 
-    end subroutine read_array
+    ! end subroutine read_array
     
 END MODULE mod_matrix

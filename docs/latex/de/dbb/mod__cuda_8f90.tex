@@ -1,12 +1,5 @@
 \hypertarget{mod__cuda_8f90}{}\doxysection{mod\+\_\+cuda.\+f90 File Reference}
 \label{mod__cuda_8f90}\index{mod\_cuda.f90@{mod\_cuda.f90}}
-\doxysubsection*{Data Types}
-\begin{DoxyCompactItemize}
-\item 
-interface \mbox{\hyperlink{interfacemod__cuda_1_1cuda__find__and__merge__c}{mod\+\_\+cuda\+::cuda\+\_\+find\+\_\+and\+\_\+merge\+\_\+c}}
-\item 
-interface \mbox{\hyperlink{interfacemod__cuda_1_1cuda__finalize__clustering__c}{mod\+\_\+cuda\+::cuda\+\_\+finalize\+\_\+clustering\+\_\+c}}
-\end{DoxyCompactItemize}
 \doxysubsection*{Modules}
 \begin{DoxyCompactItemize}
 \item 
@@ -15,9 +8,5 @@ module \mbox{\hyperlink{namespacemod__cuda}{mod\+\_\+cuda}}
 \doxysubsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-integer function, public \mbox{\hyperlink{namespacemod__cuda_a6e41af3b9f71639766b8e573bcaa16b7}{mod\+\_\+cuda\+::cuda\+\_\+init\+\_\+clustering}} (matrix, n, active\+\_\+points, cluster\+\_\+size)
-\begin{DoxyCompactList}\small\item\em Initialize G\+PU clustering -\/ transfer matrix to G\+PU once. \end{DoxyCompactList}\item 
-integer function, public \mbox{\hyperlink{namespacemod__cuda_a879c52c6f4bc09b5e8080d8e7aa6576f}{mod\+\_\+cuda\+::cuda\+\_\+find\+\_\+and\+\_\+merge}} (min\+\_\+dist, min\+\_\+i, min\+\_\+j, linkage\+\_\+str)
-\begin{DoxyCompactList}\small\item\em Find minimum pair and merge on G\+PU. \end{DoxyCompactList}\item 
-subroutine, public \mbox{\hyperlink{namespacemod__cuda_a9bd0616cb42fdac9ae2fb4513e49594e}{mod\+\_\+cuda\+::cuda\+\_\+finalize\+\_\+clustering}} ()
-\begin{DoxyCompactList}\small\item\em Finalize G\+PU clustering -\/ cleanup G\+PU memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+integer function, public \mbox{\hyperlink{namespacemod__cuda_affdf9c36be5881d9bc9123646b3bf339}{mod\+\_\+cuda\+::cuda\+\_\+matrix\+\_\+clustering}} (matrix, n, dist\+\_\+threshold, linkage\+\_\+str, cluster\+\_\+parent, cluster\+\_\+count, active\+\_\+points, cluster\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Initialize G\+PU clustering -\/ transfer matrix to G\+PU once. \end{DoxyCompactList}\end{DoxyCompactItemize}
