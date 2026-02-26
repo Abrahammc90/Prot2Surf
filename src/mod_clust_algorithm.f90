@@ -232,18 +232,11 @@ module mod_clust_algorithm
                     end if
                     matrix(i, min_i) = matrix(min_i, i)
 
-                    sum_dist = sum_dist + matrix(min_i, i)
-                    sum_sq_dist = sum_sq_dist + matrix(min_i, i) ** 2
-
                 end do
                 !$OMP END PARALLEL DO
 
                 ! Update cluster_size AFTER distance update (must use pre-merge sizes above)
                 cluster_size(min_i) = cluster_size(min_i) + cluster_size(min_j)
-
-                sum_dist = sum_dist - min_dist
-                sum_sq_dist = sum_sq_dist - min_dist ** 2
-                num_dist = num_dist - 1
           
                 if (mod(remaining_clusters, 100) == 0) then
                     print *, 'Remaining clusters:', remaining_clusters
@@ -364,7 +357,7 @@ module mod_clust_algorithm
       real (kind=8) :: local_min_dist
       integer :: local_min_i, local_min_j
 
-      real (kind=8) :: alpha
+      real (kind=8) :: alpha, factor
       logical :: use_cuda_accel
       real (kind=8) :: start_time, end_time, elapsed_time
 
@@ -405,8 +398,9 @@ module mod_clust_algorithm
 
       mean_dist = sum_dist / num_dist
       standard_deviation = sqrt((sum_sq_dist / num_dist) - mean_dist ** 2)
+      factor = (array(n) - array(1)) / (2*mean_dist)  ! Scale factor to adjust threshold based on data range
 
-      alpha = standard_deviation / sqrt(standard_deviation**2 + mean_dist**2)
+      alpha = standard_deviation / sqrt(standard_deviation**2 + mean_dist**2) * factor
       dist_threshold = alpha*mean_dist - (1-alpha)*standard_deviation
     
       ! ====================================================================
