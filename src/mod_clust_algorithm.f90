@@ -490,9 +490,6 @@ module mod_clust_algorithm
 
           cluster_average(min_i) = (array(min_i) * cluster_size(min_i) + array(min_j) * cluster_size(min_j)) / &
                           (cluster_size(min_i) + cluster_size(min_j))
-          cluster_sd(min_i) = sqrt(((cluster_sd(min_i)**2 + (array(min_i) - cluster_average(min_i))**2) * cluster_size(min_i) + &
-                              (cluster_sd(min_j)**2 + (array(min_j) - cluster_average(min_i))**2) * cluster_size(min_j)) / &
-                              (cluster_size(min_i) + cluster_size(min_j)))
 
           ! Update array value based on linkage type
           if (trim(linkage_type) == 'min') then
@@ -582,28 +579,19 @@ module mod_clust_algorithm
       end do
       !$OMP END PARALLEL DO
 
-    !   ! Compute mean and standard deviation per cluster
-    !   !$OMP PARALLEL DO PRIVATE(i, j, mean_dist, standard_deviation)
-    !   do i = 1, n
-    !       if (.not. active_points(i)) cycle
-    !       mean_dist = 0.0d0
-    !       do j = 1, n
-    !           if (cluster_parent(j) /= i) cycle
-    !           mean_dist = mean_dist + array(j)
-    !       end do
-    !       mean_dist = mean_dist / cluster_count(i)
-    !       cluster_average(i) = mean_dist
-
-    !       standard_deviation = 0.0d0
-    !       do j = 1, n
-    !           if (cluster_parent(j) /= i) cycle
-    !           standard_deviation = standard_deviation + &
-    !               (cluster_average(i) - array(j))**2
-    !       end do
-    !       standard_deviation = sqrt(standard_deviation / cluster_count(i))
-    !       cluster_sd(i) = standard_deviation
-    !   end do
-    !   !$OMP END PARALLEL DO
+      ! Compute standard deviation per cluster
+      !$OMP PARALLEL DO PRIVATE(i, j, mean_dist, standard_deviation)
+      do i = 1, n
+          standard_deviation = 0.0d0
+          do j = 1, n
+              if (cluster_parent(j) /= i) cycle
+              standard_deviation = standard_deviation + &
+                  (cluster_average(i) - array(j))**2
+          end do
+          standard_deviation = sqrt(standard_deviation / cluster_count(i))
+          cluster_sd(i) = standard_deviation
+      end do
+      !$OMP END PARALLEL DO
 
       call write_cluster_elements(n, cluster_parent, cluster_count, active_points, output_name)
       call write_clust_info(n, representative_indexes, active_points, cluster_count, cluster_average, cluster_sd, output_name)
