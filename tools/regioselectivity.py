@@ -70,10 +70,25 @@ def main():
         required=True,
         help="List of reference association files"
     )
+    parser.add_argument(
+        "-sda_complexes", 
+        type=str, 
+        default=None,
+        help="Encounter complexes from SDA"
+    )
 
     args = parser.parse_args()
-
     encounters_to_classify = []
+    if args.sda_complexes is None:
+        print("Error: SDA complexes file must be specified with -sda_complexes")
+        sys.exit(1)
+
+    total_encounters = open(args.sda_complexes, "r").readlines()[4:]
+    total_ocurrences = 0
+
+    for line in total_encounters:
+        total_ocurrences += int(float(line[183:193]))
+
 
     for assoc_filename in args.complexes:
         encounters_to_classify += open(assoc_filename, "r").readlines()[4:]
@@ -84,7 +99,15 @@ def main():
         references[assoc_filename] = reference_lines
 
     classification = {}
-    total_encounters = 0
+    for i in range(len(args.references)):
+        key = args.references[i]
+        classification[key] = 0
+        for j in range(i+1, len(args.references)):
+            key += (", " + args.references[j])
+            classification[key] = 0
+
+    classification = dict(sorted(classification.items(), key=lambda item: (len(item[0]), item[0])))
+    total_encounters_reacted = 0
 
     for encounter in encounters_to_classify:
         occurrency = int(float(encounter[183:193]))
@@ -93,13 +116,13 @@ def main():
             if encounter in references[reference_key]:
                 key += (reference_key + ", ")
         key = key[:-2]
-        if key not in classification:
-            classification[key] = 0
         classification[key] += occurrency
-        total_encounters += occurrency
+        total_encounters_reacted += occurrency
+
+    classification["No reaction"] = total_ocurrences-total_encounters_reacted
 
     for key in classification:
-        print(key+":", str(classification[key])+"/"+str(total_encounters), "({:.2f} %)".format(classification[key]/total_encounters*100))
+        print(key+":", str(classification[key])+"/"+str(total_ocurrences), "({:.2f} %)".format(classification[key]/total_ocurrences*100))
 
 if __name__ == "__main__":
     main()

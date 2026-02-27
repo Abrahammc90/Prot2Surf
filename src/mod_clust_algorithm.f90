@@ -354,8 +354,8 @@ module mod_clust_algorithm
 
       integer :: i, j, k, min_i, min_j, merge_counter, remaining_clusters, num_dist
       integer, dimension(n) :: cluster_size ! To track the size of each cluster
-      real (kind=8):: min_dist, dist, mean_dist, standard_deviation, dist_threshold, dispersion_range_coeff
-      real (kind=8):: sum_dist, sum_sq_dist, old_val
+      real (kind=8):: min_dist, dist, mean_dist, standard_deviation, dist_threshold
+      real (kind=8):: sum_dist, sum_sq_dist, old_val, dispersion_range_coeff, middle_range
       logical, dimension(n) :: active_points
 
       integer, dimension(n) :: cluster_count  ! Number of elements in each cluster
@@ -409,11 +409,26 @@ module mod_clust_algorithm
 
       mean_dist = sum_dist / num_dist
       standard_deviation = sqrt((sum_sq_dist / num_dist) - mean_dist ** 2)
+      middle_range = (array(n) + array(1)) / 2.0d0
       dispersion_range_coeff = (array(n) - array(1))/(array(n) + array(1))  ! Relative range of values in the array
       
+      factor = 1 - abs(middle_range - (mean_dist + 2*standard_deviation)) / (middle_range + mean_dist + 2*standard_deviation)  ! Scale factor based on how close mean is to middle of range
+
       alpha = standard_deviation / sqrt(standard_deviation**2 + mean_dist**2)
-      dist_threshold = (alpha*mean_dist - (1-alpha)*standard_deviation) / dispersion_range_coeff  ! Scale threshold by relative range to adapt to different value distributions
-    
+      dist_threshold = (alpha*mean_dist - (1-alpha)*standard_deviation) / factor  ! Scale threshold by relative range to adapt to different value distributions
+
+    !   dist_threshold = (mean_dist + standard_deviation) / factor  ! Simple threshold for testing
+
+      print *, 'mean_dist:', mean_dist
+      print *, 'standard_deviation:', standard_deviation
+      print *, 'middle_range:', middle_range
+      print *, 'dispersion_range_coeff:', dispersion_range_coeff
+      print *, 'factor:', factor
+      print *, 'alpha:', alpha
+      print *, 'dist_threshold:', dist_threshold
+      
+    !   STOP
+
       ! ====================================================================
       ! CUDA GPU CLUSTERING for sorted 1D array
       ! ====================================================================
