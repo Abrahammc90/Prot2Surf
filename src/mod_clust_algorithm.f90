@@ -64,7 +64,7 @@ module mod_clust_algorithm
         real (kind=8), dimension(n) :: representative_values  ! Store representative values for each cluster
         real (kind=8), dimension(n) :: cluster_average, cluster_sd
 
-        real (kind=8) :: local_min_dist
+        real (kind=8) :: local_min_dist, min_val, max_val, dispersion_range_coeff
         integer :: local_min_i, local_min_j
 
         real (kind=8) :: alpha
@@ -95,12 +95,21 @@ module mod_clust_algorithm
         sum_sq_dist = 0.0
         num_dist = 0
 
+        min_val = huge(1.0)
+        max_val = 0.0d0
+
         !$OMP PARALLEL DO REDUCTION(+:sum_dist, sum_sq_dist, num_dist) PRIVATE(i, j)
         do i = 1, n
           do j = i + 1, n
-              sum_dist = sum_dist + matrix(i, j)
-              sum_sq_dist = sum_sq_dist + matrix(i, j) ** 2
-              num_dist = num_dist + 1
+                sum_dist = sum_dist + matrix(i, j)
+                sum_sq_dist = sum_sq_dist + matrix(i, j) ** 2
+                num_dist = num_dist + 1
+                if (matrix(i, j) < min_val) then
+                    min_val = matrix(i, j)
+                end if
+                if (matrix(i, j) > max_val) then
+                    max_val = matrix(i, j)
+                end if
           end do
         end do
         !$OMP END PARALLEL DO
@@ -108,8 +117,10 @@ module mod_clust_algorithm
         mean_dist = sum_dist / num_dist
         standard_deviation = sqrt((sum_sq_dist / num_dist) - mean_dist ** 2)
 
+        dispersion_range_coeff = (max_val - min_val)/(max_val + min_val)  ! Relative range of values in the array
+      
         alpha = standard_deviation / sqrt(standard_deviation**2 + mean_dist**2)
-        dist_threshold = alpha*mean_dist - (1-alpha)*standard_deviation
+        dist_threshold = (alpha*mean_dist - (1-alpha)*standard_deviation) / dispersion_range_coeff  ! Scale threshold by relative range to adapt to different value distributions
       
         ! ====================================================================
         ! COMPLETE CUDA PARALLELIZATION - All clustering done on GPU
@@ -343,7 +354,7 @@ module mod_clust_algorithm
 
       integer :: i, j, k, min_i, min_j, merge_counter, remaining_clusters, num_dist
       integer, dimension(n) :: cluster_size ! To track the size of each cluster
-      real (kind=8):: min_dist, dist, mean_dist, standard_deviation, dist_threshold
+      real (kind=8):: min_dist, dist, mean_dist, standard_deviation, dist_threshold, dispersion_range_coeff
       real (kind=8):: sum_dist, sum_sq_dist, old_val
       logical, dimension(n) :: active_points
 
@@ -398,10 +409,10 @@ module mod_clust_algorithm
 
       mean_dist = sum_dist / num_dist
       standard_deviation = sqrt((sum_sq_dist / num_dist) - mean_dist ** 2)
-      factor = (array(n) - array(1)) / (2*mean_dist)  ! Scale factor to adjust threshold based on data range
-
-      alpha = standard_deviation / sqrt(standard_deviation**2 + mean_dist**2) * factor
-      dist_threshold = alpha*mean_dist - (1-alpha)*standard_deviation
+      dispersion_range_coeff = (array(n) - array(1))/(array(n) + array(1))  ! Relative range of values in the array
+      
+      alpha = standard_deviation / sqrt(standard_deviation**2 + mean_dist**2)
+      dist_threshold = (alpha*mean_dist - (1-alpha)*standard_deviation) / dispersion_range_coeff  ! Scale threshold by relative range to adapt to different value distributions
     
       ! ====================================================================
       ! CUDA GPU CLUSTERING for sorted 1D array
