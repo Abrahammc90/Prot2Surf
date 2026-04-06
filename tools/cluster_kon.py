@@ -1,4 +1,17 @@
-"""
+"""!
+@file cluster_kon.py
+@brief Cluster KON analysis utilities.
+@author Abraham Muñiz-Chicharro
+@version 1.0
+@date 2026-04-05
+@par Usage
+python cluster_kon.py --sda_input [sda_input.in] --clusters [cluster1] [cluster2 ...] -o [output_file]
+
+@par Usage flags
+- @c --sda_input : Path to SDA input file.
+- @c --clusters  : One or more cluster files for beta/KON estimation.
+- @c -o, @c --output : Output report file.
+
 Cluster KON Analysis Script
 
 This script calculates the Smoluchowski rate constant (kon) for diffusing particles
@@ -12,7 +25,7 @@ Features:
     - Kon rate constant computation with proper unit conversion
 
 Usage:
-    python cluster_kon.py <input_file> [options]
+    python cluster_kon.py --sda_input [sda_input.in] --clusters [cluster1] [cluster2 ...] -o [output_file]
 
 Author: Abraham Muñiz-Chicharro
 Version: 1.0
@@ -103,18 +116,25 @@ def cluster_beta(cluster_file, total_trajectories):
         - Removes duplicate run numbers
         - Calculates: len(unique_runs) / total_trajectories
     """
-    clusters = []
+    trajectory_numbers = set()
+
     with open(cluster_file, 'r') as f:
         for line in f:
-            if line.strip() and not line.startswith('#'):
-                clusters.append(line.strip())
-    
-    trajectory_numbers = []
-    for cluster in clusters:
-        run_nb = int(cluster.split()[0])
-        trajectory_numbers.append(run_nb)
+            stripped = line.strip()
+            if not stripped or stripped.startswith('#'):
+                continue
 
-    trajectory_numbers = list(set(trajectory_numbers))
+            line_parts = stripped.split()
+            if stripped.startswith('Cluster'):
+                encounter_tokens = line_parts[2:]
+            else:
+                encounter_tokens = line_parts
+
+            for token in encounter_tokens:
+                try:
+                    trajectory_numbers.add(int(token))
+                except ValueError:
+                    continue
 
     return len(trajectory_numbers) / total_trajectories
     

@@ -4,7 +4,7 @@
 \begin{DoxyCompactItemize}
 \item 
 integer function, public \mbox{\hyperlink{namespacemod__cuda_affdf9c36be5881d9bc9123646b3bf339}{cuda\+\_\+matrix\+\_\+clustering}} (matrix, n, dist\+\_\+threshold, linkage\+\_\+str, cluster\+\_\+parent, cluster\+\_\+count, active\+\_\+points, cluster\+\_\+size)
-\begin{DoxyCompactList}\small\item\em Initialize G\+PU clustering -\/ transfer matrix to G\+PU once. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Fortran wrapper for complete G\+PU clustering using C\+U\+DA. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function/\+Subroutine Documentation}
@@ -16,34 +16,10 @@ integer function, public \mbox{\hyperlink{namespacemod__cuda_affdf9c36be5881d9bc
 
 
 
-Initialize G\+PU clustering -\/ transfer matrix to G\+PU once. 
+Fortran wrapper for complete G\+PU clustering using C\+U\+DA. 
 
+Converts Fortran data to C types, calls the C\+U\+DA C interface, and converts results back.
 
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em matrix} & Distance matrix (n x n, column-\/major) \\
-\hline
-\mbox{\texttt{ in}}  & {\em n} & Matrix dimension \\
-\hline
-\mbox{\texttt{ in}}  & {\em active\+\_\+points} & Logical array of active clusters \\
-\hline
-\mbox{\texttt{ in}}  & {\em cluster\+\_\+size} & Integer array of cluster sizes \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-0 on success, -\/1 on error Find minimum pair and merge on G\+PU
-\end{DoxyReturn}
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ out}}  & {\em min\+\_\+dist} & Minimum distance value \\
-\hline
-\mbox{\texttt{ out}}  & {\em min\+\_\+i,min\+\_\+j} & Indices of minimum pair (1-\/based) \\
-\hline
-\mbox{\texttt{ in}}  & {\em linkage\+\_\+str} & Linkage type (\textquotesingle{}min\textquotesingle{}, \textquotesingle{}max\textquotesingle{}, or \textquotesingle{}mean\textquotesingle{}) \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-0 on success, -\/1 on error Perform complete G\+PU clustering -\/ all iterations on G\+PU
-\end{DoxyReturn}
 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em matrix} & Distance matrix (n x n, column-\/major) \\
@@ -52,15 +28,15 @@ Initialize G\+PU clustering -\/ transfer matrix to G\+PU once.
 \hline
 \mbox{\texttt{ in}}  & {\em dist\+\_\+threshold} & Distance threshold for stopping \\
 \hline
-\mbox{\texttt{ in}}  & {\em linkage\+\_\+str} & Linkage type (\textquotesingle{}min\textquotesingle{}, \textquotesingle{}max\textquotesingle{}, or \textquotesingle{}mean\textquotesingle{}) \\
+\mbox{\texttt{ in}}  & {\em linkage\+\_\+str} & Linkage type\+: \textquotesingle{}min\textquotesingle{}, \textquotesingle{}max\textquotesingle{}, or \textquotesingle{}mean\textquotesingle{} \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em cluster\+\_\+parent} & Output cluster parent for each point (n) -\/ O(n) tracking \\
+\mbox{\texttt{ in,out}}  & {\em cluster\+\_\+parent} & Output\+: cluster parent for each point (n) \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em cluster\+\_\+count} & Output cluster sizes (n) \\
+\mbox{\texttt{ in,out}}  & {\em cluster\+\_\+count} & Output\+: cluster sizes (n) \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em active\+\_\+points} & Output active clusters (n) \\
+\mbox{\texttt{ in,out}}  & {\em active\+\_\+points} & Output\+: which clusters are still active (n) \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em cluster\+\_\+size} & Cluster sizes for linkage computation \\
+\mbox{\texttt{ in}}  & {\em cluster\+\_\+size} & Cluster sizes for linkage computation (n) \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

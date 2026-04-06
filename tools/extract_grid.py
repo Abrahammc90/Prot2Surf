@@ -1,4 +1,17 @@
-"""
+"""!
+@file extract_grid.py
+@brief Parse and extract UHBD electrostatic grid data.
+@author Abraham Muñiz-Chicharro
+@version 1.0
+@date 2026-04-05
+@par Usage
+python extract_grid.py [input.uhbd] [Nx] [Ny] [Nz] [output.uhbd]
+
+@par Usage flags
+- Positional @c input.uhbd : source UHBD grid file.
+- Positional @c Nx @c Ny @c Nz : target output dimensions.
+- Positional @c output.uhbd : destination UHBD file.
+
 Extract Grid Data from UHBD Files Script
 
 This script loads and extracts electrostatic potential grid data from UHBD format files. 
@@ -13,7 +26,7 @@ Features:
     - Refactored for improved readability and maintainability
 
 Usage:
-    python extract_grid.py <input.uhbd> <Nx> <Ny> <Nz> <output.uhbd>
+    python extract_grid.py [input.uhbd] [Nx] [Ny] [Nz] [output.uhbd]
 
 Author: Abraham Muñiz-Chicharro
 Version: 1.0
@@ -44,15 +57,29 @@ def parse_uhbd_header(header_line):
     Returns:
         dict: Contains keys 'Nx', 'Ny', 'Nz', 'delta', 'origin_x', 'origin_y', 'origin_z'
     """
-    return {
-        'Nx': int(float(header_line[0:7])),
-        'Ny': int(float(header_line[7:14])),
-        'Nz': int(float(header_line[14:21])),
-        'delta': float(header_line[21:33]),
-        'origin_x': float(header_line[33:45]),
-        'origin_y': float(header_line[45:57]),
-        'origin_z': float(header_line[57:69])
-    }
+    try:
+        return {
+            'Nx': int(float(header_line[0:7])),
+            'Ny': int(float(header_line[7:14])),
+            'Nz': int(float(header_line[14:21])),
+            'delta': float(header_line[21:33]),
+            'origin_x': float(header_line[33:45]),
+            'origin_y': float(header_line[45:57]),
+            'origin_z': float(header_line[57:69])
+        }
+    except ValueError:
+        parts = header_line.split()
+        if len(parts) < 7:
+            raise
+        return {
+            'Nx': int(float(parts[0])),
+            'Ny': int(float(parts[1])),
+            'Nz': int(float(parts[2])),
+            'delta': float(parts[3]),
+            'origin_x': float(parts[4]),
+            'origin_y': float(parts[5]),
+            'origin_z': float(parts[6])
+        }
 
 
 def is_coordinate_header(line_parts):

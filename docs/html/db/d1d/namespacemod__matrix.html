@@ -70,15 +70,6 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions/Subroutines</h2></td></tr>
-<tr class="memitem:a9de83edad93118cfe2ad02d916b0148f"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1d/namespacemod__matrix.html#a9de83edad93118cfe2ad02d916b0148f">matrix_z_coord</a> (matrix, array, n, nb_atoms, xc1, xc2, trans_vector, rot1, rot2, solute_crds)</td></tr>
-<tr class="memdesc:a9de83edad93118cfe2ad02d916b0148f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build a matrix of absolute differences of Z-coordinates per encounter.  <a href="../../db/d1d/namespacemod__matrix.html#a9de83edad93118cfe2ad02d916b0148f">More...</a><br /></td></tr>
-<tr class="separator:a9de83edad93118cfe2ad02d916b0148f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a487f996f27bc33883c050522fdf40c3d"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1d/namespacemod__matrix.html#a487f996f27bc33883c050522fdf40c3d">matrix_atoms_dist</a> (matrix, array, n, nb_atoms, xc1, xc2, trans_vector, rot1, rot2, solute1_crds, solute2_crds)</td></tr>
-<tr class="memdesc:a487f996f27bc33883c050522fdf40c3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build matrix from minimum inter-atomic distances between two solutes.  <a href="../../db/d1d/namespacemod__matrix.html#a487f996f27bc33883c050522fdf40c3d">More...</a><br /></td></tr>
-<tr class="separator:a487f996f27bc33883c050522fdf40c3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83c35621a4e33d0e6e6ae8e4a76a3cb8"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1d/namespacemod__matrix.html#a83c35621a4e33d0e6e6ae8e4a76a3cb8">matrix_angle</a> (matrix, array, n, nb_atoms, xc1, xc2, trans_vector, rot1, rot2, point1a, point1b, point2a, point2b, dimensions)</td></tr>
-<tr class="memdesc:a83c35621a4e33d0e6e6ae8e4a76a3cb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build matrix of angular differences between encounters.  <a href="../../db/d1d/namespacemod__matrix.html#a83c35621a4e33d0e6e6ae8e4a76a3cb8">More...</a><br /></td></tr>
-<tr class="separator:a83c35621a4e33d0e6e6ae8e4a76a3cb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10eab892b87e949df1b1df1152106585"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1d/namespacemod__matrix.html#a10eab892b87e949df1b1df1152106585">matrix_rmsd</a> (matrix, n, nb_atoms, xc1, xc2, trans_vector, rot1, rot2, coord)</td></tr>
 <tr class="memdesc:a10eab892b87e949df1b1df1152106585"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build RMSD-based pairwise matrix between transformed coordinates.  <a href="../../db/d1d/namespacemod__matrix.html#a10eab892b87e949df1b1df1152106585">More...</a><br /></td></tr>
 <tr class="separator:a10eab892b87e949df1b1df1152106585"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -86,229 +77,10 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memdesc:a2ac28315cb206a31cad2f5e63c3afba1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a numeric matrix to a formatted text file.  <a href="../../db/d1d/namespacemod__matrix.html#a2ac28315cb206a31cad2f5e63c3afba1">More...</a><br /></td></tr>
 <tr class="separator:a2ac28315cb206a31cad2f5e63c3afba1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab379913b1ccff8141ffd78808dc8148b"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d1d/namespacemod__matrix.html#ab379913b1ccff8141ffd78808dc8148b">read_matrix</a> (matrix, n, filename)</td></tr>
-<tr class="memdesc:ab379913b1ccff8141ffd78808dc8148b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a numeric array to a formatted text file.  <a href="../../db/d1d/namespacemod__matrix.html#ab379913b1ccff8141ffd78808dc8148b">More...</a><br /></td></tr>
+<tr class="memdesc:ab379913b1ccff8141ffd78808dc8148b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a square numeric matrix from a formatted text file.  <a href="../../db/d1d/namespacemod__matrix.html#ab379913b1ccff8141ffd78808dc8148b">More...</a><br /></td></tr>
 <tr class="separator:ab379913b1ccff8141ffd78808dc8148b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function/Subroutine Documentation</h2>
-<a id="a83c35621a4e33d0e6e6ae8e4a76a3cb8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a83c35621a4e33d0e6e6ae8e4a76a3cb8">&#9670;&nbsp;</a></span>matrix_angle()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">subroutine mod_matrix::matrix_angle </td>
-          <td>(</td>
-          <td class="paramtype">real(kind=8), dimension(n, n), intent(out)&#160;</td>
-          <td class="paramname"><em>matrix</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">real(kind=8), dimension(n), intent(out)&#160;</td>
-          <td class="paramname"><em>array</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, intent(in)&#160;</td>
-          <td class="paramname"><em>n</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, intent(in)&#160;</td>
-          <td class="paramname"><em>nb_atoms</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">real(kind=8), dimension(3), intent(in)&#160;</td>
-          <td class="paramname"><em>xc1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">real(kind=8), dimension(3), intent(in)&#160;</td>
-          <td class="paramname"><em>xc2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">real(kind=8), dimension(:, :), intent(in)&#160;</td>
-          <td class="paramname"><em>trans_vector</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">real(kind=8), dimension(:, :), intent(in)&#160;</td>
-          <td class="paramname"><em>rot1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">real(kind=8), dimension(:, :), intent(in)&#160;</td>
-          <td class="paramname"><em>rot2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">real(kind=8), dimension(:), intent(in)&#160;</td>
-          <td class="paramname"><em>point1a</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">real(kind=8), dimension(:), intent(in)&#160;</td>
-          <td class="paramname"><em>point1b</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">real(kind=8), dimension(:), intent(in)&#160;</td>
-          <td class="paramname"><em>point2a</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">real(kind=8), dimension(:), intent(in)&#160;</td>
-          <td class="paramname"><em>point2b</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, intent(in)&#160;</td>
-          <td class="paramname"><em>dimensions</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Build matrix of angular differences between encounters. </p>
-<p>Computes the angle (2D or 3D) for each encounter and fills the pairwise absolute difference matrix.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">matrix</td><td>Output (n,n) matrix of pairwise angular differences </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">array</td><td>Output (n) array with per-encounter angles </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>Number of encounters </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nb_atoms</td><td>Number of atoms in solute 2 to transform </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">xc1,xc2</td><td>Solute centers used for translation transformations </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">trans_vector</td><td>Transform translation vectors (n,3) </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">rot1,rot2</td><td>Transform rotation arrays (n,3) </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">point1a</td><td>First point defining reference vector </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">point1b</td><td>Second point defining reference vector </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">point2a</td><td>First point of vector to be transformed </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">point2b</td><td>Second point of vector to be transformed </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">dimensions</td><td>Dimensionality of angle calculation (2 or 3) </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a487f996f27bc33883c050522fdf40c3d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a487f996f27bc33883c050522fdf40c3d">&#9670;&nbsp;</a></span>matrix_atoms_dist()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">subroutine mod_matrix::matrix_atoms_dist </td>
-          <td>(</td>
-          <td class="paramtype">real(kind=8), dimension(n, n), intent(out)&#160;</td>
-          <td class="paramname"><em>matrix</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">real(kind=8), dimension(n), intent(out)&#160;</td>
-          <td class="paramname"><em>array</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, intent(in)&#160;</td>
-          <td class="paramname"><em>n</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, intent(in)&#160;</td>
-          <td class="paramname"><em>nb_atoms</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">real(kind=8), dimension(3), intent(in)&#160;</td>
-          <td class="paramname"><em>xc1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">real(kind=8), dimension(3), intent(in)&#160;</td>
-          <td class="paramname"><em>xc2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">real(kind=8), dimension(:, :), intent(in)&#160;</td>
-          <td class="paramname"><em>trans_vector</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">real(kind=8), dimension(:, :), intent(in)&#160;</td>
-          <td class="paramname"><em>rot1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">real(kind=8), dimension(:, :), intent(in)&#160;</td>
-          <td class="paramname"><em>rot2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">real(kind=8), dimension(:, :), intent(in)&#160;</td>
-          <td class="paramname"><em>solute1_crds</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">real(kind=8), dimension(:, :), intent(in)&#160;</td>
-          <td class="paramname"><em>solute2_crds</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Build matrix from minimum inter-atomic distances between two solutes. </p>
-<p>For each encounter, the second solute is transformed and the minimum distance to <code>solute1_crds</code> is computed; pairwise absolute differences of these minima populate <code>matrix</code>.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">matrix</td><td>Output (n,n) matrix of pairwise values </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">array</td><td>Output (n) array with per-encounter minimum distances </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>Number of encounters </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nb_atoms</td><td>Number of atoms in solute 2 to transform </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">xc1,xc2</td><td>Solute centers used for translation transformations </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">trans_vector</td><td>Transform translation vectors (n,3) </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">rot1,rot2</td><td>Transform rotation arrays (n,3) </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">solute1_crds</td><td>Coordinates of first solute atoms </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">solute2_crds</td><td>Coordinates of second solute atoms </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="a10eab892b87e949df1b1df1152106585"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a10eab892b87e949df1b1df1152106585">&#9670;&nbsp;</a></span>matrix_rmsd()</h2>
 
@@ -383,102 +155,11 @@ Functions/Subroutines</h2></td></tr>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">matrix</td><td>Output (n,n) matrix of pairwise RMSD values </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>Number of encounters </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nb_atoms</td><td>Number of atoms in solute 2 to transform </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">xc1,xc2</td><td>Solute centers used for translation transformations </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nb_atoms</td><td>Number of atoms in solute2 to transform </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">xc1,xc2</td><td>Solute centers for translation </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">trans_vector</td><td>Transform translation vectors (n,3) </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">rot1,rot2</td><td>Transform rotation arrays (n,3) </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">coord</td><td>Coordinates to be transformed </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a9de83edad93118cfe2ad02d916b0148f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9de83edad93118cfe2ad02d916b0148f">&#9670;&nbsp;</a></span>matrix_z_coord()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">subroutine mod_matrix::matrix_z_coord </td>
-          <td>(</td>
-          <td class="paramtype">real(kind=8), dimension(n, n), intent(out)&#160;</td>
-          <td class="paramname"><em>matrix</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">real(kind=8), dimension(n), intent(out)&#160;</td>
-          <td class="paramname"><em>array</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, intent(in)&#160;</td>
-          <td class="paramname"><em>n</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, intent(in)&#160;</td>
-          <td class="paramname"><em>nb_atoms</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">real(kind=8), dimension(3), intent(in)&#160;</td>
-          <td class="paramname"><em>xc1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">real(kind=8), dimension(3), intent(in)&#160;</td>
-          <td class="paramname"><em>xc2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">real(kind=8), dimension(:, :), intent(in)&#160;</td>
-          <td class="paramname"><em>trans_vector</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">real(kind=8), dimension(:, :), intent(in)&#160;</td>
-          <td class="paramname"><em>rot1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">real(kind=8), dimension(:, :), intent(in)&#160;</td>
-          <td class="paramname"><em>rot2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">real(kind=8), dimension(:, :), intent(in)&#160;</td>
-          <td class="paramname"><em>solute_crds</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Build a matrix of absolute differences of Z-coordinates per encounter. </p>
-<p>Computes the Z coordinate for each encounter (as in <code>array_z_coord</code>) and fills <code>matrix(i,j) = |z_i - z_j|</code> for i&lt;j (symmetrically).</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">matrix</td><td>Output (n,n) matrix of pairwise values </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">array</td><td>Output array with per-encounter Z values </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>Number of encounters </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nb_atoms</td><td>Number of atoms in <code>solute_crds</code> </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">xc1,xc2</td><td>Solute centers used for translation transformations </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">trans_vector,rot1,rot2</td><td>Transform arrays (n,3) </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">solute_crds</td><td>Coordinates of solute atoms </td></tr>
   </table>
   </dd>
 </dl>
@@ -517,15 +198,7 @@ Functions/Subroutines</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Write a numeric array to a formatted text file. </p>
-<p>Writes <code>array</code> as a single formatted line using <code>F10.4</code> floats.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">array</td><td>Input array to write </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filename</td><td>Output filename Read a square numeric matrix from a formatted text file.</td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Read a square numeric matrix from a formatted text file. </p>
 <p>Reads the file line-by-line to determine matrix size and parses rows with the expected <code>F10.4</code> formatting.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -565,7 +238,7 @@ Functions/Subroutines</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Write a numeric matrix to a formatted text file. </p>
-<p>Writes <code>matrix</code> with each row as <code>F10.4</code> formatted floats. The output filename is provided by <code>filename</code>.</p>
+<p>Writes matrix with each row as F10.4 formatted floats. Output filename is provided by filename.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">matrix</td><td>Input matrix to write </td></tr>

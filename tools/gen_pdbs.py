@@ -1,4 +1,20 @@
-"""
+"""!
+@file gen_pdbs.py
+@brief Generate transformed PDB structures from encounter complexes.
+@author Abraham Muñiz-Chicharro
+@version 1.0
+@date 2026-04-05
+@par Usage
+python gen_pdbs.py [p1.pdb] [p2.pdb] [assoc_file] [-n [N]] [--resnames [RES ...]] [-o [output_prefix]]
+
+@par Usage flags
+- Positional @c p1 : receptor PDB file.
+- Positional @c p2 : ligand PDB file.
+- Positional @c assoc_file : SDA association file.
+- @c -n : number of complexes to process (default: all).
+- @c --resnames : optional residue-name filter for output structures.
+- @c -o, @c --output : output prefix (default: Min).
+
 Generate PDB Files from Complexes Script
 
 This script transforms a ligand according to encounter complex configurations defined
@@ -23,7 +39,7 @@ Command Line Arguments:
     -o, --output (optional):   Output file prefix (default: "Min")
 
 Usage:
-    python gen_pdbs.py <receptor_pdb> <ligand_pdb> <assoc_file> [options]
+    python gen_pdbs.py [receptor_pdb] [ligand_pdb] [assoc_file] [options]
 
 Examples:
     # Generate PDB files for all encounter complexes
@@ -80,6 +96,8 @@ class Atom:
         self.resid = 0
         self.id = 0
         self.name = ""
+        self.element = ""
+        self.chainID = ""
 
     def get_attributes(self, atom):
         """

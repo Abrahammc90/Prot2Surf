@@ -67,12 +67,17 @@ $(function() {
 <div class="title">make_data.f90 File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Build encounter-based matrix/array data from structural inputs.  
+<a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions/Subroutines</h2></td></tr>
 <tr class="memitem:a8ec2266d83cd6c0b762cbcbc92c0af3d"><td class="memItemLeft" align="right" valign="top">program&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dd1/make__data_8f90.html#a8ec2266d83cd6c0b762cbcbc92c0af3d">main</a></td></tr>
-<tr class="memdesc:a8ec2266d83cd6c0b762cbcbc92c0af3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command-line utility to build encounter-based matrices.  <a href="../../db/dd1/make__data_8f90.html#a8ec2266d83cd6c0b762cbcbc92c0af3d">More...</a><br /></td></tr>
 <tr class="separator:a8ec2266d83cd6c0b762cbcbc92c0af3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae44e248f87c38ae12a465c806260e6ab"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dd1/make__data_8f90.html#ae44e248f87c38ae12a465c806260e6ab">parse_arguments</a> (p_pdb1_filename, p_pdb1_bool, p_pdb2_filename, p_pdb2_bool, p_complexes_filename, p_complexes_bool, p_nb_encounters, p_nb_encounters_bool, p_datadist_filename, p_matrix_bool, p_data_type, p_datatype_bool, p_arr_atoms1a, p_arr_atoms1a_bool, p_arr_atoms1b, p_arr_atoms1b_bool, p_arr_atoms2a, p_arr_atoms2a_bool, p_arr_atoms2b, p_arr_atoms2b_bool, p_help_bool)</td></tr>
+<tr class="memdesc:ae44e248f87c38ae12a465c806260e6ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse command-line arguments for <code>make_data</code>.  <a href="../../db/dd1/make__data_8f90.html#ae44e248f87c38ae12a465c806260e6ab">More...</a><br /></td></tr>
+<tr class="separator:ae44e248f87c38ae12a465c806260e6ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c89be8ab0718c0b4d3d7857380231a3"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dd1/make__data_8f90.html#a9c89be8ab0718c0b4d3d7857380231a3">print_help</a> (help_option)</td></tr>
 <tr class="memdesc:a9c89be8ab0718c0b4d3d7857380231a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print usage/help text for <code>make_data</code>.  <a href="../../db/dd1/make__data_8f90.html#a9c89be8ab0718c0b4d3d7857380231a3">More...</a><br /></td></tr>
 <tr class="separator:a9c89be8ab0718c0b4d3d7857380231a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -80,7 +85,15 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memdesc:ad0df42f74407d652097e6e433eea2dc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read coordinates for a specified list of atoms (names or indices).  <a href="../../db/dd1/make__data_8f90.html#ad0df42f74407d652097e6e433eea2dc8">More...</a><br /></td></tr>
 <tr class="separator:ad0df42f74407d652097e6e433eea2dc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Build encounter-based matrix/array data from structural inputs. </p>
+<p><a class="el" href="../../db/dd1/make__data_8f90.html" title="Build encounter-based matrix/array data from structural inputs.">make_data.f90</a> - Build encounter-based matrices from PDB and complex files.</p>
+<p>Usage: ./make_data -help</p>
+<p>Reads PDB(s) and association/complex files, generates matrices (rmsd, z_coord, atoms_dist, angle) and arrays.</p>
+<dl class="section author"><dt>Author</dt><dd>Abraham Muñiz-Chicharro </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2026-04-05 </dd></dl>
+</div><h2 class="groupheader">Function/Subroutine Documentation</h2>
 <a id="a8ec2266d83cd6c0b762cbcbc92c0af3d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8ec2266d83cd6c0b762cbcbc92c0af3d">&#9670;&nbsp;</a></span>main()</h2>
 
@@ -93,9 +106,175 @@ Functions/Subroutines</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Command-line utility to build encounter-based matrices. </p>
-<p>Usage: see <code>print_help</code> below. This program reads PDB(s) and an association/complex file and generates matrices (rmsd, z_coord, atoms_dist, angle) and arrays derived from encounter transforms.</p>
-<dl class="section author"><dt>Author</dt><dd>Abraham Muñiz-Chicharro </dd></dl>
+</div>
+</div>
+<a id="ae44e248f87c38ae12a465c806260e6ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae44e248f87c38ae12a465c806260e6ab">&#9670;&nbsp;</a></span>parse_arguments()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine main::parse_arguments </td>
+          <td>(</td>
+          <td class="paramtype">character*128, intent(out)&#160;</td>
+          <td class="paramname"><em>p_pdb1_filename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(out)&#160;</td>
+          <td class="paramname"><em>p_pdb1_bool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">character*128, intent(out)&#160;</td>
+          <td class="paramname"><em>p_pdb2_filename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(out)&#160;</td>
+          <td class="paramname"><em>p_pdb2_bool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">character*128, intent(out)&#160;</td>
+          <td class="paramname"><em>p_complexes_filename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(out)&#160;</td>
+          <td class="paramname"><em>p_complexes_bool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(out)&#160;</td>
+          <td class="paramname"><em>p_nb_encounters</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(out)&#160;</td>
+          <td class="paramname"><em>p_nb_encounters_bool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">character*128, intent(out)&#160;</td>
+          <td class="paramname"><em>p_datadist_filename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(out)&#160;</td>
+          <td class="paramname"><em>p_matrix_bool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">character*128, intent(out)&#160;</td>
+          <td class="paramname"><em>p_data_type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(out)&#160;</td>
+          <td class="paramname"><em>p_datatype_bool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">character*128, dimension(:), intent(out), allocatable&#160;</td>
+          <td class="paramname"><em>p_arr_atoms1a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(out)&#160;</td>
+          <td class="paramname"><em>p_arr_atoms1a_bool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">character*128, dimension(:), intent(out), allocatable&#160;</td>
+          <td class="paramname"><em>p_arr_atoms1b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(out)&#160;</td>
+          <td class="paramname"><em>p_arr_atoms1b_bool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">character*128, dimension(:), intent(out), allocatable&#160;</td>
+          <td class="paramname"><em>p_arr_atoms2a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(out)&#160;</td>
+          <td class="paramname"><em>p_arr_atoms2a_bool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">character*128, dimension(:), intent(out), allocatable&#160;</td>
+          <td class="paramname"><em>p_arr_atoms2b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(out)&#160;</td>
+          <td class="paramname"><em>p_arr_atoms2b_bool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(out)&#160;</td>
+          <td class="paramname"><em>p_help_bool</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parse command-line arguments for <code>make_data</code>. </p>
+<p>Parses all CLI flags and fills program configuration values. Atom-group flags consume multiple tokens until the next flag. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_pdb1_filename</td><td>Value parsed from <code>-pdb1</code> </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_pdb1_bool</td><td>Whether <code>-pdb1</code> was provided </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_pdb2_filename</td><td>Value parsed from <code>-pdb2</code> </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_pdb2_bool</td><td>Whether <code>-pdb2</code> was provided </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_complexes_filename</td><td>Value parsed from <code>-complexes</code> </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_complexes_bool</td><td>Whether <code>-complexes</code> was provided </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_nb_encounters</td><td>Value parsed from <code>-nb_encounters</code> </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_nb_encounters_bool</td><td>Whether <code>-nb_encounters</code> was provided </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_datadist_filename</td><td>Value parsed from <code>-input</code> </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_matrix_bool</td><td>Whether <code>-input</code> was provided </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_data_type</td><td>Value parsed from <code>-data_type</code> </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_datatype_bool</td><td>Whether <code>-data_type</code> was provided </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_arr_atoms1a</td><td>Atom list parsed from <code>-atoms1</code> or <code>-atoms1a</code> </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_arr_atoms1a_bool</td><td>Whether <code>-atoms1</code> or <code>-atoms1a</code> was provided </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_arr_atoms1b</td><td>Atom list parsed from <code>-atoms1b</code> </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_arr_atoms1b_bool</td><td>Whether <code>-atoms1b</code> was provided </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_arr_atoms2a</td><td>Atom list parsed from <code>-atoms2</code> or <code>-atoms2a</code> </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_arr_atoms2a_bool</td><td>Whether <code>-atoms2</code> or <code>-atoms2a</code> was provided </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_arr_atoms2b</td><td>Atom list parsed from <code>-atoms2b</code> </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_arr_atoms2b_bool</td><td>Whether <code>-atoms2b</code> was provided </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_help_bool</td><td>Whether <code>-help</code> was provided </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -168,9 +347,10 @@ Functions/Subroutines</h2></td></tr>
 <p>Accepts either atom indices or atom names. If atom names are provided, all matching atoms in the PDB are returned (in order). </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">atoms_array</td><td>Array of atom name strings or index strings </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">pdb_filename</td><td>Reference filename for warnings </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">atoms_coord</td><td>Allocated array with atom coordinates (n,3) </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">tot_atoms</td><td>Total number of atoms in <code>pdb</code> </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">atoms_coord</td><td>Allocated array with atom coordinates (N,3) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pdb</td><td>PDB structure holding atom coordinates </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pdb_filename</td><td>Reference filename for warnings </td></tr>
   </table>
   </dd>
 </dl>

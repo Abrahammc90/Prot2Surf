@@ -1,4 +1,7 @@
-!> Module to define a pdb type and pdb reading routine for tools.
+!> \file mod_pdb.f90
+!! \brief PDB data structures and parsing/allocation routines.
+!!
+!! Module to define a pdb type and pdb reading routine for tools.
 !! 
 !! NOTE: This implementation is based on the SDA7 project's `mod_pdb.f90`
 !! (original author Neil Bruce). The present file has been modified and
@@ -15,8 +18,16 @@
 !! the SDA7 sources for original licensing and authorship details.
 !!
 !! @author Neil Bruce
-!! @modified-by Abraham Muñiz-Chicharro
+!! @author Abraham Muñiz-Chicharro (modifications and extensions)
+!! @version 1.0
+!! @date 2026-04-05
 module mod_pdb
+
+   ! Workflow summary:
+   ! - count atoms/residues/chains from an open PDB unit
+   ! - allocate nested data arrays with those sizes
+   ! - read ATOM/HETATM records into atoms/residues/chains arrays
+   ! - return a filled `type_pdb_file` for later geometry routines
 
     !> Data type for storing binned data (eg. Radial distribution functions)
     type type_pdb_file
@@ -105,6 +116,7 @@ module mod_pdb
        this%nresidues = nresidues
        this%nchains = nchains
        
+      ! Allocate top-level atom/residue/chain arrays.
 
        allocate (this%atoms(natoms), STAT=ierr)
        if (ierr.NE.0) then
@@ -139,7 +151,8 @@ module mod_pdb
           STOP 1
        end if
      
-       ! Allocate atoms and residues in chains
+      ! First pass over file to count sizes for each chain, then allocate nested per-chain arrays.
+      ! Allocate atoms and residues in chains
 
        tot_chain_residues = 1
        tot_chain_atoms = 0
@@ -202,7 +215,9 @@ module mod_pdb
          end if
        end do
 
-       ! Allocate atoms in residues
+      ! Second pass to count atom sizes for each residue,
+      ! then allocate nested per-residue arrays.
+      ! Allocate atoms in residues
        tot_residue_atoms = 0
 
        residue_id = 0
@@ -382,8 +397,8 @@ module mod_pdb
    !! of `TER` records, which are treated as chain separators. Returns
    !! the number of chains found.
    !!
-   !! @param[in] pdb_file Fortran unit number of an already-open PDB file
-   !! @return nchains    Number of chains (TER records) found
+   !! @param[in] pdb_file  Fortran unit number of an already-open PDB file
+   !! @return nchains      Number of chains (TER records) found
    function count_chains(pdb_file) result(nchains)
   
       IMPLICIT NONE

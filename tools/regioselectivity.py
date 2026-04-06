@@ -1,4 +1,17 @@
-"""
+"""!
+@file regioselectivity.py
+@brief Classify encounter complexes by regioselectivity reference matching.
+@author Abraham Muñiz-Chicharro
+@version 1.0
+@date 2026-04-05
+@par Usage
+python regioselectivity.py -complexes [file1] [file2 ...] -references [ref1] [ref2 ...] -sda_complexes [assoc_file]
+
+@par Usage flags
+- @c -complexes : association files to classify.
+- @c -references : reference association files defining categories.
+- @c -sda_complexes : SDA complexes file used to compute total occurrences.
+
 Regioselectivity Analysis Script
 
 This script classifies encounter complexes by their regioselectivity, determining
@@ -14,7 +27,7 @@ Features:
     - Multi-reference support
 
 Usage:
-    python regioselectivity.py -complexes <file1> <file2> ... -references <ref1> <ref2> ...
+    python regioselectivity.py -complexes [file1] [file2 ...] -references [ref1] [ref2 ...] -sda_complexes [assoc_file]
 
 Arguments:
     -complexes: List of encounter complex association files to classify

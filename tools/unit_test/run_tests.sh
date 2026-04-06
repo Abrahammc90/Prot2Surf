@@ -196,7 +196,8 @@ run_tests() {
 # Function: Display test summary
 ################################################################################
 display_test_summary() {
-    if [[ $? -eq 0 ]]; then
+    local exit_code="$1"
+    if [[ "$exit_code" -eq 0 ]]; then
         print_success "All tests passed!"
         echo ""
         
@@ -308,7 +309,7 @@ main() {
     
     echo ""
     echo -e "${BLUE}========== Test Results ==========${NC}"
-    display_test_summary
+    display_test_summary "$exit_code"
     
     exit $exit_code
 }

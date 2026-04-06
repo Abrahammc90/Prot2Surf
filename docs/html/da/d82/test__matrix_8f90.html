@@ -78,17 +78,11 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memdesc:aa6b8ea9c62657512dcf6c95d0993d805"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unit tests for matrix operations in the <a class="el" href="../../db/d1d/namespacemod__matrix.html">mod_matrix</a> module.  <a href="../../da/d82/test__matrix_8f90.html#aa6b8ea9c62657512dcf6c95d0993d805">More...</a><br /></td></tr>
 <tr class="separator:aa6b8ea9c62657512dcf6c95d0993d805"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b8214ded8444028181f5c222901f418"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d82/test__matrix_8f90.html#a8b8214ded8444028181f5c222901f418">test_write_read_matrix</a> (num_tests, num_passed, num_failed)</td></tr>
+<tr class="memdesc:a8b8214ded8444028181f5c222901f418"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unit test for write_matrix and read_matrix routines.  <a href="../../da/d82/test__matrix_8f90.html#a8b8214ded8444028181f5c222901f418">More...</a><br /></td></tr>
 <tr class="separator:a8b8214ded8444028181f5c222901f418"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a304740808e610c54956dbd55b86e1512"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d82/test__matrix_8f90.html#a304740808e610c54956dbd55b86e1512">test_write_read_array</a> (num_tests, num_passed, num_failed)</td></tr>
-<tr class="separator:a304740808e610c54956dbd55b86e1512"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a775d6fc9b5bd69b64a0203fdfe0e5d60"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d82/test__matrix_8f90.html#a775d6fc9b5bd69b64a0203fdfe0e5d60">test_matrix_z_coord</a> (num_tests, num_passed, num_failed)</td></tr>
-<tr class="separator:a775d6fc9b5bd69b64a0203fdfe0e5d60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b04431115fe624aa7e6fc99dc7614f2"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d82/test__matrix_8f90.html#a4b04431115fe624aa7e6fc99dc7614f2">test_matrix_rmsd_calc</a> (num_tests, num_passed, num_failed)</td></tr>
+<tr class="memdesc:a4b04431115fe624aa7e6fc99dc7614f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unit test for matrix_rmsd routine.  <a href="../../da/d82/test__matrix_8f90.html#a4b04431115fe624aa7e6fc99dc7614f2">More...</a><br /></td></tr>
 <tr class="separator:a4b04431115fe624aa7e6fc99dc7614f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d77277165190017d5ac063d3929dfed"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d82/test__matrix_8f90.html#a3d77277165190017d5ac063d3929dfed">test_matrix_atoms_dist</a> (num_tests, num_passed, num_failed)</td></tr>
-<tr class="separator:a3d77277165190017d5ac063d3929dfed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a6e24ed178f706c9b3dcd13c892c8ba"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d82/test__matrix_8f90.html#a1a6e24ed178f706c9b3dcd13c892c8ba">test_matrix_angle_calc</a> (num_tests, num_passed, num_failed)</td></tr>
-<tr class="separator:a1a6e24ed178f706c9b3dcd13c892c8ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function/Subroutine Documentation</h2>
 <a id="aa6b8ea9c62657512dcf6c95d0993d805"></a>
@@ -106,83 +100,11 @@ Functions/Subroutines</h2></td></tr>
 <p>Unit tests for matrix operations in the <a class="el" href="../../db/d1d/namespacemod__matrix.html">mod_matrix</a> module. </p>
 <p>Tests include:</p><ul>
 <li>Write and read matrix operations</li>
-<li>Write and read array operations</li>
-<li>Matrix Z-coordinate calculation</li>
-<li>Matrix atoms distance calculation</li>
-<li>Matrix angle calculation</li>
 <li>RMSD matrix calculation</li>
 </ul>
 <p>Compile with: gfortran -fopenmp -o test_matrix <a class="el" href="../../da/d82/test__matrix_8f90.html">test_matrix.f90</a> ../src/mod_matrix.f90 ../src/maths.f90 ../src/mod_pdb.f90</p>
 <dl class="section author"><dt>Author</dt><dd>Abraham Muñiz-Chicharro </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
-
-</div>
-</div>
-<a id="a1a6e24ed178f706c9b3dcd13c892c8ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1a6e24ed178f706c9b3dcd13c892c8ba">&#9670;&nbsp;</a></span>test_matrix_angle_calc()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">subroutine test_matrix::test_matrix_angle_calc </td>
-          <td>(</td>
-          <td class="paramtype">integer, intent(inout)&#160;</td>
-          <td class="paramname"><em>num_tests</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, intent(inout)&#160;</td>
-          <td class="paramname"><em>num_passed</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, intent(inout)&#160;</td>
-          <td class="paramname"><em>num_failed</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a3d77277165190017d5ac063d3929dfed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3d77277165190017d5ac063d3929dfed">&#9670;&nbsp;</a></span>test_matrix_atoms_dist()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">subroutine test_matrix::test_matrix_atoms_dist </td>
-          <td>(</td>
-          <td class="paramtype">integer, intent(inout)&#160;</td>
-          <td class="paramname"><em>num_tests</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, intent(inout)&#160;</td>
-          <td class="paramname"><em>num_passed</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, intent(inout)&#160;</td>
-          <td class="paramname"><em>num_failed</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
 
 </div>
 </div>
@@ -218,73 +140,18 @@ Functions/Subroutines</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a id="a775d6fc9b5bd69b64a0203fdfe0e5d60"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a775d6fc9b5bd69b64a0203fdfe0e5d60">&#9670;&nbsp;</a></span>test_matrix_z_coord()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">subroutine test_matrix::test_matrix_z_coord </td>
-          <td>(</td>
-          <td class="paramtype">integer, intent(inout)&#160;</td>
-          <td class="paramname"><em>num_tests</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, intent(inout)&#160;</td>
-          <td class="paramname"><em>num_passed</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, intent(inout)&#160;</td>
-          <td class="paramname"><em>num_failed</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a304740808e610c54956dbd55b86e1512"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a304740808e610c54956dbd55b86e1512">&#9670;&nbsp;</a></span>test_write_read_array()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">subroutine test_matrix::test_write_read_array </td>
-          <td>(</td>
-          <td class="paramtype">integer, intent(inout)&#160;</td>
-          <td class="paramname"><em>num_tests</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, intent(inout)&#160;</td>
-          <td class="paramname"><em>num_passed</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, intent(inout)&#160;</td>
-          <td class="paramname"><em>num_failed</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>Unit test for matrix_rmsd routine. </p>
+<dl class="section author"><dt>Author</dt><dd>Abraham </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2024-06-09</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">num_tests</td><td>Number of tests executed (incremented) </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">num_passed</td><td>Number of tests passed (incremented) </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">num_failed</td><td>Number of tests failed (incremented) </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -319,6 +186,19 @@ Functions/Subroutines</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Unit test for write_matrix and read_matrix routines. </p>
+<dl class="section author"><dt>Author</dt><dd>Abraham </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2024-06-09</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">num_tests</td><td>Number of tests executed (incremented) </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">num_passed</td><td>Number of tests passed (incremented) </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">num_failed</td><td>Number of tests failed (incremented) </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

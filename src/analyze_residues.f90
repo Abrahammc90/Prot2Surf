@@ -1,11 +1,15 @@
-!> Analyze which residues are close to the surface across encounters.
+!> \file analyze_residues.f90
+!! \brief Residue proximity analysis across transformed encounters.
 !!
-!! This program reads a PDB for solute2 and an associations/complexes
-!! file, transforms residue centers for each encounter and counts how
-!! many encounters bring residues within a distance threshold from the
-!! surface. Results are written to `closest_residues.txt`.
+!! analyze_residues.f90 - Find residues close to the surface across encounters.
+!!
+!! Usage: ./analyze_residues -help
+!!
+!! Reads a PDB and complexes file, transforms residue centers, and counts how many encounters bring residues within a threshold. Results: closest_residues.txt
 !!
 !! @author Abraham Muñiz-Chicharro
+!! @version 1.0
+!! @date 2026-04-05
 program main
   USE read_input
   USE maths
@@ -45,12 +49,13 @@ program main
     character (len=4) :: str_resid
     character (len=128) :: argument
     integer :: ios, unit_number, count_arg, nb_argument
-    logical :: pdb2_bool, complexes_bool, nb_encounters_bool
+    logical :: pdb2_bool, complexes_bool, nb_encounters_bool, help_bool
 
     ! Initialize flags/defaults
     pdb2_bool = .false.
     complexes_bool = .false.
     nb_encounters_bool = .false.
+    help_bool = .false.
     dist_threshold = 6.0      ! default threshold in Angstroms
     nb_argument = 0
     count_arg = 1
@@ -61,6 +66,7 @@ program main
     ! -complexes <file> : association/complexes file
     ! -nb_encounters <int> : optional number of encounters to use
     ! -threshold <real> : distance threshold in Angstroms
+    ! -help : print usage/help text
     do while ( count_arg <= nb_argument )
         call getarg( count_arg, argument )
         if ( trim(argument) == "-pdb2" ) then
@@ -78,51 +84,63 @@ program main
           call getarg( count_arg+1, argument )
           read(argument, *, IOSTAT=ios) nb_encounters
           if (ios /= 0) then
-            print *, "ERROR. Integer expected for the -nb_encounters ", &
-            "argument."
+            print *, '[analyze_residues] ERROR: Integer expected for the -nb_encounters argument.'
           end if
           count_arg = count_arg + 1
         else if ( trim(argument) == "-threshold" ) then
             call getarg( count_arg+1, argument )
             read(argument, *, IOSTAT=ios) dist_threshold
             if (ios /= 0) then
-              print *, "ERROR. Integer expected for the -threshold ", &
-              "argument."
+              print *, '[analyze_residues] ERROR: Real expected for the -threshold argument.'
             end if
             count_arg = count_arg + 1
+        else if ( trim(argument) == "-help" ) then
+          help_bool = .true.
+        else
+          print *, '[analyze_residues] ERROR: Argument ''', trim(argument), ''' not recognized.'
+          print *, '[analyze_residues] For usage, run: ./analyze_residues -help'
+          STOP 1
         end if
 
         count_arg = count_arg + 1
     end do
 
+    ! Help path exits before any heavy geometry/transformation work.
+    if (help_bool) then
+      call print_help()
+      STOP 0
+    end if
 
-    ! Read input files into program structures
+    if (.not. pdb2_bool) then
+      print *, '[analyze_residues] ERROR: PDB file not provided. Use -pdb2 <file>'
+      print *, '[analyze_residues] For usage, run: ./analyze_residues -help'
+      STOP 1
+    end if
+
+    if (.not. complexes_bool) then
+      print *, '[analyze_residues] ERROR: Complexes file not provided. Use -complexes <file>'
+      print *, '[analyze_residues] For usage, run: ./analyze_residues -help'
+      STOP 1
+    end if
+
+
+    ! Read input files into program structures.
     ! - read_pdb allocates and fills `pdb2` and returns total atoms, residues and chains
     call read_pdb(pdb2, pdb2_filename, tot_atoms2, tot_residues2, tot_chains2)
 
     ! - read_assoc allocates and fills `complexes` and returns total encounters
     call read_assoc(complexes, complexes_filename, tot_encounters)
 
-    ! Validate or set `nb_encounters` based on the complexes file
+    ! Validate or set `nb_encounters` based on the complexes file.
+    ! If user did not request a cap, process all available encounters.
     if ( nb_encounters .gt. tot_encounters ) then
-        write(*,*) ''
-        write(*,*) 'WARNING: the number of encounters given is greater than'
-        write(*,*) 'the number of encounters in ', complexes_filename
-        write(*,*) 'Setting the number of encounters to the total'
-        write(*,*) 'number of encounters available'
+        print *, '[analyze_residues] WARNING: -nb_encounters > available. Using all encounters in ', trim(complexes_filename)
         nb_encounters = tot_encounters
-        write(*,*) 'Total encounters available: ', nb_encounters
-        write(*,*) ''
+        print *, '[analyze_residues] Total encounters available: ', nb_encounters
       else if (.not. nb_encounters_bool) then
-        write(*,*) 'WARNING: number of encounters not given.'
-        write(*,*) ''
-        write(*,*) 'Setting the number of encounters to the total'
-        write(*,*) 'number of encounters available.'
+        print *, '[analyze_residues] WARNING: -nb_encounters not given. Using all available.'
         nb_encounters = tot_encounters
-        write(*,*) ''
-        write(*,*) 'If you want a specific number of encounters,'
-        write(*,*) 'please give it with the -nb_encounters option.'
-        write(*,*) ''
+        print *, '[analyze_residues] If you want a specific number, use -nb_encounters <N>'
       end if
 
     ! Compute center-of-geometry (COG) for every residue in pdb2
@@ -173,7 +191,8 @@ program main
     end do
 
 
-    ! Write a per-residue list of encounters that bring it within the threshold
+    ! Write a per-residue list of encounters that bring it within the threshold.
+    ! Output format keeps one residue per line and then the matching encounter IDs.
     unit_number = 20
     open(unit=unit_number, file='closest_residues.txt', status='replace', action='write')
     do j = 1, tot_residues2
@@ -197,18 +216,11 @@ program main
 
       !STOP 1
 
-      print *, ""
-      print *, "This program receives as inputs the solute 2 pdb file, ", &
-      "the complexes filename, the number of encounters to analyze and ", &
-      "the distance threshold (A) to consider residues close to the surface"
-      print *, ""
-      print *, "Eg.: ./analyze_residues -pdb2 p2_noh.pdb -complexes assoc_complexes, ", &
-      "-nb_encounters 5000 -threshold 6.0"
-      print *, ""
-      print *, "Default values: "
-      print *, "* nb_encounters: Encounter complexes to process from the complexes file."
-      print *, "* threshold: 6.0"
-      print *, ""
+      print *, ''
+      print *, '[analyze_residues] Usage: ./analyze_residues -pdb2 <pdbfile> -complexes <file> [-nb_encounters N] [-threshold X]'
+      print *, '[analyze_residues] Example: ./analyze_residues -pdb2 p2_noh.pdb ', &
+           '-complexes assoc_complexes -nb_encounters 5000 -threshold 6.0'
+      print *, '[analyze_residues] Defaults: nb_encounters=all, threshold=6.0'
       STOP
       
     end subroutine print_help

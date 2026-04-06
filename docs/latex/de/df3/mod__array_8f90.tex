@@ -1,5 +1,10 @@
 \hypertarget{mod__array_8f90}{}\doxysection{mod\+\_\+array.\+f90 File Reference}
 \label{mod__array_8f90}\index{mod\_array.f90@{mod\_array.f90}}
+
+
+Build/read/write encounter-\/based arrays and per-\/encounter metrics.  
+
+
 \doxysubsection*{Modules}
 \begin{DoxyCompactItemize}
 \item 
@@ -9,14 +14,30 @@ module \mbox{\hyperlink{namespacemod__array}{mod\+\_\+array}}
 \begin{DoxyCompactItemize}
 \item 
 subroutine \mbox{\hyperlink{namespacemod__array_a0512310f27e9489dc1e167fabfdf9b90}{mod\+\_\+array\+::array\+\_\+z\+\_\+coord}} (complexes, array\+\_\+sorted, n, nb\+\_\+atoms, xc1, xc2, trans\+\_\+vector, rot1, rot2, solute\+\_\+crds)
-\begin{DoxyCompactList}\small\item\em Build a matrix of absolute differences of Z-\/coordinates per encounter. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Compute the Z-\/coordinate (along transformed z-\/axis) for each encounter and sort. \end{DoxyCompactList}\item 
 subroutine \mbox{\hyperlink{namespacemod__array_ac4a24f268360771a9b9d8390e4723701}{mod\+\_\+array\+::array\+\_\+atoms\+\_\+dist}} (complexes, array\+\_\+sorted, n, nb\+\_\+atoms, xc1, xc2, trans\+\_\+vector, rot1, rot2, solute1\+\_\+crds, solute2\+\_\+crds)
-\begin{DoxyCompactList}\small\item\em Build matrix from minimum inter-\/atomic distances between two solutes. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Compute minimum inter-\/atomic distance between two solutes for each encounter and sort. \end{DoxyCompactList}\item 
 subroutine \mbox{\hyperlink{namespacemod__array_a72770445fe69eaf840bf0297cbed0ba6}{mod\+\_\+array\+::array\+\_\+angle}} (complexes, array\+\_\+sorted, n, nb\+\_\+atoms, xc1, xc2, trans\+\_\+vector, rot1, rot2, point1a, point1b, point2a, point2b, dimensions)
-\begin{DoxyCompactList}\small\item\em Build matrix of angular differences between encounters. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Compute angle between two vectors (defined by atom groups) per encounter and sort. \end{DoxyCompactList}\item 
 subroutine \mbox{\hyperlink{namespacemod__array_a778a88da7e7c643a241f2c142acd007e}{mod\+\_\+array\+::write\+\_\+array}} (array, filename)
-\item 
+\begin{DoxyCompactList}\small\item\em Write a numeric array to a formatted text file. \end{DoxyCompactList}\item 
 subroutine \mbox{\hyperlink{namespacemod__array_a6fab57a7f87ff1a8058f8fbe5a7b9343}{mod\+\_\+array\+::read\+\_\+array}} (array, n, filename)
-\item 
+\begin{DoxyCompactList}\small\item\em Read a numeric array from a formatted text file. \end{DoxyCompactList}\item 
 subroutine \mbox{\hyperlink{namespacemod__array_ae14ba9dbefc566101146df079981137a}{mod\+\_\+array\+::merge\+\_\+sorted\+\_\+segments}} (arr, complexes, tmp\+\_\+arr, tmp\+\_\+comp, left, mid, right)
 \begin{DoxyCompactList}\small\item\em Merge two adjacent sorted segments of arrays in place. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Build/read/write encounter-\/based arrays and per-\/encounter metrics. 
+
+Provides routines to compute z-\/coordinate, distance, and angle-\/based arrays from encounter transformations, as well as array I/O and sorting helpers.
+
+\begin{DoxyAuthor}{Author}
+Abraham Muñiz-\/\+Chicharro 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2026-\/04-\/05 
+\end{DoxyDate}

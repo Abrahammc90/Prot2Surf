@@ -1,4 +1,16 @@
-"""
+"""!
+@file extract_C1_C4_filtered.py
+@brief Filter encounter complexes using C1/C4 reference files.
+@author Abraham Muñiz-Chicharro
+@version 1.0
+@date 2026-04-05
+@par Usage
+python extract_C1_C4_filtered.py -complexes [file1] [file2 ...] -references [ref1] [ref2 ...]
+
+@par Usage flags
+- @c -complexes  : Input encounter complex association files.
+- @c -references : Reference association files used for filtering.
+
 Extract and Filter Encounter Complexes Script
 
 This script filters and classifies encounter complexes from SDA simulations based on
@@ -12,7 +24,7 @@ Features:
     - Supports multiple reference classifications
 
 Usage:
-    python extract_C1_C4_filtered.py -complexes <file1> <file2> ... -references <ref1> <ref2> ...
+    python extract_C1_C4_filtered.py -complexes [file1] [file2 ...] -references [ref1] [ref2 ...]
 
 Arguments:
     -complexes: List of encounter complex association files to filter

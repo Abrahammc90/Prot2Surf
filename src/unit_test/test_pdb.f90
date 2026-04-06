@@ -55,6 +55,17 @@ program test_pdb
 
 contains
 
+    !*******************************************************************************
+    !> @brief Unit test for PDB allocation and initialization routines.
+    !>
+    !> @author Abraham
+    !> @version 1.0
+    !> @date 2024-06-09
+    !>
+    !> @param[inout] num_tests   Number of tests executed (incremented)
+    !> @param[inout] num_passed  Number of tests passed (incremented)
+    !> @param[inout] num_failed  Number of tests failed (incremented)
+    !*******************************************************************************
     subroutine test_pdb_allocation(num_tests, num_passed, num_failed)
         integer, intent(inout) :: num_tests, num_passed, num_failed
         type(type_pdb_file) :: pdb
@@ -116,6 +127,17 @@ contains
     end subroutine test_pdb_allocation
 
 
+    !*******************************************************************************
+    !> @brief Unit test for atom property assignment in PDB structure.
+    !>
+    !> @author Abraham
+    !> @version 1.0
+    !> @date 2024-06-09
+    !>
+    !> @param[inout] num_tests   Number of tests executed (incremented)
+    !> @param[inout] num_passed  Number of tests passed (incremented)
+    !> @param[inout] num_failed  Number of tests failed (incremented)
+    !*******************************************************************************
     subroutine test_atom_properties(num_tests, num_passed, num_failed)
         integer, intent(inout) :: num_tests, num_passed, num_failed
         type(type_pdb_atom) :: atom
@@ -161,6 +183,17 @@ contains
     end subroutine test_atom_properties
 
 
+    !*******************************************************************************
+    !> @brief Unit test for residue management in PDB structure.
+    !>
+    !> @author Abraham
+    !> @version 1.0
+    !> @date 2024-06-09
+    !>
+    !> @param[inout] num_tests   Number of tests executed (incremented)
+    !> @param[inout] num_passed  Number of tests passed (incremented)
+    !> @param[inout] num_failed  Number of tests failed (incremented)
+    !*******************************************************************************
     subroutine test_residue_management(num_tests, num_passed, num_failed)
         integer, intent(inout) :: num_tests, num_passed, num_failed
         type(type_pdb_residue) :: residue
@@ -210,6 +243,17 @@ contains
     end subroutine test_residue_management
 
 
+    !*******************************************************************************
+    !> @brief Unit test for chain management in PDB structure.
+    !>
+    !> @author Abraham
+    !> @version 1.0
+    !> @date 2024-06-09
+    !>
+    !> @param[inout] num_tests   Number of tests executed (incremented)
+    !> @param[inout] num_passed  Number of tests passed (incremented)
+    !> @param[inout] num_failed  Number of tests failed (incremented)
+    !*******************************************************************************
     subroutine test_chain_management(num_tests, num_passed, num_failed)
         integer, intent(inout) :: num_tests, num_passed, num_failed
         type(type_pdb_chain) :: chain
@@ -259,6 +303,17 @@ contains
     end subroutine test_chain_management
 
 
+    !*******************************************************************************
+    !> @brief Unit test for mod_pdb routines (count/allocate/fill).
+    !>
+    !> @author Abraham
+    !> @version 1.0
+    !> @date 2024-06-09
+    !>
+    !> @param[inout] num_tests   Number of tests executed (incremented)
+    !> @param[inout] num_passed  Number of tests passed (incremented)
+    !> @param[inout] num_failed  Number of tests failed (incremented)
+    !*******************************************************************************
     subroutine test_mod_pdb_routines(num_tests, num_passed, num_failed)
         integer, intent(inout) :: num_tests, num_passed, num_failed
         type(type_pdb_file) :: pdb

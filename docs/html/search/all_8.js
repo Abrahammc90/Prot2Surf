@@ -1,28 +1,8 @@
 var searchData=
 [
-  ['main_32',['main',['../d5/d92/analyze__residues_8f90.html#a8ec2266d83cd6c0b762cbcbc92c0af3d',1,'main:&#160;analyze_residues.f90'],['../da/da3/clust_8f90.html#a8ec2266d83cd6c0b762cbcbc92c0af3d',1,'main:&#160;clust.f90'],['../db/dd1/make__data_8f90.html#a8ec2266d83cd6c0b762cbcbc92c0af3d',1,'main:&#160;make_data.f90'],['../d9/dcc/threshold_8f90.html#a8ec2266d83cd6c0b762cbcbc92c0af3d',1,'main:&#160;threshold.f90']]],
-  ['make_5fdata_2ef90_33',['make_data.f90',['../db/dd1/make__data_8f90.html',1,'']]],
-  ['maths_34',['maths',['../da/d63/namespacemaths.html',1,'']]],
-  ['maths_2ef90_35',['maths.f90',['../d1/d53/maths_8f90.html',1,'']]],
-  ['matrix_5fangle_36',['matrix_angle',['../db/d1d/namespacemod__matrix.html#a83c35621a4e33d0e6e6ae8e4a76a3cb8',1,'mod_matrix']]],
-  ['matrix_5fatoms_5fdist_37',['matrix_atoms_dist',['../db/d1d/namespacemod__matrix.html#a487f996f27bc33883c050522fdf40c3d',1,'mod_matrix']]],
-  ['matrix_5frmsd_38',['matrix_rmsd',['../db/d1d/namespacemod__matrix.html#a10eab892b87e949df1b1df1152106585',1,'mod_matrix']]],
-  ['matrix_5fz_5fcoord_39',['matrix_z_coord',['../db/d1d/namespacemod__matrix.html#a9de83edad93118cfe2ad02d916b0148f',1,'mod_matrix']]],
-  ['merge_5fsorted_5fsegments_40',['merge_sorted_segments',['../d4/d74/namespacemod__array.html#ae14ba9dbefc566101146df079981137a',1,'mod_array']]],
-  ['mod_5farray_41',['mod_array',['../d4/d74/namespacemod__array.html',1,'']]],
-  ['mod_5farray_2ef90_42',['mod_array.f90',['../de/df3/mod__array_8f90.html',1,'']]],
-  ['mod_5fassoc_43',['mod_assoc',['../d6/ded/namespacemod__assoc.html',1,'']]],
-  ['mod_5fassoc_2ef90_44',['mod_assoc.f90',['../d4/d05/mod__assoc_8f90.html',1,'']]],
-  ['mod_5fclust_5falgorithm_45',['mod_clust_algorithm',['../d4/d95/namespacemod__clust__algorithm.html',1,'']]],
-  ['mod_5fclust_5falgorithm_2ef90_46',['mod_clust_algorithm.f90',['../d6/d16/mod__clust__algorithm_8f90.html',1,'']]],
-  ['mod_5fcuda_47',['mod_cuda',['../d0/d4e/namespacemod__cuda.html',1,'']]],
-  ['mod_5fcuda_2ef90_48',['mod_cuda.f90',['../de/dbb/mod__cuda_8f90.html',1,'']]],
-  ['mod_5fmatrix_49',['mod_matrix',['../db/d1d/namespacemod__matrix.html',1,'']]],
-  ['mod_5fmatrix_2ef90_50',['mod_matrix.f90',['../d7/d71/mod__matrix_8f90.html',1,'']]],
-  ['mod_5fmemory_51',['mod_memory',['../d0/d8c/namespacemod__memory.html',1,'']]],
-  ['mod_5fmemory_2ef90_52',['mod_memory.f90',['../d9/de2/mod__memory_8f90.html',1,'']]],
-  ['mod_5fpdb_53',['mod_pdb',['../dd/d00/namespacemod__pdb.html',1,'']]],
-  ['mod_5fpdb_2ef90_54',['mod_pdb.f90',['../d3/dc0/mod__pdb_8f90.html',1,'']]],
-  ['mod_5fthreshold_55',['mod_threshold',['../df/d4c/namespacemod__threshold.html',1,'']]],
-  ['mod_5fthreshold_2ef90_56',['mod_threshold.f90',['../d6/d37/mod__threshold_8f90.html',1,'']]]
+  ['name_55',['name',['../d6/ddf/structmod__pdb_1_1type__pdb__atom.html#a982b6610177cca5b9cc691a1dacb25b9',1,'mod_pdb::type_pdb_atom']]],
+  ['natoms_56',['natoms',['../d1/d57/structmod__pdb_1_1type__pdb__file.html#a88ef3ed3f1c2b5ebbc512b11109111a1',1,'mod_pdb::type_pdb_file::natoms()'],['../dd/dbe/structmod__pdb_1_1type__pdb__chain.html#a772423d749e0acc933fb477f7ead63e6',1,'mod_pdb::type_pdb_chain::natoms()'],['../d8/d95/structmod__pdb_1_1type__pdb__residue.html#a72bfd0f5e09bd2a05e2e4b0dc93b2381',1,'mod_pdb::type_pdb_residue::natoms()']]],
+  ['nchains_57',['nchains',['../d1/d57/structmod__pdb_1_1type__pdb__file.html#aa616b8818e62398abc49d1e4b538b7b2',1,'mod_pdb::type_pdb_file']]],
+  ['nlines_58',['nlines',['../df/d2d/structmod__assoc_1_1type__assoc__file.html#a47fba3c112d73cf194b52ceeddb5a1d2',1,'mod_assoc::type_assoc_file']]],
+  ['nresidues_59',['nresidues',['../d1/d57/structmod__pdb_1_1type__pdb__file.html#abe04e796ba15bb7f2ac11c02433f235a',1,'mod_pdb::type_pdb_file::nresidues()'],['../dd/dbe/structmod__pdb_1_1type__pdb__chain.html#aea63917880e264b7d6cb275702359c92',1,'mod_pdb::type_pdb_chain::nresidues()']]]
 ];

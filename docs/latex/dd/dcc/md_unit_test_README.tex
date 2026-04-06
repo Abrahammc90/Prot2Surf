@@ -1,111 +1,45 @@
-This directory contains the comprehensive unit testing framework for the clustering program.\hypertarget{md_unit_test_README_autotoc_md22}{}\doxysection{Contents}\label{md_unit_test_README_autotoc_md22}
-\hypertarget{md_unit_test_README_autotoc_md23}{}\doxysubsection{Test Programs}\label{md_unit_test_README_autotoc_md23}
+This directory contains standalone Fortran test programs for core clustering modules.\hypertarget{md_unit_test_README_autotoc_md47}{}\doxysection{Included Test Programs}\label{md_unit_test_README_autotoc_md47}
 
 \begin{DoxyItemize}
-\item {\bfseries{\mbox{\hyperlink{test__maths_8f90}{test\+\_\+maths.\+f90}}}} -\/ Tests for mathematical operations (30 tests)
-\item {\bfseries{\mbox{\hyperlink{test__matrix_8f90}{test\+\_\+matrix.\+f90}}}} -\/ Tests for matrix operations (10 tests)
-\item {\bfseries{\mbox{\hyperlink{test__threshold_8f90}{test\+\_\+threshold.\+f90}}}} -\/ Tests for threshold calculations (9 tests)
-\item {\bfseries{\mbox{\hyperlink{test__pdb_8f90}{test\+\_\+pdb.\+f90}}}} -\/ Tests for P\+DB file handling (11 tests)
-\item {\bfseries{\mbox{\hyperlink{test__clustering_8f90}{test\+\_\+clustering.\+f90}}}} -\/ Tests for clustering algorithms (8 tests)
-\item {\bfseries{\mbox{\hyperlink{test__assoc_8f90}{test\+\_\+assoc.\+f90}}}} -\/ Tests for association file reading (11 tests)
-\item {\bfseries{\mbox{\hyperlink{test__read__input_8f90}{test\+\_\+read\+\_\+input.\+f90}}}} -\/ Tests for \mbox{\hyperlink{namespaceread__input}{read\+\_\+input}} module (10 tests)
-\end{DoxyItemize}\hypertarget{md_unit_test_README_autotoc_md24}{}\doxysubsection{Test Automation}\label{md_unit_test_README_autotoc_md24}
+\item {\ttfamily \mbox{\hyperlink{test__maths_8f90}{test\+\_\+maths.\+f90}}}\+: numerical/geometry operations in {\ttfamily maths}
+\item {\ttfamily \mbox{\hyperlink{test__matrix_8f90}{test\+\_\+matrix.\+f90}}}\+: matrix I/O and R\+M\+SD matrix operations in {\ttfamily \mbox{\hyperlink{namespacemod__matrix}{mod\+\_\+matrix}}}
+\item {\ttfamily \mbox{\hyperlink{test__array_8f90}{test\+\_\+array.\+f90}}}\+: array I/O, array-\/based encounter metrics, and array/metadata reordering in {\ttfamily \mbox{\hyperlink{namespacemod__array}{mod\+\_\+array}}}
+\item {\ttfamily \mbox{\hyperlink{test__threshold_8f90}{test\+\_\+threshold.\+f90}}}\+: threshold operations in {\ttfamily \mbox{\hyperlink{namespacemod__threshold}{mod\+\_\+threshold}}}
+\item {\ttfamily \mbox{\hyperlink{test__pdb_8f90}{test\+\_\+pdb.\+f90}}}\+: P\+DB parsing/structures in {\ttfamily \mbox{\hyperlink{namespacemod__pdb}{mod\+\_\+pdb}}}
+\item {\ttfamily \mbox{\hyperlink{test__clustering_8f90}{test\+\_\+clustering.\+f90}}}\+: clustering logic in {\ttfamily \mbox{\hyperlink{namespacemod__clust__algorithm}{mod\+\_\+clust\+\_\+algorithm}}}
+\item {\ttfamily \mbox{\hyperlink{test__assoc_8f90}{test\+\_\+assoc.\+f90}}}\+: association file handling in {\ttfamily \mbox{\hyperlink{namespacemod__assoc}{mod\+\_\+assoc}}}
+\item {\ttfamily \mbox{\hyperlink{test__read__input_8f90}{test\+\_\+read\+\_\+input.\+f90}}}\+: integrated input loading in {\ttfamily \mbox{\hyperlink{namespaceread__input}{read\+\_\+input}}}
+\end{DoxyItemize}\hypertarget{md_unit_test_README_autotoc_md48}{}\doxysection{Current Coverage Notes}\label{md_unit_test_README_autotoc_md48}
 
 \begin{DoxyItemize}
-\item {\bfseries{\mbox{\hyperlink{run__all__tests_8sh}{run\+\_\+all\+\_\+tests.\+sh}}}} -\/ Automated script to run all unit tests
-\end{DoxyItemize}\hypertarget{md_unit_test_README_autotoc_md25}{}\doxysubsection{Documentation}\label{md_unit_test_README_autotoc_md25}
-\tabulinesep=1mm
-\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
-\hline
-\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Document }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Best For  }\\\cline{1-3}
-\endfirsthead
-\hline
-\endfoot
-\hline
-\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Document }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Purpose }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Best For  }\\\cline{1-3}
-\endhead
-{\bfseries{\mbox{\hyperlink{QUICK__TEST_8md}{Q\+U\+I\+C\+K\+\_\+\+T\+E\+S\+T.\+md}}}} &Quick reference guide &Getting started quickly  \\\cline{1-3}
-{\bfseries{\mbox{\hyperlink{TESTING_8md}{T\+E\+S\+T\+I\+N\+G.\+md}}}} &Comprehensive testing guide &Understanding all details  \\\cline{1-3}
-{\bfseries{\mbox{\hyperlink{TEST__SUMMARY_8md}{T\+E\+S\+T\+\_\+\+S\+U\+M\+M\+A\+R\+Y.\+md}}}} &Test suite overview &High-\/level overview  \\\cline{1-3}
-{\bfseries{\mbox{\hyperlink{INDEX_8md}{I\+N\+D\+E\+X.\+md}}}} &File index and statistics &Navigation  \\\cline{1-3}
-\end{longtabu}
-\hypertarget{md_unit_test_README_autotoc_md26}{}\doxysection{Quick Start}\label{md_unit_test_README_autotoc_md26}
-\hypertarget{md_unit_test_README_autotoc_md27}{}\doxysubsection{Run all tests}\label{md_unit_test_README_autotoc_md27}
+\item {\ttfamily \mbox{\hyperlink{test__matrix_8f90}{test\+\_\+matrix.\+f90}}} currently covers\+:
+\begin{DoxyItemize}
+\item {\ttfamily \mbox{\hyperlink{namespacemod__matrix_a2ac28315cb206a31cad2f5e63c3afba1}{write\+\_\+matrix()}}} / {\ttfamily \mbox{\hyperlink{namespacemod__matrix_ab379913b1ccff8141ffd78808dc8148b}{read\+\_\+matrix()}}}
+\item {\ttfamily \mbox{\hyperlink{namespacemod__matrix_a10eab892b87e949df1b1df1152106585}{matrix\+\_\+rmsd()}}}
+\end{DoxyItemize}
+\item {\ttfamily \mbox{\hyperlink{test__array_8f90}{test\+\_\+array.\+f90}}} currently covers\+:
+\begin{DoxyItemize}
+\item {\ttfamily \mbox{\hyperlink{threshold_8f90_a5ce58677d1b4a380e504f22141ae31a8}{write\+\_\+array()}}} / {\ttfamily \mbox{\hyperlink{namespacemod__array_a6fab57a7f87ff1a8058f8fbe5a7b9343}{read\+\_\+array()}}}
+\item {\ttfamily \mbox{\hyperlink{namespacemod__array_a0512310f27e9489dc1e167fabfdf9b90}{array\+\_\+z\+\_\+coord()}}}
+\item {\ttfamily \mbox{\hyperlink{namespacemod__array_ac4a24f268360771a9b9d8390e4723701}{array\+\_\+atoms\+\_\+dist()}}}
+\item {\ttfamily \mbox{\hyperlink{namespacemod__array_a72770445fe69eaf840bf0297cbed0ba6}{array\+\_\+angle()}}}
+\item {\ttfamily \mbox{\hyperlink{namespacemod__array_ae14ba9dbefc566101146df079981137a}{merge\+\_\+sorted\+\_\+segments()}}}
+\end{DoxyItemize}
+\item {\ttfamily \mbox{\hyperlink{test__threshold_8f90}{test\+\_\+threshold.\+f90}}} covers threshold-\/oriented array calculations in {\ttfamily \mbox{\hyperlink{namespacemod__threshold}{mod\+\_\+threshold}}}.
+\end{DoxyItemize}\hypertarget{md_unit_test_README_autotoc_md49}{}\doxysection{Default Test Execution Paths}\label{md_unit_test_README_autotoc_md49}
+\hypertarget{md_unit_test_README_autotoc_md50}{}\doxysubsection{From $<$tt$>$src/$<$/tt$>$ (\+Makefile target)}\label{md_unit_test_README_autotoc_md50}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{cd ../src}
 \DoxyCodeLine{make test}
 \end{DoxyCode}
-\hypertarget{md_unit_test_README_autotoc_md28}{}\doxysubsection{Run specific test}\label{md_unit_test_README_autotoc_md28}
+
+
+This is the authoritative default path. It runs the standard Fortran test set defined in {\ttfamily src/\+Makefile}, including {\ttfamily test\+\_\+array}.\hypertarget{md_unit_test_README_autotoc_md51}{}\doxysubsection{From $<$tt$>$src/unit\+\_\+test/$<$/tt$>$ (script)}\label{md_unit_test_README_autotoc_md51}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{cd ../src}
-\DoxyCodeLine{make test\_maths    \# or test\_matrix, test\_threshold, test\_pdb, test\_clustering}
+\DoxyCodeLine{bash run\_all\_tests.sh}
 \end{DoxyCode}
-\hypertarget{md_unit_test_README_autotoc_md29}{}\doxysubsection{Clean test executables}\label{md_unit_test_README_autotoc_md29}
 
-\begin{DoxyCode}{0}
-\DoxyCodeLine{cd ../src}
-\DoxyCodeLine{make clean\_tests}
-\end{DoxyCode}
-\hypertarget{md_unit_test_README_autotoc_md30}{}\doxysection{Where to Start?}\label{md_unit_test_README_autotoc_md30}
 
-\begin{DoxyEnumerate}
-\item {\bfseries{New to testing?}} -\/ Start with \mbox{\hyperlink{QUICK__TEST_8md}{Q\+U\+I\+C\+K\+\_\+\+T\+E\+ST.md}}
-\item {\bfseries{Need details?}} -\/ Read \mbox{\hyperlink{TESTING_8md}{T\+E\+S\+T\+I\+NG.md}}
-\item {\bfseries{Want overview?}} -\/ See \mbox{\hyperlink{TEST__SUMMARY_8md}{T\+E\+S\+T\+\_\+\+S\+U\+M\+M\+A\+RY.md}}
-\item {\bfseries{Need file list?}} -\/ Check \mbox{\hyperlink{INDEX_8md}{I\+N\+D\+EX.md}}
-\end{DoxyEnumerate}\hypertarget{md_unit_test_README_autotoc_md31}{}\doxysection{Test Coverage}\label{md_unit_test_README_autotoc_md31}
-\tabulinesep=1mm
-\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
-\hline
-\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Module }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Tests }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Status  }\\\cline{1-3}
-\endfirsthead
-\hline
-\endfoot
-\hline
-\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Module }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Tests }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Status  }\\\cline{1-3}
-\endhead
-\mbox{\hyperlink{maths_8f90}{maths.\+f90}} &30 &Success  \\\cline{1-3}
-\mbox{\hyperlink{mod__matrix_8f90}{mod\+\_\+matrix.\+f90}} &10 &Success  \\\cline{1-3}
-\mbox{\hyperlink{mod__threshold_8f90}{mod\+\_\+threshold.\+f90}} &9 &Success  \\\cline{1-3}
-\mbox{\hyperlink{mod__pdb_8f90}{mod\+\_\+pdb.\+f90}} &11 &Success  \\\cline{1-3}
-\mbox{\hyperlink{mod__clust__algorithm_8f90}{mod\+\_\+clust\+\_\+algorithm.\+f90}} &8 &Success  \\\cline{1-3}
-\mbox{\hyperlink{mod__assoc_8f90}{mod\+\_\+assoc.\+f90}} &11 &Success  \\\cline{1-3}
-\mbox{\hyperlink{read__input_8f90}{read\+\_\+input.\+f90}} &10 &Success  \\\cline{1-3}
-{\bfseries{Total}} &{\bfseries{89}} &{\bfseries{Success}}  \\\cline{1-3}
-\end{longtabu}
-\hypertarget{md_unit_test_README_autotoc_md32}{}\doxysection{Build Requirements}\label{md_unit_test_README_autotoc_md32}
-
-\begin{DoxyItemize}
-\item gfortran compiler
-\item L\+A\+P\+A\+CK and B\+L\+AS libraries
-\item Open\+MP support
-\end{DoxyItemize}\hypertarget{md_unit_test_README_autotoc_md33}{}\doxysection{Verification}\label{md_unit_test_README_autotoc_md33}
-All 89 unit tests are defined and ready to run. The framework provides\+:
-\begin{DoxyItemize}
-\item Comprehensive test coverage across 7 test files
-\item Assertion helpers for test validation
-\item Pass/fail reporting with detailed output
-\item Error message display
-\item Command-\/line integration via Makefile
-\item Standalone bash script runner
-\end{DoxyItemize}\hypertarget{md_unit_test_README_autotoc_md34}{}\doxysection{Notable Behavior}\label{md_unit_test_README_autotoc_md34}
-{\bfseries{Array Parameter in Clustering\+:}}
-\begin{DoxyItemize}
-\item The {\ttfamily -\/array} option is {\bfseries{mandatory}} for all clustering methods {\bfseries{except R\+M\+SD}}
-\item When using {\ttfamily -\/matrix\+\_\+type rmsd}, the array parameter is {\bfseries{optional}}
-\item When an array is provided, complexes are sorted by the array values
-\item If array is not provided for non-\/\+R\+M\+SD methods, an error is raised
-\item Without an array, cluster averages and standard deviations are computed from the matrix
-\end{DoxyItemize}
-
-{\bfseries{Test File Coverage Updates (February 2026)\+:}}
-\begin{DoxyItemize}
-\item Added comprehensive tests for \mbox{\hyperlink{namespacemod__assoc}{mod\+\_\+assoc}} module (association file reading)
-\item Added comprehensive tests for \mbox{\hyperlink{namespaceread__input}{read\+\_\+input}} module (input file processing)
-\item Expanded maths module tests from 2 to 30 tests with detailed coordinate transformation coverage
-\item Updated all test documentation to reflect current test count (89 total tests)
-\end{DoxyItemize}
-
-For detailed information, see \mbox{\hyperlink{TESTING_8md}{T\+E\+S\+T\+I\+NG.md}}. 
+This script compiles/runs the list currently defined in {\ttfamily \mbox{\hyperlink{run__all__tests_8sh}{run\+\_\+all\+\_\+tests.\+sh}}}.\hypertarget{md_unit_test_README_autotoc_md52}{}\doxysection{Author}\label{md_unit_test_README_autotoc_md52}
+Abraham Muñiz-\/\+Chicharro 

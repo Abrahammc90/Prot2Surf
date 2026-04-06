@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2024.8.26)  27 FEB 2026 16:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2024.8.26)  6 APR 2026 17:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -831,6 +831,8 @@ LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 8.99994pt on input line 169.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 6.29996pt on input line 169.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 169
 .
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -847,13 +849,13 @@ LaTeX Font Info:    Trying to load font information for U+wasy on input line 16
 
 (/usr/share/texlive/texmf-dist/tex/latex/wasysym/uwasy.fd
 File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
-)
-LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 6.29996pt on input line 169.
+) [1]
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 6.29996pt on input line 169.
- [1] [2] [3] [4]
-[5] [6] [7] [8]
+ [2] [3] [4]
+[5] [6] [7] [8
+
+]
 Package hyperref Info: Option `pageanchor' set `true' on input line 171.
 
 Chapter 1.
@@ -869,666 +871,279 @@ LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 22.39185pt on input line 174.
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
 (Font)              scaled to size 22.39185pt on input line 174.
-(./d3/dc0/md_unit_test_INDEX.tex
+LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
+(Font)              scaled to size 6.29996pt on input line 174.
+(./de/df8/md_analyze_residues.tex
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 12.9599pt on input line 1.
-LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 10.79993pt on input line 2.
-LaTeX Font Info:    Trying to load font information for TS1+phv on input line 7
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 2.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+)
+LaTeX Font Info:    Trying to load font information for TS1+phv on input line 8
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1phv.fd
 File: ts1phv.fd 2001/06/04 scalable font definitions for TS1/phv.
 )
 LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
-(Font)              scaled to size 8.99994pt on input line 7.
-LaTeX Font Info:    Trying to load font information for T1+pcr on input line 8.
+(Font)              scaled to size 8.99994pt on input line 8.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 10.79993pt on input line 16.
+ [1
 
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
-File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-) [1
-
-
-] [2] [3]) [4]
+]) [2]
 Chapter 2.
-LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
-(Font)              scaled to size 6.29996pt on input line 178.
-(./db/d6d/md_unit_test_QUICK_TEST.tex [5
+(./dc/de5/md_clust.tex
+
+Package textcomp Warning: Symbol \textrightarrow not provided by
+(textcomp)                font family phv in TS1 encoding.
+(textcomp)                Default family used instead on input line 8.
+
+LaTeX Font Info:    Trying to load font information for T1+cmss on input line 8
+.
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmss.fd
+File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    Trying to load font information for TS1+cmss on input line 
+8.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmss.fd
+File: ts1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+
+Package textcomp Warning: Symbol \textrightarrow not provided by
+(textcomp)                font family phv in TS1 encoding.
+(textcomp)                Default family used instead on input line 9.
+
+[3
+
+]) [4]
+Chapter 3.
+(./db/d09/md_clust_all.tex [5
 
 ]) [6]
-Chapter 3.
-(./dd/dcc/md_unit_test_README.tex [7
-
-] [8]) [9] [10
-
-]
 Chapter 4.
-(./d0/d44/md_unit_test_TEST_SUMMARY.tex
+(./da/d76/md_make_data.tex [7
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 13.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 13.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 13.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 13.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 13.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 13.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 13.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 13.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 23.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 23.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 23.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 23.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 23.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 23.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 23.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 23.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 31.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 31.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 31.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 31.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 31.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 31.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 31.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 31.
-
-[11]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 40.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 40.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 40.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 40.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 40.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 40.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 40.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 40.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 50.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 50.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 50.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 50.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 50.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 50.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 50.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 50.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 57.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 57.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 57.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 57.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 57.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 57.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 57.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 57.
-
-[12] [13] [14]) [15] [16
-
-]
+]) [8]
 Chapter 5.
-(./dc/d87/md_unit_test_TESTING.tex
+(./df/d75/md_threshold.tex [9
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3.
-
-[17]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 48.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 48.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 48.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 48.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 48.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 48.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 48.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 48.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 81.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 81.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 81.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 81.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 81.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 81.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 81.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 81.
-
-[18]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 107.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 107.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 107.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 107.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 107.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 107.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 107.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 107.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 138.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 138.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 138.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 138.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 138.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 138.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 138.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 138.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 164.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 164.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 164.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 164.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 164.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 164.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 164.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 164.
-
-[19]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 189.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 189.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 189.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 189.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 189.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 189.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 189.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 189.
-
-[20] [21] [22]) [23] [24
-
-]
+]) [10]
 Chapter 6.
-(./namespaces.tex) [25] [26
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 194.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 194.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 194.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 194.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 194.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 194.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 194.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 194.
+
+(./dd/dcc/md_unit_test_README.tex
+Underfull \hbox (badness 2343) in paragraph at lines 6--7
+[][][]\T1/phv/m/n/10 : ar-ray I/O, array-based en-counter met-rics, and ar-ray/
+metadata re-order-ing in
+ []
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 30.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 30.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 30.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 30.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 30.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 30.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 30.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 30.
+
+[11
 
 ]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 37.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 37.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 37.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 37.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 37.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 37.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 37.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 37.
+
+) [12]
 Chapter 7.
-(./annotated.tex) [27] [28
+(./namespaces.tex) [13
+
+] [14
 
 ]
 Chapter 8.
-(./files.tex) [29] [30
+(./annotated.tex) [15] [16
 
 ]
 Chapter 9.
+(./files.tex) [17] [18
+
+]
+Chapter 10.
 (./da/d63/namespacemaths.tex
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 8.09995pt on input line 12.
+(Font)              scaled to size 8.09995pt on input line 7.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <9> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 12.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 7.
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
-(Font)              scaled to size 8.09995pt on input line 12.
+(Font)              scaled to size 8.09995pt on input line 7.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <7> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 20.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 15.
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
-(Font)              scaled to size 6.29996pt on input line 20.
-LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
-(Font)              scaled to size 8.99994pt on input line 32.
-
-Underfull \hbox (badness 10000) detected at line 32
-[][][]
- []
-
+(Font)              scaled to size 6.29996pt on input line 15.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 7.19995pt on input line 42.
+(Font)              scaled to size 7.19995pt on input line 27.
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <8> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 42.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 27.
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <7> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 42.
-[31] [32] [33]) (./d4/d74/namespacemod__array.tex [34] [35] [36])
-(./d6/ded/namespacemod__assoc.tex
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 27.
+ [19] [20] [21]) (./d4/d74/namespacemod__array.tex
+[22] [23] [24] [25]) (./d6/ded/namespacemod__assoc.tex
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <9> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 21.
-
-Underfull \hbox (badness 10000) detected at line 33
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 16.
+ [26] [27]
+Underfull \hbox (badness 10000) detected at line 77
 [][][]
  []
 
-[37]
-Underfull \hbox (badness 10000) detected at line 94
-[][][]
- []
-
-) (./d4/d95/namespacemod__clust__algorithm.tex [38] [39] [40])
-(./d0/d4e/namespacemod__cuda.tex
-Underfull \hbox (badness 1163) in paragraph at lines 6--7
-[]\T1/phv/m/n/10 integer func-tion, pub-lic [] (ma-trix, n, dist[]_[]threshold,
- linkage[]_[]str, cluster[]_[]parent,
- []
-
-[41]
-Underfull \hbox (badness 10000) detected at line 32
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 44
-[][][]
- []
-
-[42]
-Underfull \hbox (badness 10000) detected at line 66
-[][][]
- []
-
-) (./db/d1d/namespacemod__matrix.tex [43] [44] [45])
-(./d0/d8c/namespacemod__memory.tex [46]
-Underfull \hbox (badness 10000) detected at line 36
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 51
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 56
-[][][]
- []
-
-) (./dd/d00/namespacemod__pdb.tex [47]
-Underfull \hbox (badness 10000) detected at line 41
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 89
-[][][]
- []
-
-[48]
-Underfull \hbox (badness 10000) detected at line 109
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 129
-[][][]
- []
-
-) (./df/d4c/namespacemod__threshold.tex [49] [50] [51])
-(./d9/d5d/namespaceread__input.tex)
+) (./d4/d95/namespacemod__clust__algorithm.tex [28] [29] [30])
+(./db/d1d/namespacemod__matrix.tex [31]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [52]
-Chapter 10.
-(./df/d2d/structmod__assoc_1_1type__assoc__file.tex [53
+ [32])
+(./dd/d00/namespacemod__pdb.tex [33]
+Underfull \hbox (badness 10000) detected at line 72
+[][][]
+ []
 
-])
-(./d6/ddf/structmod__pdb_1_1type__pdb__atom.tex [54])
-(./dd/dbe/structmod__pdb_1_1type__pdb__chain.tex)
-(./d1/d57/structmod__pdb_1_1type__pdb__file.tex [55])
-(./d8/d95/structmod__pdb_1_1type__pdb__residue.tex [56]) [57] [58
+[34]
+Underfull \hbox (badness 10000) detected at line 92
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 112
+[][][]
+ []
+
+) (./df/d4c/namespacemod__threshold.tex
+Underfull \vbox (badness 6477) has occurred while \output is active []
+
+ [35]
+Overfull \vbox (47.13393pt too high) has occurred while \output is active []
+
+
+[36] [37]) (./d9/d5d/namespaceread__input.tex [38]) [39] [40
 
 ]
 Chapter 11.
+(./df/d2d/structmod__assoc_1_1type__assoc__file.tex [41])
+(./d6/ddf/structmod__pdb_1_1type__pdb__atom.tex [42] [43])
+(./dd/dbe/structmod__pdb_1_1type__pdb__chain.tex)
+(./d1/d57/structmod__pdb_1_1type__pdb__file.tex [44] [45])
+(./d8/d95/structmod__pdb_1_1type__pdb__residue.tex [46]) [47] [48
+
+]
+Chapter 12.
 (./d5/d92/analyze__residues_8f90.tex
-Underfull \hbox (badness 10000) detected at line 25
+Underfull \hbox (badness 10000) detected at line 26
 [][][]
  []
 
-) (./da/da3/clust_8f90.tex [59]
-Underfull \hbox (badness 10000) detected at line 25
+
+Underfull \hbox (badness 10000) detected at line 29
 [][][]
  []
 
-) (./d9/d1f/clust__all_8f90.tex
-Underfull \hbox (badness 10000) detected at line 27
+
+Underfull \hbox (badness 10000) detected at line 32
 [][][]
  []
 
-[60]) (./db/dd1/make__data_8f90.tex
-Underfull \hbox (badness 10000) detected at line 27
+[49]) (./db/de8/analyze__residues_8md.tex) (./da/da3/clust_8f90.tex
+Underfull \hbox (badness 2744) in paragraph at lines 13--14
+[]\T1/phv/m/n/10 subroutine [] (p[]_[]complexes[]_[]filename, p[]_[]complexes[]
+_[]bool, p[]_[]nb[]_[]encounters, p[]_[]nb[]_[]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 28
 [][][]
- []
-
-[61]) (./d1/d53/maths_8f90.tex) (./de/df3/mod__array_8f90.tex)
-(./d4/d05/mod__assoc_8f90.tex [62]) (./d6/d16/mod__clust__algorithm_8f90.tex
-Underfull \hbox (badness 816) in paragraph at lines 11--12
-[]\T1/phv/m/n/10 subroutine [] (ma-trix, n, linkage[]_[]type, output[]_[]name,
- []
-
-
-Underfull \hbox (badness 1742) in paragraph at lines 17--18
-[]\T1/phv/m/n/10 subroutine [] (tot[]_[]encounters, cluster[]_[]parent, cluster
-[]_[]count,
- []
-
-) (./de/dbb/mod__cuda_8f90.tex [63]) (./d7/d71/mod__matrix_8f90.tex)
-(./d9/de2/mod__memory_8f90.tex) (./d3/dc0/mod__pdb_8f90.tex [64])
-(./d6/d37/mod__threshold_8f90.tex) (./db/dea/read__input_8f90.tex)
-(./d9/dcc/threshold_8f90.tex [65]
-Underfull \hbox (badness 10000) in paragraph at lines 12--13
-[]\T1/phv/m/n/10 subroutine [] (complexes[]_[]arg, distarray[]_[]arg, encounter
-[]_[]indexes[]_[]arg, nb[]_[]
  []
 
 
@@ -1536,29 +1151,139 @@ Underfull \hbox (badness 10000) detected at line 31
 [][][]
  []
 
-[66]) (./d0/d7f/INDEX_8md.tex) (./da/d19/QUICK__TEST_8md.tex)
-(./da/ddd/README_8md.tex) (./dd/d48/run__all__tests_8sh.tex)
-(./de/d65/test__assoc_8f90.tex [67]
-Underfull \hbox (badness 10000) detected at line 58
+
+Underfull \hbox (badness 10000) detected at line 34
+[][][]
+ []
+
+[50]) (./dc/d96/clust_8md.tex) (./d9/d1f/clust__all_8f90.tex [51]
+Underfull \hbox (badness 2197) in paragraph at lines 13--14
+[]\T1/phv/m/n/10 subroutine [] (p[]_[]pdb1[]_[]filename, p[]_[]pdb1[]_[]bool, p
+[]_[]pdb2[]_[]filename, p[]_[]pdb2[]_[]bool, p[]_[]
+ []
+
+
+Underfull \hbox (badness 986) in paragraph at lines 13--14
+\T1/phv/m/n/10 complexes[]_[]filename, p[]_[]complexes[]_[]bool, p[]_[]nb[]_[]e
+ncounters, p[]_[]nb[]_[]encounters[]_[]bool, p[]_[]data[]_[]type, p[]_[]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 28
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 61
+Underfull \hbox (badness 10000) detected at line 31
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 82
+Underfull \hbox (badness 10000) detected at line 34
+[][][]
+ []
+
+[52] [53]) (./da/dbd/clust__all_8md.tex) (./db/dd1/make__data_8f90.tex
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [54]
+Underfull \hbox (badness 2197) in paragraph at lines 13--14
+[]\T1/phv/m/n/10 subroutine [] (p[]_[]pdb1[]_[]filename, p[]_[]pdb1[]_[]bool, p
+[]_[]pdb2[]_[]filename, p[]_[]pdb2[]_[]bool, p[]_[]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 30
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 85
+Underfull \hbox (badness 10000) detected at line 33
 [][][]
  []
 
-) (./de/d3f/test__clustering_8f90.tex [68]
+
+Underfull \hbox (badness 10000) detected at line 36
+[][][]
+ []
+
+[55] [56]) (./dc/d33/make__data_8md.tex) (./d1/d53/maths_8f90.tex [57]
+Underfull \hbox (badness 10000) detected at line 39
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 42
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 45
+[][][]
+ []
+
+) (./de/df3/mod__array_8f90.tex [58]
+Underfull \hbox (badness 10000) detected at line 35
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 38
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 41
+[][][]
+ []
+
+) (./d4/d05/mod__assoc_8f90.tex [59]
+Underfull \hbox (badness 10000) detected at line 40
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 43
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 46
+[][][]
+ []
+
+) (./d6/d16/mod__clust__algorithm_8f90.tex
+Underfull \hbox (badness 816) in paragraph at lines 16--17
+[]\T1/phv/m/n/10 subroutine [] (ma-trix, n, linkage[]_[]type, output[]_[]name,
+ []
+
+
+Underfull \hbox (badness 1742) in paragraph at lines 22--23
+[]\T1/phv/m/n/10 subroutine [] (tot[]_[]encounters, cluster[]_[]parent, cluster
+[]_[]count,
+ []
+
+[60]) (./d7/d71/mod__matrix_8f90.tex
+Underfull \hbox (badness 10000) detected at line 27
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 30
+[][][]
+ []
+
+[61]
+Underfull \hbox (badness 10000) detected at line 33
+[][][]
+ []
+
+) (./d3/dc0/mod__pdb_8f90.tex [62]
+Underfull \hbox (badness 10000) detected at line 48
+[][][]
+ []
+
+
 Underfull \hbox (badness 10000) detected at line 53
 [][][]
  []
@@ -1568,37 +1293,90 @@ Underfull \hbox (badness 10000) detected at line 56
 [][][]
  []
 
-[69]) (./d3/d20/test__maths_8f90.tex [70]
-Underfull \hbox (badness 10000) detected at line 91
+) (./d6/d37/mod__threshold_8f90.tex
+Underfull \hbox (badness 10000) detected at line 29
+[][][]
+ []
+
+[63]
+Underfull \hbox (badness 10000) detected at line 32
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 94
+Underfull \hbox (badness 10000) detected at line 35
 [][][]
  []
 
-[71]
-Underfull \hbox (badness 10000) detected at line 135
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 138
-[][][]
- []
-
-[72]) (./da/d82/test__matrix_8f90.tex
-Underfull \hbox (badness 10000) detected at line 45
+) (./db/dea/read__input_8f90.tex
+Underfull \hbox (badness 10000) detected at line 25
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 48
+Underfull \hbox (badness 10000) detected at line 28
 [][][]
  []
 
-[73]) (./d7/de4/test__pdb_8f90.tex [74]
+
+Underfull \hbox (badness 10000) detected at line 31
+[][][]
+ []
+
+) (./d9/dcc/threshold_8f90.tex
+Underfull \hbox (badness 2197) in paragraph at lines 13--14
+[]\T1/phv/m/n/10 subroutine [] (p[]_[]pdb1[]_[]filename, p[]_[]pdb1[]_[]bool, p
+[]_[]pdb2[]_[]filename, p[]_[]pdb2[]_[]bool, p[]_[]
+ []
+
+
+Underfull \hbox (badness 3895) in paragraph at lines 13--14
+\T1/phv/m/n/10 complexes[]_[]filename, p[]_[]complexes[]_[]bool, p[]_[]datadist
+[]_[]filename, p[]_[]array[]_[]bool, p[]_[]output[]_[]complexes[]_[]
+ []
+
+[64]
+Underfull \hbox (badness 10000) in paragraph at lines 19--20
+[]\T1/phv/m/n/10 subroutine [] (complexes[]_[]arg, distarray[]_[]arg, encounter
+[]_[]indexes[]_[]arg, nb[]_[]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 34
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 37
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 40
+[][][]
+ []
+
+[65] [66]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [67])
+(./d5/d39/threshold_8md.tex) (./da/ddd/README_8md.tex)
+(./dd/d48/run__all__tests_8sh.tex) (./dc/dc3/test__array_8f90.tex [68]
+Underfull \hbox (badness 10000) detected at line 40
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 43
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 56
+[][][]
+ []
+
+
 Underfull \hbox (badness 10000) detected at line 59
 [][][]
  []
@@ -1608,74 +1386,558 @@ Underfull \hbox (badness 10000) detected at line 62
 [][][]
  []
 
-[75]) (./dc/d0a/test__read__input_8f90.tex
+[69]
+Underfull \hbox (badness 10000) detected at line 84
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 87
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 90
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 112
+[][][]
+ []
+
+[70]
+Underfull \hbox (badness 10000) detected at line 115
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 118
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 140
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 143
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 146
+[][][]
+ []
+
+[71]
+Underfull \hbox (badness 10000) detected at line 168
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 171
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 174
+[][][]
+ []
+
+) (./de/d65/test__assoc_8f90.tex
+Underfull \hbox (badness 10000) detected at line 27
+[][][]
+ []
+
+[72]
+Underfull \hbox (badness 10000) detected at line 30
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 33
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 80
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 83
+[][][]
+ []
+
+[73]
+Underfull \hbox (badness 10000) detected at line 104
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 107
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 120
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 123
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 126
+[][][]
+ []
+
+[74]
+Underfull \hbox (badness 10000) detected at line 148
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 151
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 154
+[][][]
+ []
+
+) (./de/d3f/test__clustering_8f90.tex [75]
+Underfull \hbox (badness 10000) detected at line 44
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 47
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 50
+[][][]
+ []
+
+[76] [77]) (./d3/d20/test__maths_8f90.tex [78]
+Underfull \hbox (badness 10000) detected at line 47
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 50
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 53
+[][][]
+ []
+
+[79]
+Underfull \hbox (badness 10000) detected at line 75
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 78
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 81
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 103
+[][][]
+ []
+
+[80]
+Underfull \hbox (badness 10000) detected at line 106
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 109
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 157
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 160
+[][][]
+ []
+
+[81]
+Underfull \hbox (badness 10000) detected at line 201
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 204
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 217
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 220
+[][][]
+ []
+
+[82]
+Underfull \hbox (badness 10000) detected at line 223
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 245
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 248
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 251
+[][][]
+ []
+
+[83]
+Underfull \hbox (badness 10000) detected at line 273
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 276
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 279
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 301
+[][][]
+ []
+
+[84]
+Underfull \hbox (badness 10000) detected at line 304
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 307
+[][][]
+ []
+
+) (./da/d82/test__matrix_8f90.tex
+Underfull \hbox (badness 10000) detected at line 33
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 36
+[][][]
+ []
+
+[85]
+Underfull \hbox (badness 10000) detected at line 49
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 52
+[][][]
+ []
+
+
 Underfull \hbox (badness 10000) detected at line 55
 [][][]
  []
 
-[76]
-Underfull \hbox (badness 10000) detected at line 58
+
+Underfull \hbox (badness 10000) detected at line 77
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 73
+Underfull \hbox (badness 10000) detected at line 80
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 76
+Underfull \hbox (badness 10000) detected at line 83
 [][][]
  []
 
-) (./df/d66/TEST__SUMMARY_8md.tex) (./d3/d9f/test__threshold_8f90.tex [77]
+[86]) (./d7/de4/test__pdb_8f90.tex
+Underfull \hbox (badness 10000) detected at line 31
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 34
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 37
+[][][]
+ []
+
+[87]
+Underfull \hbox (badness 10000) detected at line 59
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 62
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 65
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 87
+[][][]
+ []
+
+[88]
+Underfull \hbox (badness 10000) detected at line 90
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 93
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 125
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 128
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 141
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 144
+[][][]
+ []
+
+[89]
+Underfull \hbox (badness 10000) detected at line 147
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 169
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 172
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 175
+[][][]
+ []
+
+[90]) (./dc/d0a/test__read__input_8f90.tex
+Underfull \hbox (badness 10000) detected at line 25
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 28
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 31
+[][][]
+ []
+
+
+Overfull \vbox (16.87749pt too high) has occurred while \output is active []
+
+
+[91]
+Underfull \hbox (badness 10000) detected at line 77
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 80
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 95
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 98
+[][][]
+ []
+
+[92]
+Underfull \hbox (badness 10000) detected at line 111
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 114
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 117
+[][][]
+ []
+
+) (./d3/d9f/test__threshold_8f90.tex [93]
+Underfull \hbox (badness 10000) detected at line 29
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 32
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 35
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 57
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 60
+[][][]
+ []
+
+
 Underfull \hbox (badness 10000) detected at line 63
 [][][]
  []
 
-
-Underfull \hbox (badness 10000) detected at line 66
+[94]
+Underfull \hbox (badness 10000) detected at line 85
 [][][]
  []
 
-) (./de/d00/TESTING_8md.tex) [78] (./refman.ind [79
+
+Underfull \hbox (badness 10000) detected at line 88
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 91
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 113
+[][][]
+ []
+
+[95]
+Underfull \hbox (badness 10000) detected at line 116
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 119
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 151
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 154
+[][][]
+ []
+
+) [96] (./refman.ind [97
 
 
 
-] [80] [81] [82])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 256.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 256.
-
-(./refman.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 256.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 256.
+] [98] [99] [100])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 258.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 258.
+ (./refman.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 258.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 258.
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: A5019E28844AB1E1EC78E4D1478D2587;63329.
+(rerunfilecheck)             Checksum: 688DC5B8CCD96CC8BDB7863AA3C26041;57349.
  ) 
 Here is how much of TeX's memory you used:
- 18059 strings out of 481239
- 277894 string characters out of 5920377
- 636352 words of memory out of 5000000
- 32098 multiletter control sequences out of 15000+600000
- 594085 words of font info for 103 fonts, out of 8000000 for 9000
+ 18046 strings out of 481239
+ 275966 string characters out of 5920377
+ 622520 words of memory out of 5000000
+ 32106 multiletter control sequences out of 15000+600000
+ 600482 words of font info for 126 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,15n,96p,1072b,629s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/uc
-rr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/urw/helvetic/uhvro8a.pfb>
-Output written on refman.pdf (92 pages, 336720 bytes).
+ 55i,16n,96p,1943b,637s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texmf/
+fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.p
+fb></usr/share/texmf/fonts/type1/public/cm-super/sfss1000.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/urw/courier/ucrro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helveti
+c/uhvb8ac.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
+Output written on refman.pdf (110 pages, 335652 bytes).
 PDF statistics:
- 3358 PDF objects out of 3580 (max. 8388607)
- 3097 compressed objects within 31 object streams
- 757 named destinations out of 1000 (max. 500000)
- 2369 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 3089 PDF objects out of 3580 (max. 8388607)
+ 2926 compressed objects within 30 object streams
+ 722 named destinations out of 1000 (max. 500000)
+ 2177 words of extra memory for PDF output out of 10000 (max. 10000000)
 

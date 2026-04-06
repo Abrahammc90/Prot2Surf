@@ -1,4 +1,16 @@
-"""
+"""!
+@file combine.py
+@brief Combine association files and remove duplicate encounter complexes.
+@author Abraham Muñiz-Chicharro
+@version 1.0
+@date 2026-04-05
+@par Usage
+python combine.py [assoc_file1] [assoc_file2] ... [output_file]
+
+@par Usage flags
+- Positional inputs: one or more association files.
+- Final positional argument: output filename.
+
 Combine Encounter Complexes Files Script
 
 This script combines multiple SDA encounter complexes files into a single output file,
@@ -11,7 +23,7 @@ Features:
     - Maintains file format consistency
 
 Usage:
-    python combine.py <assoc_file1> <assoc_file2> ... <output_file>
+    python combine.py [assoc_file1] [assoc_file2] ... [output_file]
     
     The last argument is treated as the output filename.
     All preceding arguments are treated as input association files.

@@ -1,0 +1,39 @@
+\hypertarget{md_analyze_residues_autotoc_md1}{}\doxysection{Description}\label{md_analyze_residues_autotoc_md1}
+{\ttfamily analyze\+\_\+residues} evaluates residue proximity to a surface across encounter complexes.
+
+For each residue in {\ttfamily pdb2}, it computes a center-\/of-\/geometry, applies encounter transformations, and records encounters where the transformed residue position is below a distance threshold.\hypertarget{md_analyze_residues_autotoc_md2}{}\doxysection{Parser description}\label{md_analyze_residues_autotoc_md2}
+\hypertarget{md_analyze_residues_autotoc_md3}{}\doxysection{Required Arguments}\label{md_analyze_residues_autotoc_md3}
+
+\begin{DoxyItemize}
+\item {\ttfamily -\/pdb2 $<$file$>$}
+\item {\ttfamily -\/complexes $<$file$>$}
+\end{DoxyItemize}\hypertarget{md_analyze_residues_autotoc_md4}{}\doxysection{Optional arguments}\label{md_analyze_residues_autotoc_md4}
+
+\begin{DoxyItemize}
+\item {\ttfamily -\/nb\+\_\+encounters $<$N$>$} (default\+: all)
+\item {\ttfamily -\/threshold $<$value$>$} (default\+: {\ttfamily 6.\+0})
+\item {\ttfamily -\/help}
+\end{DoxyItemize}\hypertarget{md_analyze_residues_autotoc_md5}{}\doxysubsection{Modules Used}\label{md_analyze_residues_autotoc_md5}
+
+\begin{DoxyItemize}
+\item {\ttfamily \mbox{\hyperlink{namespaceread__input}{read\+\_\+input}}}
+\item {\ttfamily maths}
+\end{DoxyItemize}\hypertarget{md_analyze_residues_autotoc_md6}{}\doxysubsection{Main Routines Called}\label{md_analyze_residues_autotoc_md6}
+
+\begin{DoxyItemize}
+\item {\ttfamily read\+\_\+pdb} (from {\ttfamily \mbox{\hyperlink{namespaceread__input}{read\+\_\+input}}})
+\item {\ttfamily read\+\_\+assoc} (from {\ttfamily \mbox{\hyperlink{namespaceread__input}{read\+\_\+input}}})
+\item {\ttfamily calculate\+\_\+cog} (from {\ttfamily maths})
+\item {\ttfamily update\+\_\+complex} (from {\ttfamily maths})
+\item {\ttfamily print\+\_\+help} (internal)
+\end{DoxyItemize}\hypertarget{md_analyze_residues_autotoc_md7}{}\doxysubsection{Output}\label{md_analyze_residues_autotoc_md7}
+
+\begin{DoxyItemize}
+\item {\ttfamily closest\+\_\+residues.\+txt}\+: each residue line includes encounter indexes that satisfy the threshold condition.
+\end{DoxyItemize}\hypertarget{md_analyze_residues_autotoc_md8}{}\doxysubsection{Usage Example}\label{md_analyze_residues_autotoc_md8}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./analyze\_residues -\/pdb2 p2\_noh.pdb -\/complexes assoc\_complexes -\/nb\_encounters 5000 -\/threshold 6.0}
+\end{DoxyCode}
+\hypertarget{md_analyze_residues_autotoc_md9}{}\doxysubsection{Author}\label{md_analyze_residues_autotoc_md9}
+Abraham Muñiz-\/\+Chicharro 

@@ -1,4 +1,18 @@
-"""
+"""!
+@file plot_clust_array_dist.py
+@brief Plot per-cluster distance distributions for encounter complexes.
+@author Abraham Muñiz-Chicharro
+@version 1.0
+@date 2026-04-05
+@par Usage
+python plot_clust_array_dist.py [distance_data_file] [cluster_file] [output_prefix] [plot_title]
+
+@par Usage flags
+- Positional @c distance_data_file : file with encounter distance values.
+- Positional @c cluster_file : file with cluster membership.
+- Positional @c output_prefix : output basename for PNG and DAT files.
+- Positional @c plot_title : title string for the generated figure.
+
 Plot Cluster Distance Distribution Script
 
 This script generates line plots showing the distance distribution of encounter complexes
@@ -16,7 +30,7 @@ Features:
     - Robust error handling and input validation
 
 Usage:
-    python plot_clust_array_dist.py <distance_data_file> <cluster_file> <output_prefix> <plot_title>
+    python plot_clust_array_dist.py [distance_data_file] [cluster_file] [output_prefix] [plot_title]
 
 Arguments:
     distance_data_file (str): File containing distance values for all encounter complexes
@@ -25,8 +39,8 @@ Arguments:
     plot_title (str): Title for the plot
 
 Output Files:
-    <output_prefix>.png: Publication-quality plot figure
-    <output_prefix>.dat: Data file with encounter complex IDs and distances
+    [output_prefix].png: Publication-quality plot figure
+    [output_prefix].dat: Data file with encounter complex IDs and distances
 
 Author: Abraham Muñiz-Chicharro
 Version: 1.0
@@ -188,23 +202,32 @@ def _parse_cluster_file(cluster_file, all_distances):
     """
     cluster_data = {}
     encounter_counter = 1
+    cluster_name = None
     
     with open(cluster_file, "r") as f:
         for line_index, line in enumerate(f):
             line_parts = line.split()
+            if not line_parts:
+                continue
             
             # Identify cluster headers
             if line.startswith("Cluster"):
-                cluster_name = f"{line_parts[0]} {line_parts[1]}".rstrip(":")
+                cluster_name = f"{line_parts[0]} {line_parts[1]}"
                 cluster_data[cluster_name] = {}
+                encounter_tokens = line_parts[2:]
+            else:
+                encounter_tokens = line_parts
             
+            if cluster_name is None:
+                continue
+
             # Process encounter complex IDs for this cluster
-            for encounter_id_str in line_parts[2:]:
-                encounter_counter += 1
+            for encounter_id_str in encounter_tokens:
                 encounter_index = int(encounter_id_str) - 1  # Convert to 0-based index
                 
                 if encounter_index < len(all_distances):
                     cluster_data[cluster_name][encounter_counter] = all_distances[encounter_index]
+                    encounter_counter += 1
     
     return cluster_data
 

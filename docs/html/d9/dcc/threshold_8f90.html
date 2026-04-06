@@ -67,12 +67,17 @@ $(function() {
 <div class="title">threshold.f90 File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Threshold-based encounter selection utility.  
+<a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions/Subroutines</h2></td></tr>
 <tr class="memitem:a8ec2266d83cd6c0b762cbcbc92c0af3d"><td class="memItemLeft" align="right" valign="top">program&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dcc/threshold_8f90.html#a8ec2266d83cd6c0b762cbcbc92c0af3d">main</a></td></tr>
-<tr class="memdesc:a8ec2266d83cd6c0b762cbcbc92c0af3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate encounter selection based on threshold criteria.  <a href="../../d9/dcc/threshold_8f90.html#a8ec2266d83cd6c0b762cbcbc92c0af3d">More...</a><br /></td></tr>
 <tr class="separator:a8ec2266d83cd6c0b762cbcbc92c0af3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a903c0e45adfa40a7dd2624df60008cc6"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dcc/threshold_8f90.html#a903c0e45adfa40a7dd2624df60008cc6">parse_arguments</a> (p_pdb1_filename, p_pdb1_bool, p_pdb2_filename, p_pdb2_bool, p_complexes_filename, p_complexes_bool, p_datadist_filename, p_array_bool, p_output_complexes_filename, p_output_complexes_bool, p_nb_encounters, p_nb_encounters_bool, p_cutoff, p_cutoff_bool, p_threshold_type, p_thresholdtype_bool, p_arr_atoms1a, p_arr_atoms1a_bool, p_arr_atoms1b, p_arr_atoms1b_bool, p_arr_atoms2a, p_arr_atoms2a_bool, p_arr_atoms2b, p_arr_atoms2b_bool, p_help_bool)</td></tr>
+<tr class="memdesc:a903c0e45adfa40a7dd2624df60008cc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse command-line arguments for <code>threshold</code>.  <a href="../../d9/dcc/threshold_8f90.html#a903c0e45adfa40a7dd2624df60008cc6">More...</a><br /></td></tr>
+<tr class="separator:a903c0e45adfa40a7dd2624df60008cc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c89be8ab0718c0b4d3d7857380231a3"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/dcc/threshold_8f90.html#a9c89be8ab0718c0b4d3d7857380231a3">print_help</a> (help_option)</td></tr>
 <tr class="memdesc:a9c89be8ab0718c0b4d3d7857380231a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print usage/help text for <code>threshold</code>.  <a href="../../d9/dcc/threshold_8f90.html#a9c89be8ab0718c0b4d3d7857380231a3">More...</a><br /></td></tr>
 <tr class="separator:a9c89be8ab0718c0b4d3d7857380231a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -86,7 +91,15 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memdesc:a5ce58677d1b4a380e504f22141ae31a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write array values up to a cutoff to a formatted file.  <a href="../../d9/dcc/threshold_8f90.html#a5ce58677d1b4a380e504f22141ae31a8">More...</a><br /></td></tr>
 <tr class="separator:a5ce58677d1b4a380e504f22141ae31a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Threshold-based encounter selection utility. </p>
+<p><a class="el" href="../../d9/dcc/threshold_8f90.html" title="Threshold-based encounter selection utility.">threshold.f90</a> - Select encounters based on threshold criteria.</p>
+<p>Usage: ./threshold -help</p>
+<p>Computes thresholds (z_coord, atoms_dist, angles) and writes selected encounters to output. See print_help for usage.</p>
+<dl class="section author"><dt>Author</dt><dd>Abraham Muñiz-Chicharro </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2026-04-05 </dd></dl>
+</div><h2 class="groupheader">Function/Subroutine Documentation</h2>
 <a id="a8ec2266d83cd6c0b762cbcbc92c0af3d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8ec2266d83cd6c0b762cbcbc92c0af3d">&#9670;&nbsp;</a></span>main()</h2>
 
@@ -99,9 +112,203 @@ Functions/Subroutines</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Generate encounter selection based on threshold criteria. </p>
-<p>This executable computes thresholds (z_coord, atoms_dist, angles) across encounter transforms and writes selected encounter records to an output complexes file. See <code>print_help</code> for usage examples.</p>
-<dl class="section author"><dt>Author</dt><dd>Abraham Muñiz-Chicharro </dd></dl>
+</div>
+</div>
+<a id="a903c0e45adfa40a7dd2624df60008cc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a903c0e45adfa40a7dd2624df60008cc6">&#9670;&nbsp;</a></span>parse_arguments()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine main::parse_arguments </td>
+          <td>(</td>
+          <td class="paramtype">character*128, intent(out)&#160;</td>
+          <td class="paramname"><em>p_pdb1_filename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(out)&#160;</td>
+          <td class="paramname"><em>p_pdb1_bool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">character*128, intent(out)&#160;</td>
+          <td class="paramname"><em>p_pdb2_filename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(out)&#160;</td>
+          <td class="paramname"><em>p_pdb2_bool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">character*128, intent(out)&#160;</td>
+          <td class="paramname"><em>p_complexes_filename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(out)&#160;</td>
+          <td class="paramname"><em>p_complexes_bool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">character*128, intent(out)&#160;</td>
+          <td class="paramname"><em>p_datadist_filename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(out)&#160;</td>
+          <td class="paramname"><em>p_array_bool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">character*128, intent(out)&#160;</td>
+          <td class="paramname"><em>p_output_complexes_filename</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(out)&#160;</td>
+          <td class="paramname"><em>p_output_complexes_bool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(out)&#160;</td>
+          <td class="paramname"><em>p_nb_encounters</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(out)&#160;</td>
+          <td class="paramname"><em>p_nb_encounters_bool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real (kind=8), intent(out)&#160;</td>
+          <td class="paramname"><em>p_cutoff</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(out)&#160;</td>
+          <td class="paramname"><em>p_cutoff_bool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">character*128, intent(out)&#160;</td>
+          <td class="paramname"><em>p_threshold_type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(out)&#160;</td>
+          <td class="paramname"><em>p_thresholdtype_bool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">character*128, dimension(:), intent(out), allocatable&#160;</td>
+          <td class="paramname"><em>p_arr_atoms1a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(out)&#160;</td>
+          <td class="paramname"><em>p_arr_atoms1a_bool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">character*128, dimension(:), intent(out), allocatable&#160;</td>
+          <td class="paramname"><em>p_arr_atoms1b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(out)&#160;</td>
+          <td class="paramname"><em>p_arr_atoms1b_bool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">character*128, dimension(:), intent(out), allocatable&#160;</td>
+          <td class="paramname"><em>p_arr_atoms2a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(out)&#160;</td>
+          <td class="paramname"><em>p_arr_atoms2a_bool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">character*128, dimension(:), intent(out), allocatable&#160;</td>
+          <td class="paramname"><em>p_arr_atoms2b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(out)&#160;</td>
+          <td class="paramname"><em>p_arr_atoms2b_bool</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(out)&#160;</td>
+          <td class="paramname"><em>p_help_bool</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parse command-line arguments for <code>threshold</code>. </p>
+<p>Parses all CLI flags and fills program configuration values. Atom-group flags consume multiple tokens until the next flag. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_pdb1_filename</td><td>Value parsed from <code>-pdb1</code> </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_pdb1_bool</td><td>Whether <code>-pdb1</code> was provided </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_pdb2_filename</td><td>Value parsed from <code>-pdb2</code> </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_pdb2_bool</td><td>Whether <code>-pdb2</code> was provided </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_complexes_filename</td><td>Value parsed from <code>-complexes</code> </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_complexes_bool</td><td>Whether <code>-complexes</code> was provided </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_datadist_filename</td><td>Value parsed from <code>-array</code> </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_array_bool</td><td>Whether <code>-array</code> was provided </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_output_complexes_filename</td><td>Value parsed from <code>-complexes_output</code> </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_output_complexes_bool</td><td>Whether <code>-complexes_output</code> was provided </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_nb_encounters</td><td>Value parsed from <code>-nb_encounters</code> </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_nb_encounters_bool</td><td>Whether <code>-nb_encounters</code> was provided </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_cutoff</td><td>Value parsed from <code>-cutoff</code> </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_cutoff_bool</td><td>Whether <code>-cutoff</code> was provided </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_threshold_type</td><td>Value parsed from <code>-threshold_type</code> </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_thresholdtype_bool</td><td>Whether <code>-threshold_type</code> was provided </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_arr_atoms1a</td><td>Atom list parsed from <code>-atoms1</code> or <code>-atoms1a</code> </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_arr_atoms1a_bool</td><td>Whether <code>-atoms1</code> or <code>-atoms1a</code> was provided </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_arr_atoms1b</td><td>Atom list parsed from <code>-atoms1b</code> </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_arr_atoms1b_bool</td><td>Whether <code>-atoms1b</code> was provided </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_arr_atoms2a</td><td>Atom list parsed from <code>-atoms2</code> or <code>-atoms2a</code> </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_arr_atoms2a_bool</td><td>Whether <code>-atoms2</code> or <code>-atoms2a</code> was provided </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_arr_atoms2b</td><td>Atom list parsed from <code>-atoms2b</code> </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_arr_atoms2b_bool</td><td>Whether <code>-atoms2b</code> was provided </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_help_bool</td><td>Whether <code>-help</code> was provided </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -171,7 +378,16 @@ Functions/Subroutines</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Read coordinates for a specified list of atoms (names or indices). </p>
-<p>Similar to the helper in <code>make_matrix</code>. Returns an allocated <code>atoms_coord</code> array with matching coordinates for the atom names or indices provided in <code>atoms_array</code>. </p>
+<p>Accepts either atom indices or atom names. If atom names are provided, all matching atoms in the PDB are returned (in order). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">atoms_array</td><td>Array of atom name strings or index strings </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">atoms_coord</td><td>Allocated array with atom coordinates (n,3) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">tot_atoms</td><td>Total number of atoms in <code>pdb</code> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pdb</td><td>PDB structure holding atom coordinates </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pdb_filename</td><td>Reference filename for warnings </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

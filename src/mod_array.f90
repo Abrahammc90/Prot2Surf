@@ -1,44 +1,52 @@
 MODULE mod_array
 
-  !> Routines to build and read/write encounter-based matrices.
+  !> \file mod_array.f90
+  !! \brief Build/read/write encounter-based arrays and per-encounter metrics.
   !!
-  !! This module contains helpers to construct pairwise matrices and
-  !! arrays from transformed encounter coordinates (z-coordinate,
-  !! inter-atomic distances, angles, RMSD), and to read/write matrix
-  !! and array files. Several routines use OpenMP for parallelism.
+  !! Provides routines to compute z-coordinate, distance, and angle-based arrays
+  !! from encounter transformations, as well as array I/O and sorting helpers.
   !!
   !! @author Abraham Muñiz-Chicharro
-  !!
+  !! @version 1.0
+  !! @date 2026-04-05
   USE maths
   USE mod_assoc
   USE OMP_LIB
 
+  ! Workflow summary:
+  ! - compute one scalar value per encounter from transforms and atom groups
+  ! - keep encounter metadata aligned while sorting output arrays
+  ! - provide array read/write and merge-sort helpers for stable ordering
+
     contains
 
-    !> Build a matrix of absolute differences of Z-coordinates per encounter.
+    !> Compute the Z-coordinate (along transformed z-axis) for each encounter and sort.
     !!
-    !! Computes the Z coordinate for each encounter (as in `array_z_coord`)
-    !! and fills `matrix(i,j) = |z_i - z_j|` for i<j (symmetrically).
+    !! Computes the Z coordinate for each encounter and fills the output array.
+    !! The resulting array is sorted from minimum to maximum value.
     !!
-    !! @param[out] array       Output array with per-encounter Z values
-    !! @param[in]  n           Number of encounters
-    !! @param[in]  nb_atoms    Number of atoms in `solute_crds`
-    !! @param[in]  xc1, xc2    Solute centers used for translation transformations
-    !! @param[in]  trans_vector, rot1, rot2 Transform arrays (n,3)
-    !! @param[in]  solute_crds Coordinates of solute atoms
+    !! @param[in,out] complexes   Association object reordered consistently with sorted outputs
+    !! @param[out] array_sorted   Output array of length `n` with z-coordinates (sorted)
+    !! @param[in]  n              Number of encounters
+    !! @param[in]  nb_atoms       Number of atoms in `solute_crds`
+    !! @param[in]  xc1, xc2       Solute centers used for translation transformations
+    !! @param[in]  trans_vector   Translation vectors for each encounter (n, 3)
+    !! @param[in]  rot1, rot2     Rotation vectors for each encounter (n, 3)
+    !! @param[in]  solute_crds    Coordinates of solute atoms (nb_atoms, 3)
     subroutine array_z_coord(complexes, array_sorted, n, nb_atoms, &
       xc1, xc2, trans_vector, rot1, rot2, solute_crds)
 
       IMPLICIT NONE
       type(type_assoc_file), intent(inout) :: complexes
+      real(kind=8), dimension(n), intent(out) :: array_sorted
+      integer, intent(in) :: n, nb_atoms
       real(kind=8), dimension(3), intent(in) :: xc1, xc2
       real(kind=8), dimension(:, :), intent(in) :: trans_vector, rot1, rot2
-      real(kind=8), dimension(n), intent(out) :: array_sorted
       real(kind=8), dimension(:, :), intent(in) :: solute_crds
+
       real(kind=8), dimension(n) :: array
       real(kind=8), dimension(n) :: tmp_arr
       character(len=217), dimension(n) :: tmp_comp
-      integer, intent(in) :: n, nb_atoms
       real(kind=8), dimension(nb_atoms, 3) :: new_coord
       integer :: i, ii, jj, t, num_threads, chunk_size
       integer :: start_idx, end_idx, left, mid, right, merge_size
@@ -125,31 +133,32 @@ MODULE mod_array
 
     end subroutine array_z_coord
 
-    !> Build matrix from minimum inter-atomic distances between two solutes.
+    !> Compute minimum inter-atomic distance between two solutes for each encounter and sort.
     !!
     !! For each encounter, the second solute is transformed and the minimum
-    !! distance to `solute1_crds` is computed; pairwise absolute
-    !! differences of these minima populate `matrix`.
+    !! distance to `solute1_crds` is computed and stored in the output array.
+    !! The resulting array is sorted from minimum to maximum value.
     !!
-    !! @param[out] matrix         Output (n,n) matrix of pairwise values
-    !! @param[out] array          Output (n) array with per-encounter minimum distances
+    !! @param[in,out] complexes      Association object reordered consistently with sorted outputs
+    !! @param[out] array_sorted   Output array of length `n` with minimum distances (sorted)
     !! @param[in]  n              Number of encounters
-    !! @param[in]  nb_atoms       Number of atoms in solute 2 to transform
+    !! @param[in]  nb_atoms       Number of atoms in `solute2_crds`
     !! @param[in]  xc1, xc2       Solute centers used for translation transformations
-    !! @param[in]  trans_vector   Transform translation vectors (n,3)
-    !! @param[in]  rot1, rot2     Transform rotation arrays (n,3)
-    !! @param[in]  solute1_crds   Coordinates of first solute atoms
-    !! @param[in]  solute2_crds   Coordinates of second solute atoms
+    !! @param[in]  trans_vector   Translation vectors for each encounter (n, 3)
+    !! @param[in]  rot1, rot2     Rotation vectors for each encounter (n, 3)
+    !! @param[in]  solute1_crds   Coordinates of solute1 atoms
+    !! @param[in]  solute2_crds   Coordinates of solute2 atoms
     subroutine array_atoms_dist(complexes, array_sorted, n, nb_atoms, &
       xc1, xc2, trans_vector, rot1, rot2, solute1_crds, solute2_crds)
 
       IMPLICIT NONE
       type(type_assoc_file), intent(inout) :: complexes
+      real(kind=8), dimension(n), intent(out) :: array_sorted
+      integer, intent(in) :: n, nb_atoms
       real(kind=8), dimension(3), intent(in) :: xc1, xc2
       real(kind=8), dimension(:, :), intent(in) :: trans_vector, rot1, rot2
-      real(kind=8), dimension(n), intent(out) :: array_sorted
       real(kind=8), dimension(:, :), intent(in) :: solute1_crds, solute2_crds
-      integer, intent(in) :: n, nb_atoms
+
       real(kind=8), dimension(:), allocatable :: distances
       real(kind=8), dimension(nb_atoms, 3) :: new_coord
       real(kind=8), dimension(n) :: array
@@ -167,6 +176,7 @@ MODULE mod_array
       allocate(distances(tot_coords1))
       progress_index = 0
 
+      ! Compute minimum-distance for each encounter.
       !$OMP PARALLEL DO PRIVATE(j, k, new_coord, distances, min_i, min_j, dist) SCHEDULE(DYNAMIC)
       do i = 1, n
         distances = 999999.9
@@ -259,40 +269,41 @@ MODULE mod_array
   
     !Subroutine matrix_plane_degree
 ! 
-    !> Build matrix of angular differences between encounters.
+    !> Compute angle between two vectors (defined by atom groups) per encounter and sort.
     !!
-    !! Computes the angle (2D or 3D) for each encounter and fills the
-    !! pairwise absolute difference matrix.
+    !! Computes the angle between two vectors (defined by atom groups) for each encounter.
+    !! The resulting array is sorted from minimum to maximum value.
     !!
-    !! @param[out] matrix         Output (n,n) matrix of pairwise angular differences
-    !! @param[out] array          Output (n) array with per-encounter angles
+    !! @param[in,out] complexes      Association object reordered consistently with sorted outputs
+    !! @param[out] array_sorted   Output array of length `n` with angles (sorted)
     !! @param[in]  n              Number of encounters
-    !! @param[in]  nb_atoms       Number of atoms in solute 2 to transform
+    !! @param[in]  nb_atoms       Number of atoms used for transformation
     !! @param[in]  xc1, xc2       Solute centers used for translation transformations
-    !! @param[in]  trans_vector   Transform translation vectors (n,3)
-    !! @param[in]  rot1, rot2     Transform rotation arrays (n,3)
+    !! @param[in]  trans_vector   Translation vectors for each encounter (n, 3)
+    !! @param[in]  rot1, rot2     Rotation vectors for each encounter (n, 3)
     !! @param[in]  point1a        First point defining reference vector
     !! @param[in]  point1b        Second point defining reference vector
     !! @param[in]  point2a        First point of vector to be transformed
     !! @param[in]  point2b        Second point of vector to be transformed
-    !! @param[in]  dimensions     Dimensionality of angle calculation (2 or 3)
+    !! @param[in]  dimensions     Use 2 or 3 to select projection
     subroutine array_angle(complexes, array_sorted, n, nb_atoms, &
       xc1, xc2, trans_vector, rot1, rot2, &
       point1a, point1b, point2a, point2b, dimensions)
 
       IMPLICIT NONE
       type(type_assoc_file), intent(inout) :: complexes
+      real(kind=8), dimension(n), intent(out) :: array_sorted
+      integer, intent(in) :: n, nb_atoms
       real(kind=8), dimension(3), intent(in) :: xc1, xc2
       real(kind=8), dimension(:, :), intent(in) :: trans_vector, rot1, rot2
-      real(kind=8), dimension(n), intent(out) :: array_sorted
       real(kind=8), dimension(:), intent(in) :: point1a, point1b, point2a, point2b
-      integer, intent(in) :: n, nb_atoms
+      integer, intent(in) :: dimensions
+
       real(kind=8), dimension(nb_atoms, 3) :: new_coord_1, new_coord_2
       real(kind=8), dimension(3) :: v1, v2
       real(kind=8) :: theta1, theta2
-      integer :: i, j, progress_index
+      integer :: i, j
       real(kind=8), dimension(2, 3) :: solute2_points
-      integer, intent(in) :: dimensions
       real(kind=8), dimension(n) :: array
       real(kind=8), dimension(n) :: tmp_arr
       character(len=217), dimension(n) :: tmp_comp
@@ -337,8 +348,8 @@ MODULE mod_array
         else if (dimensions .eq. 3) then
           call vectors_angle_3D(v1, v2, theta1)
         else
-          print *, "Dimensions indicated is ", dimensions
-          print *, "Dimensions implemented are 2 or 3."
+          print *, '[mod_array] ERROR: Dimensions indicated is', dimensions
+          print *, '[mod_array] Only 2D or 3D implemented.'
           STOP 1
         end if
         
@@ -421,12 +432,12 @@ MODULE mod_array
 
     end subroutine array_angle
 
-    ! !> Write a numeric array to a formatted text file.
-    ! !!
-    ! !! Writes `array` as a single formatted line using `F10.4` floats.
-    ! !!
-    ! !! @param[in]  array     Input array to write
-    ! !! @param[in]  filename  Output filename
+    !> Write a numeric array to a formatted text file.
+    !!
+    !! Writes `array` as a single formatted line using `F10.4` floats.
+    !!
+    !! @param[in]  array     Input array to write
+    !! @param[in]  filename  Output filename
     subroutine write_array(array, filename)
 
       IMPLICIT NONE
@@ -452,21 +463,21 @@ MODULE mod_array
       
     end subroutine write_array
 
-    ! !> Read a numeric array from a formatted text file.
-    ! !!
-    ! !! Parses a single-row formatted array file produced by `write_array`.
-    ! !!
-    ! !! @param[out]    array     Output array read from file (allocated)
-    ! !! @param[inout]  n         Number of encounters (adjusted if file is smaller)
-    ! !! @param[in]     filename  Input filename
+    !> Read a numeric array from a formatted text file.
+    !!
+    !! Parses a single-row formatted array file produced by `write_array`.
+    !!
+    !! @param[out]    array     Output array read from file (allocated)
+    !! @param[inout]  n         Number of encounters (adjusted if file is smaller)
+    !! @param[in]     filename  Input filename
     subroutine read_array(array, n, filename)
       implicit none
       real(kind=8), dimension(:), allocatable, intent(out) :: array
       integer, intent(inout) :: n
       character*128, intent(in) :: filename
       logical :: file_ex
-      integer :: input_array, array_stat, array_size
-      integer :: i, j, m, line_length
+      integer :: input_array, array_stat
+      integer :: m, line_length
       !integer :: float_length, line_length, actual_length
       character(len=:), allocatable :: line_buffer
       real(kind=8), allocatable :: temp_row(:)
@@ -481,6 +492,7 @@ MODULE mod_array
         STOP 1
       end if
 
+      input_array = 22
       open (input_array,FILE=filename,FORM='FORMATTED',STATUS='OLD',IOSTAT=array_stat)
       if (array_stat.NE.0) then
           write (*,*) "Error opening array file"
@@ -539,10 +551,10 @@ MODULE mod_array
     !> Merge two adjacent sorted segments of arrays in place.
     !!
     !! Merges `arr(left:mid)` and `arr(mid+1:right)` into a single sorted
-    !! segment `arr(left:right)`, reordering `comp` in the same way.
+    !! segment `arr(left:right)`, reordering complexes and transform fields in the same way.
     !!
     !! @param[in,out] arr      Array of values being sorted
-    !! @param[in,out] comp     Companion array reordered alongside `arr`
+    !! @param[in,out] complexes Association object reordered alongside `arr`
     !! @param[out]    tmp_arr  Temporary buffer for values (at least size `right`)
     !! @param[out]    tmp_comp Temporary buffer for companion (at least size `right`)
     !! @param[in]     left     Start index of the first segment

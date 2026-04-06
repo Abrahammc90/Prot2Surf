@@ -1,17 +1,18 @@
 MODULE mod_threshold
 
-  !> Utilities to compute threshold arrays from encounter complexes.
-  !!
-  !! This module provides routines to compute various scalar arrays
-  !! (z-coordinate, inter-atom distances, angles) over a set of
-  !! encounter transforms. These arrays are typically used to derive
-  !! thresholds for selecting encounter complexes. Many routines use
-  !! OpenMP to parallelize outer loops.
+  !> \file mod_threshold.f90
+  !! \brief Utilities to compute threshold arrays from encounter complexes.
   !!
   !! @author Abraham Muñiz-Chicharro
-  !!
+  !! @version 1.0
+  !! @date 2026-04-05
   USE maths
   USE OMP_LIB
+
+  ! Workflow summary:
+  ! - compute one value per encounter for threshold filtering
+  ! - support z-coordinate, minimum-distance, and angle values
+  ! - provide sorting helpers for values and indexes
 
     contains
 
@@ -21,21 +22,23 @@ MODULE mod_threshold
     !! `rot1/rot2` and `trans_vector`, and extracts the Z coordinate of the
     !! first atom in `solute_crds` for every encounter into `array`.
     !!
-    !! @param[out] array       Output array of length `n` with z-coordinates
-    !! @param[in]  n           Number of encounters
-    !! @param[in]  nb_atoms    Number of atoms in `solute_crds`
-    !! @param[in]  xc1, xc2    Centers used for transform
-    !! @param[in]  trans_vector, rot1, rot2 Transform arrays (n,3)
-    !! @param[in]  solute_crds Coordinates of solute atoms (nb_atoms,3)
+    !! @param[out] array        Output array of length `n` with z-coordinates
+    !! @param[in]  n            Number of encounters
+    !! @param[in]  nb_atoms     Number of atoms in `solute_crds`
+    !! @param[in]  xc1, xc2     Centers used for transform
+    !! @param[in]  trans_vector Translation vectors for each encounter (n, 3)
+    !! @param[in]  rot1, rot2   Rotation vectors for each encounter (n, 3)
+    !! @param[in]  solute_crds  Coordinates of solute atoms (nb_atoms, 3)
     subroutine array_z_coord(array, n, nb_atoms, &
       xc1, xc2, trans_vector, rot1, rot2, solute_crds)
 
       IMPLICIT NONE
+      real(kind=8), dimension(n), intent(out) :: array
+      integer, intent(in) :: n, nb_atoms
       real(kind=8), dimension(3), intent(in) :: xc1, xc2
       real(kind=8), dimension(:, :), intent(in) :: trans_vector, rot1, rot2
-      real(kind=8), dimension(n), intent(out) :: array
       real(kind=8), dimension(:, :), intent(in) :: solute_crds
-      integer, intent(in) :: n, nb_atoms
+
       real(kind=8), dimension(nb_atoms, 3) :: new_coord
       integer :: i, j, progress_index
       real(kind=8) :: value_i, value_j
@@ -66,26 +69,28 @@ MODULE mod_threshold
 
     !> Compute minimum inter-atomic distance between two solutes for each encounter.
     !!
-    !! For each encounter the second solute is transformed and the minimum
+    !! For each encounter, the second solute is transformed and the minimum
     !! distance between any atom of `solute1_crds` and the transformed
     !! `solute2_crds` is computed and stored in `array`.
     !!
-    !! @param[out] array       Output array (n)
-    !! @param[in]  n           Number of encounters
-    !! @param[in]  nb_atoms    Number of atoms in `solute2_crds`
-    !! @param[in]  xc1, xc2    Centers used for transform
-    !! @param[in]  trans_vector, rot1, rot2 Transform arrays (n,3)
-    !! @param[in]  solute1_crds Coordinates of solute1 atoms
-    !! @param[in]  solute2_crds Coordinates of solute2 atoms
+    !! @param[out] array         Output array of length `n` with minimum distances
+    !! @param[in]  n             Number of encounters
+    !! @param[in]  nb_atoms      Number of atoms in `solute2_crds`
+    !! @param[in]  xc1, xc2      Centers used for transform
+    !! @param[in]  trans_vector  Translation vectors for each encounter (n, 3)
+    !! @param[in]  rot1, rot2    Rotation vectors for each encounter (n, 3)
+    !! @param[in]  solute1_crds  Coordinates of solute1 atoms
+    !! @param[in]  solute2_crds  Coordinates of solute2 atoms
     subroutine array_atoms_dist(array, n, nb_atoms, &
       xc1, xc2, trans_vector, rot1, rot2, solute1_crds, solute2_crds)
 
       IMPLICIT NONE
+      real(kind=8), dimension(n), intent(out) :: array
+      integer, intent(in) :: n, nb_atoms
       real(kind=8), dimension(3), intent(in) :: xc1, xc2
       real(kind=8), dimension(:, :), intent(in) :: trans_vector, rot1, rot2
-      real(kind=8), dimension(n), intent(out) :: array
       real(kind=8), dimension(:, :), intent(in) :: solute1_crds, solute2_crds
-      integer, intent(in) :: n, nb_atoms
+
       real(kind=8), dimension(:), allocatable :: distances
       real(kind=8), dimension(nb_atoms, 3) :: new_coord
       integer :: i, j, k, tot_coords1, progress_index
@@ -95,6 +100,7 @@ MODULE mod_threshold
       allocate(distances(tot_coords1))
       progress_index = 0
 
+      ! Compute minimum-distance per encounter.
       !$OMP PARALLEL DO PRIVATE(j, k, new_coord, distances, min_i, min_j, dist) SCHEDULE(DYNAMIC)
       do i = 1, n
         distances = 999999.9
@@ -131,33 +137,38 @@ MODULE mod_threshold
 ! 
     !> Compute angle between two vectors (defined by atom groups) per encounter.
     !!
-    !! Transforms the pair of points from solute2 for each encounter and
+    !! Transforms the pair of points from `solute2` for each encounter and
     !! computes the angle between the vector defined by `point1b-point1a`
     !! and the vector defined by the transformed `point2b-point2a`.
     !!
-    !! @param[out] array       Output array with angles in degrees (n)
-    !! @param[in]  n           Number of encounters
-    !! @param[in]  nb_atoms    Number of atoms used for transformation
-    !! @param[in]  xc1, xc2    Centers used for transform
-    !! @param[in]  trans_vector, rot1, rot2 Transform arrays (n,3)
-    !! @param[in]  point1a,b, point2a,b Reference points/vectors
-    !! @param[in]  dimensions  Use 2 or 3 to select projection
+    !! @param[out] array         Output array of length `n` with angles in degrees
+    !! @param[in]  n             Number of encounters
+    !! @param[in]  nb_atoms      Number of atoms used for transformation
+    !! @param[in]  xc1, xc2      Centers used for transform
+    !! @param[in]  trans_vector  Translation vectors for each encounter (n, 3)
+    !! @param[in]  rot1, rot2    Rotation vectors for each encounter (n, 3)
+    !! @param[in]  point1a       First point defining reference vector
+    !! @param[in]  point1b       Second point defining reference vector
+    !! @param[in]  point2a       First point of vector to be transformed
+    !! @param[in]  point2b       Second point of vector to be transformed
+    !! @param[in]  dimensions    Use 2 or 3 to select projection
     subroutine array_angle(array, n, nb_atoms, &
       xc1, xc2, trans_vector, rot1, rot2, &
       point1a, point1b, point2a, point2b, dimensions)
 
       IMPLICIT NONE
+      real(kind=8), dimension(n), intent(out) :: array
+      integer, intent(in) :: n, nb_atoms
       real(kind=8), dimension(3), intent(in) :: xc1, xc2
       real(kind=8), dimension(:, :), intent(in) :: trans_vector, rot1, rot2
-      real(kind=8), dimension(n), intent(out) :: array
       real(kind=8), dimension(:), intent(in) :: point1a, point1b, point2a, point2b
-      integer, intent(in) :: n, nb_atoms
+      integer, intent(in) :: dimensions
+
       real(kind=8), dimension(nb_atoms, 3) :: new_coord_1, new_coord_2
       real(kind=8), dimension(3) :: v1, v2
       real(kind=8) :: theta
       integer :: i, j, progress_index
       real(kind=8), dimension(2, 3) :: solute2_points
-      integer, intent(in) :: dimensions
 
       progress_index = 0
 
@@ -176,6 +187,8 @@ MODULE mod_threshold
       solute2_points(1, :) = point2a(:)
       solute2_points(2, :) = point2b(:)
 
+      ! Transform solute2 vector per encounter and compute
+      ! the requested angular dimension (2D or 3D).
       ! Parallelizing outer loop with OpenMP
       !$OMP PARALLEL DO PRIVATE(j, new_coord_1, new_coord_2, v2, theta) SCHEDULE(DYNAMIC)
       do i = 1, n
@@ -228,15 +241,15 @@ MODULE mod_threshold
     !! Simple selection sort used to reorder `arr` and the parallel
     !! `encounter_indexes` array. Intended for small to moderate sizes.
     !!
-    !! @param[in,out] arr              Array to sort (modified in-place)
-    !! @param[in,out] encounter_indexes Parallel index array reordered to match `arr`
+    !! @param[in,out] arr               Array to sort (modified in-place)
+    !! @param[in,out] encounter_indexes Parallel index array reordered to match arr
     subroutine sort_array(arr, encounter_indexes)
       implicit none
       real (kind=8), intent(inout), dimension(:) :: arr
       integer, intent(inout), dimension(:) :: encounter_indexes
-      integer :: i, j, min_index
+      integer :: i, j, min_index, tmp_index
       integer :: n
-      real :: temp
+      real(kind=8) :: temp
       
       n = size(arr(:))
 
@@ -252,9 +265,9 @@ MODULE mod_threshold
               arr(i) = arr(min_index)
               arr(min_index) = temp
 
-              temp = encounter_indexes(i)
+                tmp_index = encounter_indexes(i)
               encounter_indexes(i) = encounter_indexes(min_index)
-              encounter_indexes(min_index) = temp
+                encounter_indexes(min_index) = tmp_index
           end if
       end do
     end subroutine sort_array

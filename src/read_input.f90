@@ -1,3 +1,9 @@
+!> \file read_input.f90
+!! \brief Input readers for PDB and association/complexes files.
+!!
+!! @author Abraham Muñiz-Chicharro
+!! @version 1.0
+!! @date 2026-04-05
 module read_input
 
     !> Routines to read input files (PDB and association/complex files).
@@ -8,6 +14,12 @@ module read_input
     !! and fill them using helpers from `mod_pdb` and `mod_assoc`.
     !!
     !! @author Abraham Muñiz-Chicharro
+
+    ! Workflow summary:
+    ! - check that input files exist and can be opened
+    ! - count data sizes from file contents
+    ! - allocate output data structures
+    ! - fill structures with parsed values
 
     USE mod_pdb
     USE mod_assoc
@@ -32,21 +44,26 @@ module read_input
         character*128, intent(in) :: filename
         integer, intent(out) :: tot_atoms, tot_residues, tot_chains
 
+        ! Validate file existence before attempting open/read.
         inquire(FILE=filename,EXIST=pdb_ex)
         if (.NOT.pdb_ex) then
             write(*,*) "PDB file not found"
             STOP 1
         end if
 
+        ! Open the file and fail fast on I/O errors.
         open (input_pdb,FILE=filename,FORM='FORMATTED',IOSTAT=pdb_stat)
         if (pdb_stat.NE.0) then
             write (*,*) "Error opening PDB file"
             STOP 1
         end if
     
+        ! Count atoms/residues/chains to size arrays.
         tot_atoms = count_atoms(input_pdb)
         tot_residues = count_residues(input_pdb)
         tot_chains = count_chains(input_pdb)
+
+        ! Allocate and fill the PDB structure.
         call allocate_pdb_object(pdb,input_pdb,tot_atoms,tot_residues,tot_chains)
         call fill_pdb_object(pdb,input_pdb)
 
@@ -68,19 +85,25 @@ module read_input
         character*128, intent(in) :: filename
         integer, intent(out) :: tot_encounters
 
+        ! Validate file existence before opening.
         inquire(FILE=filename,EXIST=assoc_ex)
         if (.NOT.assoc_ex) then
             write(*,*) "Association complexes file not found"
             STOP 1
         end if
 
+        input_assoc = 23
+        ! Open file and stop on read/open errors.
         open (input_assoc,FILE=filename,FORM='FORMATTED',IOSTAT=assoc_stat)
         if (assoc_stat.NE.0) then
             write (*,*) "Error opening association file"
             STOP 1
         end if
 
-        tot_encounters = size_assoc(input_assoc)
+        ! Count data rows (excluding 4 header lines).
+        tot_encounters = max(0, size_assoc(input_assoc) - 4)
+
+        ! Allocate arrays and read header/transform values.
         call allocate_assoc_object(assoc,tot_encounters)
         call fill_assoc_object(assoc,input_assoc)
 

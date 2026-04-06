@@ -1,0 +1,48 @@
+\hypertarget{md_make_data_autotoc_md30}{}\doxysection{Description}\label{md_make_data_autotoc_md30}
+{\ttfamily make\+\_\+data} generates encounter-\/derived numeric data and writes it to disk.
+
+The selected mode is controlled by {\ttfamily -\/data\+\_\+type}\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily rmsd}
+\item {\ttfamily z\+\_\+coord}
+\item {\ttfamily atoms\+\_\+dist}
+\item {\ttfamily 2D\+\_\+angle}
+\item {\ttfamily 3D\+\_\+angle}
+\end{DoxyItemize}\hypertarget{md_make_data_autotoc_md31}{}\doxysection{Parser description}\label{md_make_data_autotoc_md31}
+\hypertarget{md_make_data_autotoc_md32}{}\doxysection{Required Arguments}\label{md_make_data_autotoc_md32}
+
+\begin{DoxyItemize}
+\item {\ttfamily -\/pdb2 $<$file$>$}
+\item {\ttfamily -\/atoms2 $<$atom ...$>$} (or {\ttfamily -\/atoms2a})
+\item {\ttfamily -\/complexes $<$file$>$}
+\item {\ttfamily -\/data\+\_\+type $<$type$>$}
+\item {\ttfamily -\/input $<$file$>$}
+\end{DoxyItemize}\hypertarget{md_make_data_autotoc_md33}{}\doxysection{Optional arguments}\label{md_make_data_autotoc_md33}
+
+\begin{DoxyItemize}
+\item {\ttfamily -\/pdb1 $<$file$>$} (required for {\ttfamily atoms\+\_\+dist} and angle types)
+\item {\ttfamily -\/atoms1}, {\ttfamily -\/atoms1a}, {\ttfamily -\/atoms1b}, {\ttfamily -\/atoms2b} (as needed by data type)
+\item {\ttfamily -\/nb\+\_\+encounters $<$N$>$}
+\item {\ttfamily -\/help}
+\end{DoxyItemize}\hypertarget{md_make_data_autotoc_md34}{}\doxysubsection{Modules Used}\label{md_make_data_autotoc_md34}
+
+\begin{DoxyItemize}
+\item {\ttfamily \mbox{\hyperlink{namespaceread__input}{read\+\_\+input}}}
+\item {\ttfamily \mbox{\hyperlink{namespacemod__matrix}{mod\+\_\+matrix}}}
+\item {\ttfamily \mbox{\hyperlink{namespacemod__array}{mod\+\_\+array}}}
+\item {\ttfamily \mbox{\hyperlink{namespacemod__assoc}{mod\+\_\+assoc}}}
+\end{DoxyItemize}\hypertarget{md_make_data_autotoc_md35}{}\doxysubsection{Usage}\label{md_make_data_autotoc_md35}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./make\_data -\/help}
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./make\_data -\/data\_type rmsd -\/help}
+\end{DoxyCode}
+\hypertarget{md_make_data_autotoc_md36}{}\doxysubsection{Author}\label{md_make_data_autotoc_md36}
+Abraham Muñiz-\/\+Chicharro 

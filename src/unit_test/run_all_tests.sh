@@ -12,7 +12,8 @@ echo ""
 
 TESTS=(
     "test_maths"
-    "test_matrix" 
+    "test_matrix"
+    "test_array"
     "test_threshold"
     "test_pdb"
     "test_clustering"
@@ -20,31 +21,7 @@ TESTS=(
     "test_read_input"
 )
 
-SRC_DIR="../src"
-
-COMPILE_COMMANDS=(
-    "gfortran -O0 -Wall -llapack -lblas -fopenmp -march=native -funroll-loops -fno-fast-math -o test_maths test_maths.f90 $SRC_DIR/maths.o $SRC_DIR/mod_pdb.o"
-    "gfortran -O0 -Wall -llapack -lblas -fopenmp -march=native -funroll-loops -fno-fast-math -o test_matrix test_matrix.f90 $SRC_DIR/mod_matrix.o $SRC_DIR/maths.o $SRC_DIR/mod_pdb.o"
-    "gfortran -O0 -Wall -llapack -lblas -fopenmp -march=native -funroll-loops -fno-fast-math -o test_threshold test_threshold.f90 $SRC_DIR/mod_threshold.o $SRC_DIR/maths.o"
-    "gfortran -O0 -Wall -llapack -lblas -fopenmp -march=native -funroll-loops -fno-fast-math -o test_pdb test_pdb.f90 $SRC_DIR/mod_pdb.o"
-    "gfortran -O0 -Wall -llapack -lblas -fopenmp -march=native -funroll-loops -fno-fast-math -o test_clustering test_clustering.f90 $SRC_DIR/mod_clust_algorithm.o $SRC_DIR/read_input.o $SRC_DIR/mod_pdb.o $SRC_DIR/mod_assoc.o $SRC_DIR/maths.o"
-    "gfortran -O0 -Wall -llapack -lblas -fopenmp -march=native -funroll-loops -fno-fast-math -o test_assoc test_assoc.f90 $SRC_DIR/mod_assoc.o"
-    "gfortran -O0 -Wall -llapack -lblas -fopenmp -march=native -funroll-loops -fno-fast-math -o test_read_input test_read_input.f90 $SRC_DIR/read_input.o $SRC_DIR/mod_pdb.o $SRC_DIR/mod_assoc.o"
-)
-
-# Compile all tests
-for i in "${!TESTS[@]}"; do
-    test_name="${TESTS[$i]}"
-    compile_cmd="${COMPILE_COMMANDS[$i]}"
-    
-    echo "Compiling $test_name..."
-    if eval "$compile_cmd"; then
-        echo "  [OK] Compilation successful"
-    else
-        echo "  [FAIL] Compilation failed"
-        exit 1
-    fi
-done
+SRC_DIR="../"
 
 echo ""
 echo "========================================="
@@ -79,6 +56,10 @@ echo "========================================="
 echo "Tests passed: $total_passed/${#TESTS[@]}"
 echo "Tests failed: $total_failed/${#TESTS[@]}"
 echo "========================================="
+
+echo ""
+echo "Cleaning generated test files..."
+make -C "$SRC_DIR" cleanup_test_artifacts
 
 if [ $total_failed -eq 0 ]; then
     echo "[OK] All tests passed successfully!"

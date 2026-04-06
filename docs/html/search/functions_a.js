@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['update_5fcomplex_276',['update_complex',['../da/d63/namespacemaths.html#a63f77e09ffc345c4982ee2558929223b',1,'maths']]]
+  ['vectors_5fangle_5f2d_268',['vectors_angle_2d',['../da/d63/namespacemaths.html#abb426ddd3613be84a4d6b52514518093',1,'maths']]],
+  ['vectors_5fangle_5f3d_269',['vectors_angle_3d',['../da/d63/namespacemaths.html#a7a88ae4cdae87c8a9b1a71c6c398147e',1,'maths']]]
 ];

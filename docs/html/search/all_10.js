@@ -1,8 +1,10 @@
 var searchData=
 [
-  ['unit_20testing_20suite_20_2d_20file_20index_141',['Unit Testing Suite - File Index',['../d3/dc0/md_unit_test_INDEX.html',1,'']]],
-  ['unit_20testing_20framework_142',['Unit Testing Framework',['../dd/dcc/md_unit_test_README.html',1,'']]],
-  ['unit_20testing_20suite_20for_20clustering_20program_143',['Unit Testing Suite for Clustering Program',['../d0/d44/md_unit_test_TEST_SUMMARY.html',1,'']]],
-  ['unit_20testing_20guide_20for_20clustering_20program_144',['Unit Testing Guide for Clustering Program',['../dc/d87/md_unit_test_TESTING.html',1,'']]],
-  ['update_5fcomplex_145',['update_complex',['../da/d63/namespacemaths.html#a63f77e09ffc345c4982ee2558929223b',1,'maths']]]
+  ['write_5farray_144',['write_array',['../d4/d74/namespacemod__array.html#a778a88da7e7c643a241f2c142acd007e',1,'mod_array::write_array()'],['../d9/dcc/threshold_8f90.html#a5ce58677d1b4a380e504f22141ae31a8',1,'write_array():&#160;threshold.f90']]],
+  ['write_5fclust_5finfo_145',['write_clust_info',['../d4/d95/namespacemod__clust__algorithm.html#a8b27ce5160935731f219ce97560d521b',1,'mod_clust_algorithm']]],
+  ['write_5fcluster_5fcomplexes_146',['write_cluster_complexes',['../d4/d95/namespacemod__clust__algorithm.html#a0a2c96478205c647ddd3a6bf8c283a39',1,'mod_clust_algorithm']]],
+  ['write_5fcluster_5felements_147',['write_cluster_elements',['../d4/d95/namespacemod__clust__algorithm.html#a781dcda3e1ee679a509a0a466f15a0cf',1,'mod_clust_algorithm']]],
+  ['write_5fcomplexes_148',['write_complexes',['../d6/ded/namespacemod__assoc.html#a1a078920eaad8dbf34e84a3948283c74',1,'mod_assoc']]],
+  ['write_5fcutoff_5fcomplexes_149',['write_cutoff_complexes',['../d9/dcc/threshold_8f90.html#a241309bb0c3b176ef1f50e8f506031f0',1,'threshold.f90']]],
+  ['write_5fmatrix_150',['write_matrix',['../db/d1d/namespacemod__matrix.html#a2ac28315cb206a31cad2f5e63c3afba1',1,'mod_matrix']]]
 ];

@@ -2,7 +2,24 @@
 
 import os
 import tempfile
+import warnings
 import pytest
+
+try:
+    from pyparsing import PyparsingDeprecationWarning
+except Exception:
+    PyparsingDeprecationWarning = Warning
+
+warnings.filterwarnings(
+    "ignore",
+    category=PyparsingDeprecationWarning,
+    module=r"matplotlib\._fontconfig_pattern",
+)
+warnings.filterwarnings(
+    "ignore",
+    category=PyparsingDeprecationWarning,
+    module=r"matplotlib\._mathtext",
+)
 
 
 @pytest.fixture

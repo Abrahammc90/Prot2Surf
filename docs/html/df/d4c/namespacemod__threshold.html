@@ -177,15 +177,19 @@ Functions/Subroutines</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Compute angle between two vectors (defined by atom groups) per encounter. </p>
-<p>Transforms the pair of points from solute2 for each encounter and computes the angle between the vector defined by <code>point1b-point1a</code> and the vector defined by the transformed <code>point2b-point2a</code>.</p>
+<p>Transforms the pair of points from <code>solute2</code> for each encounter and computes the angle between the vector defined by <code>point1b-point1a</code> and the vector defined by the transformed <code>point2b-point2a</code>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">array</td><td>Output array with angles in degrees (n) </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">array</td><td>Output array of length <code>n</code> with angles in degrees </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>Number of encounters </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">nb_atoms</td><td>Number of atoms used for transformation </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">xc1,xc2</td><td>Centers used for transform </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">trans_vector,rot1,rot2</td><td>Transform arrays (n,3) </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">point1a,b,point2a,b</td><td>Reference points/vectors </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">trans_vector</td><td>Translation vectors for each encounter (n, 3) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">rot1,rot2</td><td>Rotation vectors for each encounter (n, 3) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">point1a</td><td>First point defining reference vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">point1b</td><td>Second point defining reference vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">point2a</td><td>First point of vector to be transformed </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">point2b</td><td>Second point of vector to be transformed </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">dimensions</td><td>Use 2 or 3 to select projection </td></tr>
   </table>
   </dd>
@@ -268,14 +272,15 @@ Functions/Subroutines</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Compute minimum inter-atomic distance between two solutes for each encounter. </p>
-<p>For each encounter the second solute is transformed and the minimum distance between any atom of <code>solute1_crds</code> and the transformed <code>solute2_crds</code> is computed and stored in <code>array</code>.</p>
+<p>For each encounter, the second solute is transformed and the minimum distance between any atom of <code>solute1_crds</code> and the transformed <code>solute2_crds</code> is computed and stored in <code>array</code>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">array</td><td>Output array (n) </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">array</td><td>Output array of length <code>n</code> with minimum distances </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>Number of encounters </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">nb_atoms</td><td>Number of atoms in <code>solute2_crds</code> </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">xc1,xc2</td><td>Centers used for transform </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">trans_vector,rot1,rot2</td><td>Transform arrays (n,3) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">trans_vector</td><td>Translation vectors for each encounter (n, 3) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">rot1,rot2</td><td>Rotation vectors for each encounter (n, 3) </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">solute1_crds</td><td>Coordinates of solute1 atoms </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">solute2_crds</td><td>Coordinates of solute2 atoms </td></tr>
   </table>
@@ -360,8 +365,9 @@ Functions/Subroutines</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>Number of encounters </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">nb_atoms</td><td>Number of atoms in <code>solute_crds</code> </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">xc1,xc2</td><td>Centers used for transform </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">trans_vector,rot1,rot2</td><td>Transform arrays (n,3) </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">solute_crds</td><td>Coordinates of solute atoms (nb_atoms,3) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">trans_vector</td><td>Translation vectors for each encounter (n, 3) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">rot1,rot2</td><td>Rotation vectors for each encounter (n, 3) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">solute_crds</td><td>Coordinates of solute atoms (nb_atoms, 3) </td></tr>
   </table>
   </dd>
 </dl>
@@ -399,7 +405,7 @@ Functions/Subroutines</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in,out]</td><td class="paramname">arr</td><td>Array to sort (modified in-place) </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">encounter_indexes</td><td>Parallel index array reordered to match <code>arr</code> </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">encounter_indexes</td><td>Parallel index array reordered to match arr </td></tr>
   </table>
   </dd>
 </dl>

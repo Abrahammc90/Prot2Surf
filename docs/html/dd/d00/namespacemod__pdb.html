@@ -68,9 +68,6 @@ $(function() {
 <div class="title">mod_pdb Module Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Module to define a pdb type and pdb reading routine for tools.  
-<a href="../../dd/d00/namespacemod__pdb.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Types</h2></td></tr>
@@ -102,12 +99,7 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memdesc:a08ac5c29c5079a644b0e41d004457d55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse PDB records and populate the <code><a class="el" href="../../d1/d57/structmod__pdb_1_1type__pdb__file.html" title="Data type for storing binned data (eg.">type_pdb_file</a></code> structure.  <a href="../../dd/d00/namespacemod__pdb.html#a08ac5c29c5079a644b0e41d004457d55">More...</a><br /></td></tr>
 <tr class="separator:a08ac5c29c5079a644b0e41d004457d55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Module to define a pdb type and pdb reading routine for tools. </p>
-<p>NOTE: This implementation is based on the SDA7 project's <code><a class="el" href="../../d3/dc0/mod__pdb_8f90.html">mod_pdb.f90</a></code> (original author Neil Bruce). The present file has been modified and expanded for the clustering tools in this workspace. Notable enhancements include the addition of <code>count_residues</code> and <code>count_chains</code> functions and changes that allow creation of richer in-memory objects where residues contain their atoms and chains contain residues and atoms. These changes make it possible to build <code><a class="el" href="../../d1/d57/structmod__pdb_1_1type__pdb__file.html" title="Data type for storing binned data (eg.">type_pdb_file</a></code> instances with proper <code>residues</code> and <code>chains</code> substructures (each storing their atoms) rather than storing atoms in a single flat list only.</p>
-<p>The original SDA7 code and author attribution are retained; consult the SDA7 sources for original licensing and authorship details.</p>
-<dl class="section author"><dt>Author</dt><dd>Neil Bruce @modified-by Abraham Muñiz-Chicharro </dd></dl>
-</div><h2 class="groupheader">Function/Subroutine Documentation</h2>
+<h2 class="groupheader">Function/Subroutine Documentation</h2>
 <a id="a3f94eefa2e718fc426df4eaa4d80eb45"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3f94eefa2e718fc426df4eaa4d80eb45">&#9670;&nbsp;</a></span>allocate_pdb_object()</h2>
 

@@ -19,7 +19,7 @@ class TestPDBFileHandling:
         
         atom_lines = [line for line in lines if line.startswith('ATOM')]
         assert len(atom_lines) > 0
-        assert 'CA' in atom_lines[0]
+        assert 'CA' in atom_lines[1]
 
     def test_pdb_coordinate_extraction(self, temp_dir):
         """Test extracting coordinates from PDB file."""

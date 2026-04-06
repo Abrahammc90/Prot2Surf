@@ -1,4 +1,7 @@
-!> Association/complexes file utilities.
+!> \file mod_assoc.f90
+!! \brief Association/complexes file data structures and parsing routines.
+!!
+!! Association/complexes file utilities.
 !!
 !! This module defines the `type_assoc_file` derived type and routines
 !! to allocate and populate it from an association/complexes text
@@ -8,11 +11,13 @@
 !!
 !! NOTE: The routines in this file are adapted from the SDA7 project's
 !! `mod_pdb.f90` (original author Neil Bruce). This file contains code
-!! and ideas derived from that implementation; appropriate attribution
+!! and ideas derived from that implementation. Appropriate attribution
 !! to the SDA7 sources is retained here. Consult the SDA7 project for
 !! original authorship and licensing details.
 !!
 !! @author Abraham Muñiz-Chicharro
+!! @version 1.0
+!! @date 2026-04-05
 module mod_assoc
 
     !> Data type for storing binned data (eg. Radial distribution functions)
@@ -51,8 +56,10 @@ module mod_assoc
  
        this%nlines = nlines
 
+      ! Allocate raw line buffer for encounter records.
        allocate(this%lines(nlines))
        
+      ! Allocate transform arrays and initialize to zero.
        allocate (this%trans_vector(nlines,3), STAT=ierr)
        if (ierr.NE.0) then
           write (*,*) "Error allocating complexes object"
@@ -183,6 +190,7 @@ module mod_assoc
           read (assoc_line(2:26), '(3F8.3)') this%xc2(1), this%xc2(2), this%xc2(3)
           !write(*,*) 'xc2', this%xc2
        else if ( i .gt. 4 ) then
+          ! Store encounter line and read transform vectors.
           assoc_i = assoc_i + 1
           this % lines(assoc_i) = assoc_line
           read (assoc_line(17:98),'(9F9.3)') this%trans_vector(assoc_i,1), &

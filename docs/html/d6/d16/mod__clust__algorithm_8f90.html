@@ -68,6 +68,9 @@ $(function() {
 <div class="title">mod_clust_algorithm.f90 File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Hierarchical clustering algorithms and output helpers.  
+<a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Modules</h2></td></tr>
@@ -76,12 +79,12 @@ Modules</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions/Subroutines</h2></td></tr>
-<tr class="memitem:aac8e767d613f22ea09bbfe4e72ac8c97"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d95/namespacemod__clust__algorithm.html#aac8e767d613f22ea09bbfe4e72ac8c97">mod_clust_algorithm::linkage_clustering_from_matrix</a> (matrix, n, linkage_type, output_name, complexes, use_cuda)</td></tr>
-<tr class="memdesc:aac8e767d613f22ea09bbfe4e72ac8c97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform hierarchical clustering on a distance matrix.  <a href="../../d4/d95/namespacemod__clust__algorithm.html#aac8e767d613f22ea09bbfe4e72ac8c97">More...</a><br /></td></tr>
-<tr class="separator:aac8e767d613f22ea09bbfe4e72ac8c97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa77b6410a12742c93a35e88295847b20"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d95/namespacemod__clust__algorithm.html#aa77b6410a12742c93a35e88295847b20">mod_clust_algorithm::linkage_clustering_from_array</a> (array, n, linkage_type, output_name, complexes, use_cuda)</td></tr>
-<tr class="memdesc:aa77b6410a12742c93a35e88295847b20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform hierarchical clustering on a distance matrix.  <a href="../../d4/d95/namespacemod__clust__algorithm.html#aa77b6410a12742c93a35e88295847b20">More...</a><br /></td></tr>
-<tr class="separator:aa77b6410a12742c93a35e88295847b20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a473a1ca16c6b1e90b2fb602a74a794"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d95/namespacemod__clust__algorithm.html#a6a473a1ca16c6b1e90b2fb602a74a794">mod_clust_algorithm::linkage_clustering_from_matrix</a> (matrix, n, linkage_type, output_name, complexes)</td></tr>
+<tr class="memdesc:a6a473a1ca16c6b1e90b2fb602a74a794"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform hierarchical clustering on a distance matrix.  <a href="../../d4/d95/namespacemod__clust__algorithm.html#a6a473a1ca16c6b1e90b2fb602a74a794">More...</a><br /></td></tr>
+<tr class="separator:a6a473a1ca16c6b1e90b2fb602a74a794"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30eb621a6ad610c736bca0ef2711dc9f"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d95/namespacemod__clust__algorithm.html#a30eb621a6ad610c736bca0ef2711dc9f">mod_clust_algorithm::linkage_clustering_from_array</a> (array, n, linkage_type, output_name, complexes)</td></tr>
+<tr class="memdesc:a30eb621a6ad610c736bca0ef2711dc9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform hierarchical clustering on a distance array.  <a href="../../d4/d95/namespacemod__clust__algorithm.html#a30eb621a6ad610c736bca0ef2711dc9f">More...</a><br /></td></tr>
+<tr class="separator:a30eb621a6ad610c736bca0ef2711dc9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5f3db6d505ab3f6f1ac125933ec5a3c"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d95/namespacemod__clust__algorithm.html#af5f3db6d505ab3f6f1ac125933ec5a3c">mod_clust_algorithm::sort_complexes</a> (tot_encounters, cluster_indexes, cluster_count, active_clusters, representative_indexes, cluster_average, cluster_sd, array)</td></tr>
 <tr class="memdesc:af5f3db6d505ab3f6f1ac125933ec5a3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sort clusters and associated arrays by a given key array.  <a href="../../d4/d95/namespacemod__clust__algorithm.html#af5f3db6d505ab3f6f1ac125933ec5a3c">More...</a><br /></td></tr>
 <tr class="separator:af5f3db6d505ab3f6f1ac125933ec5a3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -95,7 +98,9 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memdesc:a0a2c96478205c647ddd3a6bf8c283a39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write complexes contained in each cluster to individual files.  <a href="../../d4/d95/namespacemod__clust__algorithm.html#a0a2c96478205c647ddd3a6bf8c283a39">More...</a><br /></td></tr>
 <tr class="separator:a0a2c96478205c647ddd3a6bf8c283a39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Hierarchical clustering algorithms and output helpers. </p>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

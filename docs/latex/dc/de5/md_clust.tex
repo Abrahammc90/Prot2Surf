@@ -1,0 +1,52 @@
+\hypertarget{md_clust_autotoc_md11}{}\doxysection{Description}\label{md_clust_autotoc_md11}
+{\ttfamily clust} performs hierarchical clustering on encounter data using {\ttfamily min}, {\ttfamily max}, or {\ttfamily mean} linkage.
+
+The input passed with {\ttfamily -\/input} is auto-\/detected\+:
+
+
+\begin{DoxyItemize}
+\item single line → treated as a 1D array
+\item multiple lines → treated as a 2D distance matrix
+\end{DoxyItemize}
+
+The program reads encounter complexes, runs clustering, and writes output files using the provided output name.\hypertarget{md_clust_autotoc_md12}{}\doxysection{Parser description}\label{md_clust_autotoc_md12}
+\hypertarget{md_clust_autotoc_md13}{}\doxysection{Required Arguments}\label{md_clust_autotoc_md13}
+
+\begin{DoxyItemize}
+\item {\ttfamily -\/complexes $<$file$>$}
+\item {\ttfamily -\/input $<$file$>$}
+\item {\ttfamily -\/output\+\_\+name $<$name$>$}
+\end{DoxyItemize}\hypertarget{md_clust_autotoc_md14}{}\doxysection{Optional arguments}\label{md_clust_autotoc_md14}
+
+\begin{DoxyItemize}
+\item {\ttfamily -\/nb\+\_\+encounters $<$N$>$} (default\+: all)
+\item {\ttfamily -\/linkage $<$min$\vert$max$\vert$mean$>$} (default\+: {\ttfamily mean})
+\item {\ttfamily -\/help}
+\end{DoxyItemize}\hypertarget{md_clust_autotoc_md15}{}\doxysubsection{Modules Used}\label{md_clust_autotoc_md15}
+
+\begin{DoxyItemize}
+\item {\ttfamily \mbox{\hyperlink{namespacemod__matrix}{mod\+\_\+matrix}}}
+\item {\ttfamily \mbox{\hyperlink{namespacemod__array}{mod\+\_\+array}}}
+\item {\ttfamily \mbox{\hyperlink{namespacemod__clust__algorithm}{mod\+\_\+clust\+\_\+algorithm}}}
+\item {\ttfamily \mbox{\hyperlink{namespaceread__input}{read\+\_\+input}}}
+\end{DoxyItemize}\hypertarget{md_clust_autotoc_md16}{}\doxysubsection{Main Routines Called}\label{md_clust_autotoc_md16}
+
+\begin{DoxyItemize}
+\item {\ttfamily read\+\_\+assoc} (from {\ttfamily \mbox{\hyperlink{namespaceread__input}{read\+\_\+input}}})
+\item {\ttfamily read\+\_\+array} (from {\ttfamily \mbox{\hyperlink{namespacemod__array}{mod\+\_\+array}}})
+\item {\ttfamily read\+\_\+matrix} (from {\ttfamily \mbox{\hyperlink{namespacemod__matrix}{mod\+\_\+matrix}}})
+\item {\ttfamily linkage\+\_\+clustering\+\_\+from\+\_\+array} (from {\ttfamily \mbox{\hyperlink{namespacemod__clust__algorithm}{mod\+\_\+clust\+\_\+algorithm}}})
+\item {\ttfamily linkage\+\_\+clustering\+\_\+from\+\_\+matrix} (from {\ttfamily \mbox{\hyperlink{namespacemod__clust__algorithm}{mod\+\_\+clust\+\_\+algorithm}}})
+\item {\ttfamily print\+\_\+help} (internal)
+\end{DoxyItemize}\hypertarget{md_clust_autotoc_md17}{}\doxysubsection{Notes}\label{md_clust_autotoc_md17}
+
+\begin{DoxyItemize}
+\item Clustering runs on C\+PU for both array and matrix inputs.
+\item If {\ttfamily -\/nb\+\_\+encounters} is omitted, all encounters in the complexes file are used.
+\end{DoxyItemize}\hypertarget{md_clust_autotoc_md18}{}\doxysubsection{Usage Example}\label{md_clust_autotoc_md18}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./clust -\/complexes assoc\_complexes -\/input matrix\_z.txt -\/nb\_encounters 5000 -\/output\_name Cu\_z -\/linkage mean}
+\end{DoxyCode}
+\hypertarget{md_clust_autotoc_md19}{}\doxysubsection{Author}\label{md_clust_autotoc_md19}
+Abraham Muñiz-\/\+Chicharro 

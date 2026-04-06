@@ -1,0 +1,39 @@
+\hypertarget{md_cuda_workflow_autotoc_md30}{}\doxysection{Overview}\label{md_cuda_workflow_autotoc_md30}
+This project supports optional C\+U\+DA acceleration for hierarchical clustering.
+
+{\bfseries{Scope constraint\+:}} C\+U\+DA is used only for the {\bfseries{matrix-\/distance}} clustering path (2D {\ttfamily N x N} matrix). Array-\/based (1D) clustering remains C\+P\+U-\/only.\hypertarget{md_cuda_workflow_autotoc_md31}{}\doxysection{Components}\label{md_cuda_workflow_autotoc_md31}
+
+\begin{DoxyItemize}
+\item {\ttfamily \mbox{\hyperlink{mod__cuda_8f90}{mod\+\_\+cuda.\+f90}}}\+: Fortran interface (I\+SO C binding) to C\+U\+DA code
+\item {\ttfamily cuda\+\_\+kernels.\+cu}\+: C\+U\+DA wrapper and kernels
+\item {\ttfamily \mbox{\hyperlink{mod__clust__algorithm_8f90}{mod\+\_\+clust\+\_\+algorithm.\+f90}}}\+: selects C\+PU or C\+U\+DA matrix clustering path
+\item {\ttfamily \mbox{\hyperlink{clust_8f90}{clust.\+f90}}} / {\ttfamily \mbox{\hyperlink{clust__all_8f90}{clust\+\_\+all.\+f90}}}\+: expose {\ttfamily -\/cuda} C\+LI option
+\end{DoxyItemize}\hypertarget{md_cuda_workflow_autotoc_md32}{}\doxysection{Execution Flow}\label{md_cuda_workflow_autotoc_md32}
+
+\begin{DoxyEnumerate}
+\item Main program parses arguments and identifies matrix clustering path.
+\item {\ttfamily \mbox{\hyperlink{namespacemod__clust__algorithm}{mod\+\_\+clust\+\_\+algorithm}}} calls {\ttfamily cuda\+\_\+matrix\+\_\+clustering} when {\ttfamily -\/cuda} is enabled.
+\item {\ttfamily \mbox{\hyperlink{namespacemod__cuda}{mod\+\_\+cuda}}} bridges Fortran data to C/\+C\+U\+DA wrapper ({\ttfamily cuda\+\_\+matrix\+\_\+clustering\+\_\+c}).
+\item C\+U\+DA code allocates device memory, runs clustering kernels, and updates cluster state.
+\item Results are copied back to host and standard output routines continue in Fortran.
+\end{DoxyEnumerate}\hypertarget{md_cuda_workflow_autotoc_md33}{}\doxysection{Key Routines}\label{md_cuda_workflow_autotoc_md33}
+
+\begin{DoxyItemize}
+\item {\ttfamily cuda\+\_\+matrix\+\_\+clustering} ({\ttfamily \mbox{\hyperlink{mod__cuda_8f90}{mod\+\_\+cuda.\+f90}}})\+: Fortran entry point
+\item {\ttfamily cuda\+\_\+matrix\+\_\+clustering\+\_\+c} ({\ttfamily cuda\+\_\+kernels.\+cu})\+: C/\+C\+U\+DA wrapper
+\item device/global kernels in {\ttfamily cuda\+\_\+kernels.\+cu}\+: core G\+PU clustering operations
+\end{DoxyItemize}\hypertarget{md_cuda_workflow_autotoc_md34}{}\doxysection{Usage}\label{md_cuda_workflow_autotoc_md34}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./clust -\/complexes assoc\_complexes -\/input matrix\_z.txt -\/output\_name Cu\_z -\/linkage mean -\/cuda}
+\end{DoxyCode}
+
+
+If input is a 1D array, the computation stays on C\+PU even if {\ttfamily -\/cuda} is provided.\hypertarget{md_cuda_workflow_autotoc_md35}{}\doxysection{Notes}\label{md_cuda_workflow_autotoc_md35}
+
+\begin{DoxyItemize}
+\item Data layout is Fortran-\/compatible (column-\/major assumptions are preserved).
+\item G\+PU acceleration targets clustering compute, not full pipeline I/\+O/preprocessing.
+\item A C\+U\+D\+A-\/capable G\+PU, runtime, and compatible toolchain are required.
+\end{DoxyItemize}\hypertarget{md_cuda_workflow_autotoc_md36}{}\doxysection{Author}\label{md_cuda_workflow_autotoc_md36}
+Abraham Muñiz-\/\+Chicharro 

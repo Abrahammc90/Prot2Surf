@@ -72,7 +72,7 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions/Subroutines</h2></td></tr>
 <tr class="memitem:affdf9c36be5881d9bc9123646b3bf339"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d4e/namespacemod__cuda.html#affdf9c36be5881d9bc9123646b3bf339">cuda_matrix_clustering</a> (matrix, n, dist_threshold, linkage_str, cluster_parent, cluster_count, active_points, cluster_size)</td></tr>
-<tr class="memdesc:affdf9c36be5881d9bc9123646b3bf339"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize GPU clustering - transfer matrix to GPU once.  <a href="../../d0/d4e/namespacemod__cuda.html#affdf9c36be5881d9bc9123646b3bf339">More...</a><br /></td></tr>
+<tr class="memdesc:affdf9c36be5881d9bc9123646b3bf339"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fortran wrapper for complete GPU clustering using CUDA.  <a href="../../d0/d4e/namespacemod__cuda.html#affdf9c36be5881d9bc9123646b3bf339">More...</a><br /></td></tr>
 <tr class="separator:affdf9c36be5881d9bc9123646b3bf339"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function/Subroutine Documentation</h2>
@@ -138,36 +138,18 @@ Functions/Subroutines</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Initialize GPU clustering - transfer matrix to GPU once. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">matrix</td><td>Distance matrix (n x n, column-major) </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>Matrix dimension </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">active_points</td><td>Logical array of active clusters </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">cluster_size</td><td>Integer array of cluster sizes </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>0 on success, -1 on error Find minimum pair and merge on GPU</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">min_dist</td><td>Minimum distance value </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">min_i,min_j</td><td>Indices of minimum pair (1-based) </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">linkage_str</td><td>Linkage type ('min', 'max', or 'mean') </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>0 on success, -1 on error Perform complete GPU clustering - all iterations on GPU</dd></dl>
+<p>Fortran wrapper for complete GPU clustering using CUDA. </p>
+<p>Converts Fortran data to C types, calls the CUDA C interface, and converts results back.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">matrix</td><td>Distance matrix (n x n, column-major) </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>Matrix dimension </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">dist_threshold</td><td>Distance threshold for stopping </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">linkage_str</td><td>Linkage type ('min', 'max', or 'mean') </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">cluster_parent</td><td>Output cluster parent for each point (n) - O(n) tracking </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">cluster_count</td><td>Output cluster sizes (n) </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">active_points</td><td>Output active clusters (n) </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">cluster_size</td><td>Cluster sizes for linkage computation </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">linkage_str</td><td>Linkage type: 'min', 'max', or 'mean' </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">cluster_parent</td><td>Output: cluster parent for each point (n) </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">cluster_count</td><td>Output: cluster sizes (n) </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">active_points</td><td>Output: which clusters are still active (n) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cluster_size</td><td>Cluster sizes for linkage computation (n) </td></tr>
   </table>
   </dd>
 </dl>

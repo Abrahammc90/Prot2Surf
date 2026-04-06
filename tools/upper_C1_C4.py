@@ -1,4 +1,15 @@
-"""
+"""!
+@file upper_C1_C4.py
+@brief Extract uppermost C1/C4 atoms from cellulose PDB structures.
+@author Abraham Muñiz-Chicharro
+@version 1.0
+@date 2026-04-05
+@par Usage
+python upper_C1_C4.py [input_pdb_file]
+
+@par Usage flags
+- Positional @c input_pdb_file : input cellulose PDB structure.
+
 Extract Upper C1/C4 Atoms Script
 
 This script extracts the uppermost C1 and C4 atoms from cellulose PDB structures.
@@ -21,7 +32,7 @@ Output:
                       within 0.1 Ų of the maximum Z-coordinate
 
 Usage:
-    python upper_C1_C4.py <input_pdb_file>
+    python upper_C1_C4.py [input_pdb_file]
 
 Example:
     python upper_C1_C4.py cellulose_structure.pdb

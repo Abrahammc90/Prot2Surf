@@ -1,4 +1,18 @@
-"""
+"""!
+@file filter_neg_enc.py
+@brief Filter encounter complexes based on geometric/z-coordinate criteria.
+@author Abraham Muñiz-Chicharro
+@version 1.0
+@date 2026-04-05
+@par Usage
+python filter_neg_enc.py [p1.pdb] [p2.pdb] [assoc_file] [-o [output_prefix]]
+
+@par Usage flags
+- Positional @c p1 : receptor PDB file.
+- Positional @c p2 : ligand PDB file.
+- Positional @c assoc_file : SDA association file.
+- @c -o, @c --output : output prefix (default: Min).
+
 Filter Negative Encounter Complexes Script
 
 This script processes PDB coordinate files to filter encounter complexes based on
@@ -25,7 +39,7 @@ Methods:
     - Distance calculations and filtering
 
 Usage:
-    python filter_neg_enc.py <input_complexes> [options]
+    python filter_neg_enc.py [p1.pdb] [p2.pdb] [assoc_file] [-o [output_prefix]]
 
 Author: Abraham Muñiz-Chicharro
 Version: 1.0
@@ -59,6 +73,8 @@ class Atom:
         self.resid = 0
         self.id = 0
         self.name = ""
+        self.element = ""
+        self.chainID = ""
 
     def get_attributes(self, atom):
         """

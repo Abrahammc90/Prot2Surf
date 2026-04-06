@@ -1,10 +1,5 @@
 \hypertarget{namespacemaths}{}\doxysection{maths Module Reference}
 \label{namespacemaths}\index{maths@{maths}}
-
-
-Mathematical utilities and coordinate transformation routines.  
-
-
 \doxysubsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
@@ -22,16 +17,6 @@ subroutine \mbox{\hyperlink{namespacemaths_a84de91e95426185eed4ea444f1d5f16f}{ca
 \begin{DoxyCompactList}\small\item\em Compute the center of geometry (centroid) of a set of points. \end{DoxyCompactList}\item 
 subroutine \mbox{\hyperlink{namespacemaths_a25adf67f6183941af427c98445c60d9f}{calculate\+\_\+distance}} (p1, p2, dist)
 \begin{DoxyCompactList}\small\item\em Compute Euclidean distance between two 3D points. \end{DoxyCompactList}\end{DoxyCompactItemize}
-
-
-\doxysubsection{Detailed Description}
-Mathematical utilities and coordinate transformation routines. 
-
-This module provides fundamental math operations including cross products, coordinate transformations, angle calculations, and rotation matrices.
-
-\begin{DoxyAuthor}{Author}
-Abraham Muñiz-\/\+Chicharro 
-\end{DoxyAuthor}
 
 
 \doxysubsection{Function/\+Subroutine Documentation}
@@ -85,7 +70,7 @@ Compute Euclidean distance between two 3D points.
 
 Compute the cross product of two 3D vectors. 
 
-Computes v3 = v1 x v2 using the standard right-\/hand rule.
+Computes v3 = v1 x v2.
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -123,13 +108,13 @@ Calculates R\+M\+SD = sqrt( (1/N) $\ast$ sum\+\_\+i $\vert$$\vert$coords1(i,\+:)
 \index{maths@{maths}!update\_complex@{update\_complex}}
 \index{update\_complex@{update\_complex}!maths@{maths}}
 \doxysubsubsection{\texorpdfstring{update\_complex()}{update\_complex()}}
-{\footnotesize\ttfamily subroutine maths\+::update\+\_\+complex (\begin{DoxyParamCaption}\item[{real ( kind = 8 ), dimension ( 3 ), intent(in)}]{xc1,  }\item[{real ( kind = 8 ), dimension ( 3 ), intent(in)}]{xc2,  }\item[{real ( kind = 8 ), dimension ( 3 ), intent(in)}]{trans,  }\item[{real ( kind = 8 ), dimension ( 3 ), intent(in)}]{rot\+\_\+vx,  }\item[{real ( kind = 8 ), dimension ( 3 ), intent(in)}]{rot\+\_\+vy,  }\item[{integer}]{nb\+\_\+atoms,  }\item[{real ( kind = 8 ), dimension (\+:, \+:), intent(in)}]{coords,  }\item[{real ( kind = 8 ), dimension (\+:, \+:), intent(out)}]{new\+\_\+coords }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily subroutine maths\+::update\+\_\+complex (\begin{DoxyParamCaption}\item[{real ( kind = 8 ), dimension ( 3 ), intent(in)}]{xc1,  }\item[{real ( kind = 8 ), dimension ( 3 ), intent(in)}]{xc2,  }\item[{real ( kind = 8 ), dimension ( 3 ), intent(in)}]{trans,  }\item[{real ( kind = 8 ), dimension ( 3 ), intent(in)}]{rot\+\_\+vx,  }\item[{real ( kind = 8 ), dimension ( 3 ), intent(in)}]{rot\+\_\+vy,  }\item[{integer, intent(in)}]{nb\+\_\+atoms,  }\item[{real ( kind = 8 ), dimension (\+:, \+:), intent(in)}]{coords,  }\item[{real ( kind = 8 ), dimension (\+:, \+:), intent(out)}]{new\+\_\+coords }\end{DoxyParamCaption})}
 
 
 
 Apply translation and rotation to a set of atomic coordinates. 
 
-Transforms the coordinates of a complex from a frame centered at {\ttfamily xc2} to a new frame centered at {\ttfamily xc1}. The routine first recenters coordinates by {\ttfamily xc2}, applies a rotation defined by {\ttfamily rot\+\_\+vx} and {\ttfamily rot\+\_\+vy} (their cross product defines the third axis), then applies an additional translation {\ttfamily trans}, and writes the results to {\ttfamily new\+\_\+coords}.
+Transforms the coordinates of a complex. The routine first recenters coordinates to the origin with {\ttfamily xc2}, applies a rotation defined by {\ttfamily rot\+\_\+vx} and {\ttfamily rot\+\_\+vy} (their cross product defines the third axis), then applies an additional translation {\ttfamily trans}, moves to the new frame centered at {\ttfamily xc1}, and writes the results to {\ttfamily new\+\_\+coords}.
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -181,7 +166,7 @@ Uses only the first two components of the input vectors to compute the angle in 
 
 Compute the angle in degrees between two 3D vectors. 
 
-Calculates the angle (in degrees) between {\ttfamily vector1} and {\ttfamily vector2} using the dot product formula and {\ttfamily acos}. No modification of inputs.
+Calculates the angle (in degrees) between {\ttfamily vector1} and {\ttfamily vector2} using the dot product formula and {\ttfamily acos}.
 
 
 \begin{DoxyParams}[1]{Parameters}

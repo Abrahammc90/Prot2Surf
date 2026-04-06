@@ -75,13 +75,24 @@ program test_assoc
 
 contains
 
+    !*******************************************************************************
+    !> @brief Unit test for read_assoc file operations.
+    !>
+    !> @author Abraham
+    !> @version 1.0
+    !> @date 2024-06-09
+    !>
+    !> @param[inout] num_tests   Number of tests executed (incremented)
+    !> @param[inout] num_passed  Number of tests passed (incremented)
+    !> @param[inout] num_failed  Number of tests failed (incremented)
+    !*******************************************************************************
     subroutine test_read_assoc_file(num_tests, num_passed, num_failed)
         integer, intent(inout) :: num_tests, num_passed, num_failed
         type(type_assoc_file) :: assoc
         integer :: tot_encounters
         character*128 :: filename
         logical :: test_passed, file_exists
-        integer :: i
+        character(len=217) :: assoc_line
 
         print *, ""
         print *, "Testing read_assoc file operations..."
@@ -92,11 +103,16 @@ contains
         
         ! Create a simple test assoc file
         open(unit=10, file=trim(filename), status='replace', action='write')
-        write(10, '(A)') "# Test association file"
-        write(10, '(A)') "# Header line 2"
-        write(10, '(A)') "  0.000000   0.000000   0.000000   1.000000   0.000000   0.000000   0.000000   1.000000   0.000000"
-        write(10, '(A)') "  1.000000   2.000000   3.000000   0.707107   0.707107   0.000000   -0.707107   0.707107   0.000000"
-        write(10, '(A)') "  2.000000   1.500000   2.500000   0.866025   0.500000   0.000000   -0.500000   0.866025   0.000000"
+        write(10, '(A)') "Header line 1"
+        write(10, '(A)') "Header line 2"
+        write(10, '(A)') "   0.000   0.000   0.000"
+        write(10, '(A)') "   1.000   2.000   3.000"
+        write(assoc_line, '(16X,9F9.3)') 0.000d0, 0.000d0, 0.000d0, 1.000d0, 0.000d0, 0.000d0, 0.000d0, 1.000d0, 0.000d0
+        write(10, '(A)') assoc_line
+        write(assoc_line, '(16X,9F9.3)') 1.000d0, 2.000d0, 3.000d0, 0.707d0, 0.707d0, 0.000d0, -0.707d0, 0.707d0, 0.000d0
+        write(10, '(A)') assoc_line
+        write(assoc_line, '(16X,9F9.3)') 2.000d0, 1.500d0, 2.500d0, 0.866d0, 0.500d0, 0.000d0, -0.500d0, 0.866d0, 0.000d0
+        write(10, '(A)') assoc_line
         close(10)
         
         ! Verify file was created
@@ -217,6 +233,17 @@ contains
     end subroutine test_read_assoc_file
 
 
+    !*******************************************************************************
+    !> @brief Unit test for allocate_assoc_object routine.
+    !>
+    !> @author Abraham
+    !> @version 1.0
+    !> @date 2024-06-09
+    !>
+    !> @param[inout] num_tests   Number of tests executed (incremented)
+    !> @param[inout] num_passed  Number of tests passed (incremented)
+    !> @param[inout] num_failed  Number of tests failed (incremented)
+    !*******************************************************************************
     subroutine test_allocate_assoc_object(num_tests, num_passed, num_failed)
         integer, intent(inout) :: num_tests, num_passed, num_failed
         type(type_assoc_file) :: assoc
@@ -297,11 +324,22 @@ contains
     end subroutine test_allocate_assoc_object
 
 
+    !*******************************************************************************
+    !> @brief Unit test for size_assoc routine (line counting in assoc files).
+    !>
+    !> @author Abraham
+    !> @version 1.0
+    !> @date 2024-06-09
+    !>
+    !> @param[inout] num_tests   Number of tests executed (incremented)
+    !> @param[inout] num_passed  Number of tests passed (incremented)
+    !> @param[inout] num_failed  Number of tests failed (incremented)
+    !*******************************************************************************
     subroutine test_size_assoc(num_tests, num_passed, num_failed)
         integer, intent(inout) :: num_tests, num_passed, num_failed
         character*128 :: filename
-        integer :: input_unit, count, io_stat
-        logical :: test_passed, file_exists
+        integer :: count, io_stat
+        logical :: test_passed
 
         print *, ""
         print *, "Testing size_assoc counting..."

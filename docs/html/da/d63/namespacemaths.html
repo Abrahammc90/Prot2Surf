@@ -67,9 +67,6 @@ $(function() {
 <div class="title">maths Module Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Mathematical utilities and coordinate transformation routines.  
-<a href="../../da/d63/namespacemaths.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions/Subroutines</h2></td></tr>
@@ -95,11 +92,7 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memdesc:a25adf67f6183941af427c98445c60d9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute Euclidean distance between two 3D points.  <a href="../../da/d63/namespacemaths.html#a25adf67f6183941af427c98445c60d9f">More...</a><br /></td></tr>
 <tr class="separator:a25adf67f6183941af427c98445c60d9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Mathematical utilities and coordinate transformation routines. </p>
-<p>This module provides fundamental math operations including cross products, coordinate transformations, angle calculations, and rotation matrices.</p>
-<dl class="section author"><dt>Author</dt><dd>Abraham Muñiz-Chicharro </dd></dl>
-</div><h2 class="groupheader">Function/Subroutine Documentation</h2>
+<h2 class="groupheader">Function/Subroutine Documentation</h2>
 <a id="a84de91e95426185eed4ea444f1d5f16f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a84de91e95426185eed4ea444f1d5f16f">&#9670;&nbsp;</a></span>calculate_cog()</h2>
 
@@ -222,7 +215,7 @@ Functions/Subroutines</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Compute the cross product of two 3D vectors. </p>
-<p>Computes v3 = v1 x v2 using the standard right-hand rule.</p>
+<p>Computes v3 = v1 x v2.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">v1</td><td>Left-hand operand vector (3 elements) </td></tr>
@@ -325,7 +318,7 @@ Functions/Subroutines</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">integer&#160;</td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
           <td class="paramname"><em>nb_atoms</em>, </td>
         </tr>
         <tr>
@@ -349,7 +342,7 @@ Functions/Subroutines</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Apply translation and rotation to a set of atomic coordinates. </p>
-<p>Transforms the coordinates of a complex from a frame centered at <code>xc2</code> to a new frame centered at <code>xc1</code>. The routine first recenters coordinates by <code>xc2</code>, applies a rotation defined by <code>rot_vx</code> and <code>rot_vy</code> (their cross product defines the third axis), then applies an additional translation <code>trans</code>, and writes the results to <code>new_coords</code>.</p>
+<p>Transforms the coordinates of a complex. The routine first recenters coordinates to the origin with <code>xc2</code>, applies a rotation defined by <code>rot_vx</code> and <code>rot_vy</code> (their cross product defines the third axis), then applies an additional translation <code>trans</code>, moves to the new frame centered at <code>xc1</code>, and writes the results to <code>new_coords</code>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">xc1</td><td>Target center position (3) </td></tr>
@@ -444,7 +437,7 @@ Functions/Subroutines</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Compute the angle in degrees between two 3D vectors. </p>
-<p>Calculates the angle (in degrees) between <code>vector1</code> and <code>vector2</code> using the dot product formula and <code>acos</code>. No modification of inputs.</p>
+<p>Calculates the angle (in degrees) between <code>vector1</code> and <code>vector2</code> using the dot product formula and <code>acos</code>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">vector1</td><td>First 3D vector (3 elements) </td></tr>

@@ -4,3 +4,7 @@
 
 # Compiled executables
 bin/*
+
+# Cache and temporary files
+**/__pycache__/
+**/.pytest_cache/

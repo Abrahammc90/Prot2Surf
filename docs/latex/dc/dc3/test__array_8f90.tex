@@ -1,0 +1,185 @@
+\hypertarget{test__array_8f90}{}\doxysection{unit\+\_\+test/test\+\_\+array.f90 File Reference}
+\label{test__array_8f90}\index{unit\_test/test\_array.f90@{unit\_test/test\_array.f90}}
+\doxysubsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+program \mbox{\hyperlink{test__array_8f90_ae798e02f62b0c4bf4f5498185d43e5ff}{test\+\_\+array}}
+\begin{DoxyCompactList}\small\item\em Unit tests for array operations in the \mbox{\hyperlink{namespacemod__array}{mod\+\_\+array}} module. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{test__array_8f90_a47252c9c5ab8806d803c088f56d089ad}{test\+\_\+write\+\_\+read\+\_\+array}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
+\begin{DoxyCompactList}\small\item\em Unit test for write\+\_\+array and read\+\_\+array routines. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{test__array_8f90_a0db8c4fca59b546e8086fcccd8666732}{test\+\_\+array\+\_\+z\+\_\+coord\+\_\+sorting}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
+\begin{DoxyCompactList}\small\item\em Unit test for array\+\_\+z\+\_\+coord sorting and complex reordering. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{test__array_8f90_a51f968a222d75e72a68568bae99838e0}{test\+\_\+array\+\_\+atoms\+\_\+dist\+\_\+sorting}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
+\begin{DoxyCompactList}\small\item\em Unit test for array\+\_\+atoms\+\_\+dist sorting and complex reordering. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{test__array_8f90_aed636a0ae3bc028c63f14e999e4d51a2}{test\+\_\+array\+\_\+angle\+\_\+sorting}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
+\begin{DoxyCompactList}\small\item\em Unit test for array\+\_\+angle sorting and complex reordering. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{test__array_8f90_ab99d3b114693e587a8d13b43f04afe18}{test\+\_\+merge\+\_\+sorted\+\_\+segments}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
+\begin{DoxyCompactList}\small\item\em Unit test for merge\+\_\+sorted\+\_\+segments routine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{test__array_8f90_ae798e02f62b0c4bf4f5498185d43e5ff}\label{test__array_8f90_ae798e02f62b0c4bf4f5498185d43e5ff}} 
+\index{test\_array.f90@{test\_array.f90}!test\_array@{test\_array}}
+\index{test\_array@{test\_array}!test\_array.f90@{test\_array.f90}}
+\doxysubsubsection{\texorpdfstring{test\_array()}{test\_array()}}
+{\footnotesize\ttfamily program test\+\_\+array}
+
+
+
+Unit tests for array operations in the \mbox{\hyperlink{namespacemod__array}{mod\+\_\+array}} module. 
+
+Tests include\+:
+\begin{DoxyItemize}
+\item Write and read array operations
+\item Z-\/coordinate array sorting with encounter metadata reordering
+\item Minimum-\/distance array sorting with encounter metadata reordering
+\item Angle array sorting with encounter metadata reordering
+\item Low-\/level merge of sorted segments with metadata reordering
+\end{DoxyItemize}
+
+\begin{DoxyAuthor}{Author}
+Abraham Muñiz-\/\+Chicharro 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\mbox{\Hypertarget{test__array_8f90_aed636a0ae3bc028c63f14e999e4d51a2}\label{test__array_8f90_aed636a0ae3bc028c63f14e999e4d51a2}} 
+\index{test\_array.f90@{test\_array.f90}!test\_array\_angle\_sorting@{test\_array\_angle\_sorting}}
+\index{test\_array\_angle\_sorting@{test\_array\_angle\_sorting}!test\_array.f90@{test\_array.f90}}
+\doxysubsubsection{\texorpdfstring{test\_array\_angle\_sorting()}{test\_array\_angle\_sorting()}}
+{\footnotesize\ttfamily subroutine test\+\_\+array\+::test\+\_\+array\+\_\+angle\+\_\+sorting (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{num\+\_\+tests,  }\item[{integer, intent(inout)}]{num\+\_\+passed,  }\item[{integer, intent(inout)}]{num\+\_\+failed }\end{DoxyParamCaption})}
+
+
+
+Unit test for array\+\_\+angle sorting and complex reordering. 
+
+\begin{DoxyAuthor}{Author}
+Abraham 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2026-\/04-\/06
+\end{DoxyDate}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+tests} & Number of tests executed (incremented) \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+passed} & Number of tests passed (incremented) \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+failed} & Number of tests failed (incremented) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{test__array_8f90_a51f968a222d75e72a68568bae99838e0}\label{test__array_8f90_a51f968a222d75e72a68568bae99838e0}} 
+\index{test\_array.f90@{test\_array.f90}!test\_array\_atoms\_dist\_sorting@{test\_array\_atoms\_dist\_sorting}}
+\index{test\_array\_atoms\_dist\_sorting@{test\_array\_atoms\_dist\_sorting}!test\_array.f90@{test\_array.f90}}
+\doxysubsubsection{\texorpdfstring{test\_array\_atoms\_dist\_sorting()}{test\_array\_atoms\_dist\_sorting()}}
+{\footnotesize\ttfamily subroutine test\+\_\+array\+::test\+\_\+array\+\_\+atoms\+\_\+dist\+\_\+sorting (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{num\+\_\+tests,  }\item[{integer, intent(inout)}]{num\+\_\+passed,  }\item[{integer, intent(inout)}]{num\+\_\+failed }\end{DoxyParamCaption})}
+
+
+
+Unit test for array\+\_\+atoms\+\_\+dist sorting and complex reordering. 
+
+\begin{DoxyAuthor}{Author}
+Abraham 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2026-\/04-\/06
+\end{DoxyDate}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+tests} & Number of tests executed (incremented) \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+passed} & Number of tests passed (incremented) \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+failed} & Number of tests failed (incremented) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{test__array_8f90_a0db8c4fca59b546e8086fcccd8666732}\label{test__array_8f90_a0db8c4fca59b546e8086fcccd8666732}} 
+\index{test\_array.f90@{test\_array.f90}!test\_array\_z\_coord\_sorting@{test\_array\_z\_coord\_sorting}}
+\index{test\_array\_z\_coord\_sorting@{test\_array\_z\_coord\_sorting}!test\_array.f90@{test\_array.f90}}
+\doxysubsubsection{\texorpdfstring{test\_array\_z\_coord\_sorting()}{test\_array\_z\_coord\_sorting()}}
+{\footnotesize\ttfamily subroutine test\+\_\+array\+::test\+\_\+array\+\_\+z\+\_\+coord\+\_\+sorting (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{num\+\_\+tests,  }\item[{integer, intent(inout)}]{num\+\_\+passed,  }\item[{integer, intent(inout)}]{num\+\_\+failed }\end{DoxyParamCaption})}
+
+
+
+Unit test for array\+\_\+z\+\_\+coord sorting and complex reordering. 
+
+\begin{DoxyAuthor}{Author}
+Abraham 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2026-\/04-\/06
+\end{DoxyDate}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+tests} & Number of tests executed (incremented) \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+passed} & Number of tests passed (incremented) \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+failed} & Number of tests failed (incremented) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{test__array_8f90_ab99d3b114693e587a8d13b43f04afe18}\label{test__array_8f90_ab99d3b114693e587a8d13b43f04afe18}} 
+\index{test\_array.f90@{test\_array.f90}!test\_merge\_sorted\_segments@{test\_merge\_sorted\_segments}}
+\index{test\_merge\_sorted\_segments@{test\_merge\_sorted\_segments}!test\_array.f90@{test\_array.f90}}
+\doxysubsubsection{\texorpdfstring{test\_merge\_sorted\_segments()}{test\_merge\_sorted\_segments()}}
+{\footnotesize\ttfamily subroutine test\+\_\+array\+::test\+\_\+merge\+\_\+sorted\+\_\+segments (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{num\+\_\+tests,  }\item[{integer, intent(inout)}]{num\+\_\+passed,  }\item[{integer, intent(inout)}]{num\+\_\+failed }\end{DoxyParamCaption})}
+
+
+
+Unit test for merge\+\_\+sorted\+\_\+segments routine. 
+
+\begin{DoxyAuthor}{Author}
+Abraham 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2026-\/04-\/06
+\end{DoxyDate}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+tests} & Number of tests executed (incremented) \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+passed} & Number of tests passed (incremented) \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+failed} & Number of tests failed (incremented) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{test__array_8f90_a47252c9c5ab8806d803c088f56d089ad}\label{test__array_8f90_a47252c9c5ab8806d803c088f56d089ad}} 
+\index{test\_array.f90@{test\_array.f90}!test\_write\_read\_array@{test\_write\_read\_array}}
+\index{test\_write\_read\_array@{test\_write\_read\_array}!test\_array.f90@{test\_array.f90}}
+\doxysubsubsection{\texorpdfstring{test\_write\_read\_array()}{test\_write\_read\_array()}}
+{\footnotesize\ttfamily subroutine test\+\_\+array\+::test\+\_\+write\+\_\+read\+\_\+array (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{num\+\_\+tests,  }\item[{integer, intent(inout)}]{num\+\_\+passed,  }\item[{integer, intent(inout)}]{num\+\_\+failed }\end{DoxyParamCaption})}
+
+
+
+Unit test for write\+\_\+array and read\+\_\+array routines. 
+
+\begin{DoxyAuthor}{Author}
+Abraham 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2026-\/04-\/06
+\end{DoxyDate}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+tests} & Number of tests executed (incremented) \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+passed} & Number of tests passed (incremented) \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+failed} & Number of tests failed (incremented) \\
+\hline
+\end{DoxyParams}

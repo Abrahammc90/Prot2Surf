@@ -67,13 +67,24 @@ program test_read_input
 
 contains
 
+    !*******************************************************************************
+    !> @brief Unit test for reading association files via read_input module.
+    !>
+    !> @author Abraham
+    !> @version 1.0
+    !> @date 2024-06-09
+    !>
+    !> @param[inout] num_tests   Number of tests executed (incremented)
+    !> @param[inout] num_passed  Number of tests passed (incremented)
+    !> @param[inout] num_failed  Number of tests failed (incremented)
+    !*******************************************************************************
     subroutine test_read_input_assoc(num_tests, num_passed, num_failed)
         integer, intent(inout) :: num_tests, num_passed, num_failed
         type(type_assoc_file) :: assoc
         integer :: tot_encounters
         character*128 :: filename
         logical :: test_passed, file_exists
-        integer :: i
+        character(len=217) :: assoc_line
 
         print *, ""
         print *, "Testing read_assoc via read_input module..."
@@ -82,17 +93,22 @@ contains
         num_tests = num_tests + 1
         filename = "test_read_input_assoc.txt"
         
-        ! Create a test assoc file with header and data
+        ! Create a test assoc file with parser-compatible header and data
         open(unit=20, file=trim(filename), status='replace', action='write')
-        write(20, '(A)') "# Association complexes file test"
-        write(20, '(A)') "# Generated for unit testing"
-        write(20, '(A)') "# xc1: [0.0, 0.0, 0.0]  xc2: [5.0, 5.0, 5.0]"
-        write(20, '(A)') "# Format: trans_x trans_y trans_z rot1x rot1y rot1z rot2x rot2y rot2z"
-        write(20, '(A)') "  0.000000   0.000000   0.000000   1.000000   0.000000   0.000000   0.000000   1.000000   0.000000"
-        write(20, '(A)') "  1.500000   2.300000   0.800000   0.707107   0.707107   0.000000  -0.707107   0.707107   0.000000"
-        write(20, '(A)') "  0.250000   1.100000   1.950000   0.866025   0.500000   0.000000  -0.500000   0.866025   0.000000"
-        write(20, '(A)') "  2.100000   0.500000   3.200000   0.500000   0.866025   0.000000  -0.866025   0.500000   0.000000"
-        write(20, '(A)') "  1.000000   1.000000   1.000000   0.923880   0.382683   0.000000  -0.382683   0.923880   0.000000"
+        write(20, '(A)') "Header line 1"
+        write(20, '(A)') "Header line 2"
+        write(20, '(A)') "   0.000   0.000   0.000"
+        write(20, '(A)') "   5.000   5.000   5.000"
+        write(assoc_line, '(16X,9F9.3)') 0.000d0, 0.000d0, 0.000d0, 1.000d0, 0.000d0, 0.000d0, 0.000d0, 1.000d0, 0.000d0
+        write(20, '(A)') assoc_line
+        write(assoc_line, '(16X,9F9.3)') 1.500d0, 2.300d0, 0.800d0, 0.707d0, 0.707d0, 0.000d0, -0.707d0, 0.707d0, 0.000d0
+        write(20, '(A)') assoc_line
+        write(assoc_line, '(16X,9F9.3)') 0.250d0, 1.100d0, 1.950d0, 0.866d0, 0.500d0, 0.000d0, -0.500d0, 0.866d0, 0.000d0
+        write(20, '(A)') assoc_line
+        write(assoc_line, '(16X,9F9.3)') 2.100d0, 0.500d0, 3.200d0, 0.500d0, 0.866d0, 0.000d0, -0.866d0, 0.500d0, 0.000d0
+        write(20, '(A)') assoc_line
+        write(assoc_line, '(16X,9F9.3)') 1.000d0, 1.000d0, 1.000d0, 0.924d0, 0.383d0, 0.000d0, -0.383d0, 0.924d0, 0.000d0
+        write(20, '(A)') assoc_line
         close(20)
         
         ! Verify file was created
@@ -184,7 +200,7 @@ contains
             test_passed = (allocated(assoc%rot1) .and. allocated(assoc%rot2) .and. &
                           abs(assoc%rot1(1, 1) - 1.0d0) < 1d-6 .and. &
                           abs(assoc%rot2(1, 2) - 1.0d0) < 1d-6 .and. &
-                          abs(assoc%rot1(2, 1) - 0.707107d0) < 1d-5)
+                          abs(assoc%rot1(2, 1) - 0.707d0) < 1d-3)
             
             if (test_passed) then
                 print *, "  [PASS] Test 6: Rotation vectors allocated and filled"
@@ -226,12 +242,24 @@ contains
     end subroutine test_read_input_assoc
 
 
+    !*******************************************************************************
+    !> @brief Unit test for error handling in read_input module.
+    !>
+    !> @author Abraham
+    !> @version 1.0
+    !> @date 2024-06-09
+    !>
+    !> @param[inout] num_tests   Number of tests executed (incremented)
+    !> @param[inout] num_passed  Number of tests passed (incremented)
+    !> @param[inout] num_failed  Number of tests failed (incremented)
+    !*******************************************************************************
     subroutine test_error_handling(num_tests, num_passed, num_failed)
         integer, intent(inout) :: num_tests, num_passed, num_failed
         type(type_assoc_file) :: assoc
         integer :: tot_encounters
         character*128 :: filename
         logical :: test_passed
+        character(len=217) :: assoc_line
 
         print *, ""
         print *, "Testing error handling in read_input..."
@@ -242,10 +270,14 @@ contains
         num_tests = num_tests + 1
         filename = "test_exist_check.txt"
         
-        ! Create a minimal valid file
+        ! Create a minimal valid file with header + 1 encounter
         open(unit=21, file=trim(filename), status='replace', action='write')
-        write(21, '(A)') "# Test file for existence check"
-        write(21, '(A)') "  0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 0.0"
+        write(21, '(A)') "Header line 1"
+        write(21, '(A)') "Header line 2"
+        write(21, '(A)') "   0.000   0.000   0.000"
+        write(21, '(A)') "   1.000   1.000   1.000"
+        write(assoc_line, '(16X,9F9.3)') 0.000d0, 0.000d0, 0.000d0, 1.000d0, 0.000d0, 0.000d0, 0.000d0, 1.000d0, 0.000d0
+        write(21, '(A)') assoc_line
         close(21)
         
         call read_assoc(assoc, filename, tot_encounters)
@@ -268,24 +300,25 @@ contains
         open(unit=21, file=trim(filename), status='old')
         close(21, status='delete')
 
-        ! Test 2: Reading file with only comments
+        ! Test 2: Reading a header-only file
         num_tests = num_tests + 1
-        filename = "test_comments_only.txt"
+        filename = "test_header_only.txt"
         
         open(unit=21, file=trim(filename), status='replace', action='write')
-        write(21, '(A)') "# Comment line 1"
-        write(21, '(A)') "# Comment line 2"
-        write(21, '(A)') "# Comment line 3"
+        write(21, '(A)') "Header line 1"
+        write(21, '(A)') "Header line 2"
+        write(21, '(A)') "   0.000   0.000   0.000"
+        write(21, '(A)') "   1.000   1.000   1.000"
         close(21)
         
         call read_assoc(assoc, filename, tot_encounters)
         test_passed = (tot_encounters == 0)
         
         if (test_passed) then
-            print *, "  [PASS] Test 2: File with only comments returns 0 encounters"
+            print *, "  [PASS] Test 2: Header-only file returns 0 encounters"
             num_passed = num_passed + 1
         else
-            print *, "  [FAIL] Test 2: Comments-only file"
+            print *, "  [FAIL] Test 2: Header-only file"
             print *, "    Expected: 0, Got: ", tot_encounters
             num_failed = num_failed + 1
         end if
@@ -305,9 +338,14 @@ contains
         
         ! First file with 2 encounters
         open(unit=21, file=trim(filename), status='replace', action='write')
-        write(21, '(A)') "# First sequential test file"
-        write(21, '(A)') "  0.0 0.0 0.0 1.0 0.0 0.0 0.0 1.0 0.0"
-        write(21, '(A)') "  1.0 1.0 1.0 0.7 0.7 0.0 -0.7 0.7 0.0"
+        write(21, '(A)') "Header line 1"
+        write(21, '(A)') "Header line 2"
+        write(21, '(A)') "   0.000   0.000   0.000"
+        write(21, '(A)') "   1.000   1.000   1.000"
+        write(assoc_line, '(16X,9F9.3)') 0.000d0, 0.000d0, 0.000d0, 1.000d0, 0.000d0, 0.000d0, 0.000d0, 1.000d0, 0.000d0
+        write(21, '(A)') assoc_line
+        write(assoc_line, '(16X,9F9.3)') 1.000d0, 1.000d0, 1.000d0, 0.700d0, 0.700d0, 0.000d0, -0.700d0, 0.700d0, 0.000d0
+        write(21, '(A)') assoc_line
         close(21)
         
         call read_assoc(assoc, filename, tot_encounters)
@@ -321,10 +359,16 @@ contains
         ! Second file with 3 encounters
         filename = "test_seq_2.txt"
         open(unit=21, file=trim(filename), status='replace', action='write')
-        write(21, '(A)') "# Second sequential test file"
-        write(21, '(A)') "  0.5 0.5 0.5 0.9 0.4 0.0 -0.4 0.9 0.0"
-        write(21, '(A)') "  1.5 1.5 1.5 0.8 0.6 0.0 -0.6 0.8 0.0"
-        write(21, '(A)') "  2.5 2.5 2.5 0.6 0.8 0.0 -0.8 0.6 0.0"
+        write(21, '(A)') "Header line 1"
+        write(21, '(A)') "Header line 2"
+        write(21, '(A)') "   0.000   0.000   0.000"
+        write(21, '(A)') "   1.000   1.000   1.000"
+        write(assoc_line, '(16X,9F9.3)') 0.500d0, 0.500d0, 0.500d0, 0.900d0, 0.400d0, 0.000d0, -0.400d0, 0.900d0, 0.000d0
+        write(21, '(A)') assoc_line
+        write(assoc_line, '(16X,9F9.3)') 1.500d0, 1.500d0, 1.500d0, 0.800d0, 0.600d0, 0.000d0, -0.600d0, 0.800d0, 0.000d0
+        write(21, '(A)') assoc_line
+        write(assoc_line, '(16X,9F9.3)') 2.500d0, 2.500d0, 2.500d0, 0.600d0, 0.800d0, 0.000d0, -0.800d0, 0.600d0, 0.000d0
+        write(21, '(A)') assoc_line
         close(21)
         
         call read_assoc(assoc, filename, tot_encounters)

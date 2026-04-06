@@ -1,12 +1,39 @@
 \hypertarget{clust_8f90}{}\doxysection{clust.\+f90 File Reference}
 \label{clust_8f90}\index{clust.f90@{clust.f90}}
+
+
+Hierarchical clustering driver for encounter matrices/arrays.  
+
+
 \doxysubsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
 program \mbox{\hyperlink{clust_8f90_a8ec2266d83cd6c0b762cbcbc92c0af3d}{main}}
-\begin{DoxyCompactList}\small\item\em Command-\/line program to perform hierarchical clustering on encounter matrices. \end{DoxyCompactList}\item 
+\item 
+subroutine \mbox{\hyperlink{clust_8f90_a2696254dc19f1457b42278a82a19a4d9}{parse\+\_\+arguments}} (p\+\_\+complexes\+\_\+filename, p\+\_\+complexes\+\_\+bool, p\+\_\+nb\+\_\+encounters, p\+\_\+nb\+\_\+encounters\+\_\+bool, p\+\_\+datadist\+\_\+filename, p\+\_\+output\+\_\+name, p\+\_\+output\+\_\+name\+\_\+bool, p\+\_\+linkage\+\_\+type, p\+\_\+help\+\_\+bool)
+\begin{DoxyCompactList}\small\item\em Parse command-\/line arguments for {\ttfamily clust}. \end{DoxyCompactList}\item 
 subroutine \mbox{\hyperlink{clust_8f90_a78fdb90c7b35c2b7767d67935a41814a}{print\+\_\+help}} ()
 \begin{DoxyCompactList}\small\item\em Print usage and help information for the {\ttfamily clust} program. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Hierarchical clustering driver for encounter matrices/arrays. 
+
+\mbox{\hyperlink{clust_8f90}{clust.\+f90}} -\/ Hierarchical clustering for encounter matrices.
+
+Usage\+: ./clust -\/help
+
+Reads a pairwise matrix (or array) and runs hierarchical clustering with user-\/specified linkage. Results written to output\+\_\+name files.
+
+\begin{DoxyAuthor}{Author}
+Abraham Muñiz-\/\+Chicharro 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2026-\/04-\/05 
+\end{DoxyDate}
 
 
 \doxysubsection{Function/\+Subroutine Documentation}
@@ -16,15 +43,37 @@ subroutine \mbox{\hyperlink{clust_8f90_a78fdb90c7b35c2b7767d67935a41814a}{print\
 \doxysubsubsection{\texorpdfstring{main()}{main()}}
 {\footnotesize\ttfamily program main}
 
+\mbox{\Hypertarget{clust_8f90_a2696254dc19f1457b42278a82a19a4d9}\label{clust_8f90_a2696254dc19f1457b42278a82a19a4d9}} 
+\index{clust.f90@{clust.f90}!parse\_arguments@{parse\_arguments}}
+\index{parse\_arguments@{parse\_arguments}!clust.f90@{clust.f90}}
+\doxysubsubsection{\texorpdfstring{parse\_arguments()}{parse\_arguments()}}
+{\footnotesize\ttfamily subroutine main\+::parse\+\_\+arguments (\begin{DoxyParamCaption}\item[{character$\ast$128, intent(out)}]{p\+\_\+complexes\+\_\+filename,  }\item[{logical, intent(out)}]{p\+\_\+complexes\+\_\+bool,  }\item[{integer, intent(out)}]{p\+\_\+nb\+\_\+encounters,  }\item[{logical, intent(out)}]{p\+\_\+nb\+\_\+encounters\+\_\+bool,  }\item[{character$\ast$128, intent(out)}]{p\+\_\+datadist\+\_\+filename,  }\item[{character$\ast$128, intent(out)}]{p\+\_\+output\+\_\+name,  }\item[{logical, intent(out)}]{p\+\_\+output\+\_\+name\+\_\+bool,  }\item[{character$\ast$128, intent(out)}]{p\+\_\+linkage\+\_\+type,  }\item[{logical, intent(out)}]{p\+\_\+help\+\_\+bool }\end{DoxyParamCaption})}
 
 
-Command-\/line program to perform hierarchical clustering on encounter matrices. 
 
-Reads a pairwise matrix (and optional array) and runs hierarchical clustering with user-\/specified linkage method (min, max, or mean). Results are written to files using the {\ttfamily -\/output\+\_\+name} base name. See {\ttfamily print\+\_\+help} below for usage.
+Parse command-\/line arguments for {\ttfamily clust}. 
 
-\begin{DoxyAuthor}{Author}
-Abraham Muñiz-\/\+Chicharro 
-\end{DoxyAuthor}
+Parses all C\+LI flags and fills program configuration values. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em p\+\_\+complexes\+\_\+filename} & Value parsed from {\ttfamily -\/complexes} \\
+\hline
+\mbox{\texttt{ out}}  & {\em p\+\_\+complexes\+\_\+bool} & Whether {\ttfamily -\/complexes} was provided \\
+\hline
+\mbox{\texttt{ out}}  & {\em p\+\_\+nb\+\_\+encounters} & Value parsed from {\ttfamily -\/nb\+\_\+encounters} \\
+\hline
+\mbox{\texttt{ out}}  & {\em p\+\_\+nb\+\_\+encounters\+\_\+bool} & Whether {\ttfamily -\/nb\+\_\+encounters} was provided \\
+\hline
+\mbox{\texttt{ out}}  & {\em p\+\_\+datadist\+\_\+filename} & Value parsed from {\ttfamily -\/input} \\
+\hline
+\mbox{\texttt{ out}}  & {\em p\+\_\+output\+\_\+name} & Value parsed from {\ttfamily -\/output\+\_\+name} \\
+\hline
+\mbox{\texttt{ out}}  & {\em p\+\_\+output\+\_\+name\+\_\+bool} & Whether {\ttfamily -\/output\+\_\+name} was provided \\
+\hline
+\mbox{\texttt{ out}}  & {\em p\+\_\+linkage\+\_\+type} & Value parsed from {\ttfamily -\/linkage} (default {\ttfamily mean}) \\
+\hline
+\mbox{\texttt{ out}}  & {\em p\+\_\+help\+\_\+bool} & Whether {\ttfamily -\/help} was provided \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{clust_8f90_a78fdb90c7b35c2b7767d67935a41814a}\label{clust_8f90_a78fdb90c7b35c2b7767d67935a41814a}} 
 \index{clust.f90@{clust.f90}!print\_help@{print\_help}}
 \index{print\_help@{print\_help}!clust.f90@{clust.f90}}

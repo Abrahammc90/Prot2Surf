@@ -1,23 +1,27 @@
+!> \file mod_clust_algorithm.f90
+!! \brief Hierarchical clustering algorithms and output helpers.
+!!
 module mod_clust_algorithm
 
-  !> Clustering algorithms and helpers for processing encounter matrices.
+  !> Module: mod_clust_algorithm
   !!
-  !! This module contains routines to perform hierarchical clustering
-  !! (minimum, maximum, or mean linkage) on a distance/similarity matrix,
-  !! helpers to sort cluster results, and routines to write cluster outputs
-  !! and summaries to text files. Parallel regions use OpenMP for some
-  !! heavy loops.
+  !! Clustering algorithms and helpers for processing encounter matrices.
   !!
-  !! Note: Several routines expect arrays sized to `n` or matrices sized to
-  !! `(n,n)` where `n` is the number of encounters/complexes.
-  !!
-  !! See individual subroutines for parameter descriptions.
+  !! Provides hierarchical clustering (min, max, mean linkage) for distance/similarity matrices,
+  !! sorting, and output routines. Supports OpenMP parallelism.
   !!
   !! @author Abraham Muñiz-Chicharro
+  !! @version 1.0
+  !! @date 2026-04-05
 
   USE read_input
   USE OMP_LIB
-  USE mod_cuda, ONLY: cuda_matrix_clustering
+
+    ! Workflow summary:
+    ! - cluster encounters from matrix or array inputs
+    ! - track parent/count arrays during merges
+    ! - support min/max/mean linkage
+    ! - write cluster members and summary files to disk
 
   contains
 
@@ -31,24 +35,20 @@ module mod_clust_algorithm
     !! named using `output_name` and complexes information is optionally
     !! recorded via the `complexes` structure.
     !!
-    !! @param[in,out] matrix       Pairwise distance/similarity matrix (n,n).
-    !!                              This matrix is updated during clustering.
-    !! @param[in]     n            Number of elements / encounters (integer).
-    !! @param[in]     linkage_type Type of linkage: 'min', 'max', or 'mean' (string).
-    !! @param[in]     output_name  Base name for output files (string).
-    !! @param[in]     complexes    Structure containing complex text lines/headers.
-    !! @param[in]     opt_array    Optional array of per-encounter values used
-    !!                              to compute cluster averages instead of
-    !!                              reading values from `matrix`.
-    subroutine linkage_clustering_from_matrix(matrix, n, linkage_type, output_name, complexes, use_cuda)
+    !! @param[in,out] matrix        Pairwise distance/similarity matrix (n, n)
+    !!                              This matrix is updated during clustering
+    !! @param[in]     n             Number of elements / encounters
+    !! @param[in]     linkage_type  Type of linkage: 'min', 'max', or 'mean'
+    !! @param[in]     output_name   Base name for output files
+    !! @param[in]     complexes     Structure containing complex text lines/headers
+    subroutine linkage_clustering_from_matrix(matrix, n, linkage_type, output_name, complexes)
 
       IMPLICIT NONE
 
       real (kind=8), dimension(:, :), allocatable, intent(inout) :: matrix
-      character*128, intent(in) :: output_name
-      character(len=*), intent(in) :: linkage_type
       integer, intent(in) :: n
-      logical, intent(in), optional :: use_cuda
+      character(len=*), intent(in) :: linkage_type
+      character*128, intent(in) :: output_name
       type(type_assoc_file) :: complexes
 
         integer :: i, j, k, min_i, min_j, merge_counter, remaining_clusters, num_dist
@@ -68,17 +68,9 @@ module mod_clust_algorithm
         integer :: local_min_i, local_min_j
 
         real (kind=8) :: alpha
-        logical :: use_cuda_accel
         real (kind=8) :: start_time, end_time, elapsed_time
 
-    
-        ! Handle optional use_cuda parameter
-        if (present(use_cuda)) then
-            use_cuda_accel = use_cuda
-        else
-            use_cuda_accel = .false.
-        end if
-
+        ! Initialize cluster tracking (each point starts alone).
         active_points = .true.
         cluster_size = 1
         remaining_clusters = n
@@ -90,7 +82,7 @@ module mod_clust_algorithm
           cluster_count(i) = 1
         end do
 
-        ! Initialize statistics
+        ! Compute matrix stats to build the stopping threshold.
         sum_dist = 0.0
         sum_sq_dist = 0.0
         num_dist = 0
@@ -123,43 +115,14 @@ module mod_clust_algorithm
         dist_threshold = (alpha*mean_dist - (1-alpha)*standard_deviation) / dispersion_range_coeff  ! Scale threshold by relative range to adapt to different value distributions
       
         ! ====================================================================
-        ! COMPLETE CUDA PARALLELIZATION - All clustering done on GPU
+        ! CPU PARALLEL CLUSTERING - OpenMP implementation
         ! ====================================================================
-        if (use_cuda_accel) then
-            print *, 'Starting GPU clustering (complete parallelization)...'
-            start_time = OMP_GET_WTIME()
-            
-            ! Call complete GPU clustering - all iterations happen on GPU
-            if (cuda_matrix_clustering(matrix, n, dist_threshold, linkage_type, &
-                                         cluster_parent, cluster_count, active_points, cluster_size) /= 0) then
-                print *, "ERROR: CUDA complete clustering failed"
-                return
-            end if
-            
-            ! Reconstruct cluster_indexes from cluster_parent for output
-            ! call reconstruct_cluster_indexes(n, cluster_parent, cluster_indexes, cluster_count, active_points)
-            
-            ! GPU clustering is complete - active_points, cluster_count, and cluster_indexes are updated
-            ! Note: cluster_size updates need to be reconstructed from merges
-            ! For now, we skip updating clustering statistics as they're done on GPU
-            remaining_clusters = count(active_points)
-            
-            end_time = OMP_GET_WTIME()
-            elapsed_time = end_time - start_time
-            print *, '========================================'
-            print *, 'GPU clustering complete.'
-            print *, 'Remaining clusters:', remaining_clusters
-            print *, 'GPU Time:', elapsed_time, 'seconds'
-            print *, '========================================'            
-        else
-            ! ====================================================================
-            ! CPU PARALLEL CLUSTERING - Original OpenMP implementation
-            ! ====================================================================
-            print *, 'Starting CPU clustering...'
-            start_time = OMP_GET_WTIME()
+        ! Iterative nearest-cluster merges with selected linkage type and OpenMP loops.
+        print *, 'mod_clust_algorithm v1.0 | Starting clustering... For help, see documentation or use linkage_type="help".'
+        start_time = OMP_GET_WTIME()
 
-            ! Main clustering loop
-            do while (remaining_clusters > 1)
+        ! Main clustering loop
+        do while (remaining_clusters > 1)
 
             
                 min_dist = huge(1.0)  ! Set to a very large number
@@ -219,8 +182,6 @@ module mod_clust_algorithm
                 remaining_clusters = remaining_clusters - 1
           
                 ! Update distances using selected linkage method
-                ! NOTE: cluster_size is updated AFTER this loop so the
-                !       weighted average uses the original (pre-merge) sizes.
                 !$OMP PARALLEL DO REDUCTION(+:sum_dist, sum_sq_dist) PRIVATE(i)
                 do i = 1, n
                     if (i == min_i .or. i == min_j .or. .not. active_points(i)) cycle
@@ -250,17 +211,16 @@ module mod_clust_algorithm
                 cluster_size(min_i) = cluster_size(min_i) + cluster_size(min_j)
           
                 if (mod(remaining_clusters, 100) == 0) then
-                    print *, 'Remaining clusters:', remaining_clusters
+                    print *, '[mod_clust_algorithm] Remaining clusters:', remaining_clusters
                 end if
             end do
             
-            end_time = OMP_GET_WTIME()
-            elapsed_time = end_time - start_time
-            print *, '========================================'
-            print *, 'CPU clustering complete.'
-            print *, 'CPU Time:', elapsed_time, 'seconds'
-            print *, '========================================'
-        end if  ! End of if (use_cuda_accel) else block
+        end_time = OMP_GET_WTIME()
+        elapsed_time = end_time - start_time
+        print *, '========================================'
+        print *, '[mod_clust_algorithm] Clustering complete.'
+        print *, '  CPU Time:', elapsed_time, 'seconds'
+        print *, '========================================'
         
         ! Find the most representative value using cluster_parent (O(n) memory)
         ! Representative: member with min avg distance to all other members
@@ -318,38 +278,34 @@ module mod_clust_algorithm
         call write_cluster_complexes(n, cluster_parent, cluster_count, active_points, output_name, complexes)
           
           
-        print *, 'Clustering complete.'
+        print *, '[mod_clust_algorithm] Clustering complete. See output files for results.'
     
     end subroutine linkage_clustering_from_matrix
 
-    !> Perform hierarchical clustering on a distance matrix.
+    !> Perform hierarchical clustering on a distance array.
     !!
     !! This routine performs hierarchical clustering using minimum, maximum,
-    !! or mean linkage on the input `matrix` (shape `(n,n)`) of
-    !! pairwise distances or similarity scores. The routine mutates `matrix`
+    !! or mean linkage on the input `array` (shape `(n)`) of
+    !! pairwise distances or similarity scores. The routine mutates `array`
     !! during merging and terminates merging when clusters are farther apart
     !! than an internally computed threshold. Results are written to files
     !! named using `output_name` and complexes information is optionally
     !! recorded via the `complexes` structure.
     !!
-    !! @param[in,out] matrix       Pairwise distance/similarity matrix (n,n).
-    !!                              This matrix is updated during clustering.
-    !! @param[in]     n            Number of elements / encounters (integer).
-    !! @param[in]     linkage_type Type of linkage: 'min', 'max', or 'mean' (string).
-    !! @param[in]     output_name  Base name for output files (string).
-    !! @param[in]     complexes    Structure containing complex text lines/headers.
-    !! @param[in]     opt_array    Optional array of per-encounter values used
-    !!                              to compute cluster averages instead of
-    !!                              reading values from `matrix`.
-    subroutine linkage_clustering_from_array(array, n, linkage_type, output_name, complexes, use_cuda)
+    !! @param[in,out] array         Array of per-encounter values (n)
+    !!                              This array is updated during clustering
+    !! @param[in]     n             Number of elements / encounters
+    !! @param[in]     linkage_type  Type of linkage: 'min', 'max', or 'mean'
+    !! @param[in]     output_name   Base name for output files
+    !! @param[in]     complexes     Structure containing complex text lines/headers
+    subroutine linkage_clustering_from_array(array, n, linkage_type, output_name, complexes)
 
       IMPLICIT NONE
 
       real (kind=8), dimension(:), allocatable, intent(inout) :: array
-      character*128, intent(in) :: output_name
-      character(len=*), intent(in) :: linkage_type
       integer, intent(in) :: n
-      logical, intent(in), optional :: use_cuda
+      character(len=*), intent(in) :: linkage_type
+      character*128, intent(in) :: output_name
       type(type_assoc_file) :: complexes
 
       integer :: i, j, k, min_i, min_j, merge_counter, remaining_clusters, num_dist
@@ -369,16 +325,7 @@ module mod_clust_algorithm
       integer :: local_min_i, local_min_j
 
       real (kind=8) :: alpha, factor
-      logical :: use_cuda_accel
       real (kind=8) :: start_time, end_time, elapsed_time
-
-  
-      ! Handle optional use_cuda parameter
-      if (present(use_cuda)) then
-          use_cuda_accel = use_cuda
-      else
-          use_cuda_accel = .false.
-      end if
 
       active_points = .true.
       cluster_size = 1
@@ -415,33 +362,24 @@ module mod_clust_algorithm
       factor = 1 - abs(middle_range - (mean_dist + 2*standard_deviation)) / (middle_range + mean_dist + 2*standard_deviation)  ! Scale factor based on how close mean is to middle of range
 
       alpha = standard_deviation / sqrt(standard_deviation**2 + mean_dist**2)
-      dist_threshold = (alpha*mean_dist - (1-alpha)*standard_deviation) / factor  ! Scale threshold by relative range to adapt to different value distributions
-
-    !   dist_threshold = (mean_dist + standard_deviation) / factor  ! Simple threshold for testing
-
-      print *, 'mean_dist:', mean_dist
-      print *, 'standard_deviation:', standard_deviation
-      print *, 'middle_range:', middle_range
-      print *, 'dispersion_range_coeff:', dispersion_range_coeff
-      print *, 'factor:', factor
-      print *, 'alpha:', alpha
-      print *, 'dist_threshold:', dist_threshold
+    !   dist_threshold = (alpha*mean_dist - (1-alpha)*standard_deviation) / factor  ! Scale threshold by relative range to adapt to different value distributions
+      dist_threshold = (alpha*mean_dist - (1-alpha)*standard_deviation) / dispersion_range_coeff  ! Scale threshold by relative range to adapt to different value distributions
+    !   print *, 'mean_dist:', mean_dist
+    !   print *, 'standard_deviation:', standard_deviation
+    !   print *, 'middle_range:', middle_range
+    !   print *, 'dispersion_range_coeff:', dispersion_range_coeff
+    !   print *, 'factor:', factor
+    !   print *, 'alpha:', alpha
+    !   print *, 'dist_threshold:', dist_threshold
       
     !   STOP
 
       ! ====================================================================
-      ! CUDA GPU CLUSTERING for sorted 1D array
+      ! OPENMP PARALLEL CLUSTERING for sorted 1D array
       ! ====================================================================
-      if (use_cuda_accel) then
-          print *, 'Cuda version not implemented for 1D array clustering.' 
-          print *, 'The algorithm performs better in CPU due to its linear nature and low computational overhead.'
-          print *, 'Falling back to CPU clustering...'
-      end if
-
-      ! ====================================================================
-      ! CPU PARALLEL CLUSTERING for sorted 1D array
-      ! ====================================================================
-      print *, 'Starting CPU clustering...'
+    print *, 'mod_clust_algorithm v1.2 | Starting clustering ', &
+             '(1D array)... For help, see documentation or use ', &
+             'linkage_type="help".'
       start_time = OMP_GET_WTIME()
 
       ! Main clustering loop
@@ -558,17 +496,17 @@ module mod_clust_algorithm
               j = i
           end do
 
-          if (mod(remaining_clusters, 100) == 0) then
-            print *, 'Remaining clusters:', remaining_clusters
-          end if
+                    if (mod(remaining_clusters, 100) == 0) then
+                        print *, '[mod_clust_algorithm] Remaining clusters:', remaining_clusters
+                    end if
       end do
 
       end_time = OMP_GET_WTIME()
       elapsed_time = end_time - start_time
-      print *, '========================================'
-      print *, 'CPU clustering complete.'
-      print *, 'CPU Time:', elapsed_time, 'seconds'
-      print *, '========================================'
+    print *, '========================================'
+    print *, '[mod_clust_algorithm] Clustering complete (1D array).'
+    print *, '  CPU Time:', elapsed_time, 'seconds'
+    print *, '========================================'
 
       ! Find the most representative value: member closest to cluster mean
       ! Uses cluster_parent directly — O(n) memory
@@ -617,7 +555,7 @@ module mod_clust_algorithm
       call write_clust_info(n, representative_indexes, active_points, cluster_count, cluster_average, cluster_sd, output_name)
       call write_cluster_complexes(n, cluster_parent, cluster_count, active_points, output_name, complexes)
 
-      print *, 'Clustering complete.'
+    print *, '[mod_clust_algorithm] Clustering complete. See output files for results.'
 
     end subroutine linkage_clustering_from_array
 
@@ -627,24 +565,24 @@ module mod_clust_algorithm
     !! that they are sorted by ascending values in `array`. This is a
     !! stable reordering helper used prior to writing results.
     !!
-    !! @param[in]     tot_encounters       Number of clusters/encounters
-    !! @param[in,out] cluster_indexes      Matrix storing cluster member indexes
-    !! @param[in,out] cluster_count        Number of members in each cluster
-    !! @param[in,out] active_clusters      Logical flags marking active clusters
+    !! @param[in]     tot_encounters        Number of clusters/encounters
+    !! @param[in,out] cluster_indexes       Matrix storing cluster member indexes
+    !! @param[in,out] cluster_count         Number of members in each cluster
+    !! @param[in,out] active_clusters       Logical flags marking active clusters
     !! @param[in,out] representative_indexes Representative index per cluster
-    !! @param[in,out] cluster_average      Per-cluster average values
-    !! @param[in,out] cluster_sd           Per-cluster standard deviation
-    !! @param[in,out] array                Key array used to sort clusters
+    !! @param[in,out] cluster_average       Per-cluster average values
+    !! @param[in,out] cluster_sd            Per-cluster standard deviation
+    !! @param[in,out] array                 Key array used to sort clusters
     subroutine sort_complexes(tot_encounters, cluster_indexes, cluster_count, active_clusters, &
       representative_indexes, cluster_average, cluster_sd, array)
 
-      real (kind=8), dimension(:), intent(inout) :: array
       integer, intent(in) :: tot_encounters
       integer, dimension(:, :), intent(inout) :: cluster_indexes ! Store indexes of each cluster
       integer, dimension(:), intent(inout) :: cluster_count  ! Number of elements in each cluster
+      logical, dimension(:), intent(inout) :: active_clusters
       integer, dimension(:), intent(inout) :: representative_indexes
       real (kind=8), dimension(:), intent(inout) :: cluster_average, cluster_sd
-      logical, dimension(:), intent(inout) :: active_clusters
+      real (kind=8), dimension(:), intent(inout) :: array
       
       integer :: i, j, sorted_i, encounters_found, temp_j
       real (kind=8) :: temp
@@ -723,23 +661,27 @@ module mod_clust_algorithm
     !! Outputs a file named `<output_name>_clusters.txt` containing the
     !! members of each active cluster in a matrix-like format.
     !!
-    !! @param[in] tot_encounters Number of possible clusters/encounters
-    !! @param[in] cluster_indexes Matrix of cluster member indexes
-    !! @param[in] cluster_count   Number of members per cluster
-    !! @param[in] active_clusters Logical mask indicating active clusters
-    !! @param[in] output_name     Base filename for output
+    !! @param[in] tot_encounters   Number of possible clusters/encounters
+    !! @param[in] cluster_parent   Parent cluster for each encounter
+    !! @param[in] cluster_count    Number of members per cluster
+    !! @param[in] active_clusters  Logical mask indicating active clusters
+    !! @param[in] output_name      Base filename for output
     subroutine write_cluster_elements(tot_encounters, cluster_parent, cluster_count, active_clusters, output_name)
 
       IMPLICIT NONE
       integer, intent(in) :: tot_encounters
       integer, dimension(:), intent(in) :: cluster_parent
-      logical, dimension(:), intent(in) :: active_clusters
       integer, dimension(:), intent(in) :: cluster_count
+      logical, dimension(:), intent(in) :: active_clusters
       character*128, intent(in) :: output_name
       integer :: i, j, unit_number, clust_number
       character(len=13):: clust_str
       character(len=4):: clust_n_str
       character*128 :: filename
+
+            if (size(cluster_count) /= tot_encounters) then
+                write(*,*) '[mod_clust_algorithm] WARNING: cluster_count size mismatch in write_cluster_elements.'
+            end if
 
       ! Open file to write the final cluster content
       unit_number = 20
@@ -775,27 +717,28 @@ module mod_clust_algorithm
     !! listing cluster population, representative index, average and
     !! standard deviation for each active cluster.
     !!
-    !! @param[in] tot_encounters     Total number of encounters
-    !! @param[in] clust_count        Array with population of each cluster
-    !! @param[in] active_clusters    Logical mask indicating active clusters
+    !! @param[in] tot_encounters        Total number of encounters
     !! @param[in] representative_indexes Representative index per cluster
-    !! @param[in] output_name        Base filename for outputs
-    !! @param[in] cluster_average    Per-cluster average values
-    !! @param[in] cluster_sd         Per-cluster standard deviations
+    !! @param[in] active_clusters       Logical mask indicating active clusters
+    !! @param[in] clust_count           Array with population of each cluster
+    !! @param[in] cluster_average       Per-cluster average values
+    !! @param[in] cluster_sd            Per-cluster standard deviations
+    !! @param[in] output_name           Base filename for outputs
     subroutine write_clust_info(tot_encounters, representative_indexes, active_clusters, &
       clust_count, cluster_average, cluster_sd, output_name)
 
       IMPLICIT NONE
       integer, intent(in) :: tot_encounters
-      integer, dimension(tot_encounters), intent(in) :: clust_count
-      logical, dimension(:), intent(in) :: active_clusters
       integer, dimension(:), intent(in) :: representative_indexes
+      logical, dimension(:), intent(in) :: active_clusters
+      integer, dimension(tot_encounters), intent(in) :: clust_count
+      real (kind=8), dimension(tot_encounters), intent(in) :: cluster_average, cluster_sd
       character*128, intent(in) :: output_name
+
       integer :: i, unit_number, clust_number
       character(len=13):: clust_str
       character(len=4):: clust_n_str
       character*128 :: filename
-      real (kind=8), dimension(tot_encounters) :: cluster_average, cluster_sd
 
       ! Open file to write the final cluster content
       unit_number = 20
@@ -830,25 +773,30 @@ module mod_clust_algorithm
     !! from `complexes%head` and the encounter lines for the cluster
     !! members taken from `complexes%lines`.
     !!
-    !! @param[in] tot_encounters Number of clusters/encounters
-    !! @param[in] cluster_indexes Matrix of cluster member indexes
-    !! @param[in] cluster_count   Number of members per cluster
-    !! @param[in] active_clusters Logical mask indicating active clusters
-    !! @param[in] output_name     Base filename for output files
-    !! @param[in] complexes       Structure with header and lines to write
+    !! @param[in] tot_encounters   Number of clusters/encounters
+    !! @param[in] cluster_parent   Parent cluster for each encounter
+    !! @param[in] cluster_count    Number of members per cluster
+    !! @param[in] active_clusters  Logical mask indicating active clusters
+    !! @param[in] output_name      Base filename for output files
+    !! @param[in] complexes        Structure with header and lines to write
     subroutine write_cluster_complexes(tot_encounters, cluster_parent, cluster_count, active_clusters, &
                                 output_name, complexes)
 
       IMPLICIT NONE
       integer, intent(in) :: tot_encounters
       integer, dimension(:), intent(in) :: cluster_parent
-      logical, dimension(:), intent(in) :: active_clusters
       integer, dimension(:), intent(in) :: cluster_count
+      logical, dimension(:), intent(in) :: active_clusters
       character*128, intent(in) :: output_name
+      type(type_assoc_file) :: complexes
+
       integer :: i, j, unit_number, clust_number
       character(len=4):: str_clust_number
       character(len=200) :: filename
-      type(type_assoc_file) :: complexes
+
+            if (size(cluster_count) /= tot_encounters) then
+                write(*,*) '[mod_clust_algorithm] WARNING: cluster_count size mismatch in write_cluster_complexes.'
+            end if
 
       unit_number = 21
       clust_number = 1

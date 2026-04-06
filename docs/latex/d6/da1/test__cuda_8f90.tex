@@ -1,0 +1,37 @@
+\hypertarget{test__cuda_8f90}{}\doxysection{unit\+\_\+test/test\+\_\+cuda.f90 File Reference}
+\label{test__cuda_8f90}\index{unit\_test/test\_cuda.f90@{unit\_test/test\_cuda.f90}}
+
+
+Unit tests for C\+U\+D\+A-\/accelerated clustering via \mbox{\hyperlink{namespacemod__cuda}{mod\+\_\+cuda}}.  
+
+
+\doxysubsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+program \mbox{\hyperlink{test__cuda_8f90_a85a0103419b1c1c4120486267e38cecc}{test\+\_\+cuda}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Unit tests for C\+U\+D\+A-\/accelerated clustering via \mbox{\hyperlink{namespacemod__cuda}{mod\+\_\+cuda}}. 
+
+This program tests the Fortran-\/\+C\+U\+DA interface for hierarchical clustering using G\+PU acceleration. It verifies correct operation of the cuda\+\_\+matrix\+\_\+clustering wrapper and checks results against C\+PU reference.
+
+\begin{DoxyAuthor}{Author}
+Abraham Muñiz-\/\+Chicharro 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2026-\/04-\/05 Compile with\+: gfortran -\/fopenmp -\/o test\+\_\+cuda \mbox{\hyperlink{test__cuda_8f90}{test\+\_\+cuda.\+f90}} ../src/mod\+\_\+cuda.f90 ../src/mod\+\_\+clust\+\_\+algorithm.f90 ../src/read\+\_\+input.f90 -\/lcudart -\/lcuda 
+\end{DoxyDate}
+
+
+\doxysubsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{test__cuda_8f90_a85a0103419b1c1c4120486267e38cecc}\label{test__cuda_8f90_a85a0103419b1c1c4120486267e38cecc}} 
+\index{test\_cuda.f90@{test\_cuda.f90}!test\_cuda@{test\_cuda}}
+\index{test\_cuda@{test\_cuda}!test\_cuda.f90@{test\_cuda.f90}}
+\doxysubsubsection{\texorpdfstring{test\_cuda()}{test\_cuda()}}
+{\footnotesize\ttfamily program test\+\_\+cuda}
+

@@ -24,11 +24,11 @@ subroutine \mbox{\hyperlink{namespacemod__threshold_a09bbd97c3ea019b1aed4d594fc2
 
 Compute angle between two vectors (defined by atom groups) per encounter. 
 
-Transforms the pair of points from solute2 for each encounter and computes the angle between the vector defined by {\ttfamily point1b-\/point1a} and the vector defined by the transformed {\ttfamily point2b-\/point2a}.
+Transforms the pair of points from {\ttfamily solute2} for each encounter and computes the angle between the vector defined by {\ttfamily point1b-\/point1a} and the vector defined by the transformed {\ttfamily point2b-\/point2a}.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ out}}  & {\em array} & Output array with angles in degrees (n) \\
+\mbox{\texttt{ out}}  & {\em array} & Output array of length {\ttfamily n} with angles in degrees \\
 \hline
 \mbox{\texttt{ in}}  & {\em n} & Number of encounters \\
 \hline
@@ -36,9 +36,17 @@ Transforms the pair of points from solute2 for each encounter and computes the a
 \hline
 \mbox{\texttt{ in}}  & {\em xc1,xc2} & Centers used for transform \\
 \hline
-\mbox{\texttt{ in}}  & {\em trans\+\_\+vector,rot1,rot2} & Transform arrays (n,3) \\
+\mbox{\texttt{ in}}  & {\em trans\+\_\+vector} & Translation vectors for each encounter (n, 3) \\
 \hline
-\mbox{\texttt{ in}}  & {\em point1a,b,point2a,b} & Reference points/vectors \\
+\mbox{\texttt{ in}}  & {\em rot1,rot2} & Rotation vectors for each encounter (n, 3) \\
+\hline
+\mbox{\texttt{ in}}  & {\em point1a} & First point defining reference vector \\
+\hline
+\mbox{\texttt{ in}}  & {\em point1b} & Second point defining reference vector \\
+\hline
+\mbox{\texttt{ in}}  & {\em point2a} & First point of vector to be transformed \\
+\hline
+\mbox{\texttt{ in}}  & {\em point2b} & Second point of vector to be transformed \\
 \hline
 \mbox{\texttt{ in}}  & {\em dimensions} & Use 2 or 3 to select projection \\
 \hline
@@ -53,11 +61,11 @@ Transforms the pair of points from solute2 for each encounter and computes the a
 
 Compute minimum inter-\/atomic distance between two solutes for each encounter. 
 
-For each encounter the second solute is transformed and the minimum distance between any atom of {\ttfamily solute1\+\_\+crds} and the transformed {\ttfamily solute2\+\_\+crds} is computed and stored in {\ttfamily array}.
+For each encounter, the second solute is transformed and the minimum distance between any atom of {\ttfamily solute1\+\_\+crds} and the transformed {\ttfamily solute2\+\_\+crds} is computed and stored in {\ttfamily array}.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ out}}  & {\em array} & Output array (n) \\
+\mbox{\texttt{ out}}  & {\em array} & Output array of length {\ttfamily n} with minimum distances \\
 \hline
 \mbox{\texttt{ in}}  & {\em n} & Number of encounters \\
 \hline
@@ -65,7 +73,9 @@ For each encounter the second solute is transformed and the minimum distance bet
 \hline
 \mbox{\texttt{ in}}  & {\em xc1,xc2} & Centers used for transform \\
 \hline
-\mbox{\texttt{ in}}  & {\em trans\+\_\+vector,rot1,rot2} & Transform arrays (n,3) \\
+\mbox{\texttt{ in}}  & {\em trans\+\_\+vector} & Translation vectors for each encounter (n, 3) \\
+\hline
+\mbox{\texttt{ in}}  & {\em rot1,rot2} & Rotation vectors for each encounter (n, 3) \\
 \hline
 \mbox{\texttt{ in}}  & {\em solute1\+\_\+crds} & Coordinates of solute1 atoms \\
 \hline
@@ -94,9 +104,11 @@ Recenters each encounter at {\ttfamily xc2}, applies rotation/translation using 
 \hline
 \mbox{\texttt{ in}}  & {\em xc1,xc2} & Centers used for transform \\
 \hline
-\mbox{\texttt{ in}}  & {\em trans\+\_\+vector,rot1,rot2} & Transform arrays (n,3) \\
+\mbox{\texttt{ in}}  & {\em trans\+\_\+vector} & Translation vectors for each encounter (n, 3) \\
 \hline
-\mbox{\texttt{ in}}  & {\em solute\+\_\+crds} & Coordinates of solute atoms (nb\+\_\+atoms,3) \\
+\mbox{\texttt{ in}}  & {\em rot1,rot2} & Rotation vectors for each encounter (n, 3) \\
+\hline
+\mbox{\texttt{ in}}  & {\em solute\+\_\+crds} & Coordinates of solute atoms (nb\+\_\+atoms, 3) \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{namespacemod__threshold_a09bbd97c3ea019b1aed4d594fc263309}\label{namespacemod__threshold_a09bbd97c3ea019b1aed4d594fc263309}} 
@@ -115,6 +127,6 @@ Simple selection sort used to reorder {\ttfamily arr} and the parallel {\ttfamil
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in,out}}  & {\em arr} & Array to sort (modified in-\/place) \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em encounter\+\_\+indexes} & Parallel index array reordered to match {\ttfamily arr} \\
+\mbox{\texttt{ in,out}}  & {\em encounter\+\_\+indexes} & Parallel index array reordered to match arr \\
 \hline
 \end{DoxyParams}

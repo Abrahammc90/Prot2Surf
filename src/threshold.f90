@@ -1,21 +1,31 @@
-!> Generate encounter selection based on threshold criteria.
+!> \file threshold.f90
+!! \brief Threshold-based encounter selection utility.
 !!
-!! This executable computes thresholds (z_coord, atoms_dist, angles)
-!! across encounter transforms and writes selected encounter records
-!! to an output complexes file. See `print_help` for usage examples.
+!! threshold.f90 - Select encounters based on threshold criteria.
+!!
+!! Usage: ./threshold -help
+!!
+!! Computes thresholds (z_coord, atoms_dist, angles) and writes selected encounters to output. See print_help for usage.
 !!
 !! @author Abraham Muñiz-Chicharro
+!! @version 1.0
+!! @date 2026-04-05
 program main
   USE read_input
   USE mod_threshold
 
 
   implicit none
+
+  ! High-level workflow:
+  ! 1) Parse CLI options and validate threshold-related inputs.
+  ! 2) Read PDB(s) and complexes structures.
+  ! 3) Compute per-encounter scalar metric for selected threshold_type.
+  ! 4) Filter encounters by cutoff and write reduced outputs.
       
 
     character*128 :: pdb1_filename, pdb2_filename, complexes_filename, output_complexes_filename, datadist_filename
     character*128 :: threshold_type
-    character*128 :: argument
     character*128, dimension(:), allocatable :: arr_atoms1a, arr_atoms1b, arr_atoms2a, arr_atoms2b
 
     integer :: tot_atoms2, tot_encounters
@@ -32,213 +42,50 @@ program main
     real (kind=8), dimension(:, :), allocatable :: atoms1a_coords, atoms1b_coords
     real (kind=8), dimension(:, :), allocatable :: atoms2a_coords, atoms2b_coords
     real (kind=8), dimension(3) :: cog1a, cog1b, cog2a, cog2b
-    integer :: nb_argument, count_arg, n_atoms
-    integer :: ios
     logical :: pdb1_bool, pdb2_bool, complexes_bool, array_bool
     logical :: arr_atoms1a_bool, arr_atoms1b_bool, arr_atoms2a_bool, arr_atoms2b_bool
     logical :: cutoff_bool, thresholdtype_bool, output_complexes_bool
     logical :: nb_encounters_bool, help_bool
 
-    nb_argument = 0
-    nb_encounters = 0
-    cutoff = 0.d0
-    count_arg = 1
-    pdb1_bool = .false.
-    pdb2_bool = .false.
-    complexes_bool = .false.
-    cutoff_bool = .false.
-    array_bool = .false.
-    thresholdtype_bool = .false.
-    output_complexes_bool = .false.
-    nb_encounters_bool = .false.
-    arr_atoms1a_bool = .false.
-    arr_atoms1b_bool = .false.
-    arr_atoms2a_bool = .false.
-    arr_atoms2b_bool = .false.
-    help_bool = .false.
-    argument = ""
-
-    
-    nb_argument = command_argument_count()
-    if ( nb_argument == 0 ) then
-      print *, ""
-      print *, "ERROR. Options were not given"
-      call print_help("main")
-      STOP 1
-    end if
-
-    do while ( count_arg <= nb_argument )
-      
-      call getarg( count_arg, argument )
-      
-      if ( trim(argument) == "-pdb1" ) then
-        pdb1_bool = .true.
-        call getarg( count_arg+1, argument )
-        pdb1_filename = trim(argument)
-        count_arg = count_arg + 1
-      else if ( trim(argument) == "-pdb2" ) then
-        pdb2_bool = .true.
-        call getarg( count_arg+1, argument )
-        pdb2_filename = trim(argument)
-        count_arg = count_arg + 1
-      else if ( trim(argument) == "-complexes" ) then
-        complexes_bool = .true.
-        call getarg( count_arg+1, argument )
-        complexes_filename = trim(argument)
-        count_arg = count_arg + 1
-      else if ( trim(argument) == "-array" ) then
-        array_bool = .true.
-        call getarg( count_arg+1, argument )
-        datadist_filename = trim(argument)
-        count_arg = count_arg + 1
-      else if ( trim(argument) == "-complexes_output" ) then
-        output_complexes_bool = .true.
-        call getarg( count_arg+1, argument )
-        output_complexes_filename = trim(argument)
-        count_arg = count_arg + 1
-      else if ( trim(argument) == "-nb_encounters" ) then
-        nb_encounters_bool = .true.
-        call getarg( count_arg+1, argument )
-        read(argument, *, IOSTAT=ios) nb_encounters
-        if (ios /= 0) then
-          print *, "ERROR. Integer expected for the -nb_encounters ", &
-          "argument."
-        end if
-        count_arg = count_arg + 1
-      else if ( trim(argument) == "-cutoff" ) then
-        cutoff_bool = .true.
-        call getarg( count_arg+1, argument )
-        read(argument, *, IOSTAT=ios) cutoff
-        if (ios /= 0) then
-          print *, "ERROR. Float expected for the -cutoff ", &
-          "argument."
-        end if
-        count_arg = count_arg + 1
-      else if ( trim(argument) == "-threshold_type" ) then
-        thresholdtype_bool = .true.
-        call getarg( count_arg+1, argument )
-        threshold_type = trim(argument)
-        count_arg = count_arg + 1
-      else if ( trim(argument) == "-atoms1" .or. trim(argument) == "-atoms1a" ) then
-        arr_atoms1a_bool = .true.
-        
-        call getarg( count_arg+1, argument )
-        n_atoms = 0
-        do while (argument(1:1) /= "-" .and. &
-          count_arg + n_atoms <= nb_argument)
-          n_atoms = n_atoms + 1
-          call getarg( count_arg+n_atoms, argument )
-        end do
-        n_atoms = n_atoms-1
-        allocate(arr_atoms1a(n_atoms))
-
-        do i = 1, n_atoms
-          call getarg( count_arg+i, argument )
-          arr_atoms1a(i) = trim(argument)
-        end do
-
-        count_arg = count_arg + n_atoms
-
-      else if ( trim(argument) == "-atoms1b" ) then
-        arr_atoms1b_bool = .true.
-
-        call getarg( count_arg+1, argument )
-        n_atoms = 0
-        do while (argument(1:1) /= "-" .and. &
-          count_arg + n_atoms <= nb_argument)
-          n_atoms = n_atoms + 1
-          call getarg( count_arg+n_atoms, argument )
-        end do
-        n_atoms = n_atoms-1
-        allocate(arr_atoms1b(n_atoms))
-
-        do i = 1, n_atoms
-          call getarg( count_arg+i, argument )
-          arr_atoms1b(i) = trim(argument)
-        end do
-
-        count_arg = count_arg + n_atoms
-
-      else if ( trim(argument) == "-atoms2" .or. trim(argument) == "-atoms2a" ) then
-        arr_atoms2a_bool = .true.
-
-        call getarg( count_arg+1, argument )
-        n_atoms = 0
-        do while (argument(1:1) /= "-" .and. &
-          count_arg + n_atoms <= nb_argument)
-          n_atoms = n_atoms + 1
-          call getarg( count_arg+n_atoms, argument )
-        end do
-        n_atoms = n_atoms-1
-        allocate(arr_atoms2a(n_atoms))
-
-        do i = 1, n_atoms
-          call getarg( count_arg+i, argument )
-          arr_atoms2a(i) = trim(argument)
-        end do
-
-        count_arg = count_arg + n_atoms
-
-      else if ( trim(argument) == "-atoms2b" ) then
-        arr_atoms2b_bool = .true.
-
-        call getarg( count_arg+1, argument )
-        n_atoms = 0
-        do while (argument(1:1) /= "-" .and. &
-          count_arg + n_atoms <= nb_argument)
-          n_atoms = n_atoms + 1
-          call getarg( count_arg+n_atoms, argument )
-        end do
-        n_atoms = n_atoms-1
-        allocate(arr_atoms2b(n_atoms))
-
-        do i = 1, n_atoms
-          call getarg( count_arg+i, argument )
-          arr_atoms2b(i) = trim(argument)
-        end do
-
-        count_arg = count_arg + n_atoms
-
-      else if ( trim(argument) == "-help" ) then
-        help_bool = .true.
-      else
-        print *, ""
-        print *,  "ERROR. Argument ", trim(argument), " not recognized."
-        print *, "For more information, please use the -help option:"
-        print *, "./threshold -help"
-        STOP 1
-      end if
-
-      count_arg = count_arg + 1
-
-    end do
+    call parse_arguments( &
+      pdb1_filename, pdb1_bool, &
+      pdb2_filename, pdb2_bool, &
+      complexes_filename, complexes_bool, &
+      datadist_filename, array_bool, &
+      output_complexes_filename, output_complexes_bool, &
+      nb_encounters, nb_encounters_bool, &
+      cutoff, cutoff_bool, &
+      threshold_type, thresholdtype_bool, &
+      arr_atoms1a, arr_atoms1a_bool, &
+      arr_atoms1b, arr_atoms1b_bool, &
+      arr_atoms2a, arr_atoms2a_bool, &
+      arr_atoms2b, arr_atoms2b_bool, &
+      help_bool)
 
 
+    ! If help is requested, stop before reading files and filtering.
     if ( help_bool ) then
       if (thresholdtype_bool) then
         call print_help(threshold_type)
       else
         call print_help("main")
       end if
+      STOP 0
     end if
 
+    ! Check flags required in all threshold modes.
+    ! Extra checks for each mode happen in each branch below.
     if (.not. pdb2_bool ) then
-      print *, "ERROR. PDB not provided."
-      print *, "Please provide a pdb file with '-pdb2' option"
-      print *, "For more information, please use the -help option:"
-      print *, "./threshold -help"
+      print *, '[threshold] ERROR: PDB not provided. Use -pdb2 <file>'
+      print *, '[threshold] For usage, run: ./threshold -help'
       STOP 1
     else if ( .not. arr_atoms2a_bool ) then 
-      print *, "ERROR. PDB2 provided but atoms2 not provided."
-      print *, "Please provide a group of atoms with '-atoms2' option"
-      print *, "For more information, please use the -help option:"
-      print *, "./threshold -help"
+      print *, '[threshold] ERROR: PDB2 provided but atoms2 not provided. Use -atoms2 <group>'
+      print *, '[threshold] For usage, run: ./threshold -help'
       STOP 1
     else if (.not. array_bool) then
-      print *, "ERROR. Array output filename not given."
-      print *, "Please provide the array output file with the '-array option'"
-      print *, "For more information, please use the -help option:"
-      print *, "./threshold -help"
+      print *, '[threshold] ERROR: Array output filename not given. Use -array <file>'
+      print *, '[threshold] For usage, run: ./threshold -help'
       STOP 1
     else if ( .not. complexes_bool ) then
       print *, "ERROR. Encounter complexes file not provided."
@@ -267,13 +114,14 @@ program main
     end if
 
     
-    !Reads PDB
+    ! Read structural coordinates for solute 2 (always required).
     call read_pdb(pdb2, pdb2_filename, tot_atoms2, tot_residues2, tot_chains2)
 
-    !Reads Complexes
+    ! Read encounter transforms and metadata.
     call read_assoc(complexes, complexes_filename, tot_encounters)
 
 
+    ! Keep number of encounters inside available range.
     if ( nb_encounters .gt. tot_encounters ) then
         write(*,*) ''
         write(*,*) 'WARNING: the number of encounters given is greater than'
@@ -300,11 +148,14 @@ program main
 
     if (trim(adjustl(threshold_type)) == "z_coord") then
 
+      ! z_coord threshold mode:
+      ! build one z-based scalar value per encounter and filter by cutoff.
+
       if (.not. output_complexes_bool) then
         print *, "ERROR. Complexes output filename not given."
         print *, "Please provide the complexes output file with the '-complexes_output option'"
         print *, "For more information, please use the -help option:"
-        print *, "./threshold -threshold_type angle -help"
+        print *, "./threshold -threshold_type 3D_angle -help"
         STOP 1
       end if
 
@@ -315,24 +166,27 @@ program main
 
     else if (trim(adjustl(threshold_type)) == "3D_angle" .or. trim(adjustl(threshold_type)) == "2D_angle") then
 
+      ! angle threshold modes:
+      ! compute one 2D/3D angle value for each encounter.
+
       if (.not. pdb1_bool) then
         print *, "ERROR. Just one PDB provided. It is necessary to provide two pdbs ", &
         "to generate the angle threshold."
         print *, "Please provide the two pdb files with '-pdb1' and '-pdb2' options."
         print *, "For more information, please use the -help option:"
-        print *, "./threshold -threshold_type angle -help"
+        print *, "./threshold -threshold_type 3D_angle -help"
         STOP 1
       else if (.not. arr_atoms1a_bool .or. .not. arr_atoms1b_bool .or. .not. arr_atoms2b_bool) then 
         print *, "ERROR. Not all necessary group of atoms given"
         print *, "Please provide all group of atoms with '-atoms1a', '-atoms1b', '-atoms2a' and '-atoms2b' options"
         print *, "For more information, please use the -help option:"
-        print *, "./threshold -threshold_type angle -help"
+        print *, "./threshold -threshold_type 3D_angle -help"
         STOP 1
       else if (.not. output_complexes_bool) then
         print *, "ERROR. Complexes output filename not given."
         print *, "Please provide the complexes output file with the '-complexes_output option'"
         print *, "For more information, please use the -help option:"
-        print *, "./threshold -threshold_type angle -help"
+        print *, "./threshold -threshold_type 3D_angle -help"
         STOP 1
       end if
 
@@ -349,16 +203,21 @@ program main
       call calculate_cog(cog2b, atoms2b_coords, size(atoms2b_coords(:, 3)))
       
       if (trim(adjustl(threshold_type)) == "2D_angle") then
+        ! 2D projected angle mode.
         call array_angle(distarray, nb_encounters, 2, &
         complexes % xc1, complexes % xc2, complexes % trans_vector, complexes % rot1, complexes % rot2, &
         cog1a, cog1b, cog2a, cog2b, 2)
       else if (trim(adjustl(threshold_type)) == "3D_angle") then
+        ! Full 3D angle mode.
         call array_angle(distarray, nb_encounters, 2, &
         complexes % xc1, complexes % xc2, complexes % trans_vector, complexes % rot1, complexes % rot2, &
         cog1a, cog1b, cog2a, cog2b, 3)
       end if
 
     else if (trim(adjustl(threshold_type)) == "atoms_dist") then
+
+      ! atoms_dist threshold mode:
+      ! compute minimum inter-group distance per encounter and filter by cutoff.
 
       if (.not. pdb1_bool) then
         print *, "ERROR. Just one PDB provided. It is necessary to provide two pdbs ", &
@@ -377,7 +236,7 @@ program main
         print *, "ERROR. Complexes output filename not given."
         print *, "Please provide the complexes output file with the '-complexes_output option'"
         print *, "For more information, please use the -help option:"
-        print *, "./threshold -threshold angle -help"
+        print *, "./threshold -threshold_type atoms_dist -help"
         STOP 1
       end if
 
@@ -395,11 +254,13 @@ program main
       STOP
     end if
 
+    ! Build identity index array used to keep track of encounter ordering.
     encounter_indexes = 0
     do i = 1, nb_encounters
       encounter_indexes(i) = i
     end do
 
+    ! Sort metric values and reorder encounter indexes in sync.
     call sort_array(distarray, encounter_indexes)
 
     call write_array(distarray, datadist_filename, cutoff)
@@ -409,6 +270,240 @@ program main
   
 
   contains
+      !> Parse command-line arguments for `threshold`.
+      !!
+      !! Parses all CLI flags and fills program configuration values.
+      !! Atom-group flags consume multiple tokens until the next flag.
+      !! @param[out] p_pdb1_filename          Value parsed from `-pdb1`
+      !! @param[out] p_pdb1_bool              Whether `-pdb1` was provided
+      !! @param[out] p_pdb2_filename          Value parsed from `-pdb2`
+      !! @param[out] p_pdb2_bool              Whether `-pdb2` was provided
+      !! @param[out] p_complexes_filename     Value parsed from `-complexes`
+      !! @param[out] p_complexes_bool         Whether `-complexes` was provided
+      !! @param[out] p_datadist_filename      Value parsed from `-array`
+      !! @param[out] p_array_bool             Whether `-array` was provided
+      !! @param[out] p_output_complexes_filename Value parsed from `-complexes_output`
+      !! @param[out] p_output_complexes_bool  Whether `-complexes_output` was provided
+      !! @param[out] p_nb_encounters          Value parsed from `-nb_encounters`
+      !! @param[out] p_nb_encounters_bool     Whether `-nb_encounters` was provided
+      !! @param[out] p_cutoff                 Value parsed from `-cutoff`
+      !! @param[out] p_cutoff_bool            Whether `-cutoff` was provided
+      !! @param[out] p_threshold_type         Value parsed from `-threshold_type`
+      !! @param[out] p_thresholdtype_bool     Whether `-threshold_type` was provided
+      !! @param[out] p_arr_atoms1a            Atom list parsed from `-atoms1` or `-atoms1a`
+      !! @param[out] p_arr_atoms1a_bool       Whether `-atoms1` or `-atoms1a` was provided
+      !! @param[out] p_arr_atoms1b            Atom list parsed from `-atoms1b`
+      !! @param[out] p_arr_atoms1b_bool       Whether `-atoms1b` was provided
+      !! @param[out] p_arr_atoms2a            Atom list parsed from `-atoms2` or `-atoms2a`
+      !! @param[out] p_arr_atoms2a_bool       Whether `-atoms2` or `-atoms2a` was provided
+      !! @param[out] p_arr_atoms2b            Atom list parsed from `-atoms2b`
+      !! @param[out] p_arr_atoms2b_bool       Whether `-atoms2b` was provided
+      !! @param[out] p_help_bool              Whether `-help` was provided
+      subroutine parse_arguments( &
+        p_pdb1_filename, p_pdb1_bool, &
+        p_pdb2_filename, p_pdb2_bool, &
+        p_complexes_filename, p_complexes_bool, &
+        p_datadist_filename, p_array_bool, &
+        p_output_complexes_filename, p_output_complexes_bool, &
+        p_nb_encounters, p_nb_encounters_bool, &
+        p_cutoff, p_cutoff_bool, &
+        p_threshold_type, p_thresholdtype_bool, &
+        p_arr_atoms1a, p_arr_atoms1a_bool, &
+        p_arr_atoms1b, p_arr_atoms1b_bool, &
+        p_arr_atoms2a, p_arr_atoms2a_bool, &
+        p_arr_atoms2b, p_arr_atoms2b_bool, &
+        p_help_bool)
+        implicit none
+
+        character*128, intent(out) :: p_pdb1_filename
+        logical, intent(out) :: p_pdb1_bool
+        character*128, intent(out) :: p_pdb2_filename
+        logical, intent(out) :: p_pdb2_bool
+        character*128, intent(out) :: p_complexes_filename
+        logical, intent(out) :: p_complexes_bool
+        character*128, intent(out) :: p_datadist_filename
+        logical, intent(out) :: p_array_bool
+        character*128, intent(out) :: p_output_complexes_filename
+        logical, intent(out) :: p_output_complexes_bool
+        integer, intent(out) :: p_nb_encounters
+        logical, intent(out) :: p_nb_encounters_bool
+        real (kind=8), intent(out) :: p_cutoff
+        logical, intent(out) :: p_cutoff_bool
+        character*128, intent(out) :: p_threshold_type
+        logical, intent(out) :: p_thresholdtype_bool
+        character*128, dimension(:), allocatable, intent(out) :: p_arr_atoms1a
+        logical, intent(out) :: p_arr_atoms1a_bool
+        character*128, dimension(:), allocatable, intent(out) :: p_arr_atoms1b
+        logical, intent(out) :: p_arr_atoms1b_bool
+        character*128, dimension(:), allocatable, intent(out) :: p_arr_atoms2a
+        logical, intent(out) :: p_arr_atoms2a_bool
+        character*128, dimension(:), allocatable, intent(out) :: p_arr_atoms2b
+        logical, intent(out) :: p_arr_atoms2b_bool
+        logical, intent(out) :: p_help_bool
+
+        integer :: nb_argument, count_arg, n_atoms, j, ios
+        character*128 :: argument
+
+        nb_argument = command_argument_count()
+        if ( nb_argument == 0 ) then
+          print *, '[threshold] ERROR: No options given.'
+          print *, '[threshold] For usage, run: ./threshold -help'
+          call print_help("main")
+          STOP 1
+        end if
+
+        p_nb_encounters = 0
+        p_cutoff = 0.d0
+        p_pdb1_bool = .false.
+        p_pdb2_bool = .false.
+        p_complexes_bool = .false.
+        p_cutoff_bool = .false.
+        p_array_bool = .false.
+        p_thresholdtype_bool = .false.
+        p_output_complexes_bool = .false.
+        p_nb_encounters_bool = .false.
+        p_arr_atoms1a_bool = .false.
+        p_arr_atoms1b_bool = .false.
+        p_arr_atoms2a_bool = .false.
+        p_arr_atoms2b_bool = .false.
+        p_help_bool = .false.
+        argument = ""
+        count_arg = 1
+
+        do while ( count_arg <= nb_argument )
+          call getarg( count_arg, argument )
+
+          if ( trim(argument) == "-pdb1" ) then
+            p_pdb1_bool = .true.
+            call getarg( count_arg+1, argument )
+            p_pdb1_filename = trim(argument)
+            count_arg = count_arg + 1
+          else if ( trim(argument) == "-pdb2" ) then
+            p_pdb2_bool = .true.
+            call getarg( count_arg+1, argument )
+            p_pdb2_filename = trim(argument)
+            count_arg = count_arg + 1
+          else if ( trim(argument) == "-complexes" ) then
+            p_complexes_bool = .true.
+            call getarg( count_arg+1, argument )
+            p_complexes_filename = trim(argument)
+            count_arg = count_arg + 1
+          else if ( trim(argument) == "-array" ) then
+            p_array_bool = .true.
+            call getarg( count_arg+1, argument )
+            p_datadist_filename = trim(argument)
+            count_arg = count_arg + 1
+          else if ( trim(argument) == "-complexes_output" ) then
+            p_output_complexes_bool = .true.
+            call getarg( count_arg+1, argument )
+            p_output_complexes_filename = trim(argument)
+            count_arg = count_arg + 1
+          else if ( trim(argument) == "-nb_encounters" ) then
+            p_nb_encounters_bool = .true.
+            call getarg( count_arg+1, argument )
+            read(argument, *, IOSTAT=ios) p_nb_encounters
+            if (ios /= 0) then
+              print *, "ERROR. Integer expected for the -nb_encounters argument."
+            end if
+            count_arg = count_arg + 1
+          else if ( trim(argument) == "-cutoff" ) then
+            p_cutoff_bool = .true.
+            call getarg( count_arg+1, argument )
+            read(argument, *, IOSTAT=ios) p_cutoff
+            if (ios /= 0) then
+              print *, "ERROR. Float expected for the -cutoff argument."
+            end if
+            count_arg = count_arg + 1
+          else if ( trim(argument) == "-threshold_type" ) then
+            p_thresholdtype_bool = .true.
+            call getarg( count_arg+1, argument )
+            p_threshold_type = trim(argument)
+            count_arg = count_arg + 1
+          else if ( trim(argument) == "-atoms1" .or. trim(argument) == "-atoms1a" ) then
+            p_arr_atoms1a_bool = .true.
+
+            call getarg( count_arg+1, argument )
+            n_atoms = 0
+            do while (argument(1:1) /= "-" .and. count_arg + n_atoms <= nb_argument)
+              n_atoms = n_atoms + 1
+              call getarg( count_arg+n_atoms, argument )
+            end do
+            n_atoms = n_atoms - 1
+            allocate(p_arr_atoms1a(n_atoms))
+
+            do j = 1, n_atoms
+              call getarg( count_arg+j, argument )
+              p_arr_atoms1a(j) = trim(argument)
+            end do
+
+            count_arg = count_arg + n_atoms
+          else if ( trim(argument) == "-atoms1b" ) then
+            p_arr_atoms1b_bool = .true.
+
+            call getarg( count_arg+1, argument )
+            n_atoms = 0
+            do while (argument(1:1) /= "-" .and. count_arg + n_atoms <= nb_argument)
+              n_atoms = n_atoms + 1
+              call getarg( count_arg+n_atoms, argument )
+            end do
+            n_atoms = n_atoms - 1
+            allocate(p_arr_atoms1b(n_atoms))
+
+            do j = 1, n_atoms
+              call getarg( count_arg+j, argument )
+              p_arr_atoms1b(j) = trim(argument)
+            end do
+
+            count_arg = count_arg + n_atoms
+          else if ( trim(argument) == "-atoms2" .or. trim(argument) == "-atoms2a" ) then
+            p_arr_atoms2a_bool = .true.
+
+            call getarg( count_arg+1, argument )
+            n_atoms = 0
+            do while (argument(1:1) /= "-" .and. count_arg + n_atoms <= nb_argument)
+              n_atoms = n_atoms + 1
+              call getarg( count_arg+n_atoms, argument )
+            end do
+            n_atoms = n_atoms - 1
+            allocate(p_arr_atoms2a(n_atoms))
+
+            do j = 1, n_atoms
+              call getarg( count_arg+j, argument )
+              p_arr_atoms2a(j) = trim(argument)
+            end do
+
+            count_arg = count_arg + n_atoms
+          else if ( trim(argument) == "-atoms2b" ) then
+            p_arr_atoms2b_bool = .true.
+
+            call getarg( count_arg+1, argument )
+            n_atoms = 0
+            do while (argument(1:1) /= "-" .and. count_arg + n_atoms <= nb_argument)
+              n_atoms = n_atoms + 1
+              call getarg( count_arg+n_atoms, argument )
+            end do
+            n_atoms = n_atoms - 1
+            allocate(p_arr_atoms2b(n_atoms))
+
+            do j = 1, n_atoms
+              call getarg( count_arg+j, argument )
+              p_arr_atoms2b(j) = trim(argument)
+            end do
+
+            count_arg = count_arg + n_atoms
+          else if ( trim(argument) == "-help" ) then
+            p_help_bool = .true.
+          else
+            print *, '[threshold] ERROR: Argument ''', trim(argument), ''' not recognized.'
+            print *, '[threshold] For usage, run: ./threshold -help'
+            STOP 1
+          end if
+
+          count_arg = count_arg + 1
+        end do
+
+      end subroutine parse_arguments
+
     !> Print usage/help text for `threshold`.
     !!
     !! Explains command-line options and provides examples per
@@ -422,48 +517,51 @@ program main
         print *, ""
         print *, "This program receives as inputs the pdb files, atom groups (either indexes or atomnames)", &
         "encounter complexes file, cutoff to make the threshold distance, ", &
-        "threshold type and complexes output file."
+        "threshold type, array output file and complexes output file."
         print *, "If you want instructions on how to create a specific type of threshold, type:"
         print *, "./threshold -threshold_type <type of threshold> -help"
         print *, ""
-        print *, "Eg.: ./threshold -threshold_type rmsd -help"
+        print *, "Eg.: ./threshold -threshold_type z_coord -help"
         print *, ""
-        print *, "The type of matrices currently available are:"
+        print *, "The threshold types currently available are:"
         print *, "* z_coord"
         print *, "* atoms_dist"
         print *, "* 2D_angle"
         print *, "* 3D_angle"
+        print *, ""
+        print *, "General required options: -pdb2 -atoms2 -complexes -array -complexes_output -cutoff -threshold_type"
         print *, ""
         STOP
       else if (trim(help_option) == "z_coord") then
         print *, ""
         print *, "To generate the z_coord threshold you will need to give the pdb of solute 2,", &
         "one group of atoms (either indexes or atomnames), the encounter complexes file, ", &
-        "number of encounters, threshold type and threshold output file."
+        "number of encounters, cutoff, threshold type, array output file and threshold output file."
         print *, ""
         print *, "Eg.: ./threshold -pdb2 p2_noh.pdb -atoms2 Cu -complexes assoc_complexes ", &
-        "-threshold_type z_coord -complexes_output threshold_z.txt"
+        "-threshold_type z_coord -cutoff 6.0 -array threshold_z_array.txt -complexes_output threshold_z.txt"
         print *, ""
         STOP
       else if (trim(help_option) == "atoms_dist") then
         print *, ""
         print *, "To generate the atoms_dist threshold you will need to give two pdbs, two groups of atoms ", &
-        "(either indexes or atomnames), the encounter complexes file, number of encounters, threshold type ", &
-        "and threshold output file."
+        "(either indexes or atomnames), the encounter complexes file, number of encounters, cutoff, threshold type, ", &
+        "array output file and threshold output file."
         print *, ""
         print *, "Eg.: ./threshold -pdb1 p1_noh.pdb -pdb2 p2_noh.pdb -complexes ", &
-        "assoc_complexes -atoms1 C1 C4 -atoms2 Cu -threshold_type atoms_dist -complexes_output threshold_dist.txt"
+        "assoc_complexes -atoms1 C1 C4 -atoms2 Cu -threshold_type atoms_dist -cutoff 6.0 ", &
+        "-array threshold_dist_array.txt -complexes_output threshold_dist.txt"
         print *, ""
         STOP
       else if (trim(help_option) == "2D_angle" .or. trim(help_option) == "3D_angle") then
         print *, ""
         print *, "To generate the angle threshold you will need to give two pdbs, four groups of atoms ", &
-        "(either indexes or atomnames), the encounter complexes file, number of encounters, threshold ", & 
-        "type and threshold output file."
+        "(either indexes or atomnames), the encounter complexes file, number of encounters, cutoff, threshold ", & 
+        "type, array output file and threshold output file."
         print *, ""
         print *, "Eg.: ./threshold -pdb1 p1_noh.pdb -pdb2 p2_noh.pdb -complexes ", &
-        "assoc_complexes -atoms1a 1 -atoms1b 411 -atoms2a Cu -atoms2b 4 5 6 7 8 -threshold_type angle ", &
-        "-complexes_output threshold_angle.txt"
+        "assoc_complexes -atoms1a 1 -atoms1b 411 -atoms2a Cu -atoms2b 4 5 6 7 8 -threshold_type 3D_angle ", &
+        "-cutoff 30.0 -array threshold_angle_array.txt -complexes_output threshold_angle.txt"
         print *, ""
         print *, "For this specific threshold type you need to be aware that a center ", &
         "of geometry will be calculated for each group of atoms and indexed accordingly: "
@@ -479,17 +577,21 @@ program main
 
     !> Read coordinates for a specified list of atoms (names or indices).
     !!
-    !! Similar to the helper in `make_matrix`. Returns an allocated
-    !! `atoms_coord` array with matching coordinates for the atom names
-    !! or indices provided in `atoms_array`.
+    !! Accepts either atom indices or atom names. If atom names are
+    !! provided, all matching atoms in the PDB are returned (in order).
+    !! @param[in]  atoms_array   Array of atom name strings or index strings
+    !! @param[out] atoms_coord   Allocated array with atom coordinates (n,3)
+    !! @param[in]  tot_atoms     Total number of atoms in `pdb`
+    !! @param[in]  pdb           PDB structure holding atom coordinates
+    !! @param[in]  pdb_filename  Reference filename for warnings
     subroutine read_atoms_coord(atoms_array, atoms_coord, tot_atoms, pdb, pdb_filename)
       implicit none
 
       character(len=*), dimension(:), intent(in) :: atoms_array
-      character(len=*), intent(in) :: pdb_filename
-      integer, intent(in) :: tot_atoms
       real(kind=8), dimension(:, :), allocatable, intent(out) :: atoms_coord
+      integer, intent(in) :: tot_atoms
       type ( type_pdb_file ), intent(in) :: pdb
+      character(len=*), intent(in) :: pdb_filename
 
       character (len=4), dimension(:), allocatable :: array_atomnames
       character (len=4) :: atomname
@@ -576,8 +678,9 @@ program main
       real (kind=8), dimension(:), intent(in) :: distarray_arg
       integer, dimension(:), intent(in) :: encounter_indexes_arg
       integer, intent(in) :: nb_encounters_arg
-      character*128, intent(in) :: output_name_arg
       real(kind=8), intent(in) :: cutoff_arg
+      character*128, intent(in) :: output_name_arg
+
       integer :: idx, unit_number = 15
 
 

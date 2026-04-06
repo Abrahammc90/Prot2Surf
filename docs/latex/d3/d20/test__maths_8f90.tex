@@ -6,19 +6,19 @@
 program \mbox{\hyperlink{test__maths_8f90_ad8b9051fe3eb893471846f87ddc50526}{test\+\_\+maths}}
 \begin{DoxyCompactList}\small\item\em Unit tests for mathematical operations in the maths module. \end{DoxyCompactList}\item 
 subroutine \mbox{\hyperlink{test__maths_8f90_adc3d700b97fe9db056f13a18f30cd76c}{test\+\_\+cross\+\_\+product}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
-\item 
+\begin{DoxyCompactList}\small\item\em Unit test for cross product routine. \end{DoxyCompactList}\item 
 subroutine \mbox{\hyperlink{test__maths_8f90_af2d81a296244c038c9c5c36dd16a73bd}{test\+\_\+update\+\_\+complex}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
-\item 
+\begin{DoxyCompactList}\small\item\em Unit test for update\+\_\+complex routine. \end{DoxyCompactList}\item 
 subroutine \mbox{\hyperlink{test__maths_8f90_a8828834a70b13cd0d4b2c10c9fa7cc31}{test\+\_\+vectors\+\_\+angle\+\_\+3d}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
-\item 
+\begin{DoxyCompactList}\small\item\em Unit test for vectors\+\_\+angle\+\_\+3D routine. \end{DoxyCompactList}\item 
 subroutine \mbox{\hyperlink{test__maths_8f90_a1fd9c90a03617e7fb489d04255fb3d58}{test\+\_\+vectors\+\_\+angle\+\_\+2d}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
-\item 
+\begin{DoxyCompactList}\small\item\em Unit test for vectors\+\_\+angle\+\_\+2D routine. \end{DoxyCompactList}\item 
 subroutine \mbox{\hyperlink{test__maths_8f90_a25250ba11d8ee26147c293e2ea2b8ef6}{test\+\_\+rmsd}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
-\item 
+\begin{DoxyCompactList}\small\item\em Unit test for R\+M\+SD calculation routine. \end{DoxyCompactList}\item 
 subroutine \mbox{\hyperlink{test__maths_8f90_a579bf0272ec24864c70115fcaabf5799}{test\+\_\+calculate\+\_\+cog}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
-\item 
+\begin{DoxyCompactList}\small\item\em Unit test for calculate\+\_\+cog routine. \end{DoxyCompactList}\item 
 subroutine \mbox{\hyperlink{test__maths_8f90_a709c42f4f5bad59a53a151b868e2f0f0}{test\+\_\+calculate\+\_\+distance}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
-\item 
+\begin{DoxyCompactList}\small\item\em Unit test for calculate\+\_\+distance routine. \end{DoxyCompactList}\item 
 logical function \mbox{\hyperlink{test__maths_8f90_ae2b4380975e8bdd4a8252c4fe0ca34a3}{assert\+\_\+vector\+\_\+equal}} (v1, v2, tolerance)
 \begin{DoxyCompactList}\small\item\em Helper function\+: Check if two vectors are approximately equal. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -40,18 +40,84 @@ Helper function\+: Check if two vectors are approximately equal.
 \doxysubsubsection{\texorpdfstring{test\_calculate\_cog()}{test\_calculate\_cog()}}
 {\footnotesize\ttfamily subroutine test\+\_\+maths\+::test\+\_\+calculate\+\_\+cog (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{num\+\_\+tests,  }\item[{integer, intent(inout)}]{num\+\_\+passed,  }\item[{integer, intent(inout)}]{num\+\_\+failed }\end{DoxyParamCaption})}
 
+
+
+Unit test for calculate\+\_\+cog routine. 
+
+\begin{DoxyAuthor}{Author}
+Abraham 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/06-\/09
+\end{DoxyDate}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+tests} & Number of tests executed (incremented) \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+passed} & Number of tests passed (incremented) \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+failed} & Number of tests failed (incremented) \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{test__maths_8f90_a709c42f4f5bad59a53a151b868e2f0f0}\label{test__maths_8f90_a709c42f4f5bad59a53a151b868e2f0f0}} 
 \index{test\_maths.f90@{test\_maths.f90}!test\_calculate\_distance@{test\_calculate\_distance}}
 \index{test\_calculate\_distance@{test\_calculate\_distance}!test\_maths.f90@{test\_maths.f90}}
 \doxysubsubsection{\texorpdfstring{test\_calculate\_distance()}{test\_calculate\_distance()}}
 {\footnotesize\ttfamily subroutine test\+\_\+maths\+::test\+\_\+calculate\+\_\+distance (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{num\+\_\+tests,  }\item[{integer, intent(inout)}]{num\+\_\+passed,  }\item[{integer, intent(inout)}]{num\+\_\+failed }\end{DoxyParamCaption})}
 
+
+
+Unit test for calculate\+\_\+distance routine. 
+
+\begin{DoxyAuthor}{Author}
+Abraham 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/06-\/09
+\end{DoxyDate}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+tests} & Number of tests executed (incremented) \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+passed} & Number of tests passed (incremented) \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+failed} & Number of tests failed (incremented) \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{test__maths_8f90_adc3d700b97fe9db056f13a18f30cd76c}\label{test__maths_8f90_adc3d700b97fe9db056f13a18f30cd76c}} 
 \index{test\_maths.f90@{test\_maths.f90}!test\_cross\_product@{test\_cross\_product}}
 \index{test\_cross\_product@{test\_cross\_product}!test\_maths.f90@{test\_maths.f90}}
 \doxysubsubsection{\texorpdfstring{test\_cross\_product()}{test\_cross\_product()}}
 {\footnotesize\ttfamily subroutine test\+\_\+maths\+::test\+\_\+cross\+\_\+product (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{num\+\_\+tests,  }\item[{integer, intent(inout)}]{num\+\_\+passed,  }\item[{integer, intent(inout)}]{num\+\_\+failed }\end{DoxyParamCaption})}
 
+
+
+Unit test for cross product routine. 
+
+\begin{DoxyAuthor}{Author}
+Abraham 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/06-\/09
+\end{DoxyDate}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+tests} & Number of tests executed (incremented) \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+passed} & Number of tests passed (incremented) \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+failed} & Number of tests failed (incremented) \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{test__maths_8f90_ad8b9051fe3eb893471846f87ddc50526}\label{test__maths_8f90_ad8b9051fe3eb893471846f87ddc50526}} 
 \index{test\_maths.f90@{test\_maths.f90}!test\_maths@{test\_maths}}
 \index{test\_maths@{test\_maths}!test\_maths.f90@{test\_maths.f90}}
@@ -144,21 +210,109 @@ Abraham Muñiz-\/\+Chicharro
 \doxysubsubsection{\texorpdfstring{test\_rmsd()}{test\_rmsd()}}
 {\footnotesize\ttfamily subroutine test\+\_\+maths\+::test\+\_\+rmsd (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{num\+\_\+tests,  }\item[{integer, intent(inout)}]{num\+\_\+passed,  }\item[{integer, intent(inout)}]{num\+\_\+failed }\end{DoxyParamCaption})}
 
+
+
+Unit test for R\+M\+SD calculation routine. 
+
+\begin{DoxyAuthor}{Author}
+Abraham 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/06-\/09
+\end{DoxyDate}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+tests} & Number of tests executed (incremented) \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+passed} & Number of tests passed (incremented) \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+failed} & Number of tests failed (incremented) \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{test__maths_8f90_af2d81a296244c038c9c5c36dd16a73bd}\label{test__maths_8f90_af2d81a296244c038c9c5c36dd16a73bd}} 
 \index{test\_maths.f90@{test\_maths.f90}!test\_update\_complex@{test\_update\_complex}}
 \index{test\_update\_complex@{test\_update\_complex}!test\_maths.f90@{test\_maths.f90}}
 \doxysubsubsection{\texorpdfstring{test\_update\_complex()}{test\_update\_complex()}}
 {\footnotesize\ttfamily subroutine test\+\_\+maths\+::test\+\_\+update\+\_\+complex (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{num\+\_\+tests,  }\item[{integer, intent(inout)}]{num\+\_\+passed,  }\item[{integer, intent(inout)}]{num\+\_\+failed }\end{DoxyParamCaption})}
 
+
+
+Unit test for update\+\_\+complex routine. 
+
+\begin{DoxyAuthor}{Author}
+Abraham 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/06-\/09
+\end{DoxyDate}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+tests} & Number of tests executed (incremented) \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+passed} & Number of tests passed (incremented) \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+failed} & Number of tests failed (incremented) \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{test__maths_8f90_a1fd9c90a03617e7fb489d04255fb3d58}\label{test__maths_8f90_a1fd9c90a03617e7fb489d04255fb3d58}} 
 \index{test\_maths.f90@{test\_maths.f90}!test\_vectors\_angle\_2d@{test\_vectors\_angle\_2d}}
 \index{test\_vectors\_angle\_2d@{test\_vectors\_angle\_2d}!test\_maths.f90@{test\_maths.f90}}
 \doxysubsubsection{\texorpdfstring{test\_vectors\_angle\_2d()}{test\_vectors\_angle\_2d()}}
 {\footnotesize\ttfamily subroutine test\+\_\+maths\+::test\+\_\+vectors\+\_\+angle\+\_\+2d (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{num\+\_\+tests,  }\item[{integer, intent(inout)}]{num\+\_\+passed,  }\item[{integer, intent(inout)}]{num\+\_\+failed }\end{DoxyParamCaption})}
 
+
+
+Unit test for vectors\+\_\+angle\+\_\+2D routine. 
+
+\begin{DoxyAuthor}{Author}
+Abraham 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/06-\/09
+\end{DoxyDate}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+tests} & Number of tests executed (incremented) \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+passed} & Number of tests passed (incremented) \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+failed} & Number of tests failed (incremented) \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{test__maths_8f90_a8828834a70b13cd0d4b2c10c9fa7cc31}\label{test__maths_8f90_a8828834a70b13cd0d4b2c10c9fa7cc31}} 
 \index{test\_maths.f90@{test\_maths.f90}!test\_vectors\_angle\_3d@{test\_vectors\_angle\_3d}}
 \index{test\_vectors\_angle\_3d@{test\_vectors\_angle\_3d}!test\_maths.f90@{test\_maths.f90}}
 \doxysubsubsection{\texorpdfstring{test\_vectors\_angle\_3d()}{test\_vectors\_angle\_3d()}}
 {\footnotesize\ttfamily subroutine test\+\_\+maths\+::test\+\_\+vectors\+\_\+angle\+\_\+3d (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{num\+\_\+tests,  }\item[{integer, intent(inout)}]{num\+\_\+passed,  }\item[{integer, intent(inout)}]{num\+\_\+failed }\end{DoxyParamCaption})}
 
+
+
+Unit test for vectors\+\_\+angle\+\_\+3D routine. 
+
+\begin{DoxyAuthor}{Author}
+Abraham 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/06-\/09
+\end{DoxyDate}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+tests} & Number of tests executed (incremented) \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+passed} & Number of tests passed (incremented) \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em num\+\_\+failed} & Number of tests failed (incremented) \\
+\hline
+\end{DoxyParams}

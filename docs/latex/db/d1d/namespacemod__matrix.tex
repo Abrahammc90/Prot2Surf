@@ -3,93 +3,15 @@
 \doxysubsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-subroutine \mbox{\hyperlink{namespacemod__matrix_a9de83edad93118cfe2ad02d916b0148f}{matrix\+\_\+z\+\_\+coord}} (matrix, array, n, nb\+\_\+atoms, xc1, xc2, trans\+\_\+vector, rot1, rot2, solute\+\_\+crds)
-\begin{DoxyCompactList}\small\item\em Build a matrix of absolute differences of Z-\/coordinates per encounter. \end{DoxyCompactList}\item 
-subroutine \mbox{\hyperlink{namespacemod__matrix_a487f996f27bc33883c050522fdf40c3d}{matrix\+\_\+atoms\+\_\+dist}} (matrix, array, n, nb\+\_\+atoms, xc1, xc2, trans\+\_\+vector, rot1, rot2, solute1\+\_\+crds, solute2\+\_\+crds)
-\begin{DoxyCompactList}\small\item\em Build matrix from minimum inter-\/atomic distances between two solutes. \end{DoxyCompactList}\item 
-subroutine \mbox{\hyperlink{namespacemod__matrix_a83c35621a4e33d0e6e6ae8e4a76a3cb8}{matrix\+\_\+angle}} (matrix, array, n, nb\+\_\+atoms, xc1, xc2, trans\+\_\+vector, rot1, rot2, point1a, point1b, point2a, point2b, dimensions)
-\begin{DoxyCompactList}\small\item\em Build matrix of angular differences between encounters. \end{DoxyCompactList}\item 
 subroutine \mbox{\hyperlink{namespacemod__matrix_a10eab892b87e949df1b1df1152106585}{matrix\+\_\+rmsd}} (matrix, n, nb\+\_\+atoms, xc1, xc2, trans\+\_\+vector, rot1, rot2, coord)
 \begin{DoxyCompactList}\small\item\em Build R\+M\+S\+D-\/based pairwise matrix between transformed coordinates. \end{DoxyCompactList}\item 
 subroutine \mbox{\hyperlink{namespacemod__matrix_a2ac28315cb206a31cad2f5e63c3afba1}{write\+\_\+matrix}} (matrix, filename)
 \begin{DoxyCompactList}\small\item\em Write a numeric matrix to a formatted text file. \end{DoxyCompactList}\item 
 subroutine \mbox{\hyperlink{namespacemod__matrix_ab379913b1ccff8141ffd78808dc8148b}{read\+\_\+matrix}} (matrix, n, filename)
-\begin{DoxyCompactList}\small\item\em Write a numeric array to a formatted text file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Read a square numeric matrix from a formatted text file. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{namespacemod__matrix_a83c35621a4e33d0e6e6ae8e4a76a3cb8}\label{namespacemod__matrix_a83c35621a4e33d0e6e6ae8e4a76a3cb8}} 
-\index{mod\_matrix@{mod\_matrix}!matrix\_angle@{matrix\_angle}}
-\index{matrix\_angle@{matrix\_angle}!mod\_matrix@{mod\_matrix}}
-\doxysubsubsection{\texorpdfstring{matrix\_angle()}{matrix\_angle()}}
-{\footnotesize\ttfamily subroutine mod\+\_\+matrix\+::matrix\+\_\+angle (\begin{DoxyParamCaption}\item[{real(kind=8), dimension(n, n), intent(out)}]{matrix,  }\item[{real(kind=8), dimension(n), intent(out)}]{array,  }\item[{integer, intent(in)}]{n,  }\item[{integer, intent(in)}]{nb\+\_\+atoms,  }\item[{real(kind=8), dimension(3), intent(in)}]{xc1,  }\item[{real(kind=8), dimension(3), intent(in)}]{xc2,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{trans\+\_\+vector,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{rot1,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{rot2,  }\item[{real(kind=8), dimension(\+:), intent(in)}]{point1a,  }\item[{real(kind=8), dimension(\+:), intent(in)}]{point1b,  }\item[{real(kind=8), dimension(\+:), intent(in)}]{point2a,  }\item[{real(kind=8), dimension(\+:), intent(in)}]{point2b,  }\item[{integer, intent(in)}]{dimensions }\end{DoxyParamCaption})}
-
-
-
-Build matrix of angular differences between encounters. 
-
-Computes the angle (2D or 3D) for each encounter and fills the pairwise absolute difference matrix.
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ out}}  & {\em matrix} & Output (n,n) matrix of pairwise angular differences \\
-\hline
-\mbox{\texttt{ out}}  & {\em array} & Output (n) array with per-\/encounter angles \\
-\hline
-\mbox{\texttt{ in}}  & {\em n} & Number of encounters \\
-\hline
-\mbox{\texttt{ in}}  & {\em nb\+\_\+atoms} & Number of atoms in solute 2 to transform \\
-\hline
-\mbox{\texttt{ in}}  & {\em xc1,xc2} & Solute centers used for translation transformations \\
-\hline
-\mbox{\texttt{ in}}  & {\em trans\+\_\+vector} & Transform translation vectors (n,3) \\
-\hline
-\mbox{\texttt{ in}}  & {\em rot1,rot2} & Transform rotation arrays (n,3) \\
-\hline
-\mbox{\texttt{ in}}  & {\em point1a} & First point defining reference vector \\
-\hline
-\mbox{\texttt{ in}}  & {\em point1b} & Second point defining reference vector \\
-\hline
-\mbox{\texttt{ in}}  & {\em point2a} & First point of vector to be transformed \\
-\hline
-\mbox{\texttt{ in}}  & {\em point2b} & Second point of vector to be transformed \\
-\hline
-\mbox{\texttt{ in}}  & {\em dimensions} & Dimensionality of angle calculation (2 or 3) \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{namespacemod__matrix_a487f996f27bc33883c050522fdf40c3d}\label{namespacemod__matrix_a487f996f27bc33883c050522fdf40c3d}} 
-\index{mod\_matrix@{mod\_matrix}!matrix\_atoms\_dist@{matrix\_atoms\_dist}}
-\index{matrix\_atoms\_dist@{matrix\_atoms\_dist}!mod\_matrix@{mod\_matrix}}
-\doxysubsubsection{\texorpdfstring{matrix\_atoms\_dist()}{matrix\_atoms\_dist()}}
-{\footnotesize\ttfamily subroutine mod\+\_\+matrix\+::matrix\+\_\+atoms\+\_\+dist (\begin{DoxyParamCaption}\item[{real(kind=8), dimension(n, n), intent(out)}]{matrix,  }\item[{real(kind=8), dimension(n), intent(out)}]{array,  }\item[{integer, intent(in)}]{n,  }\item[{integer, intent(in)}]{nb\+\_\+atoms,  }\item[{real(kind=8), dimension(3), intent(in)}]{xc1,  }\item[{real(kind=8), dimension(3), intent(in)}]{xc2,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{trans\+\_\+vector,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{rot1,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{rot2,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{solute1\+\_\+crds,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{solute2\+\_\+crds }\end{DoxyParamCaption})}
-
-
-
-Build matrix from minimum inter-\/atomic distances between two solutes. 
-
-For each encounter, the second solute is transformed and the minimum distance to {\ttfamily solute1\+\_\+crds} is computed; pairwise absolute differences of these minima populate {\ttfamily matrix}.
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ out}}  & {\em matrix} & Output (n,n) matrix of pairwise values \\
-\hline
-\mbox{\texttt{ out}}  & {\em array} & Output (n) array with per-\/encounter minimum distances \\
-\hline
-\mbox{\texttt{ in}}  & {\em n} & Number of encounters \\
-\hline
-\mbox{\texttt{ in}}  & {\em nb\+\_\+atoms} & Number of atoms in solute 2 to transform \\
-\hline
-\mbox{\texttt{ in}}  & {\em xc1,xc2} & Solute centers used for translation transformations \\
-\hline
-\mbox{\texttt{ in}}  & {\em trans\+\_\+vector} & Transform translation vectors (n,3) \\
-\hline
-\mbox{\texttt{ in}}  & {\em rot1,rot2} & Transform rotation arrays (n,3) \\
-\hline
-\mbox{\texttt{ in}}  & {\em solute1\+\_\+crds} & Coordinates of first solute atoms \\
-\hline
-\mbox{\texttt{ in}}  & {\em solute2\+\_\+crds} & Coordinates of second solute atoms \\
-\hline
-\end{DoxyParams}
 \mbox{\Hypertarget{namespacemod__matrix_a10eab892b87e949df1b1df1152106585}\label{namespacemod__matrix_a10eab892b87e949df1b1df1152106585}} 
 \index{mod\_matrix@{mod\_matrix}!matrix\_rmsd@{matrix\_rmsd}}
 \index{matrix\_rmsd@{matrix\_rmsd}!mod\_matrix@{mod\_matrix}}
@@ -108,44 +30,15 @@ Applies transformation to the coordinate set for each encounter and computes pai
 \hline
 \mbox{\texttt{ in}}  & {\em n} & Number of encounters \\
 \hline
-\mbox{\texttt{ in}}  & {\em nb\+\_\+atoms} & Number of atoms in solute 2 to transform \\
+\mbox{\texttt{ in}}  & {\em nb\+\_\+atoms} & Number of atoms in solute2 to transform \\
 \hline
-\mbox{\texttt{ in}}  & {\em xc1,xc2} & Solute centers used for translation transformations \\
+\mbox{\texttt{ in}}  & {\em xc1,xc2} & Solute centers for translation \\
 \hline
 \mbox{\texttt{ in}}  & {\em trans\+\_\+vector} & Transform translation vectors (n,3) \\
 \hline
 \mbox{\texttt{ in}}  & {\em rot1,rot2} & Transform rotation arrays (n,3) \\
 \hline
 \mbox{\texttt{ in}}  & {\em coord} & Coordinates to be transformed \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{namespacemod__matrix_a9de83edad93118cfe2ad02d916b0148f}\label{namespacemod__matrix_a9de83edad93118cfe2ad02d916b0148f}} 
-\index{mod\_matrix@{mod\_matrix}!matrix\_z\_coord@{matrix\_z\_coord}}
-\index{matrix\_z\_coord@{matrix\_z\_coord}!mod\_matrix@{mod\_matrix}}
-\doxysubsubsection{\texorpdfstring{matrix\_z\_coord()}{matrix\_z\_coord()}}
-{\footnotesize\ttfamily subroutine mod\+\_\+matrix\+::matrix\+\_\+z\+\_\+coord (\begin{DoxyParamCaption}\item[{real(kind=8), dimension(n, n), intent(out)}]{matrix,  }\item[{real(kind=8), dimension(n), intent(out)}]{array,  }\item[{integer, intent(in)}]{n,  }\item[{integer, intent(in)}]{nb\+\_\+atoms,  }\item[{real(kind=8), dimension(3), intent(in)}]{xc1,  }\item[{real(kind=8), dimension(3), intent(in)}]{xc2,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{trans\+\_\+vector,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{rot1,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{rot2,  }\item[{real(kind=8), dimension(\+:, \+:), intent(in)}]{solute\+\_\+crds }\end{DoxyParamCaption})}
-
-
-
-Build a matrix of absolute differences of Z-\/coordinates per encounter. 
-
-Computes the Z coordinate for each encounter (as in {\ttfamily array\+\_\+z\+\_\+coord}) and fills {\ttfamily matrix(i,j) = $\vert$z\+\_\+i -\/ z\+\_\+j$\vert$} for i$<$j (symmetrically).
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ out}}  & {\em matrix} & Output (n,n) matrix of pairwise values \\
-\hline
-\mbox{\texttt{ out}}  & {\em array} & Output array with per-\/encounter Z values \\
-\hline
-\mbox{\texttt{ in}}  & {\em n} & Number of encounters \\
-\hline
-\mbox{\texttt{ in}}  & {\em nb\+\_\+atoms} & Number of atoms in {\ttfamily solute\+\_\+crds} \\
-\hline
-\mbox{\texttt{ in}}  & {\em xc1,xc2} & Solute centers used for translation transformations \\
-\hline
-\mbox{\texttt{ in}}  & {\em trans\+\_\+vector,rot1,rot2} & Transform arrays (n,3) \\
-\hline
-\mbox{\texttt{ in}}  & {\em solute\+\_\+crds} & Coordinates of solute atoms \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{namespacemod__matrix_ab379913b1ccff8141ffd78808dc8148b}\label{namespacemod__matrix_ab379913b1ccff8141ffd78808dc8148b}} 
@@ -156,17 +49,8 @@ Computes the Z coordinate for each encounter (as in {\ttfamily array\+\_\+z\+\_\
 
 
 
-Write a numeric array to a formatted text file. 
+Read a square numeric matrix from a formatted text file. 
 
-Writes {\ttfamily array} as a single formatted line using {\ttfamily F10.\+4} floats.
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em array} & Input array to write \\
-\hline
-\mbox{\texttt{ in}}  & {\em filename} & Output filename Read a square numeric matrix from a formatted text file.\\
-\hline
-\end{DoxyParams}
 Reads the file line-\/by-\/line to determine matrix size and parses rows with the expected {\ttfamily F10.\+4} formatting.
 
 
@@ -188,7 +72,7 @@ Reads the file line-\/by-\/line to determine matrix size and parses rows with th
 
 Write a numeric matrix to a formatted text file. 
 
-Writes {\ttfamily matrix} with each row as {\ttfamily F10.\+4} formatted floats. The output filename is provided by {\ttfamily filename}.
+Writes matrix with each row as F10.\+4 formatted floats. Output filename is provided by filename.
 
 
 \begin{DoxyParams}[1]{Parameters}

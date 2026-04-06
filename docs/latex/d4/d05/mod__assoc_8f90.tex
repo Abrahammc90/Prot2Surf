@@ -1,5 +1,10 @@
 \hypertarget{mod__assoc_8f90}{}\doxysection{mod\+\_\+assoc.\+f90 File Reference}
 \label{mod__assoc_8f90}\index{mod\_assoc.f90@{mod\_assoc.f90}}
+
+
+Association/complexes file data structures and parsing routines.  
+
+
 \doxysubsection*{Data Types}
 \begin{DoxyCompactItemize}
 \item 
@@ -9,7 +14,7 @@ type \mbox{\hyperlink{structmod__assoc_1_1type__assoc__file}{mod\+\_\+assoc\+::t
 \begin{DoxyCompactItemize}
 \item 
 module \mbox{\hyperlink{namespacemod__assoc}{mod\+\_\+assoc}}
-\begin{DoxyCompactList}\small\item\em Association/complexes file utilities. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{DoxyCompactItemize}
 \doxysubsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
@@ -21,3 +26,23 @@ subroutine \mbox{\hyperlink{namespacemod__assoc_a713069bd94bf35d163fef1017c31b84
 \begin{DoxyCompactList}\small\item\em Read an association/complexes file and populate {\ttfamily \mbox{\hyperlink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}}}. \end{DoxyCompactList}\item 
 subroutine \mbox{\hyperlink{namespacemod__assoc_a1a078920eaad8dbf34e84a3948283c74}{mod\+\_\+assoc\+::write\+\_\+complexes}} (complexes, nb\+\_\+encounters, complexes\+\_\+filename)
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Association/complexes file data structures and parsing routines. 
+
+Association/complexes file utilities.
+
+This module defines the {\ttfamily type\+\_\+assoc\+\_\+file} derived type and routines to allocate and populate it from an association/complexes text file. The {\ttfamily type\+\_\+assoc\+\_\+file} stores the raw file lines, header lines, per-\/encounter translation vectors and rotation vectors, and the two reference centers {\ttfamily xc1} and {\ttfamily xc2} extracted from the file header.
+
+N\+O\+TE\+: The routines in this file are adapted from the S\+D\+A7 project\textquotesingle{}s {\ttfamily \mbox{\hyperlink{mod__pdb_8f90}{mod\+\_\+pdb.\+f90}}} (original author Neil Bruce). This file contains code and ideas derived from that implementation. Appropriate attribution to the S\+D\+A7 sources is retained here. Consult the S\+D\+A7 project for original authorship and licensing details.
+
+\begin{DoxyAuthor}{Author}
+Abraham Muñiz-\/\+Chicharro 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2026-\/04-\/05 
+\end{DoxyDate}

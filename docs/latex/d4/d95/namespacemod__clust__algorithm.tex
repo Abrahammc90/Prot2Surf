@@ -3,10 +3,10 @@
 \doxysubsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-subroutine \mbox{\hyperlink{namespacemod__clust__algorithm_aac8e767d613f22ea09bbfe4e72ac8c97}{linkage\+\_\+clustering\+\_\+from\+\_\+matrix}} (matrix, n, linkage\+\_\+type, output\+\_\+name, complexes, use\+\_\+cuda)
+subroutine \mbox{\hyperlink{namespacemod__clust__algorithm_a6a473a1ca16c6b1e90b2fb602a74a794}{linkage\+\_\+clustering\+\_\+from\+\_\+matrix}} (matrix, n, linkage\+\_\+type, output\+\_\+name, complexes)
 \begin{DoxyCompactList}\small\item\em Perform hierarchical clustering on a distance matrix. \end{DoxyCompactList}\item 
-subroutine \mbox{\hyperlink{namespacemod__clust__algorithm_aa77b6410a12742c93a35e88295847b20}{linkage\+\_\+clustering\+\_\+from\+\_\+array}} (array, n, linkage\+\_\+type, output\+\_\+name, complexes, use\+\_\+cuda)
-\begin{DoxyCompactList}\small\item\em Perform hierarchical clustering on a distance matrix. \end{DoxyCompactList}\item 
+subroutine \mbox{\hyperlink{namespacemod__clust__algorithm_a30eb621a6ad610c736bca0ef2711dc9f}{linkage\+\_\+clustering\+\_\+from\+\_\+array}} (array, n, linkage\+\_\+type, output\+\_\+name, complexes)
+\begin{DoxyCompactList}\small\item\em Perform hierarchical clustering on a distance array. \end{DoxyCompactList}\item 
 subroutine \mbox{\hyperlink{namespacemod__clust__algorithm_af5f3db6d505ab3f6f1ac125933ec5a3c}{sort\+\_\+complexes}} (tot\+\_\+encounters, cluster\+\_\+indexes, cluster\+\_\+count, active\+\_\+clusters, representative\+\_\+indexes, cluster\+\_\+average, cluster\+\_\+sd, array)
 \begin{DoxyCompactList}\small\item\em Sort clusters and associated arrays by a given key array. \end{DoxyCompactList}\item 
 subroutine \mbox{\hyperlink{namespacemod__clust__algorithm_a781dcda3e1ee679a509a0a466f15a0cf}{write\+\_\+cluster\+\_\+elements}} (tot\+\_\+encounters, cluster\+\_\+parent, cluster\+\_\+count, active\+\_\+clusters, output\+\_\+name)
@@ -18,38 +18,36 @@ subroutine \mbox{\hyperlink{namespacemod__clust__algorithm_a0a2c96478205c647ddd3
 
 
 \doxysubsection{Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{namespacemod__clust__algorithm_aa77b6410a12742c93a35e88295847b20}\label{namespacemod__clust__algorithm_aa77b6410a12742c93a35e88295847b20}} 
+\mbox{\Hypertarget{namespacemod__clust__algorithm_a30eb621a6ad610c736bca0ef2711dc9f}\label{namespacemod__clust__algorithm_a30eb621a6ad610c736bca0ef2711dc9f}} 
 \index{mod\_clust\_algorithm@{mod\_clust\_algorithm}!linkage\_clustering\_from\_array@{linkage\_clustering\_from\_array}}
 \index{linkage\_clustering\_from\_array@{linkage\_clustering\_from\_array}!mod\_clust\_algorithm@{mod\_clust\_algorithm}}
 \doxysubsubsection{\texorpdfstring{linkage\_clustering\_from\_array()}{linkage\_clustering\_from\_array()}}
-{\footnotesize\ttfamily subroutine mod\+\_\+clust\+\_\+algorithm\+::linkage\+\_\+clustering\+\_\+from\+\_\+array (\begin{DoxyParamCaption}\item[{real (kind=8), dimension(\+:), intent(inout), allocatable}]{array,  }\item[{integer, intent(in)}]{n,  }\item[{character(len=$\ast$), intent(in)}]{linkage\+\_\+type,  }\item[{character$\ast$128, intent(in)}]{output\+\_\+name,  }\item[{type(\mbox{\hyperlink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}})}]{complexes,  }\item[{logical, intent(in), optional}]{use\+\_\+cuda }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily subroutine mod\+\_\+clust\+\_\+algorithm\+::linkage\+\_\+clustering\+\_\+from\+\_\+array (\begin{DoxyParamCaption}\item[{real (kind=8), dimension(\+:), intent(inout), allocatable}]{array,  }\item[{integer, intent(in)}]{n,  }\item[{character(len=$\ast$), intent(in)}]{linkage\+\_\+type,  }\item[{character$\ast$128, intent(in)}]{output\+\_\+name,  }\item[{type(\mbox{\hyperlink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}})}]{complexes }\end{DoxyParamCaption})}
 
 
 
-Perform hierarchical clustering on a distance matrix. 
+Perform hierarchical clustering on a distance array. 
 
-This routine performs hierarchical clustering using minimum, maximum, or mean linkage on the input {\ttfamily matrix} (shape {\ttfamily (n,n)}) of pairwise distances or similarity scores. The routine mutates {\ttfamily matrix} during merging and terminates merging when clusters are farther apart than an internally computed threshold. Results are written to files named using {\ttfamily output\+\_\+name} and complexes information is optionally recorded via the {\ttfamily complexes} structure.
+This routine performs hierarchical clustering using minimum, maximum, or mean linkage on the input {\ttfamily array} (shape {\ttfamily (n)}) of pairwise distances or similarity scores. The routine mutates {\ttfamily array} during merging and terminates merging when clusters are farther apart than an internally computed threshold. Results are written to files named using {\ttfamily output\+\_\+name} and complexes information is optionally recorded via the {\ttfamily complexes} structure.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in,out}}  & {\em matrix} & Pairwise distance/similarity matrix (n,n). This matrix is updated during clustering. \\
+\mbox{\texttt{ in,out}}  & {\em array} & Array of per-\/encounter values (n) This array is updated during clustering \\
 \hline
-\mbox{\texttt{ in}}  & {\em n} & Number of elements / encounters (integer). \\
+\mbox{\texttt{ in}}  & {\em n} & Number of elements / encounters \\
 \hline
-\mbox{\texttt{ in}}  & {\em linkage\+\_\+type} & Type of linkage\+: \textquotesingle{}min\textquotesingle{}, \textquotesingle{}max\textquotesingle{}, or \textquotesingle{}mean\textquotesingle{} (string). \\
+\mbox{\texttt{ in}}  & {\em linkage\+\_\+type} & Type of linkage\+: \textquotesingle{}min\textquotesingle{}, \textquotesingle{}max\textquotesingle{}, or \textquotesingle{}mean\textquotesingle{} \\
 \hline
-\mbox{\texttt{ in}}  & {\em output\+\_\+name} & Base name for output files (string). \\
+\mbox{\texttt{ in}}  & {\em output\+\_\+name} & Base name for output files \\
 \hline
-\mbox{\texttt{ in}}  & {\em complexes} & Structure containing complex text lines/headers. \\
-\hline
-\mbox{\texttt{ in}}  & {\em opt\+\_\+array} & Optional array of per-\/encounter values used to compute cluster averages instead of reading values from {\ttfamily matrix}. \\
+\mbox{\texttt{ in}}  & {\em complexes} & Structure containing complex text lines/headers \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{namespacemod__clust__algorithm_aac8e767d613f22ea09bbfe4e72ac8c97}\label{namespacemod__clust__algorithm_aac8e767d613f22ea09bbfe4e72ac8c97}} 
+\mbox{\Hypertarget{namespacemod__clust__algorithm_a6a473a1ca16c6b1e90b2fb602a74a794}\label{namespacemod__clust__algorithm_a6a473a1ca16c6b1e90b2fb602a74a794}} 
 \index{mod\_clust\_algorithm@{mod\_clust\_algorithm}!linkage\_clustering\_from\_matrix@{linkage\_clustering\_from\_matrix}}
 \index{linkage\_clustering\_from\_matrix@{linkage\_clustering\_from\_matrix}!mod\_clust\_algorithm@{mod\_clust\_algorithm}}
 \doxysubsubsection{\texorpdfstring{linkage\_clustering\_from\_matrix()}{linkage\_clustering\_from\_matrix()}}
-{\footnotesize\ttfamily subroutine mod\+\_\+clust\+\_\+algorithm\+::linkage\+\_\+clustering\+\_\+from\+\_\+matrix (\begin{DoxyParamCaption}\item[{real (kind=8), dimension(\+:, \+:), intent(inout), allocatable}]{matrix,  }\item[{integer, intent(in)}]{n,  }\item[{character(len=$\ast$), intent(in)}]{linkage\+\_\+type,  }\item[{character$\ast$128, intent(in)}]{output\+\_\+name,  }\item[{type(\mbox{\hyperlink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}})}]{complexes,  }\item[{logical, intent(in), optional}]{use\+\_\+cuda }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily subroutine mod\+\_\+clust\+\_\+algorithm\+::linkage\+\_\+clustering\+\_\+from\+\_\+matrix (\begin{DoxyParamCaption}\item[{real (kind=8), dimension(\+:, \+:), intent(inout), allocatable}]{matrix,  }\item[{integer, intent(in)}]{n,  }\item[{character(len=$\ast$), intent(in)}]{linkage\+\_\+type,  }\item[{character$\ast$128, intent(in)}]{output\+\_\+name,  }\item[{type(\mbox{\hyperlink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}})}]{complexes }\end{DoxyParamCaption})}
 
 
 
@@ -59,17 +57,15 @@ This routine performs hierarchical clustering using minimum, maximum, or mean li
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in,out}}  & {\em matrix} & Pairwise distance/similarity matrix (n,n). This matrix is updated during clustering. \\
+\mbox{\texttt{ in,out}}  & {\em matrix} & Pairwise distance/similarity matrix (n, n) This matrix is updated during clustering \\
 \hline
-\mbox{\texttt{ in}}  & {\em n} & Number of elements / encounters (integer). \\
+\mbox{\texttt{ in}}  & {\em n} & Number of elements / encounters \\
 \hline
-\mbox{\texttt{ in}}  & {\em linkage\+\_\+type} & Type of linkage\+: \textquotesingle{}min\textquotesingle{}, \textquotesingle{}max\textquotesingle{}, or \textquotesingle{}mean\textquotesingle{} (string). \\
+\mbox{\texttt{ in}}  & {\em linkage\+\_\+type} & Type of linkage\+: \textquotesingle{}min\textquotesingle{}, \textquotesingle{}max\textquotesingle{}, or \textquotesingle{}mean\textquotesingle{} \\
 \hline
-\mbox{\texttt{ in}}  & {\em output\+\_\+name} & Base name for output files (string). \\
+\mbox{\texttt{ in}}  & {\em output\+\_\+name} & Base name for output files \\
 \hline
-\mbox{\texttt{ in}}  & {\em complexes} & Structure containing complex text lines/headers. \\
-\hline
-\mbox{\texttt{ in}}  & {\em opt\+\_\+array} & Optional array of per-\/encounter values used to compute cluster averages instead of reading values from {\ttfamily matrix}. \\
+\mbox{\texttt{ in}}  & {\em complexes} & Structure containing complex text lines/headers \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{namespacemod__clust__algorithm_af5f3db6d505ab3f6f1ac125933ec5a3c}\label{namespacemod__clust__algorithm_af5f3db6d505ab3f6f1ac125933ec5a3c}} 
@@ -107,7 +103,7 @@ Reorders {\ttfamily cluster\+\_\+indexes} and all supplied per-\/cluster arrays 
 \index{mod\_clust\_algorithm@{mod\_clust\_algorithm}!write\_clust\_info@{write\_clust\_info}}
 \index{write\_clust\_info@{write\_clust\_info}!mod\_clust\_algorithm@{mod\_clust\_algorithm}}
 \doxysubsubsection{\texorpdfstring{write\_clust\_info()}{write\_clust\_info()}}
-{\footnotesize\ttfamily subroutine mod\+\_\+clust\+\_\+algorithm\+::write\+\_\+clust\+\_\+info (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{tot\+\_\+encounters,  }\item[{integer, dimension(\+:), intent(in)}]{representative\+\_\+indexes,  }\item[{logical, dimension(\+:), intent(in)}]{active\+\_\+clusters,  }\item[{integer, dimension(tot\+\_\+encounters), intent(in)}]{clust\+\_\+count,  }\item[{real (kind=8), dimension(tot\+\_\+encounters)}]{cluster\+\_\+average,  }\item[{real (kind=8), dimension(tot\+\_\+encounters)}]{cluster\+\_\+sd,  }\item[{character$\ast$128, intent(in)}]{output\+\_\+name }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily subroutine mod\+\_\+clust\+\_\+algorithm\+::write\+\_\+clust\+\_\+info (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{tot\+\_\+encounters,  }\item[{integer, dimension(\+:), intent(in)}]{representative\+\_\+indexes,  }\item[{logical, dimension(\+:), intent(in)}]{active\+\_\+clusters,  }\item[{integer, dimension(tot\+\_\+encounters), intent(in)}]{clust\+\_\+count,  }\item[{real (kind=8), dimension(tot\+\_\+encounters), intent(in)}]{cluster\+\_\+average,  }\item[{real (kind=8), dimension(tot\+\_\+encounters), intent(in)}]{cluster\+\_\+sd,  }\item[{character$\ast$128, intent(in)}]{output\+\_\+name }\end{DoxyParamCaption})}
 
 
 
@@ -119,17 +115,17 @@ Produces a summary file {\ttfamily $<$output\+\_\+name$>$\+\_\+clust\+\_\+info.\
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em tot\+\_\+encounters} & Total number of encounters \\
 \hline
-\mbox{\texttt{ in}}  & {\em clust\+\_\+count} & Array with population of each cluster \\
+\mbox{\texttt{ in}}  & {\em representative\+\_\+indexes} & Representative index per cluster \\
 \hline
 \mbox{\texttt{ in}}  & {\em active\+\_\+clusters} & Logical mask indicating active clusters \\
 \hline
-\mbox{\texttt{ in}}  & {\em representative\+\_\+indexes} & Representative index per cluster \\
-\hline
-\mbox{\texttt{ in}}  & {\em output\+\_\+name} & Base filename for outputs \\
+\mbox{\texttt{ in}}  & {\em clust\+\_\+count} & Array with population of each cluster \\
 \hline
 \mbox{\texttt{ in}}  & {\em cluster\+\_\+average} & Per-\/cluster average values \\
 \hline
 \mbox{\texttt{ in}}  & {\em cluster\+\_\+sd} & Per-\/cluster standard deviations \\
+\hline
+\mbox{\texttt{ in}}  & {\em output\+\_\+name} & Base filename for outputs \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{namespacemod__clust__algorithm_a0a2c96478205c647ddd3a6bf8c283a39}\label{namespacemod__clust__algorithm_a0a2c96478205c647ddd3a6bf8c283a39}} 
@@ -148,7 +144,7 @@ For each active cluster this routine creates a file {\ttfamily $<$output\+\_\+na
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em tot\+\_\+encounters} & Number of clusters/encounters \\
 \hline
-\mbox{\texttt{ in}}  & {\em cluster\+\_\+indexes} & Matrix of cluster member indexes \\
+\mbox{\texttt{ in}}  & {\em cluster\+\_\+parent} & Parent cluster for each encounter \\
 \hline
 \mbox{\texttt{ in}}  & {\em cluster\+\_\+count} & Number of members per cluster \\
 \hline
@@ -175,7 +171,7 @@ Outputs a file named {\ttfamily $<$output\+\_\+name$>$\+\_\+clusters.\+txt} cont
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em tot\+\_\+encounters} & Number of possible clusters/encounters \\
 \hline
-\mbox{\texttt{ in}}  & {\em cluster\+\_\+indexes} & Matrix of cluster member indexes \\
+\mbox{\texttt{ in}}  & {\em cluster\+\_\+parent} & Parent cluster for each encounter \\
 \hline
 \mbox{\texttt{ in}}  & {\em cluster\+\_\+count} & Number of members per cluster \\
 \hline

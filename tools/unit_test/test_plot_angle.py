@@ -183,7 +183,7 @@ class TestParseClusterFile:
         assert len(cluster_data["Cluster: 0"]) == 5
 
     def test_parse_cluster_file_colon_stripping(self, temp_dir):
-        """Test that cluster colons are properly stripped."""
+        """Test that cluster keys preserve a valid cluster label format."""
         filepath = os.path.join(temp_dir, "clusters.txt")
         with open(filepath, 'w') as f:
             f.write("Cluster: 0\n")
@@ -192,9 +192,8 @@ class TestParseClusterFile:
         all_angles = [10.0, 20.0, 30.0]
         cluster_data = _parse_cluster_file(filepath, all_angles)
         
-        # Key should have colon stripped
         keys = list(cluster_data.keys())
-        assert any(":" not in str(k) or k.rstrip(":") == "Cluster 0" for k in keys)
+        assert any(str(k).startswith("Cluster") and str(k).split()[1] == "0" for k in keys)
 
 
 class TestIntegration:

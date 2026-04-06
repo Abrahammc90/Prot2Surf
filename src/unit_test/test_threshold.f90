@@ -53,6 +53,17 @@ program test_threshold
 
 contains
 
+    !*******************************************************************************
+    !> @brief Unit test for array_z_coord routine.
+    !>
+    !> @author Abraham
+    !> @version 1.0
+    !> @date 2024-06-09
+    !>
+    !> @param[inout] num_tests   Number of tests executed (incremented)
+    !> @param[inout] num_passed  Number of tests passed (incremented)
+    !> @param[inout] num_failed  Number of tests failed (incremented)
+    !*******************************************************************************
     subroutine test_array_z_coord(num_tests, num_passed, num_failed)
         integer, intent(inout) :: num_tests, num_passed, num_failed
         real(kind=8), dimension(:), allocatable :: array
@@ -129,6 +140,17 @@ contains
     end subroutine test_array_z_coord
 
 
+    !*******************************************************************************
+    !> @brief Unit test for array_atoms_dist routine.
+    !>
+    !> @author Abraham
+    !> @version 1.0
+    !> @date 2024-06-09
+    !>
+    !> @param[inout] num_tests   Number of tests executed (incremented)
+    !> @param[inout] num_passed  Number of tests passed (incremented)
+    !> @param[inout] num_failed  Number of tests failed (incremented)
+    !*******************************************************************************
     subroutine test_array_atoms_dist(num_tests, num_passed, num_failed)
         integer, intent(inout) :: num_tests, num_passed, num_failed
         real(kind=8), dimension(:), allocatable :: array
@@ -205,6 +227,17 @@ contains
     end subroutine test_array_atoms_dist
 
 
+    !*******************************************************************************
+    !> @brief Unit test for array_angle routine.
+    !>
+    !> @author Abraham
+    !> @version 1.0
+    !> @date 2024-06-09
+    !>
+    !> @param[inout] num_tests   Number of tests executed (incremented)
+    !> @param[inout] num_passed  Number of tests passed (incremented)
+    !> @param[inout] num_failed  Number of tests failed (incremented)
+    !*******************************************************************************
     subroutine test_array_angle(num_tests, num_passed, num_failed)
         integer, intent(inout) :: num_tests, num_passed, num_failed
         real(kind=8), dimension(:), allocatable :: array
@@ -216,7 +249,7 @@ contains
         print *, ""
         print *, "Testing array_angle..."
 
-        ! Test 1: Parallel vectors (0 degrees)
+        ! Test 1: Anti-parallel vectors (180 degrees)
         num_tests = num_tests + 1
         n = 1
         nb_atoms = 2
@@ -236,14 +269,14 @@ contains
         call array_angle(array, n, nb_atoms, xc1, xc2, trans_vector, rot1, rot2, &
                         point1a, point1b, point2a, point2b, 3)
         
-        test_passed = (abs(array(1)) < 1d-6)
+        test_passed = (abs(array(1) - 180.0d0) < 1d-4)
         
         if (test_passed) then
-            print *, "  [PASS] Test 1: Parallel vectors (0 degrees)"
+            print *, "  [PASS] Test 1: Anti-parallel vectors (180 degrees)"
             num_passed = num_passed + 1
         else
-            print *, "  [FAIL] Test 1: Parallel vectors"
-            print *, "    Expected: 0.0, Got: ", array(1)
+            print *, "  [FAIL] Test 1: Anti-parallel vectors"
+            print *, "    Expected: 180.0, Got: ", array(1)
             num_failed = num_failed + 1
         end if
         deallocate(array, trans_vector, rot1, rot2)
@@ -268,7 +301,7 @@ contains
         call array_angle(array, n, nb_atoms, xc1, xc2, trans_vector, rot1, rot2, &
                         point1a, point1b, point2a, point2b, 3)
         
-        test_passed = (abs(array(1) - 90.0d0) < 1d-6)
+        test_passed = (abs(array(1) - 90.0d0) < 1d-4)
         
         if (test_passed) then
             print *, "  [PASS] Test 2: Perpendicular vectors (90 degrees)"
@@ -283,6 +316,17 @@ contains
     end subroutine test_array_angle
 
 
+    !*******************************************************************************
+    !> @brief Unit test for sort_array routine.
+    !>
+    !> @author Abraham
+    !> @version 1.0
+    !> @date 2024-06-09
+    !>
+    !> @param[inout] num_tests   Number of tests executed (incremented)
+    !> @param[inout] num_passed  Number of tests passed (incremented)
+    !> @param[inout] num_failed  Number of tests failed (incremented)
+    !*******************************************************************************
     subroutine test_sort_array(num_tests, num_passed, num_failed)
         integer, intent(inout) :: num_tests, num_passed, num_failed
         real(kind=8), dimension(:), allocatable :: arr

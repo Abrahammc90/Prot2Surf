@@ -1,9 +1,14 @@
-!> Mathematical utilities and coordinate transformation routines.
+!> \file maths.f90
+!! \brief Mathematical and geometric utilities for clustering workflows.
+!!
+!! Mathematical utilities and coordinate transformation routines.
 !!
 !! This module provides fundamental math operations including cross products,
 !! coordinate transformations, angle calculations, and rotation matrices.
 !!
 !! @author Abraham Muñiz-Chicharro
+!! @version 1.0
+!! @date 2026-04-05
 MODULE maths
 
     USE mod_pdb
@@ -12,7 +17,7 @@ MODULE maths
 
     !> Compute the cross product of two 3D vectors.
     !!
-    !! Computes v3 = v1 x v2 using the standard right-hand rule.
+    !! Computes v3 = v1 x v2.
     !!
     !! @param[in] v1  Left-hand operand vector (3 elements)
     !! @param[in] v2  Right-hand operand vector (3 elements)
@@ -29,12 +34,11 @@ MODULE maths
 
     !> Apply translation and rotation to a set of atomic coordinates.
     !!
-    !! Transforms the coordinates of a complex from a frame centered at
-    !! `xc2` to a new frame centered at `xc1`. The routine first recenters
-    !! coordinates by `xc2`, applies a rotation defined by `rot_vx` and
+    !! Transforms the coordinates of a complex. The routine first recenters
+    !! coordinates to the origin with `xc2`, applies a rotation defined by `rot_vx` and
     !! `rot_vy` (their cross product defines the third axis), then applies
-    !! an additional translation `trans`, and writes the results to
-    !! `new_coords`.
+    !! an additional translation `trans`, moves to the new frame centered at `xc1`,
+    !! and writes the results to `new_coords`.
     !!
     !! @param[in]  xc1        Target center position (3)
     !! @param[in]  xc2        Original center position (3)
@@ -47,16 +51,18 @@ MODULE maths
     subroutine update_complex(xc1, xc2, trans, rot_vx, rot_vy, nb_atoms, coords, new_coords)
         IMPLICIT NONE
 
+        real ( kind = 8 ), dimension ( 3 ), intent(in) :: xc1, xc2
+        real ( kind = 8 ), dimension ( 3 ), intent(in) :: trans, rot_vx, rot_vy
+        integer, intent(in) :: nb_atoms
         real ( kind = 8 ), dimension (:, :), intent(in) :: coords
         real ( kind = 8 ), dimension (:, :), intent(out) :: new_coords
-        real ( kind = 8 ), dimension ( 3 ), intent(in) :: trans, rot_vx, rot_vy
-        real ( kind = 8 ), dimension ( 3 ), intent(in) :: xc1, xc2
+
         real ( kind = 8 ), dimension ( 3 ) :: xee, yee, zee
-        real ( kind = 8 ), dimension ( 3 ) :: rot_vz, ozz, zoz, zzo
+        real ( kind = 8 ), dimension ( 3 ) :: rot_vz
         real ( kind = 8 ), dimension ( 3 ) :: rot_vx_norm, rot_vy_norm, rot_vz_norm
         real ( kind = 8 ) :: magnitude_rot_vx, magnitude_rot_vy, magnitude_rot_vz
-        integer :: nb_atoms, i
-        real ( kind = 8 ), dimension ( nb_atoms, 3 ) :: trans_coords
+        integer :: i
+        real ( kind = 8 ), dimension ( nb_atoms, 3 ) :: ori_coords
 
         !write(*,*) 'trans', trans
         !write(*,*) 'rot X', rot_vx
@@ -93,18 +99,18 @@ MODULE maths
         end do
 
         !Apply rotation
-        trans_coords = new_coords
+        ori_coords = new_coords(1:nb_atoms, :)
         do i = 1, nb_atoms
-            new_coords(i, 1) = dot_product(trans_coords(i,:), xee)
-            new_coords(i, 2) = dot_product(trans_coords(i,:), yee)
-            new_coords(i, 3) = dot_product(trans_coords(i,:), zee)
+            new_coords(i, 1) = dot_product(ori_coords(i,:), xee)
+            new_coords(i, 2) = dot_product(ori_coords(i,:), yee)
+            new_coords(i, 3) = dot_product(ori_coords(i,:), zee)
         end do
 
-        !Recenter to xc1
+        !Apply translation and recenter to xc1 and 
         do i = 1, nb_atoms
-            new_coords(i, 1) = new_coords(i, 1) + xc1(1) + trans(1)
-            new_coords(i, 2) = new_coords(i, 2) + xc1(2) + trans(2)
-            new_coords(i, 3) = new_coords(i, 3) + xc1(3) + trans(3)
+            new_coords(i, 1) = new_coords(i, 1) + trans(1) + xc1(1) 
+            new_coords(i, 2) = new_coords(i, 2) + trans(2) + xc1(2)
+            new_coords(i, 3) = new_coords(i, 3) + trans(3) + xc1(3)
         end do
 
     end subroutine update_complex
@@ -112,7 +118,7 @@ MODULE maths
     !> Compute the angle in degrees between two 3D vectors.
     !!
     !! Calculates the angle (in degrees) between `vector1` and `vector2`
-    !! using the dot product formula and `acos`. No modification of inputs.
+    !! using the dot product formula and `acos`.
     !!
     !! @param[in]  vector1       First 3D vector (3 elements)
     !! @param[in]  vector2       Second 3D vector (3 elements)
@@ -120,9 +126,10 @@ MODULE maths
     subroutine vectors_angle_3D(vector1, vector2, theta_degrees)
 
         IMPLICIT NONE
-        real (kind=8), intent(out) :: theta_degrees
         real( kind=8 ),dimension( 3 ), intent ( in ) :: vector1, vector2
-        real (kind=8) :: magnitude_v1, magnitude_v2, magnitude_v12, cos_theta
+        real (kind=8), intent(out) :: theta_degrees
+
+        real (kind=8) :: magnitude_v1, magnitude_v2, cos_theta
         real (kind=8) :: theta_radians
         real (kind=8) :: dot_11, dot_22, dot_12
         integer :: i
@@ -164,8 +171,9 @@ MODULE maths
     subroutine vectors_angle_2D(vector1, vector2, theta_degrees)
 
         IMPLICIT NONE
-        real (kind=8), intent(out) :: theta_degrees
         real( kind=8 ),dimension( 3 ), intent ( in ) :: vector1, vector2
+        real (kind=8), intent(out) :: theta_degrees
+
         real (kind=8) :: magnitude_v1, magnitude_v2, cos_theta
         real (kind=8) :: theta_radians
         real (kind=8) :: dot_12
@@ -180,6 +188,7 @@ MODULE maths
         ! Guard against division by zero
         if (magnitude_v1 == 0.0d0 .or. magnitude_v2 == 0.0d0) then
             theta_radians = 0.0d0
+            theta_degrees = 0.0d0
             return
         end if
 
@@ -210,7 +219,7 @@ MODULE maths
         integer, intent(in) :: nb_atoms
         real(kind=8), dimension(:, :), intent(in) :: coords1, coords2
         real(kind=8) :: sum_sq_diff
-        integer :: i, j
+        integer :: i
 
         !print *, coords1(1, :)
         !print *, coords2(1, :)
@@ -238,9 +247,9 @@ MODULE maths
     !! @param[in]  nb_atoms Number of atoms / points
     subroutine calculate_cog(cog, coords, nb_atoms)
 
-        integer, intent(in) :: nb_atoms
         real (kind=8), dimension(3), intent(out) :: cog
         real (kind=8), dimension(nb_atoms, 3), intent(in) :: coords
+        integer, intent(in) :: nb_atoms
 
         integer :: i
 

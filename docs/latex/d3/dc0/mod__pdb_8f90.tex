@@ -1,5 +1,10 @@
 \hypertarget{mod__pdb_8f90}{}\doxysection{mod\+\_\+pdb.\+f90 File Reference}
 \label{mod__pdb_8f90}\index{mod\_pdb.f90@{mod\_pdb.f90}}
+
+
+P\+DB data structures and parsing/allocation routines.  
+
+
 \doxysubsection*{Data Types}
 \begin{DoxyCompactItemize}
 \item 
@@ -15,7 +20,7 @@ type \mbox{\hyperlink{structmod__pdb_1_1type__pdb__atom}{mod\+\_\+pdb\+::type\+\
 \begin{DoxyCompactItemize}
 \item 
 module \mbox{\hyperlink{namespacemod__pdb}{mod\+\_\+pdb}}
-\begin{DoxyCompactList}\small\item\em Module to define a pdb type and pdb reading routine for tools. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{DoxyCompactItemize}
 \doxysubsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
@@ -29,3 +34,25 @@ integer function \mbox{\hyperlink{namespacemod__pdb_a7e68a28bfffec22306777015741
 \begin{DoxyCompactList}\small\item\em Count chain separators (T\+ER records) in a P\+DB file. \end{DoxyCompactList}\item 
 subroutine \mbox{\hyperlink{namespacemod__pdb_a08ac5c29c5079a644b0e41d004457d55}{mod\+\_\+pdb\+::fill\+\_\+pdb\+\_\+object}} (this, pdb\+\_\+file)
 \begin{DoxyCompactList}\small\item\em Parse P\+DB records and populate the {\ttfamily \mbox{\hyperlink{structmod__pdb_1_1type__pdb__file}{type\+\_\+pdb\+\_\+file}}} structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+P\+DB data structures and parsing/allocation routines. 
+
+Module to define a pdb type and pdb reading routine for tools.
+
+N\+O\+TE\+: This implementation is based on the S\+D\+A7 project\textquotesingle{}s {\ttfamily \mbox{\hyperlink{mod__pdb_8f90}{mod\+\_\+pdb.\+f90}}} (original author Neil Bruce). The present file has been modified and expanded for the clustering tools in this workspace. Notable enhancements include the addition of {\ttfamily count\+\_\+residues} and {\ttfamily count\+\_\+chains} functions and changes that allow creation of richer in-\/memory objects where residues contain their atoms and chains contain residues and atoms. These changes make it possible to build {\ttfamily type\+\_\+pdb\+\_\+file} instances with proper {\ttfamily residues} and {\ttfamily chains} substructures (each storing their atoms) rather than storing atoms in a single flat list only.
+
+The original S\+D\+A7 code and author attribution are retained; consult the S\+D\+A7 sources for original licensing and authorship details.
+
+\begin{DoxyAuthor}{Author}
+Neil Bruce 
+
+Abraham Muñiz-\/\+Chicharro (modifications and extensions) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2026-\/04-\/05 
+\end{DoxyDate}
