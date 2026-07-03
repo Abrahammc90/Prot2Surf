@@ -8,3 +8,21 @@ bin/*
 # Cache and temporary files
 **/__pycache__/
 **/.pytest_cache/
+tools/*.zip
+
+# Fortran unit test binaries in src/unit_test
+src/unit_test/test_*
+!src/unit_test/test_*.f90
+!src/unit_test/test_*.sh
+
+# Doxygen/LaTeX intermediate files
+docs/latex/*.aux
+docs/latex/*.idx
+docs/latex/*.ilg
+docs/latex/*.ind
+docs/latex/*.log
+docs/latex/*.out
+docs/latex/*.toc
+docs/latex/**/*.tmp
+docs/html/**/*.md5
+docs/latex/**/*.md5

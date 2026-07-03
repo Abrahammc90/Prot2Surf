@@ -1,0 +1,8 @@
+<map id="mod_pdb::type_pdb_chain" name="mod_pdb::type_pdb_chain">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,181,197,207"/>
+<area shape="rect" id="Node000002" href="$d6/ddf/structmod__pdb_1_1type__pdb__atom.html" title=" " alt="" coords="6,5,197,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="99,45,95,80,95,119,102,181,97,181,89,119,90,79,94,44"/>
+<area shape="rect" id="Node000003" href="$d8/d95/structmod__pdb_1_1type__pdb__residue.html" title=" " alt="" coords="149,93,355,119"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="135,35,233,91,230,95,132,40"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="221,128,123,183,120,179,219,123"/>
+</map>

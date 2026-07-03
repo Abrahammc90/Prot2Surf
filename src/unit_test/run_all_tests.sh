@@ -2,6 +2,7 @@
 # Test runner script for clustering program unit tests
 # Compiles and runs all unit tests
 # Usage: bash run_all_tests.sh or from src: make test
+# @version 1.0
 
 set -e  # Exit on first error
 
@@ -12,7 +13,6 @@ echo ""
 
 TESTS=(
     "test_maths"
-    "test_matrix"
     "test_array"
     "test_threshold"
     "test_pdb"
@@ -22,6 +22,12 @@ TESTS=(
 )
 
 SRC_DIR="../"
+
+# Build all Fortran test binaries before executing them.
+if ! make -C "$SRC_DIR" build_fortran_tests >/dev/null; then
+    echo "[FAIL] Could not build Fortran test binaries."
+    exit 1
+fi
 
 echo ""
 echo "========================================="

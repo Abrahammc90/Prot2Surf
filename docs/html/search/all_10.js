@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['write_5farray_144',['write_array',['../d4/d74/namespacemod__array.html#a778a88da7e7c643a241f2c142acd007e',1,'mod_array::write_array()'],['../d9/dcc/threshold_8f90.html#a5ce58677d1b4a380e504f22141ae31a8',1,'write_array():&#160;threshold.f90']]],
-  ['write_5fclust_5finfo_145',['write_clust_info',['../d4/d95/namespacemod__clust__algorithm.html#a8b27ce5160935731f219ce97560d521b',1,'mod_clust_algorithm']]],
-  ['write_5fcluster_5fcomplexes_146',['write_cluster_complexes',['../d4/d95/namespacemod__clust__algorithm.html#a0a2c96478205c647ddd3a6bf8c283a39',1,'mod_clust_algorithm']]],
-  ['write_5fcluster_5felements_147',['write_cluster_elements',['../d4/d95/namespacemod__clust__algorithm.html#a781dcda3e1ee679a509a0a466f15a0cf',1,'mod_clust_algorithm']]],
-  ['write_5fcomplexes_148',['write_complexes',['../d6/ded/namespacemod__assoc.html#a1a078920eaad8dbf34e84a3948283c74',1,'mod_assoc']]],
-  ['write_5fcutoff_5fcomplexes_149',['write_cutoff_complexes',['../d9/dcc/threshold_8f90.html#a241309bb0c3b176ef1f50e8f506031f0',1,'threshold.f90']]],
-  ['write_5fmatrix_150',['write_matrix',['../db/d1d/namespacemod__matrix.html#a2ac28315cb206a31cad2f5e63c3afba1',1,'mod_matrix']]]
+  ['unit_20tests_20tt_20src_20unit_5ftest_20tt_0',['Fortran Unit Tests (&lt;tt&gt;src/unit_test&lt;/tt&gt;)',['../d1/dbc/md_unit__test_2README.html',1,'']]],
+  ['unit_5ftest_20tt_1',['Fortran Unit Tests (&lt;tt&gt;src/unit_test&lt;/tt&gt;)',['../d1/dbc/md_unit__test_2README.html',1,'']]],
+  ['unit_5ftest_20tt_20script_2',['From &lt;tt&gt;src/unit_test/&lt;/tt&gt; (script)',['../d1/dbc/md_unit__test_2README.html#autotoc_md42',1,'']]],
+  ['update_5fcomplex_3',['update_complex',['../da/d63/namespacemaths.html#a63f77e09ffc345c4982ee2558929223b',1,'maths']]],
+  ['usage_4',['Usage',['../d8/d9a/md_make__data.html#autotoc_md26',1,'']]],
+  ['usage_20example_5',['usage example',['../dc/de5/md_clust.html#autotoc_md8',1,'Usage Example'],['../d7/d2c/md_contact__map.html#autotoc_md18',1,'Usage Example'],['../df/d75/md_threshold.html#autotoc_md35',1,'Usage Example']]],
+  ['used_6',['used',['../dc/de5/md_clust.html#autotoc_md5',1,'Modules Used'],['../d7/d2c/md_contact__map.html#autotoc_md15',1,'Modules Used'],['../d8/d9a/md_make__data.html#autotoc_md25',1,'Modules Used'],['../df/d75/md_threshold.html#autotoc_md33',1,'Modules Used']]]
 ];

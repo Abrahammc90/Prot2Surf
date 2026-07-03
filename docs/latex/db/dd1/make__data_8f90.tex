@@ -1,61 +1,57 @@
-\hypertarget{make__data_8f90}{}\doxysection{make\+\_\+data.\+f90 File Reference}
-\label{make__data_8f90}\index{make\_data.f90@{make\_data.f90}}
+\doxysection{make\+\_\+data.\+f90 File Reference}
+\hypertarget{make__data_8f90}{}\label{make__data_8f90}\index{make\_data.f90@{make\_data.f90}}
 
 
-Build encounter-\/based matrix/array data from structural inputs.  
+Build encounter-\/based array data from structural inputs.
 
 
-\doxysubsection*{Functions/\+Subroutines}
+\doxysubsubsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
-\item 
+\item
 program \mbox{\hyperlink{make__data_8f90_a8ec2266d83cd6c0b762cbcbc92c0af3d}{main}}
-\item 
-subroutine \mbox{\hyperlink{make__data_8f90_ae44e248f87c38ae12a465c806260e6ab}{parse\+\_\+arguments}} (p\+\_\+pdb1\+\_\+filename, p\+\_\+pdb1\+\_\+bool, p\+\_\+pdb2\+\_\+filename, p\+\_\+pdb2\+\_\+bool, p\+\_\+complexes\+\_\+filename, p\+\_\+complexes\+\_\+bool, p\+\_\+nb\+\_\+encounters, p\+\_\+nb\+\_\+encounters\+\_\+bool, p\+\_\+datadist\+\_\+filename, p\+\_\+matrix\+\_\+bool, p\+\_\+data\+\_\+type, p\+\_\+datatype\+\_\+bool, p\+\_\+arr\+\_\+atoms1a, p\+\_\+arr\+\_\+atoms1a\+\_\+bool, p\+\_\+arr\+\_\+atoms1b, p\+\_\+arr\+\_\+atoms1b\+\_\+bool, p\+\_\+arr\+\_\+atoms2a, p\+\_\+arr\+\_\+atoms2a\+\_\+bool, p\+\_\+arr\+\_\+atoms2b, p\+\_\+arr\+\_\+atoms2b\+\_\+bool, p\+\_\+help\+\_\+bool)
-\begin{DoxyCompactList}\small\item\em Parse command-\/line arguments for {\ttfamily make\+\_\+data}. \end{DoxyCompactList}\item 
-subroutine \mbox{\hyperlink{make__data_8f90_a9c89be8ab0718c0b4d3d7857380231a3}{print\+\_\+help}} (help\+\_\+option)
-\begin{DoxyCompactList}\small\item\em Print usage/help text for {\ttfamily make\+\_\+data}. \end{DoxyCompactList}\item 
-subroutine \mbox{\hyperlink{make__data_8f90_ad0df42f74407d652097e6e433eea2dc8}{read\+\_\+atoms\+\_\+coord}} (atoms\+\_\+array, atoms\+\_\+coord, tot\+\_\+atoms, pdb, pdb\+\_\+filename)
-\begin{DoxyCompactList}\small\item\em Read coordinates for a specified list of atoms (names or indices). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\item
+subroutine \mbox{\hyperlink{make__data_8f90_ab5d6b3a68546d3384e5d17110a8a469e}{parse\+\_\+arguments}} (p\+\_\+pdb1\+\_\+filename, p\+\_\+pdb1\+\_\+bool, p\+\_\+pdb2\+\_\+filename, p\+\_\+pdb2\+\_\+bool, p\+\_\+complexes\+\_\+filename, p\+\_\+complexes\+\_\+bool, p\+\_\+nb\+\_\+encounters, p\+\_\+nb\+\_\+encounters\+\_\+bool, p\+\_\+output\+\_\+filename, p\+\_\+output\+\_\+bool, p\+\_\+data\+\_\+type, p\+\_\+datatype\+\_\+bool, p\+\_\+arr\+\_\+atoms1a, p\+\_\+arr\+\_\+atoms1a\+\_\+bool, p\+\_\+arr\+\_\+atoms1b, p\+\_\+arr\+\_\+atoms1b\+\_\+bool, p\+\_\+arr\+\_\+atoms2a, p\+\_\+arr\+\_\+atoms2a\+\_\+bool, p\+\_\+arr\+\_\+atoms2b, p\+\_\+arr\+\_\+atoms2b\+\_\+bool, p\+\_\+help\+\_\+bool)
+\begin{DoxyCompactList}\small\item\em Parse command-\/line arguments for {\ttfamily make\+\_\+data}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Build encounter-\/based matrix/array data from structural inputs. 
+Build encounter-\/based array data from structural inputs.
 
-\mbox{\hyperlink{make__data_8f90}{make\+\_\+data.\+f90}} -\/ Build encounter-\/based matrices from P\+DB and complex files.
+\doxylink{make__data_8f90}{make\+\_\+data.\+f90} -\/ Build encounter-\/based arrays from PDB and complex files.
 
 Usage\+: ./make\+\_\+data -\/help
 
-Reads P\+D\+B(s) and association/complex files, generates matrices (rmsd, z\+\_\+coord, atoms\+\_\+dist, angle) and arrays.
+Reads PDB(s) and association/complex files, generates arrays (z\+\_\+coord, atoms\+\_\+dist, angle).
 
 \begin{DoxyAuthor}{Author}
-Abraham Muñiz-\/\+Chicharro 
+Abraham Muñiz-\/\+Chicharro
 \end{DoxyAuthor}
 \begin{DoxyVersion}{Version}
-1.\+0 
+1.\+0
 \end{DoxyVersion}
 \begin{DoxyDate}{Date}
-2026-\/04-\/05 
+2026-\/04-\/05
 \end{DoxyDate}
 
 
 \doxysubsection{Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{make__data_8f90_a8ec2266d83cd6c0b762cbcbc92c0af3d}\label{make__data_8f90_a8ec2266d83cd6c0b762cbcbc92c0af3d}} 
+\Hypertarget{make__data_8f90_a8ec2266d83cd6c0b762cbcbc92c0af3d}\label{make__data_8f90_a8ec2266d83cd6c0b762cbcbc92c0af3d}
 \index{make\_data.f90@{make\_data.f90}!main@{main}}
 \index{main@{main}!make\_data.f90@{make\_data.f90}}
 \doxysubsubsection{\texorpdfstring{main()}{main()}}
 {\footnotesize\ttfamily program main}
 
-\mbox{\Hypertarget{make__data_8f90_ae44e248f87c38ae12a465c806260e6ab}\label{make__data_8f90_ae44e248f87c38ae12a465c806260e6ab}} 
+\Hypertarget{make__data_8f90_ab5d6b3a68546d3384e5d17110a8a469e}\label{make__data_8f90_ab5d6b3a68546d3384e5d17110a8a469e}
 \index{make\_data.f90@{make\_data.f90}!parse\_arguments@{parse\_arguments}}
 \index{parse\_arguments@{parse\_arguments}!make\_data.f90@{make\_data.f90}}
 \doxysubsubsection{\texorpdfstring{parse\_arguments()}{parse\_arguments()}}
-{\footnotesize\ttfamily subroutine main\+::parse\+\_\+arguments (\begin{DoxyParamCaption}\item[{character$\ast$128, intent(out)}]{p\+\_\+pdb1\+\_\+filename,  }\item[{logical, intent(out)}]{p\+\_\+pdb1\+\_\+bool,  }\item[{character$\ast$128, intent(out)}]{p\+\_\+pdb2\+\_\+filename,  }\item[{logical, intent(out)}]{p\+\_\+pdb2\+\_\+bool,  }\item[{character$\ast$128, intent(out)}]{p\+\_\+complexes\+\_\+filename,  }\item[{logical, intent(out)}]{p\+\_\+complexes\+\_\+bool,  }\item[{integer, intent(out)}]{p\+\_\+nb\+\_\+encounters,  }\item[{logical, intent(out)}]{p\+\_\+nb\+\_\+encounters\+\_\+bool,  }\item[{character$\ast$128, intent(out)}]{p\+\_\+datadist\+\_\+filename,  }\item[{logical, intent(out)}]{p\+\_\+matrix\+\_\+bool,  }\item[{character$\ast$128, intent(out)}]{p\+\_\+data\+\_\+type,  }\item[{logical, intent(out)}]{p\+\_\+datatype\+\_\+bool,  }\item[{character$\ast$128, dimension(\+:), intent(out), allocatable}]{p\+\_\+arr\+\_\+atoms1a,  }\item[{logical, intent(out)}]{p\+\_\+arr\+\_\+atoms1a\+\_\+bool,  }\item[{character$\ast$128, dimension(\+:), intent(out), allocatable}]{p\+\_\+arr\+\_\+atoms1b,  }\item[{logical, intent(out)}]{p\+\_\+arr\+\_\+atoms1b\+\_\+bool,  }\item[{character$\ast$128, dimension(\+:), intent(out), allocatable}]{p\+\_\+arr\+\_\+atoms2a,  }\item[{logical, intent(out)}]{p\+\_\+arr\+\_\+atoms2a\+\_\+bool,  }\item[{character$\ast$128, dimension(\+:), intent(out), allocatable}]{p\+\_\+arr\+\_\+atoms2b,  }\item[{logical, intent(out)}]{p\+\_\+arr\+\_\+atoms2b\+\_\+bool,  }\item[{logical, intent(out)}]{p\+\_\+help\+\_\+bool }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily subroutine main\+::parse\+\_\+arguments (\begin{DoxyParamCaption}\item[{character\texorpdfstring{$\ast$}{*}128, intent(out)}]{p\+\_\+pdb1\+\_\+filename,  }\item[{logical, intent(out)}]{p\+\_\+pdb1\+\_\+bool,  }\item[{character\texorpdfstring{$\ast$}{*}128, intent(out)}]{p\+\_\+pdb2\+\_\+filename,  }\item[{logical, intent(out)}]{p\+\_\+pdb2\+\_\+bool,  }\item[{character\texorpdfstring{$\ast$}{*}128, intent(out)}]{p\+\_\+complexes\+\_\+filename,  }\item[{logical, intent(out)}]{p\+\_\+complexes\+\_\+bool,  }\item[{integer, intent(out)}]{p\+\_\+nb\+\_\+encounters,  }\item[{logical, intent(out)}]{p\+\_\+nb\+\_\+encounters\+\_\+bool,  }\item[{character\texorpdfstring{$\ast$}{*}128, intent(out)}]{p\+\_\+output\+\_\+filename,  }\item[{logical, intent(out)}]{p\+\_\+output\+\_\+bool,  }\item[{character\texorpdfstring{$\ast$}{*}128, intent(out)}]{p\+\_\+data\+\_\+type,  }\item[{logical, intent(out)}]{p\+\_\+datatype\+\_\+bool,  }\item[{character\texorpdfstring{$\ast$}{*}128, dimension(\+:), intent(out), allocatable}]{p\+\_\+arr\+\_\+atoms1a,  }\item[{logical, intent(out)}]{p\+\_\+arr\+\_\+atoms1a\+\_\+bool,  }\item[{character\texorpdfstring{$\ast$}{*}128, dimension(\+:), intent(out), allocatable}]{p\+\_\+arr\+\_\+atoms1b,  }\item[{logical, intent(out)}]{p\+\_\+arr\+\_\+atoms1b\+\_\+bool,  }\item[{character\texorpdfstring{$\ast$}{*}128, dimension(\+:), intent(out), allocatable}]{p\+\_\+arr\+\_\+atoms2a,  }\item[{logical, intent(out)}]{p\+\_\+arr\+\_\+atoms2a\+\_\+bool,  }\item[{character\texorpdfstring{$\ast$}{*}128, dimension(\+:), intent(out), allocatable}]{p\+\_\+arr\+\_\+atoms2b,  }\item[{logical, intent(out)}]{p\+\_\+arr\+\_\+atoms2b\+\_\+bool,  }\item[{logical, intent(out)}]{p\+\_\+help\+\_\+bool }\end{DoxyParamCaption})}
 
 
 
-Parse command-\/line arguments for {\ttfamily make\+\_\+data}. 
+Parse command-\/line arguments for {\ttfamily make\+\_\+data}.
 
-Parses all C\+LI flags and fills program configuration values. Atom-\/group flags consume multiple tokens until the next flag. 
+Parses all CLI flags and fills program configuration values. Atom-\/group flags consume multiple tokens until the next flag.
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ out}}  & {\em p\+\_\+pdb1\+\_\+filename} & Value parsed from {\ttfamily -\/pdb1} \\
 \hline
@@ -73,9 +69,9 @@ Parses all C\+LI flags and fills program configuration values. Atom-\/group flag
 \hline
 \mbox{\texttt{ out}}  & {\em p\+\_\+nb\+\_\+encounters\+\_\+bool} & Whether {\ttfamily -\/nb\+\_\+encounters} was provided \\
 \hline
-\mbox{\texttt{ out}}  & {\em p\+\_\+datadist\+\_\+filename} & Value parsed from {\ttfamily -\/input} \\
+\mbox{\texttt{ out}}  & {\em p\+\_\+output\+\_\+filename} & Value parsed from {\ttfamily -\/output} \\
 \hline
-\mbox{\texttt{ out}}  & {\em p\+\_\+matrix\+\_\+bool} & Whether {\ttfamily -\/input} was provided \\
+\mbox{\texttt{ out}}  & {\em p\+\_\+output\+\_\+bool} & Whether {\ttfamily -\/output} was provided \\
 \hline
 \mbox{\texttt{ out}}  & {\em p\+\_\+data\+\_\+type} & Value parsed from {\ttfamily -\/data\+\_\+type} \\
 \hline
@@ -98,38 +94,5 @@ Parses all C\+LI flags and fills program configuration values. Atom-\/group flag
 \mbox{\texttt{ out}}  & {\em p\+\_\+arr\+\_\+atoms2b\+\_\+bool} & Whether {\ttfamily -\/atoms2b} was provided \\
 \hline
 \mbox{\texttt{ out}}  & {\em p\+\_\+help\+\_\+bool} & Whether {\ttfamily -\/help} was provided \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{make__data_8f90_a9c89be8ab0718c0b4d3d7857380231a3}\label{make__data_8f90_a9c89be8ab0718c0b4d3d7857380231a3}} 
-\index{make\_data.f90@{make\_data.f90}!print\_help@{print\_help}}
-\index{print\_help@{print\_help}!make\_data.f90@{make\_data.f90}}
-\doxysubsubsection{\texorpdfstring{print\_help()}{print\_help()}}
-{\footnotesize\ttfamily subroutine main\+::print\+\_\+help (\begin{DoxyParamCaption}\item[{character(len=$\ast$), intent(in)}]{help\+\_\+option }\end{DoxyParamCaption})}
-
-
-
-Print usage/help text for {\ttfamily make\+\_\+data}. 
-
-Provides short usage examples for the main program and for each supported matrix type. \mbox{\Hypertarget{make__data_8f90_ad0df42f74407d652097e6e433eea2dc8}\label{make__data_8f90_ad0df42f74407d652097e6e433eea2dc8}} 
-\index{make\_data.f90@{make\_data.f90}!read\_atoms\_coord@{read\_atoms\_coord}}
-\index{read\_atoms\_coord@{read\_atoms\_coord}!make\_data.f90@{make\_data.f90}}
-\doxysubsubsection{\texorpdfstring{read\_atoms\_coord()}{read\_atoms\_coord()}}
-{\footnotesize\ttfamily subroutine main\+::read\+\_\+atoms\+\_\+coord (\begin{DoxyParamCaption}\item[{character(len=$\ast$), dimension(\+:), intent(in)}]{atoms\+\_\+array,  }\item[{real(kind=8), dimension(\+:, \+:), intent(out), allocatable}]{atoms\+\_\+coord,  }\item[{integer, intent(in)}]{tot\+\_\+atoms,  }\item[{type ( \mbox{\hyperlink{structmod__pdb_1_1type__pdb__file}{type\+\_\+pdb\+\_\+file}} ), intent(in)}]{pdb,  }\item[{character(len=$\ast$), intent(in)}]{pdb\+\_\+filename }\end{DoxyParamCaption})}
-
-
-
-Read coordinates for a specified list of atoms (names or indices). 
-
-Accepts either atom indices or atom names. If atom names are provided, all matching atoms in the P\+DB are returned (in order). 
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em atoms\+\_\+array} & Array of atom name strings or index strings \\
-\hline
-\mbox{\texttt{ out}}  & {\em atoms\+\_\+coord} & Allocated array with atom coordinates (n,3) \\
-\hline
-\mbox{\texttt{ in}}  & {\em tot\+\_\+atoms} & Total number of atoms in {\ttfamily pdb} \\
-\hline
-\mbox{\texttt{ in}}  & {\em pdb} & P\+DB structure holding atom coordinates \\
-\hline
-\mbox{\texttt{ in}}  & {\em pdb\+\_\+filename} & Reference filename for warnings \\
 \hline
 \end{DoxyParams}

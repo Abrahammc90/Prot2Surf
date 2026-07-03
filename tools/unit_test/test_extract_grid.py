@@ -1,5 +1,7 @@
 """
 Unit tests for extract_grid.py - Grid extraction and parsing utilities.
+
+@version 1.0
 """
 import os
 import tempfile

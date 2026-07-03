@@ -1,4 +1,7 @@
-"""Unit tests for plot_clust_array_dist.py - Distance distribution plotting."""
+"""Unit tests for plot_clust_array_dist.py - Distance distribution plotting.
+
+@version 1.0
+"""
 
 import sys
 import os

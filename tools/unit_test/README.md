@@ -4,8 +4,6 @@ This directory contains pytest-based unit tests for Python scripts in `tools/`.
 
 ## Test Files and Scope
 
-- `test_cluster_kon.py` → `cluster_kon.py`
-    - NAM rate calculation, SDA input parsing, cluster beta routines
 - `test_combine.py` → `combine.py`
     - header parsing, complex parsing, duplicate removal, integration flow
 - `test_plot_angle.py` → `plot_clust_array_angle.py`
@@ -16,10 +14,10 @@ This directory contains pytest-based unit tests for Python scripts in `tools/`.
     - UHBD header parsing and related grid parsing behavior
 - `test_extract_C1_C4_filtered.py` → `extract_C1_C4_filtered.py`
     - complex loading and filtering helpers
-- `test_filter_neg_enc.py` → `filter_neg_enc.py`
-    - atom object behavior and related logic checks
 - `test_gen_pdbs.py` → `gen_pdbs.py`
     - atom/data-structure level checks and transformation-related behavior
+- `test_plot_closest_residues.py` → `plot_closest_residues.py`
+    - residue contact parsing and PNG/data file generation
 - `test_regioselectivity.py` → `regioselectivity.py`
     - CLI/main-path behavior checks
 - `test_upper_C1_C4.py` → `upper_C1_C4.py`
@@ -52,7 +50,6 @@ Examples:
 
 ```bash
 ./run_tests.sh --combine
-./run_tests.sh --cluster -v
 ./run_tests.sh -c
 ```
 
@@ -60,5 +57,3 @@ Examples:
 
 - Tests are designed to be self-contained and use temporary files/fixtures.
 - Add new tests as `test_<script_name>.py` when new scripts/functions are introduced.
-
-_Last updated: April 5, 2026_

@@ -7,6 +7,8 @@
 # This script runs the unit test suite for all Python tools in the clustering
 # analysis pipeline using pytest.
 #
+# @version 1.0
+#
 # Usage:
 #     ./run_tests.sh [OPTIONS]
 #
@@ -17,8 +19,8 @@
 #     -c, --coverage          Generate HTML coverage report
 #     -f, --fast              Run fast tests only (skip slow tests)
 #     -k PATTERN              Run tests matching PATTERN
-#     --cluster               Run only cluster_kon tests
 #     --combine               Run only combine tests
+#     --plot-closest          Run only closest-residue plotting tests
 #     --plot-angle            Run only angle plotting tests
 #     --plot-dist             Run only distance plotting tests
 #     --utilities             Run only utility tests
@@ -28,7 +30,6 @@
 #     ./run_tests.sh                    # Run all tests
 #     ./run_tests.sh -v                 # Run tests verbosely
 #     ./run_tests.sh -c                 # Generate coverage report
-#     ./run_tests.sh --cluster -v       # Run cluster tests verbosely
 #     ./run_tests.sh -k "NAM_algorithm" # Run tests matching pattern
 #
 # Author: Abraham Muñiz-Chicharro
@@ -133,8 +134,12 @@ print_environment_info() {
 build_pytest_command() {
     local cmd="pytest"
     
-    # Add test path
-    cmd="$cmd ."
+    # Add selected test target (specific file or full suite)
+    if [[ -n "$SPECIFIC_TESTS" ]]; then
+        cmd="$cmd $SPECIFIC_TESTS"
+    else
+        cmd="$cmd ."
+    fi
     
     # Add verbose flag
     if [[ "$VERBOSE" == true ]]; then
@@ -154,11 +159,6 @@ build_pytest_command() {
     # Add test pattern matching
     if [[ -n "$TEST_PATTERN" ]]; then
         cmd="$cmd -k '$TEST_PATTERN'"
-    fi
-    
-    # Add specific test file
-    if [[ -n "$SPECIFIC_TESTS" ]]; then
-        cmd="$cmd $SPECIFIC_TESTS"
     fi
     
     # Add failfast flag
@@ -245,16 +245,16 @@ parse_arguments() {
                 FAILFAST=true
                 shift
                 ;;
-            --cluster)
-                SPECIFIC_TESTS="test_cluster_kon.py"
-                shift
-                ;;
             --combine)
                 SPECIFIC_TESTS="test_combine.py"
                 shift
                 ;;
             --plot-angle)
                 SPECIFIC_TESTS="test_plot_angle.py"
+                shift
+                ;;
+            --plot-closest)
+                SPECIFIC_TESTS="test_plot_closest_residues.py"
                 shift
                 ;;
             --plot-dist)

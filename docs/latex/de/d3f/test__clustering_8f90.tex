@@ -1,84 +1,52 @@
-\hypertarget{test__clustering_8f90}{}\doxysection{unit\+\_\+test/test\+\_\+clustering.f90 File Reference}
-\label{test__clustering_8f90}\index{unit\_test/test\_clustering.f90@{unit\_test/test\_clustering.f90}}
+\doxysection{unit\+\_\+test/test\+\_\+clustering.f90 File Reference}
+\hypertarget{test__clustering_8f90}{}\label{test__clustering_8f90}\index{unit\_test/test\_clustering.f90@{unit\_test/test\_clustering.f90}}
 
 
-Unit tests for clustering algorithms in \mbox{\hyperlink{namespacemod__clust__algorithm}{mod\+\_\+clust\+\_\+algorithm}}.  
+Unit tests for clustering algorithms in \doxylink{namespacemod__clust__algorithm}{mod\+\_\+clust\+\_\+algorithm}.
 
 
-\doxysubsection*{Functions/\+Subroutines}
+\doxysubsubsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
-\item 
+\item
 program \mbox{\hyperlink{test__clustering_8f90_a2f5b36221f7b1936a1ceaeb622c4d174}{test\+\_\+clustering}}
-\item 
+\item
 subroutine \mbox{\hyperlink{test__clustering_8f90_a77423493b05b12ce3b94c9d26a1bf9d3}{test\+\_\+clustering\+\_\+statistics}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
-\begin{DoxyCompactList}\small\item\em Test clustering statistics calculations (mean, stddev) \end{DoxyCompactList}\item 
-subroutine \mbox{\hyperlink{test__clustering_8f90_a303913d96cca998621e0e516ccda6eb5}{test\+\_\+simple\+\_\+clustering}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
-\begin{DoxyCompactList}\small\item\em Test simple clustering scenarios (tight clusters, identical points) \end{DoxyCompactList}\item 
-subroutine \mbox{\hyperlink{test__clustering_8f90_a115e6bfa0ad7e22add67f2250922805c}{test\+\_\+minimum\+\_\+linkage}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
-\begin{DoxyCompactList}\small\item\em Test minimum linkage clustering on 1D array. \end{DoxyCompactList}\item 
-subroutine \mbox{\hyperlink{test__clustering_8f90_ab4c7ace18aa6ccd0baa0e31a436f3294}{test\+\_\+maximum\+\_\+linkage}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
-\begin{DoxyCompactList}\small\item\em Test maximum linkage clustering on 1D array. \end{DoxyCompactList}\item 
-subroutine \mbox{\hyperlink{test__clustering_8f90_ab8a1fa263464c4963ff1b24426fdadec}{test\+\_\+mean\+\_\+linkage}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
-\begin{DoxyCompactList}\small\item\em Test mean linkage clustering on 1D array. \end{DoxyCompactList}\item 
-subroutine \mbox{\hyperlink{test__clustering_8f90_af6ae40d813d9d1b4380cf57dc3511099}{test\+\_\+cluster\+\_\+writing}} (num\+\_\+tests, num\+\_\+passed, num\+\_\+failed)
-\begin{DoxyCompactList}\small\item\em Test writing cluster elements to file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Test clustering statistics calculations (mean, stddev) \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Unit tests for clustering algorithms in \mbox{\hyperlink{namespacemod__clust__algorithm}{mod\+\_\+clust\+\_\+algorithm}}. 
+Unit tests for clustering algorithms in \doxylink{namespacemod__clust__algorithm}{mod\+\_\+clust\+\_\+algorithm}.
 
 Tests include\+:
 \begin{DoxyItemize}
-\item Sort complexes functionality
 \item Write cluster elements
 \item Basic clustering threshold calculation
-\item Minimum linkage clustering
-\item Maximum linkage clustering
 \item Mean linkage clustering
 \end{DoxyItemize}
 
-Note\+: Array parameter is mandatory for all clustering methods E\+X\+C\+E\+PT R\+M\+SD. For R\+M\+S\+D-\/based clustering, array is optional. When provided, array is used to compute cluster averages and standard deviations.
+Note\+: Clustering now operates on sorted 1D arrays.
 
-Compile with\+: gfortran -\/fopenmp -\/o test\+\_\+clustering \mbox{\hyperlink{test__clustering_8f90}{test\+\_\+clustering.\+f90}} ../src/mod\+\_\+clust\+\_\+algorithm.f90 ../src/read\+\_\+input.f90
+Compile with\+: gfortran -\/fopenmp -\/o test\+\_\+clustering \doxylink{test__clustering_8f90}{test\+\_\+clustering.\+f90} ../src/mod\+\_\+clust\+\_\+algorithm.f90 ../src/read\+\_\+input.f90
 
 \begin{DoxyAuthor}{Author}
-Abraham Muniz-\/\+Chicharro 
+Abraham Muniz-\/\+Chicharro
 \end{DoxyAuthor}
 \begin{DoxyVersion}{Version}
-1.\+0 
+1.\+0
 \end{DoxyVersion}
 \begin{DoxyDate}{Date}
-2026-\/04-\/05 
+2026-\/04-\/05
 \end{DoxyDate}
 
 
 \doxysubsection{Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{test__clustering_8f90_af6ae40d813d9d1b4380cf57dc3511099}\label{test__clustering_8f90_af6ae40d813d9d1b4380cf57dc3511099}} 
-\index{test\_clustering.f90@{test\_clustering.f90}!test\_cluster\_writing@{test\_cluster\_writing}}
-\index{test\_cluster\_writing@{test\_cluster\_writing}!test\_clustering.f90@{test\_clustering.f90}}
-\doxysubsubsection{\texorpdfstring{test\_cluster\_writing()}{test\_cluster\_writing()}}
-{\footnotesize\ttfamily subroutine test\+\_\+clustering\+::test\+\_\+cluster\+\_\+writing (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{num\+\_\+tests,  }\item[{integer, intent(inout)}]{num\+\_\+passed,  }\item[{integer, intent(inout)}]{num\+\_\+failed }\end{DoxyParamCaption})}
-
-
-
-Test writing cluster elements to file. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in,out}}  & {\em num\+\_\+tests} & Number of tests run \\
-\hline
-\mbox{\texttt{ in,out}}  & {\em num\+\_\+passed} & Number of tests passed \\
-\hline
-\mbox{\texttt{ in,out}}  & {\em num\+\_\+failed} & Number of tests failed \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{test__clustering_8f90_a2f5b36221f7b1936a1ceaeb622c4d174}\label{test__clustering_8f90_a2f5b36221f7b1936a1ceaeb622c4d174}} 
+\Hypertarget{test__clustering_8f90_a2f5b36221f7b1936a1ceaeb622c4d174}\label{test__clustering_8f90_a2f5b36221f7b1936a1ceaeb622c4d174}
 \index{test\_clustering.f90@{test\_clustering.f90}!test\_clustering@{test\_clustering}}
 \index{test\_clustering@{test\_clustering}!test\_clustering.f90@{test\_clustering.f90}}
 \doxysubsubsection{\texorpdfstring{test\_clustering()}{test\_clustering()}}
 {\footnotesize\ttfamily program test\+\_\+clustering}
 
-\mbox{\Hypertarget{test__clustering_8f90_a77423493b05b12ce3b94c9d26a1bf9d3}\label{test__clustering_8f90_a77423493b05b12ce3b94c9d26a1bf9d3}} 
+\Hypertarget{test__clustering_8f90_a77423493b05b12ce3b94c9d26a1bf9d3}\label{test__clustering_8f90_a77423493b05b12ce3b94c9d26a1bf9d3}
 \index{test\_clustering.f90@{test\_clustering.f90}!test\_clustering\_statistics@{test\_clustering\_statistics}}
 \index{test\_clustering\_statistics@{test\_clustering\_statistics}!test\_clustering.f90@{test\_clustering.f90}}
 \doxysubsubsection{\texorpdfstring{test\_clustering\_statistics()}{test\_clustering\_statistics()}}
@@ -86,83 +54,7 @@ Test writing cluster elements to file.
 
 
 
-Test clustering statistics calculations (mean, stddev) 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in,out}}  & {\em num\+\_\+tests} & Number of tests run \\
-\hline
-\mbox{\texttt{ in,out}}  & {\em num\+\_\+passed} & Number of tests passed \\
-\hline
-\mbox{\texttt{ in,out}}  & {\em num\+\_\+failed} & Number of tests failed \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{test__clustering_8f90_ab4c7ace18aa6ccd0baa0e31a436f3294}\label{test__clustering_8f90_ab4c7ace18aa6ccd0baa0e31a436f3294}} 
-\index{test\_clustering.f90@{test\_clustering.f90}!test\_maximum\_linkage@{test\_maximum\_linkage}}
-\index{test\_maximum\_linkage@{test\_maximum\_linkage}!test\_clustering.f90@{test\_clustering.f90}}
-\doxysubsubsection{\texorpdfstring{test\_maximum\_linkage()}{test\_maximum\_linkage()}}
-{\footnotesize\ttfamily subroutine test\+\_\+clustering\+::test\+\_\+maximum\+\_\+linkage (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{num\+\_\+tests,  }\item[{integer, intent(inout)}]{num\+\_\+passed,  }\item[{integer, intent(inout)}]{num\+\_\+failed }\end{DoxyParamCaption})}
-
-
-
-Test maximum linkage clustering on 1D array. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in,out}}  & {\em num\+\_\+tests} & Number of tests run \\
-\hline
-\mbox{\texttt{ in,out}}  & {\em num\+\_\+passed} & Number of tests passed \\
-\hline
-\mbox{\texttt{ in,out}}  & {\em num\+\_\+failed} & Number of tests failed \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{test__clustering_8f90_ab8a1fa263464c4963ff1b24426fdadec}\label{test__clustering_8f90_ab8a1fa263464c4963ff1b24426fdadec}} 
-\index{test\_clustering.f90@{test\_clustering.f90}!test\_mean\_linkage@{test\_mean\_linkage}}
-\index{test\_mean\_linkage@{test\_mean\_linkage}!test\_clustering.f90@{test\_clustering.f90}}
-\doxysubsubsection{\texorpdfstring{test\_mean\_linkage()}{test\_mean\_linkage()}}
-{\footnotesize\ttfamily subroutine test\+\_\+clustering\+::test\+\_\+mean\+\_\+linkage (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{num\+\_\+tests,  }\item[{integer, intent(inout)}]{num\+\_\+passed,  }\item[{integer, intent(inout)}]{num\+\_\+failed }\end{DoxyParamCaption})}
-
-
-
-Test mean linkage clustering on 1D array. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in,out}}  & {\em num\+\_\+tests} & Number of tests run \\
-\hline
-\mbox{\texttt{ in,out}}  & {\em num\+\_\+passed} & Number of tests passed \\
-\hline
-\mbox{\texttt{ in,out}}  & {\em num\+\_\+failed} & Number of tests failed \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{test__clustering_8f90_a115e6bfa0ad7e22add67f2250922805c}\label{test__clustering_8f90_a115e6bfa0ad7e22add67f2250922805c}} 
-\index{test\_clustering.f90@{test\_clustering.f90}!test\_minimum\_linkage@{test\_minimum\_linkage}}
-\index{test\_minimum\_linkage@{test\_minimum\_linkage}!test\_clustering.f90@{test\_clustering.f90}}
-\doxysubsubsection{\texorpdfstring{test\_minimum\_linkage()}{test\_minimum\_linkage()}}
-{\footnotesize\ttfamily subroutine test\+\_\+clustering\+::test\+\_\+minimum\+\_\+linkage (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{num\+\_\+tests,  }\item[{integer, intent(inout)}]{num\+\_\+passed,  }\item[{integer, intent(inout)}]{num\+\_\+failed }\end{DoxyParamCaption})}
-
-
-
-Test minimum linkage clustering on 1D array. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in,out}}  & {\em num\+\_\+tests} & Number of tests run \\
-\hline
-\mbox{\texttt{ in,out}}  & {\em num\+\_\+passed} & Number of tests passed \\
-\hline
-\mbox{\texttt{ in,out}}  & {\em num\+\_\+failed} & Number of tests failed \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{test__clustering_8f90_a303913d96cca998621e0e516ccda6eb5}\label{test__clustering_8f90_a303913d96cca998621e0e516ccda6eb5}} 
-\index{test\_clustering.f90@{test\_clustering.f90}!test\_simple\_clustering@{test\_simple\_clustering}}
-\index{test\_simple\_clustering@{test\_simple\_clustering}!test\_clustering.f90@{test\_clustering.f90}}
-\doxysubsubsection{\texorpdfstring{test\_simple\_clustering()}{test\_simple\_clustering()}}
-{\footnotesize\ttfamily subroutine test\+\_\+clustering\+::test\+\_\+simple\+\_\+clustering (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{num\+\_\+tests,  }\item[{integer, intent(inout)}]{num\+\_\+passed,  }\item[{integer, intent(inout)}]{num\+\_\+failed }\end{DoxyParamCaption})}
-
-
-
-Test simple clustering scenarios (tight clusters, identical points) 
+Test clustering statistics calculations (mean, stddev)
 
 
 \begin{DoxyParams}[1]{Parameters}

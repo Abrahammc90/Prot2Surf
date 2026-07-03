@@ -133,7 +133,7 @@ MODULE mod_threshold
     end subroutine array_atoms_dist
 
   
-    !Subroutine matrix_plane_degree
+    !Subroutine array_angle
 ! 
     !> Compute angle between two vectors (defined by atom groups) per encounter.
     !!

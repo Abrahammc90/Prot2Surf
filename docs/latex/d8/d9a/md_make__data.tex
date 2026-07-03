@@ -1,0 +1,59 @@
+\chapter{make\+\_\+data.\+f90}
+\hypertarget{md_make__data}{}\label{md_make__data}\index{make\_data.f90@{make\_data.f90}}
+\label{md_make__data_autotoc_md20}%
+\Hypertarget{md_make__data_autotoc_md20}%
+ \hypertarget{md_make__data_autotoc_md21}{}\doxysection{\texorpdfstring{Description}{Description}}\label{md_make__data_autotoc_md21}
+{\ttfamily make\+\_\+data} generates encounter-\/derived numeric arrays and writes them to disk.
+
+The selected mode is controlled by {\ttfamily -\/data\+\_\+type}\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily z\+\_\+coord}
+\item {\ttfamily atoms\+\_\+dist}
+\item {\ttfamily 2D\+\_\+angle}
+\item {\ttfamily 3D\+\_\+angle}
+\end{DoxyItemize}\hypertarget{md_make__data_autotoc_md22}{}\doxysection{\texorpdfstring{Parser description}{Parser description}}\label{md_make__data_autotoc_md22}
+\hypertarget{md_make__data_autotoc_md23}{}\doxysection{\texorpdfstring{Required Arguments}{Required Arguments}}\label{md_make__data_autotoc_md23}
+
+\begin{DoxyItemize}
+\item {\ttfamily -\/pdb2 \texorpdfstring{$<$}{<}file\texorpdfstring{$>$}{>}}
+\item {\ttfamily -\/atoms2 \texorpdfstring{$<$}{<}atom ...\texorpdfstring{$>$}{>}} (or {\ttfamily -\/atoms2a})
+\item {\ttfamily -\/complexes \texorpdfstring{$<$}{<}file\texorpdfstring{$>$}{>}}
+\item {\ttfamily -\/data\+\_\+type \texorpdfstring{$<$}{<}type\texorpdfstring{$>$}{>}}
+\item {\ttfamily -\/output \texorpdfstring{$<$}{<}file\texorpdfstring{$>$}{>}}
+\end{DoxyItemize}\hypertarget{md_make__data_autotoc_md24}{}\doxysection{\texorpdfstring{Optional arguments}{Optional arguments}}\label{md_make__data_autotoc_md24}
+
+\begin{DoxyItemize}
+\item {\ttfamily -\/pdb1 \texorpdfstring{$<$}{<}file\texorpdfstring{$>$}{>}} (required for {\ttfamily atoms\+\_\+dist} and angle types)
+\item {\ttfamily -\/atoms1}, {\ttfamily -\/atoms1a}, {\ttfamily -\/atoms1b}, {\ttfamily -\/atoms2b} (as needed by data type)
+\item {\ttfamily -\/nb\+\_\+encounters \texorpdfstring{$<$}{<}N\texorpdfstring{$>$}{>}}
+\item {\ttfamily -\/help}
+\end{DoxyItemize}\hypertarget{md_make__data_autotoc_md25}{}\doxysubsection{\texorpdfstring{Modules Used}{Modules Used}}\label{md_make__data_autotoc_md25}
+
+\begin{DoxyItemize}
+\item {\ttfamily \doxylink{namespaceread__input}{read\+\_\+input}}
+\item {\ttfamily \doxylink{namespacemod__array}{mod\+\_\+array}}
+\item {\ttfamily \doxylink{namespacemod__assoc}{mod\+\_\+assoc}}
+\end{DoxyItemize}\hypertarget{md_make__data_autotoc_md26}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{md_make__data_autotoc_md26}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./make\_data\ -\/help}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./make\_data\ -\/data\_type\ z\_coord\ -\/help}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./make\_data\ -\/pdb2\ p2\_noh.pdb\ -\/atoms2\ Cu\ -\/complexes\ assoc\_complexes\ -\/data\_type\ z\_coord\ -\/output\ array\_z.txt}
+
+\end{DoxyCode}
+\hypertarget{md_make__data_autotoc_md27}{}\doxysubsection{\texorpdfstring{Author}{Author}}\label{md_make__data_autotoc_md27}
+Abraham Muñiz-\/\+Chicharro

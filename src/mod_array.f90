@@ -267,7 +267,7 @@ MODULE mod_array
     end subroutine array_atoms_dist
 
   
-    !Subroutine matrix_plane_degree
+    !Subroutine array_angle
 ! 
     !> Compute angle between two vectors (defined by atom groups) per encounter and sort.
     !!
@@ -456,7 +456,7 @@ MODULE mod_array
       write(fmt, '(I0, A)') nelements, 'F10.4'
       fmt = '(' // trim(fmt) // ')'
 
-      ! Write matrix row by row
+      ! Write array in a single row
       write(unit, fmt) (array(i), i = 1, nelements)
     
       close(unit)
@@ -517,14 +517,14 @@ MODULE mod_array
       ! Check if n is valid
       if ( n .gt. m ) then
         write(*,*) "WARNING: number of encounters provided greater than"
-        write(*,*) "the size of the matrix stored in ", filename
+        write(*,*) "the size of the array stored in ", filename
         write(*,*) "Setting the number of encounters to the size of the array"
         write(*,*) ""
         
         n = m
       end if
 
-      ! Allocate matrix and temporary row
+      ! Allocate output array and temporary row
       allocate(array(n))
       allocate(temp_row(m))
       

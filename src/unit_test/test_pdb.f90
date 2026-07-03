@@ -92,7 +92,6 @@ contains
 
         ! Test 2: Allocate atoms array
         num_tests = num_tests + 1
-        if (allocated(pdb%atoms)) deallocate(pdb%atoms)
         allocate(pdb%atoms(pdb%natoms))
 
         test_passed = (allocated(pdb%atoms) .and. size(pdb%atoms) == 100)
@@ -107,8 +106,8 @@ contains
 
         ! Test 3: Allocate residues array
         num_tests = num_tests + 1
-        if (allocated(pdb%residues)) deallocate(pdb%residues)
         allocate(pdb%residues(pdb%nresidues))
+        allocate(pdb%chains(pdb%nchains))
 
         test_passed = (allocated(pdb%residues) .and. size(pdb%residues) == 10)
 
@@ -121,8 +120,9 @@ contains
         end if
 
         ! Cleanup
-        if (allocated(pdb%atoms)) deallocate(pdb%atoms)
-        if (allocated(pdb%residues)) deallocate(pdb%residues)
+        deallocate(pdb%atoms)
+        deallocate(pdb%residues)
+        deallocate(pdb%chains)
 
     end subroutine test_pdb_allocation
 

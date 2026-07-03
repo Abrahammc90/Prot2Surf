@@ -1,25 +1,25 @@
-\hypertarget{namespacemod__assoc}{}\doxysection{mod\+\_\+assoc Module Reference}
-\label{namespacemod__assoc}\index{mod\_assoc@{mod\_assoc}}
-\doxysubsection*{Data Types}
+\doxysection{mod\+\_\+assoc Module Reference}
+\hypertarget{namespacemod__assoc}{}\label{namespacemod__assoc}\index{mod\_assoc@{mod\_assoc}}
+\doxysubsubsection*{Data Types}
 \begin{DoxyCompactItemize}
-\item 
+\item
 type \mbox{\hyperlink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}}
 \begin{DoxyCompactList}\small\item\em Data type for storing binned data (eg. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Functions/\+Subroutines}
+\doxysubsubsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
-\item 
+\item
 subroutine \mbox{\hyperlink{namespacemod__assoc_a4a968c7006ecdff5091a50c0a3c96eea}{allocate\+\_\+assoc\+\_\+object}} (this, nlines)
-\begin{DoxyCompactList}\small\item\em Allocate storage for an association/complexes object. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Allocate storage for an association/complexes object. \end{DoxyCompactList}\item
 integer function \mbox{\hyperlink{namespacemod__assoc_a70fa81635e5e42f227ece48854f9a1ef}{size\+\_\+assoc}} (assoc\+\_\+file)
-\begin{DoxyCompactList}\small\item\em Count encounter records in an association/complexes file. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Count encounter records in an association/complexes file. \end{DoxyCompactList}\item
 subroutine \mbox{\hyperlink{namespacemod__assoc_a713069bd94bf35d163fef1017c31b84c}{fill\+\_\+assoc\+\_\+object}} (this, assoc\+\_\+file)
-\begin{DoxyCompactList}\small\item\em Read an association/complexes file and populate {\ttfamily \mbox{\hyperlink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}}}. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Read an association/complexes file and populate {\ttfamily \doxylink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}}. \end{DoxyCompactList}\item
 subroutine \mbox{\hyperlink{namespacemod__assoc_a1a078920eaad8dbf34e84a3948283c74}{write\+\_\+complexes}} (complexes, nb\+\_\+encounters, complexes\+\_\+filename)
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{namespacemod__assoc_a4a968c7006ecdff5091a50c0a3c96eea}\label{namespacemod__assoc_a4a968c7006ecdff5091a50c0a3c96eea}} 
+\Hypertarget{namespacemod__assoc_a4a968c7006ecdff5091a50c0a3c96eea}\label{namespacemod__assoc_a4a968c7006ecdff5091a50c0a3c96eea}
 \index{mod\_assoc@{mod\_assoc}!allocate\_assoc\_object@{allocate\_assoc\_object}}
 \index{allocate\_assoc\_object@{allocate\_assoc\_object}!mod\_assoc@{mod\_assoc}}
 \doxysubsubsection{\texorpdfstring{allocate\_assoc\_object()}{allocate\_assoc\_object()}}
@@ -27,18 +27,18 @@ subroutine \mbox{\hyperlink{namespacemod__assoc_a1a078920eaad8dbf34e84a3948283c7
 
 
 
-Allocate storage for an association/complexes object. 
+Allocate storage for an association/complexes object.
 
 Allocates the arrays inside {\ttfamily this} to hold {\ttfamily nlines} encounter records and initializes numeric arrays to zero.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in,out}}  & {\em this} & Instance of {\ttfamily \mbox{\hyperlink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}}} to initialize \\
+\mbox{\texttt{ in,out}}  & {\em this} & Instance of {\ttfamily \doxylink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}} to initialize \\
 \hline
 \mbox{\texttt{ in}}  & {\em nlines} & Number of encounter lines to allocate \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{namespacemod__assoc_a713069bd94bf35d163fef1017c31b84c}\label{namespacemod__assoc_a713069bd94bf35d163fef1017c31b84c}} 
+\Hypertarget{namespacemod__assoc_a713069bd94bf35d163fef1017c31b84c}\label{namespacemod__assoc_a713069bd94bf35d163fef1017c31b84c}
 \index{mod\_assoc@{mod\_assoc}!fill\_assoc\_object@{fill\_assoc\_object}}
 \index{fill\_assoc\_object@{fill\_assoc\_object}!mod\_assoc@{mod\_assoc}}
 \doxysubsubsection{\texorpdfstring{fill\_assoc\_object()}{fill\_assoc\_object()}}
@@ -46,18 +46,18 @@ Allocates the arrays inside {\ttfamily this} to hold {\ttfamily nlines} encounte
 
 
 
-Read an association/complexes file and populate {\ttfamily \mbox{\hyperlink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}}}. 
+Read an association/complexes file and populate {\ttfamily \doxylink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}}.
 
 Reads header lines from the open unit {\ttfamily assoc\+\_\+file} and extracts the two reference centers ({\ttfamily xc1}, {\ttfamily xc2}) from header lines 3 and 4. Subsequent non-\/header lines are stored into {\ttfamily thislines} and the translation and rotation vectors are parsed into {\ttfamily thistrans\+\_\+vector}, {\ttfamily thisrot1} and {\ttfamily thisrot2}.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in,out}}  & {\em this} & Allocated {\ttfamily \mbox{\hyperlink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}}} to populate \\
+\mbox{\texttt{ in,out}}  & {\em this} & Allocated {\ttfamily \doxylink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}} to populate \\
 \hline
 \mbox{\texttt{ in}}  & {\em assoc\+\_\+file} & Fortran unit number of an already-\/open file \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{namespacemod__assoc_a70fa81635e5e42f227ece48854f9a1ef}\label{namespacemod__assoc_a70fa81635e5e42f227ece48854f9a1ef}} 
+\Hypertarget{namespacemod__assoc_a70fa81635e5e42f227ece48854f9a1ef}\label{namespacemod__assoc_a70fa81635e5e42f227ece48854f9a1ef}
 \index{mod\_assoc@{mod\_assoc}!size\_assoc@{size\_assoc}}
 \index{size\_assoc@{size\_assoc}!mod\_assoc@{mod\_assoc}}
 \doxysubsubsection{\texorpdfstring{size\_assoc()}{size\_assoc()}}
@@ -65,7 +65,7 @@ Reads header lines from the open unit {\ttfamily assoc\+\_\+file} and extracts t
 
 
 
-Count encounter records in an association/complexes file. 
+Count encounter records in an association/complexes file.
 
 Scans {\ttfamily assoc\+\_\+file} (a Fortran unit number) and counts the number of non-\/comment lines. Lines starting with {\ttfamily \#} are treated as comments and ignored. Returns the number of encounter records.
 
@@ -75,11 +75,11 @@ Scans {\ttfamily assoc\+\_\+file} (a Fortran unit number) and counts the number 
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-nlines Number of encounter records found 
+nlines Number of encounter records found
 \end{DoxyReturn}
-\mbox{\Hypertarget{namespacemod__assoc_a1a078920eaad8dbf34e84a3948283c74}\label{namespacemod__assoc_a1a078920eaad8dbf34e84a3948283c74}} 
+\Hypertarget{namespacemod__assoc_a1a078920eaad8dbf34e84a3948283c74}\label{namespacemod__assoc_a1a078920eaad8dbf34e84a3948283c74}
 \index{mod\_assoc@{mod\_assoc}!write\_complexes@{write\_complexes}}
 \index{write\_complexes@{write\_complexes}!mod\_assoc@{mod\_assoc}}
 \doxysubsubsection{\texorpdfstring{write\_complexes()}{write\_complexes()}}
-{\footnotesize\ttfamily subroutine mod\+\_\+assoc\+::write\+\_\+complexes (\begin{DoxyParamCaption}\item[{type(\mbox{\hyperlink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}}), intent(in)}]{complexes,  }\item[{integer, intent(in)}]{nb\+\_\+encounters,  }\item[{character(len=$\ast$), intent(in)}]{complexes\+\_\+filename }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily subroutine mod\+\_\+assoc\+::write\+\_\+complexes (\begin{DoxyParamCaption}\item[{type(\mbox{\hyperlink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}}), intent(in)}]{complexes,  }\item[{integer, intent(in)}]{nb\+\_\+encounters,  }\item[{character(len=\texorpdfstring{$\ast$}{*}), intent(in)}]{complexes\+\_\+filename }\end{DoxyParamCaption})}
 

@@ -1,32 +1,28 @@
-\hypertarget{mod__clust__algorithm_8f90}{}\doxysection{mod\+\_\+clust\+\_\+algorithm.\+f90 File Reference}
-\label{mod__clust__algorithm_8f90}\index{mod\_clust\_algorithm.f90@{mod\_clust\_algorithm.f90}}
+\doxysection{mod\+\_\+clust\+\_\+algorithm.\+f90 File Reference}
+\hypertarget{mod__clust__algorithm_8f90}{}\label{mod__clust__algorithm_8f90}\index{mod\_clust\_algorithm.f90@{mod\_clust\_algorithm.f90}}
 
 
-Hierarchical clustering algorithms and output helpers.  
+Hierarchical clustering algorithms and output helpers.
 
 
-\doxysubsection*{Modules}
+\doxysubsubsection*{Modules}
 \begin{DoxyCompactItemize}
-\item 
+\item
 module \mbox{\hyperlink{namespacemod__clust__algorithm}{mod\+\_\+clust\+\_\+algorithm}}
 \end{DoxyCompactItemize}
-\doxysubsection*{Functions/\+Subroutines}
+\doxysubsubsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
-\item 
-subroutine \mbox{\hyperlink{namespacemod__clust__algorithm_a6a473a1ca16c6b1e90b2fb602a74a794}{mod\+\_\+clust\+\_\+algorithm\+::linkage\+\_\+clustering\+\_\+from\+\_\+matrix}} (matrix, n, linkage\+\_\+type, output\+\_\+name, complexes)
-\begin{DoxyCompactList}\small\item\em Perform hierarchical clustering on a distance matrix. \end{DoxyCompactList}\item 
-subroutine \mbox{\hyperlink{namespacemod__clust__algorithm_a30eb621a6ad610c736bca0ef2711dc9f}{mod\+\_\+clust\+\_\+algorithm\+::linkage\+\_\+clustering\+\_\+from\+\_\+array}} (array, n, linkage\+\_\+type, output\+\_\+name, complexes)
-\begin{DoxyCompactList}\small\item\em Perform hierarchical clustering on a distance array. \end{DoxyCompactList}\item 
-subroutine \mbox{\hyperlink{namespacemod__clust__algorithm_af5f3db6d505ab3f6f1ac125933ec5a3c}{mod\+\_\+clust\+\_\+algorithm\+::sort\+\_\+complexes}} (tot\+\_\+encounters, cluster\+\_\+indexes, cluster\+\_\+count, active\+\_\+clusters, representative\+\_\+indexes, cluster\+\_\+average, cluster\+\_\+sd, array)
-\begin{DoxyCompactList}\small\item\em Sort clusters and associated arrays by a given key array. \end{DoxyCompactList}\item 
+\item
+subroutine \mbox{\hyperlink{namespacemod__clust__algorithm_ad0270717d84c7b90a0b36e69842264d3}{mod\+\_\+clust\+\_\+algorithm\+::linkage\+\_\+clustering}} (array, n, output\+\_\+name, complexes)
+\begin{DoxyCompactList}\small\item\em Perform hierarchical clustering on a distance array. \end{DoxyCompactList}\item
 subroutine \mbox{\hyperlink{namespacemod__clust__algorithm_a781dcda3e1ee679a509a0a466f15a0cf}{mod\+\_\+clust\+\_\+algorithm\+::write\+\_\+cluster\+\_\+elements}} (tot\+\_\+encounters, cluster\+\_\+parent, cluster\+\_\+count, active\+\_\+clusters, output\+\_\+name)
-\begin{DoxyCompactList}\small\item\em Write cluster membership lists to a text file. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Write cluster membership lists to a text file. \end{DoxyCompactList}\item
 subroutine \mbox{\hyperlink{namespacemod__clust__algorithm_a8b27ce5160935731f219ce97560d521b}{mod\+\_\+clust\+\_\+algorithm\+::write\+\_\+clust\+\_\+info}} (tot\+\_\+encounters, representative\+\_\+indexes, active\+\_\+clusters, clust\+\_\+count, cluster\+\_\+average, cluster\+\_\+sd, output\+\_\+name)
-\begin{DoxyCompactList}\small\item\em Write summary information about clusters to a text file. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Write summary information about clusters to a text file. \end{DoxyCompactList}\item
 subroutine \mbox{\hyperlink{namespacemod__clust__algorithm_a0a2c96478205c647ddd3a6bf8c283a39}{mod\+\_\+clust\+\_\+algorithm\+::write\+\_\+cluster\+\_\+complexes}} (tot\+\_\+encounters, cluster\+\_\+parent, cluster\+\_\+count, active\+\_\+clusters, output\+\_\+name, complexes)
 \begin{DoxyCompactList}\small\item\em Write complexes contained in each cluster to individual files. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Hierarchical clustering algorithms and output helpers. 
+Hierarchical clustering algorithms and output helpers.
 

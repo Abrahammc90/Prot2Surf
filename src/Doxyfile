@@ -1,6 +1,7 @@
 # Doxyfile 1.9.1
 # Minimal Doxygen configuration for this Fortran project
 PROJECT_NAME           = "Clustering program"
+PROJECT_NUMBER         = 1.0
 OUTPUT_DIRECTORY       = ../docs
 CREATE_SUBDIRS         = YES
 OPTIMIZE_FOR_FORTRAN   = YES

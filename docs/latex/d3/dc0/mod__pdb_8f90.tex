@@ -1,58 +1,58 @@
-\hypertarget{mod__pdb_8f90}{}\doxysection{mod\+\_\+pdb.\+f90 File Reference}
-\label{mod__pdb_8f90}\index{mod\_pdb.f90@{mod\_pdb.f90}}
+\doxysection{mod\+\_\+pdb.\+f90 File Reference}
+\hypertarget{mod__pdb_8f90}{}\label{mod__pdb_8f90}\index{mod\_pdb.f90@{mod\_pdb.f90}}
 
 
-P\+DB data structures and parsing/allocation routines.  
+PDB data structures and parsing/allocation routines.
 
 
-\doxysubsection*{Data Types}
+\doxysubsubsection*{Data Types}
 \begin{DoxyCompactItemize}
-\item 
+\item
 type \mbox{\hyperlink{structmod__pdb_1_1type__pdb__file}{mod\+\_\+pdb\+::type\+\_\+pdb\+\_\+file}}
-\begin{DoxyCompactList}\small\item\em Data type for storing binned data (eg. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Data type for storing binned data (eg. \end{DoxyCompactList}\item
 type \mbox{\hyperlink{structmod__pdb_1_1type__pdb__chain}{mod\+\_\+pdb\+::type\+\_\+pdb\+\_\+chain}}
-\item 
+\item
 type \mbox{\hyperlink{structmod__pdb_1_1type__pdb__residue}{mod\+\_\+pdb\+::type\+\_\+pdb\+\_\+residue}}
-\item 
+\item
 type \mbox{\hyperlink{structmod__pdb_1_1type__pdb__atom}{mod\+\_\+pdb\+::type\+\_\+pdb\+\_\+atom}}
 \end{DoxyCompactItemize}
-\doxysubsection*{Modules}
+\doxysubsubsection*{Modules}
 \begin{DoxyCompactItemize}
-\item 
+\item
 module \mbox{\hyperlink{namespacemod__pdb}{mod\+\_\+pdb}}
 \end{DoxyCompactItemize}
-\doxysubsection*{Functions/\+Subroutines}
+\doxysubsubsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
-\item 
+\item
 subroutine \mbox{\hyperlink{namespacemod__pdb_a3f94eefa2e718fc426df4eaa4d80eb45}{mod\+\_\+pdb\+::allocate\+\_\+pdb\+\_\+object}} (this, pdb\+\_\+file, natoms, nresidues, nchains)
-\begin{DoxyCompactList}\small\item\em Allocate and initialize a {\ttfamily \mbox{\hyperlink{structmod__pdb_1_1type__pdb__file}{type\+\_\+pdb\+\_\+file}}} structure from a P\+DB file. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Allocate and initialize a {\ttfamily \doxylink{structmod__pdb_1_1type__pdb__file}{type\+\_\+pdb\+\_\+file}} structure from a PDB file. \end{DoxyCompactList}\item
 integer function \mbox{\hyperlink{namespacemod__pdb_ae7a6bc503b6ad7f79280ed56dd359d94}{mod\+\_\+pdb\+::count\+\_\+atoms}} (pdb\+\_\+file)
-\begin{DoxyCompactList}\small\item\em Count A\+T\+O\+M/\+H\+E\+T\+A\+TM records in a P\+DB file. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Count ATOM/\+HETATM records in a PDB file. \end{DoxyCompactList}\item
 integer function \mbox{\hyperlink{namespacemod__pdb_a82e23745258c421523a5564ecffd7d02}{mod\+\_\+pdb\+::count\+\_\+residues}} (pdb\+\_\+file)
-\begin{DoxyCompactList}\small\item\em Count residues in a P\+DB file. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Count residues in a PDB file. \end{DoxyCompactList}\item
 integer function \mbox{\hyperlink{namespacemod__pdb_a7e68a28bfffec223067770157412b2b9}{mod\+\_\+pdb\+::count\+\_\+chains}} (pdb\+\_\+file)
-\begin{DoxyCompactList}\small\item\em Count chain separators (T\+ER records) in a P\+DB file. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Count chain separators (TER records) in a PDB file. \end{DoxyCompactList}\item
 subroutine \mbox{\hyperlink{namespacemod__pdb_a08ac5c29c5079a644b0e41d004457d55}{mod\+\_\+pdb\+::fill\+\_\+pdb\+\_\+object}} (this, pdb\+\_\+file)
-\begin{DoxyCompactList}\small\item\em Parse P\+DB records and populate the {\ttfamily \mbox{\hyperlink{structmod__pdb_1_1type__pdb__file}{type\+\_\+pdb\+\_\+file}}} structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Parse PDB records and populate the {\ttfamily \doxylink{structmod__pdb_1_1type__pdb__file}{type\+\_\+pdb\+\_\+file}} structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-P\+DB data structures and parsing/allocation routines. 
+PDB data structures and parsing/allocation routines.
 
 Module to define a pdb type and pdb reading routine for tools.
 
-N\+O\+TE\+: This implementation is based on the S\+D\+A7 project\textquotesingle{}s {\ttfamily \mbox{\hyperlink{mod__pdb_8f90}{mod\+\_\+pdb.\+f90}}} (original author Neil Bruce). The present file has been modified and expanded for the clustering tools in this workspace. Notable enhancements include the addition of {\ttfamily count\+\_\+residues} and {\ttfamily count\+\_\+chains} functions and changes that allow creation of richer in-\/memory objects where residues contain their atoms and chains contain residues and atoms. These changes make it possible to build {\ttfamily type\+\_\+pdb\+\_\+file} instances with proper {\ttfamily residues} and {\ttfamily chains} substructures (each storing their atoms) rather than storing atoms in a single flat list only.
+NOTE\+: This implementation is based on the SDA7 project\textquotesingle{}s {\ttfamily \doxylink{mod__pdb_8f90}{mod\+\_\+pdb.\+f90}} (original author Neil Bruce). The present file has been modified and expanded for the clustering tools in this workspace. Notable enhancements include the addition of {\ttfamily count\+\_\+residues} and {\ttfamily count\+\_\+chains} functions and changes that allow creation of richer in-\/memory objects where residues contain their atoms and chains contain residues and atoms. These changes make it possible to build {\ttfamily type\+\_\+pdb\+\_\+file} instances with proper {\ttfamily residues} and {\ttfamily chains} substructures (each storing their atoms) rather than storing atoms in a single flat list only.
 
-The original S\+D\+A7 code and author attribution are retained; consult the S\+D\+A7 sources for original licensing and authorship details.
+The original SDA7 code and author attribution are retained; consult the SDA7 sources for original licensing and authorship details.
 
 \begin{DoxyAuthor}{Author}
-Neil Bruce 
+Neil Bruce
 
-Abraham Muñiz-\/\+Chicharro (modifications and extensions) 
+Abraham Muñiz-\/\+Chicharro (modifications and extensions)
 \end{DoxyAuthor}
 \begin{DoxyVersion}{Version}
-1.\+0 
+1.\+0
 \end{DoxyVersion}
 \begin{DoxyDate}{Date}
-2026-\/04-\/05 
+2026-\/04-\/05
 \end{DoxyDate}

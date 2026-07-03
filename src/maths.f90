@@ -204,39 +204,6 @@ MODULE maths
 
         end subroutine vectors_angle_2D
 
-    !> Compute the root-mean-square deviation (RMSD) between two sets of coordinates.
-    !!
-    !! Calculates RMSD = sqrt( (1/N) * sum_i ||coords1(i,:) - coords2(i,:)||^2 ).
-    !!
-    !! @param[out] rmsd_value Resulting RMSD (scalar)
-    !! @param[in]  nb_atoms   Number of atoms / points (integer)
-    !! @param[in]  coords1    First coordinate set, shape (nb_atoms,3)
-    !! @param[in]  coords2    Second coordinate set, shape (nb_atoms,3)
-    subroutine rmsd ( rmsd_value, nb_atoms, coords1, coords2)
-        IMPLICIT NONE
-
-        real(kind=8), intent(out) :: rmsd_value
-        integer, intent(in) :: nb_atoms
-        real(kind=8), dimension(:, :), intent(in) :: coords1, coords2
-        real(kind=8) :: sum_sq_diff
-        integer :: i
-
-        !print *, coords1(1, :)
-        !print *, coords2(1, :)
-        !print*, nb_atoms
-        !stop
-
-        sum_sq_diff = 0
-        do i = 1, nb_atoms
-            sum_sq_diff = sum_sq_diff + (coords1(i, 1) - coords2(i, 1))**2 + &
-                                        (coords1(i, 2) - coords2(i, 2))**2 + &
-                                        (coords1(i, 3) - coords2(i, 3))**2
-        end do
-        rmsd_value = sqrt(sum_sq_diff/nb_atoms)
-
-
-    end subroutine rmsd
-
     !> Compute the center of geometry (centroid) of a set of points.
     !!
     !! Sums the coordinates and divides by the number of points to produce
@@ -287,4 +254,3 @@ MODULE maths
 
 
 END MODULE maths
-

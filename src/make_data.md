@@ -2,11 +2,10 @@
 
 ## Description
 
-`make_data` generates encounter-derived numeric data and writes it to disk.
+`make_data` generates encounter-derived numeric arrays and writes them to disk.
 
 The selected mode is controlled by `-data_type`:
 
-- `rmsd`
 - `z_coord`
 - `atoms_dist`
 - `2D_angle`
@@ -19,7 +18,7 @@ The selected mode is controlled by `-data_type`:
 - `-atoms2 <atom ...>` (or `-atoms2a`)
 - `-complexes <file>`
 - `-data_type <type>`
-- `-input <file>`
+- `-output <file>`
 
 # Optional arguments
 
@@ -31,7 +30,6 @@ The selected mode is controlled by `-data_type`:
 ## Modules Used
 
 - `read_input`
-- `mod_matrix`
 - `mod_array`
 - `mod_assoc`
 
@@ -42,7 +40,11 @@ The selected mode is controlled by `-data_type`:
 ```
 
 ```bash
-./make_data -data_type rmsd -help
+./make_data -data_type z_coord -help
+```
+
+```bash
+./make_data -pdb2 p2_noh.pdb -atoms2 Cu -complexes assoc_complexes -data_type z_coord -output array_z.txt
 ```
 
 ## Author

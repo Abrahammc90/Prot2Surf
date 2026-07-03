@@ -1,0 +1,12 @@
+<map id="mod_pdb::type_pdb_file" name="mod_pdb::type_pdb_file">
+<area shape="rect" id="Node000001" title="Data type for storing binned data (eg." alt="" coords="5,269,183,295"/>
+<area shape="rect" id="Node000002" href="$d6/ddf/structmod__pdb_1_1type__pdb__atom.html" title=" " alt="" coords="51,5,241,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,39,63,61,47,77,34,95,25,118,24,143,29,168,38,192,63,236,86,268,82,271,58,239,33,194,24,169,19,143,20,117,29,92,43,73,60,57,98,34"/>
+<area shape="rect" id="Node000003" href="$d8/d95/structmod__pdb_1_1type__pdb__residue.html" title=" " alt="" coords="43,93,249,119"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="149,45,149,93,143,93,143,45"/>
+<area shape="rect" id="Node000004" href="$dd/dbe/structmod__pdb_1_1type__pdb__chain.html" title=" " alt="" coords="178,181,370,207"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="187,35,227,58,263,92,279,122,281,157,278,181,273,181,275,157,274,124,259,95,224,63,185,39"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="133,132,120,155,109,182,99,230,97,269,91,269,94,229,103,181,115,153,128,129"/>
+<area shape="poly" id="edge6_Node000004_Node000003" title=" " alt="" coords="175,125,219,155,257,179,254,183,217,160,172,129"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="239,215,120,271,117,267,236,210"/>
+</map>

@@ -1,0 +1,54 @@
+\doxysection{contact\+\_\+map.\+f90 File Reference}
+\hypertarget{contact__map_8f90}{}\label{contact__map_8f90}\index{contact\_map.f90@{contact\_map.f90}}
+
+
+Residue proximity analysis across transformed encounters.
+
+
+\doxysubsubsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item
+program \mbox{\hyperlink{contact__map_8f90_a8ec2266d83cd6c0b762cbcbc92c0af3d}{main}}
+\item
+subroutine \mbox{\hyperlink{contact__map_8f90_a78fdb90c7b35c2b7767d67935a41814a}{print\+\_\+help}} ()
+\begin{DoxyCompactList}\small\item\em Print usage/help text for {\ttfamily contact\+\_\+map}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Residue proximity analysis across transformed encounters.
+
+\doxylink{contact__map_8f90}{contact\+\_\+map.\+f90} -\/ Find residues close to the surface across encounters.
+
+Usage\+: ./contact\+\_\+map -\/help
+
+Reads a PDB and complexes file, transforms residue centers, and counts how many encounters bring residues within a threshold. Results\+: closest\+\_\+residues.\+txt
+
+\begin{DoxyAuthor}{Author}
+Abraham Muñiz-\/\+Chicharro
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2026-\/04-\/05
+\end{DoxyDate}
+
+
+\doxysubsection{Function/\+Subroutine Documentation}
+\Hypertarget{contact__map_8f90_a8ec2266d83cd6c0b762cbcbc92c0af3d}\label{contact__map_8f90_a8ec2266d83cd6c0b762cbcbc92c0af3d}
+\index{contact\_map.f90@{contact\_map.f90}!main@{main}}
+\index{main@{main}!contact\_map.f90@{contact\_map.f90}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily program main}
+
+\Hypertarget{contact__map_8f90_a78fdb90c7b35c2b7767d67935a41814a}\label{contact__map_8f90_a78fdb90c7b35c2b7767d67935a41814a}
+\index{contact\_map.f90@{contact\_map.f90}!print\_help@{print\_help}}
+\index{print\_help@{print\_help}!contact\_map.f90@{contact\_map.f90}}
+\doxysubsubsection{\texorpdfstring{print\_help()}{print\_help()}}
+{\footnotesize\ttfamily subroutine main\+::print\+\_\+help}
+
+
+
+Print usage/help text for {\ttfamily contact\+\_\+map}.
+
+Shows required command-\/line options and examples for running the residue analysis tool.

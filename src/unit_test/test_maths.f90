@@ -18,9 +18,6 @@
 !!
 !! - **3D angle calculations (vectors_angle_3D)**:
 !!    - Parallel vectors (0 degrees)
-!!
-!! @author Abraham Muñiz-Chicharro
-!! @version 1.0
 !!    - Perpendicular vectors (90 degrees)
 !!    - Opposite vectors (180 degrees)
 !!    - 45 degree angles
@@ -30,11 +27,6 @@
 !!    - Perpendicular vectors in XY plane (90 degrees)
 !!    - Opposite vectors in XY plane (180 degrees)
 !!    - Zero magnitude vectors handling
-!!
-!! - **RMSD calculation**:
-!!    - Identical coordinates (RMSD = 0)
-!!    - Simple translations
-!!    - Known RMSD values
 !!
 !! - **Center of geometry (calculate_cog)**:
 !!    - Single point
@@ -76,9 +68,6 @@ program test_maths
     ! Test angle calculations
     call test_vectors_angle_3D(num_tests, num_passed, num_failed)
     call test_vectors_angle_2D(num_tests, num_passed, num_failed)
-    
-    ! Test RMSD calculation
-    call test_rmsd(num_tests, num_passed, num_failed)
     
     ! Test center of geometry
     call test_calculate_cog(num_tests, num_passed, num_failed)
@@ -565,96 +554,6 @@ contains
         end if
 
     end subroutine test_vectors_angle_2D
-
-
-    !*******************************************************************************
-    !> @brief Unit test for RMSD calculation routine.
-    !>
-    !> @author Abraham
-    !> @version 1.0
-    !> @date 2024-06-09
-    !>
-    !> @param[inout] num_tests   Number of tests executed (incremented)
-    !> @param[inout] num_passed  Number of tests passed (incremented)
-    !> @param[inout] num_failed  Number of tests failed (incremented)
-    !*******************************************************************************
-    subroutine test_rmsd(num_tests, num_passed, num_failed)
-        integer, intent(inout) :: num_tests, num_passed, num_failed
-        real(kind=8), dimension(:, :), allocatable :: coords1, coords2
-        real(kind=8) :: rmsd_value
-        logical :: test_passed
-        integer :: n
-
-        print *, ""
-        print *, "Testing RMSD calculation..."
-
-        ! Test 1: Identical coordinates (RMSD = 0)
-        num_tests = num_tests + 1
-        n = 3
-        allocate(coords1(n, 3), coords2(n, 3))
-        coords1(1, :) = [1.0d0, 2.0d0, 3.0d0]
-        coords1(2, :) = [4.0d0, 5.0d0, 6.0d0]
-        coords1(3, :) = [7.0d0, 8.0d0, 9.0d0]
-        coords2 = coords1
-
-        call rmsd(rmsd_value, n, coords1, coords2)
-        test_passed = (abs(rmsd_value - 0.0d0) < 1d-10)
-
-        if (test_passed) then
-            print *, "  [PASS] Test 1: Identical coordinates (RMSD = 0)"
-            num_passed = num_passed + 1
-        else
-            print *, "  [FAIL] Test 1: Identical coordinates"
-            print *, "    Expected: 0.0, Got: ", rmsd_value
-            num_failed = num_failed + 1
-        end if
-        deallocate(coords1, coords2)
-
-        ! Test 2: Simple translation (unit shift in x)
-        num_tests = num_tests + 1
-        n = 2
-        allocate(coords1(n, 3), coords2(n, 3))
-        coords1(1, :) = [0.0d0, 0.0d0, 0.0d0]
-        coords1(2, :) = [1.0d0, 0.0d0, 0.0d0]
-        coords2(1, :) = [1.0d0, 0.0d0, 0.0d0]
-        coords2(2, :) = [2.0d0, 0.0d0, 0.0d0]
-
-        call rmsd(rmsd_value, n, coords1, coords2)
-        test_passed = (abs(rmsd_value - 1.0d0) < 1d-10)
-
-        if (test_passed) then
-            print *, "  [PASS] Test 2: Unit translation (RMSD = 1.0)"
-            num_passed = num_passed + 1
-        else
-            print *, "  [FAIL] Test 2: Unit translation"
-            print *, "    Expected: 1.0, Got: ", rmsd_value
-            num_failed = num_failed + 1
-        end if
-        deallocate(coords1, coords2)
-
-        ! Test 3: Known RMSD value
-        num_tests = num_tests + 1
-        n = 1
-        allocate(coords1(n, 3), coords2(n, 3))
-        coords1(1, :) = [0.0d0, 0.0d0, 0.0d0]
-        coords2(1, :) = [1.0d0, 1.0d0, 1.0d0]
-        ! Expected RMSD = sqrt((1^2 + 1^2 + 1^2)/1) = sqrt(3)
-
-        call rmsd(rmsd_value, n, coords1, coords2)
-        test_passed = (abs(rmsd_value - sqrt(3.0d0)) < 1d-10)
-
-        if (test_passed) then
-            print *, "  [PASS] Test 3: Known RMSD (sqrt(3))"
-            num_passed = num_passed + 1
-        else
-            print *, "  [FAIL] Test 3: Known RMSD"
-            print *, "    Expected: ", sqrt(3.0d0), ", Got: ", rmsd_value
-            num_failed = num_failed + 1
-        end if
-        deallocate(coords1, coords2)
-
-    end subroutine test_rmsd
-
 
     !*******************************************************************************
     !> @brief Unit test for calculate_cog routine.

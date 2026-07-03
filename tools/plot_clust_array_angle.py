@@ -80,6 +80,7 @@ def _plot_cluster_lines(cluster_data, cluster_x_values):
         cluster_x_values (dict): Dictionary mapping cluster names to x-axis values
     """
     colormap = plt.colormaps["tab10"]
+    bar_width = 5  # Adjusted bar width for better visibility
     
     for cluster_name in cluster_data:
         cluster_number = int(cluster_name.split()[1])
@@ -91,7 +92,7 @@ def _plot_cluster_lines(cluster_data, cluster_x_values):
             y_values,
             label=f"Cluster {cluster_number}",
             color=colormap(cluster_number),
-            linewidth=3
+            linewidth=bar_width
         )
 
 

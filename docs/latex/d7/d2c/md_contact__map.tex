@@ -1,0 +1,44 @@
+\chapter{contact\+\_\+map.\+f90}
+\hypertarget{md_contact__map}{}\label{md_contact__map}\index{contact\_map.f90@{contact\_map.f90}}
+\label{md_contact__map_autotoc_md10}%
+\Hypertarget{md_contact__map_autotoc_md10}%
+ \hypertarget{md_contact__map_autotoc_md11}{}\doxysection{\texorpdfstring{Description}{Description}}\label{md_contact__map_autotoc_md11}
+{\ttfamily contact\+\_\+map} evaluates residue proximity to a surface across encounter complexes.
+
+For each residue in {\ttfamily pdb2}, it computes a center-\/of-\/geometry, applies encounter transformations, and records encounters where the transformed residue position is below a distance threshold.\hypertarget{md_contact__map_autotoc_md12}{}\doxysection{\texorpdfstring{Parser description}{Parser description}}\label{md_contact__map_autotoc_md12}
+\hypertarget{md_contact__map_autotoc_md13}{}\doxysection{\texorpdfstring{Required Arguments}{Required Arguments}}\label{md_contact__map_autotoc_md13}
+
+\begin{DoxyItemize}
+\item {\ttfamily -\/pdb2 \texorpdfstring{$<$}{<}file\texorpdfstring{$>$}{>}}
+\item {\ttfamily -\/complexes \texorpdfstring{$<$}{<}file\texorpdfstring{$>$}{>}}
+\end{DoxyItemize}\hypertarget{md_contact__map_autotoc_md14}{}\doxysection{\texorpdfstring{Optional arguments}{Optional arguments}}\label{md_contact__map_autotoc_md14}
+
+\begin{DoxyItemize}
+\item {\ttfamily -\/nb\+\_\+encounters \texorpdfstring{$<$}{<}N\texorpdfstring{$>$}{>}} (default\+: all)
+\item {\ttfamily -\/threshold \texorpdfstring{$<$}{<}value\texorpdfstring{$>$}{>}} (default\+: {\ttfamily 6.\+0})
+\item {\ttfamily -\/help}
+\end{DoxyItemize}\hypertarget{md_contact__map_autotoc_md15}{}\doxysubsection{\texorpdfstring{Modules Used}{Modules Used}}\label{md_contact__map_autotoc_md15}
+
+\begin{DoxyItemize}
+\item {\ttfamily \doxylink{namespaceread__input}{read\+\_\+input}}
+\item {\ttfamily maths}
+\end{DoxyItemize}\hypertarget{md_contact__map_autotoc_md16}{}\doxysubsection{\texorpdfstring{Main Routines Called}{Main Routines Called}}\label{md_contact__map_autotoc_md16}
+
+\begin{DoxyItemize}
+\item {\ttfamily read\+\_\+pdb} (from {\ttfamily \doxylink{namespaceread__input}{read\+\_\+input}})
+\item {\ttfamily read\+\_\+assoc} (from {\ttfamily \doxylink{namespaceread__input}{read\+\_\+input}})
+\item {\ttfamily calculate\+\_\+cog} (from {\ttfamily maths})
+\item {\ttfamily update\+\_\+complex} (from {\ttfamily maths})
+\item {\ttfamily print\+\_\+help} (internal)
+\end{DoxyItemize}\hypertarget{md_contact__map_autotoc_md17}{}\doxysubsection{\texorpdfstring{Output}{Output}}\label{md_contact__map_autotoc_md17}
+
+\begin{DoxyItemize}
+\item {\ttfamily closest\+\_\+residues.\+txt}\+: each residue line includes encounter indexes that satisfy the threshold condition.
+\end{DoxyItemize}\hypertarget{md_contact__map_autotoc_md18}{}\doxysubsection{\texorpdfstring{Usage Example}{Usage Example}}\label{md_contact__map_autotoc_md18}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./contact\_map\ -\/pdb2\ p2\_noh.pdb\ -\/complexes\ assoc\_complexes\ -\/nb\_encounters\ 5000\ -\/threshold\ 6.0}
+
+\end{DoxyCode}
+\hypertarget{md_contact__map_autotoc_md19}{}\doxysubsection{\texorpdfstring{Author}{Author}}\label{md_contact__map_autotoc_md19}
+Abraham Muñiz-\/\+Chicharro

@@ -1,5 +1,7 @@
 """
 Unit tests for upper_C1_C4.py - Extraction of uppermost C1/C4 atoms from PDB files.
+
+@version 1.0
 """
 import os
 import tempfile

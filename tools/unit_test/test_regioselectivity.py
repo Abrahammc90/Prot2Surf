@@ -1,5 +1,7 @@
 """
 Unit tests for regioselectivity.py - Main function and argument parsing.
+
+@version 1.0
 """
 import pytest
 import sys

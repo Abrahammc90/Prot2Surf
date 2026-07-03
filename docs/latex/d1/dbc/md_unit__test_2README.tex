@@ -1,0 +1,45 @@
+\chapter{Fortran Unit Tests (\texorpdfstring{$<$}{<}tt\texorpdfstring{$>$}{>}src/unit\+\_\+test\texorpdfstring{$<$}{<}/tt\texorpdfstring{$>$}{>})}
+\hypertarget{md_unit__test_2README}{}\label{md_unit__test_2README}\index{Fortran Unit Tests ($<$tt$>$src/unit\_test$<$/tt$>$)@{Fortran Unit Tests ($<$tt$>$src/unit\_test$<$/tt$>$)}}
+\label{md_unit__test_2README_autotoc_md37}%
+\Hypertarget{md_unit__test_2README_autotoc_md37}%
+ This directory contains standalone Fortran test programs for core clustering modules.\hypertarget{md_unit__test_2README_autotoc_md38}{}\doxysection{\texorpdfstring{Included Test Programs}{Included Test Programs}}\label{md_unit__test_2README_autotoc_md38}
+
+\begin{DoxyItemize}
+\item {\ttfamily \doxylink{test__maths_8f90}{test\+\_\+maths.\+f90}}\+: numerical/geometry operations in {\ttfamily maths}
+\item {\ttfamily \doxylink{test__array_8f90}{test\+\_\+array.\+f90}}\+: array I/O, array-\/based encounter metrics, and array/metadata reordering in {\ttfamily \doxylink{namespacemod__array}{mod\+\_\+array}}
+\item {\ttfamily \doxylink{test__threshold_8f90}{test\+\_\+threshold.\+f90}}\+: threshold operations in {\ttfamily \doxylink{namespacemod__threshold}{mod\+\_\+threshold}}
+\item {\ttfamily \doxylink{test__pdb_8f90}{test\+\_\+pdb.\+f90}}\+: PDB parsing/structures in {\ttfamily \doxylink{namespacemod__pdb}{mod\+\_\+pdb}}
+\item {\ttfamily \doxylink{test__clustering_8f90}{test\+\_\+clustering.\+f90}}\+: clustering logic in {\ttfamily \doxylink{namespacemod__clust__algorithm}{mod\+\_\+clust\+\_\+algorithm}}
+\item {\ttfamily \doxylink{test__assoc_8f90}{test\+\_\+assoc.\+f90}}\+: association file handling in {\ttfamily \doxylink{namespacemod__assoc}{mod\+\_\+assoc}}
+\item {\ttfamily \doxylink{test__read__input_8f90}{test\+\_\+read\+\_\+input.\+f90}}\+: integrated input loading in {\ttfamily \doxylink{namespaceread__input}{read\+\_\+input}}
+\end{DoxyItemize}\hypertarget{md_unit__test_2README_autotoc_md39}{}\doxysection{\texorpdfstring{Current Coverage Notes}{Current Coverage Notes}}\label{md_unit__test_2README_autotoc_md39}
+
+\begin{DoxyItemize}
+\item {\ttfamily \doxylink{test__array_8f90}{test\+\_\+array.\+f90}} currently covers\+:
+\begin{DoxyItemize}
+\item {\ttfamily write\+\_\+array()} / {\ttfamily read\+\_\+array()}
+\item {\ttfamily array\+\_\+z\+\_\+coord()}
+\item {\ttfamily array\+\_\+atoms\+\_\+dist()}
+\item {\ttfamily array\+\_\+angle()}
+\item {\ttfamily merge\+\_\+sorted\+\_\+segments()}
+\end{DoxyItemize}
+\item {\ttfamily \doxylink{test__threshold_8f90}{test\+\_\+threshold.\+f90}} covers threshold-\/oriented array calculations in {\ttfamily \doxylink{namespacemod__threshold}{mod\+\_\+threshold}}.
+\end{DoxyItemize}\hypertarget{md_unit__test_2README_autotoc_md40}{}\doxysection{\texorpdfstring{Default Test Execution Paths}{Default Test Execution Paths}}\label{md_unit__test_2README_autotoc_md40}
+\hypertarget{md_unit__test_2README_autotoc_md41}{}\doxysubsection{\texorpdfstring{From $<$tt$>$src/$<$/tt$>$ (\+Makefile target)}{From <tt>src/</tt> (Makefile target)}}\label{md_unit__test_2README_autotoc_md41}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make\ test}
+
+\end{DoxyCode}
+
+
+This is the authoritative default path. It runs the standard Fortran test set defined in {\ttfamily src/\+Makefile}, including {\ttfamily test\+\_\+array}.\hypertarget{md_unit__test_2README_autotoc_md42}{}\doxysubsection{\texorpdfstring{From $<$tt$>$src/unit\+\_\+test/$<$/tt$>$ (script)}{From <tt>src/unit\_test/</tt> (script)}}\label{md_unit__test_2README_autotoc_md42}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{bash\ run\_all\_tests.sh}
+
+\end{DoxyCode}
+
+
+This script compiles/runs the list currently defined in {\ttfamily \doxylink{run__all__tests_8sh}{run\+\_\+all\+\_\+tests.\+sh}}.\hypertarget{md_unit__test_2README_autotoc_md43}{}\doxysection{\texorpdfstring{Author}{Author}}\label{md_unit__test_2README_autotoc_md43}
+Abraham Muñiz-\/\+Chicharro

@@ -1,59 +1,57 @@
-\hypertarget{clust_8f90}{}\doxysection{clust.\+f90 File Reference}
-\label{clust_8f90}\index{clust.f90@{clust.f90}}
+\doxysection{clust.\+f90 File Reference}
+\hypertarget{clust_8f90}{}\label{clust_8f90}\index{clust.f90@{clust.f90}}
 
 
-Hierarchical clustering driver for encounter matrices/arrays.  
+Hierarchical clustering driver for encounter arrays.
 
 
-\doxysubsection*{Functions/\+Subroutines}
+\doxysubsubsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
-\item 
+\item
 program \mbox{\hyperlink{clust_8f90_a8ec2266d83cd6c0b762cbcbc92c0af3d}{main}}
-\item 
-subroutine \mbox{\hyperlink{clust_8f90_a2696254dc19f1457b42278a82a19a4d9}{parse\+\_\+arguments}} (p\+\_\+complexes\+\_\+filename, p\+\_\+complexes\+\_\+bool, p\+\_\+nb\+\_\+encounters, p\+\_\+nb\+\_\+encounters\+\_\+bool, p\+\_\+datadist\+\_\+filename, p\+\_\+output\+\_\+name, p\+\_\+output\+\_\+name\+\_\+bool, p\+\_\+linkage\+\_\+type, p\+\_\+help\+\_\+bool)
-\begin{DoxyCompactList}\small\item\em Parse command-\/line arguments for {\ttfamily clust}. \end{DoxyCompactList}\item 
-subroutine \mbox{\hyperlink{clust_8f90_a78fdb90c7b35c2b7767d67935a41814a}{print\+\_\+help}} ()
-\begin{DoxyCompactList}\small\item\em Print usage and help information for the {\ttfamily clust} program. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\item
+subroutine \mbox{\hyperlink{clust_8f90_a06b5cbb2ce05f96b204a7d7e16dc70d4}{parse\+\_\+arguments}} (p\+\_\+complexes\+\_\+filename, p\+\_\+complexes\+\_\+bool, p\+\_\+nb\+\_\+encounters, p\+\_\+nb\+\_\+encounters\+\_\+bool, p\+\_\+datadist\+\_\+filename, p\+\_\+output\+\_\+name, p\+\_\+output\+\_\+name\+\_\+bool, p\+\_\+help\+\_\+bool)
+\begin{DoxyCompactList}\small\item\em Parse command-\/line arguments for {\ttfamily clust}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Hierarchical clustering driver for encounter matrices/arrays. 
+Hierarchical clustering driver for encounter arrays.
 
-\mbox{\hyperlink{clust_8f90}{clust.\+f90}} -\/ Hierarchical clustering for encounter matrices.
+\doxylink{clust_8f90}{clust.\+f90} -\/ Hierarchical clustering for encounter arrays.
 
 Usage\+: ./clust -\/help
 
-Reads a pairwise matrix (or array) and runs hierarchical clustering with user-\/specified linkage. Results written to output\+\_\+name files.
+Reads an array and runs hierarchical clustering with mean linkage. Results written to output\+\_\+name files.
 
 \begin{DoxyAuthor}{Author}
-Abraham Muñiz-\/\+Chicharro 
+Abraham Muñiz-\/\+Chicharro
 \end{DoxyAuthor}
 \begin{DoxyVersion}{Version}
-1.\+0 
+1.\+0
 \end{DoxyVersion}
 \begin{DoxyDate}{Date}
-2026-\/04-\/05 
+2026-\/04-\/05
 \end{DoxyDate}
 
 
 \doxysubsection{Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{clust_8f90_a8ec2266d83cd6c0b762cbcbc92c0af3d}\label{clust_8f90_a8ec2266d83cd6c0b762cbcbc92c0af3d}} 
+\Hypertarget{clust_8f90_a8ec2266d83cd6c0b762cbcbc92c0af3d}\label{clust_8f90_a8ec2266d83cd6c0b762cbcbc92c0af3d}
 \index{clust.f90@{clust.f90}!main@{main}}
 \index{main@{main}!clust.f90@{clust.f90}}
 \doxysubsubsection{\texorpdfstring{main()}{main()}}
 {\footnotesize\ttfamily program main}
 
-\mbox{\Hypertarget{clust_8f90_a2696254dc19f1457b42278a82a19a4d9}\label{clust_8f90_a2696254dc19f1457b42278a82a19a4d9}} 
+\Hypertarget{clust_8f90_a06b5cbb2ce05f96b204a7d7e16dc70d4}\label{clust_8f90_a06b5cbb2ce05f96b204a7d7e16dc70d4}
 \index{clust.f90@{clust.f90}!parse\_arguments@{parse\_arguments}}
 \index{parse\_arguments@{parse\_arguments}!clust.f90@{clust.f90}}
 \doxysubsubsection{\texorpdfstring{parse\_arguments()}{parse\_arguments()}}
-{\footnotesize\ttfamily subroutine main\+::parse\+\_\+arguments (\begin{DoxyParamCaption}\item[{character$\ast$128, intent(out)}]{p\+\_\+complexes\+\_\+filename,  }\item[{logical, intent(out)}]{p\+\_\+complexes\+\_\+bool,  }\item[{integer, intent(out)}]{p\+\_\+nb\+\_\+encounters,  }\item[{logical, intent(out)}]{p\+\_\+nb\+\_\+encounters\+\_\+bool,  }\item[{character$\ast$128, intent(out)}]{p\+\_\+datadist\+\_\+filename,  }\item[{character$\ast$128, intent(out)}]{p\+\_\+output\+\_\+name,  }\item[{logical, intent(out)}]{p\+\_\+output\+\_\+name\+\_\+bool,  }\item[{character$\ast$128, intent(out)}]{p\+\_\+linkage\+\_\+type,  }\item[{logical, intent(out)}]{p\+\_\+help\+\_\+bool }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily subroutine main\+::parse\+\_\+arguments (\begin{DoxyParamCaption}\item[{character\texorpdfstring{$\ast$}{*}128, intent(out)}]{p\+\_\+complexes\+\_\+filename,  }\item[{logical, intent(out)}]{p\+\_\+complexes\+\_\+bool,  }\item[{integer, intent(out)}]{p\+\_\+nb\+\_\+encounters,  }\item[{logical, intent(out)}]{p\+\_\+nb\+\_\+encounters\+\_\+bool,  }\item[{character\texorpdfstring{$\ast$}{*}128, intent(out)}]{p\+\_\+datadist\+\_\+filename,  }\item[{character\texorpdfstring{$\ast$}{*}128, intent(out)}]{p\+\_\+output\+\_\+name,  }\item[{logical, intent(out)}]{p\+\_\+output\+\_\+name\+\_\+bool,  }\item[{logical, intent(out)}]{p\+\_\+help\+\_\+bool }\end{DoxyParamCaption})}
 
 
 
-Parse command-\/line arguments for {\ttfamily clust}. 
+Parse command-\/line arguments for {\ttfamily clust}.
 
-Parses all C\+LI flags and fills program configuration values. 
+Parses all CLI flags and fills program configuration values.
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ out}}  & {\em p\+\_\+complexes\+\_\+filename} & Value parsed from {\ttfamily -\/complexes} \\
 \hline
@@ -69,19 +67,6 @@ Parses all C\+LI flags and fills program configuration values.
 \hline
 \mbox{\texttt{ out}}  & {\em p\+\_\+output\+\_\+name\+\_\+bool} & Whether {\ttfamily -\/output\+\_\+name} was provided \\
 \hline
-\mbox{\texttt{ out}}  & {\em p\+\_\+linkage\+\_\+type} & Value parsed from {\ttfamily -\/linkage} (default {\ttfamily mean}) \\
-\hline
 \mbox{\texttt{ out}}  & {\em p\+\_\+help\+\_\+bool} & Whether {\ttfamily -\/help} was provided \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{clust_8f90_a78fdb90c7b35c2b7767d67935a41814a}\label{clust_8f90_a78fdb90c7b35c2b7767d67935a41814a}} 
-\index{clust.f90@{clust.f90}!print\_help@{print\_help}}
-\index{print\_help@{print\_help}!clust.f90@{clust.f90}}
-\doxysubsubsection{\texorpdfstring{print\_help()}{print\_help()}}
-{\footnotesize\ttfamily subroutine main\+::print\+\_\+help}
-
-
-
-Print usage and help information for the {\ttfamily clust} program. 
-
-Describes command-\/line options and provides an example invocation. 

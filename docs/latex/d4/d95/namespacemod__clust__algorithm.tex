@@ -1,34 +1,30 @@
-\hypertarget{namespacemod__clust__algorithm}{}\doxysection{mod\+\_\+clust\+\_\+algorithm Module Reference}
-\label{namespacemod__clust__algorithm}\index{mod\_clust\_algorithm@{mod\_clust\_algorithm}}
-\doxysubsection*{Functions/\+Subroutines}
+\doxysection{mod\+\_\+clust\+\_\+algorithm Module Reference}
+\hypertarget{namespacemod__clust__algorithm}{}\label{namespacemod__clust__algorithm}\index{mod\_clust\_algorithm@{mod\_clust\_algorithm}}
+\doxysubsubsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
-\item 
-subroutine \mbox{\hyperlink{namespacemod__clust__algorithm_a6a473a1ca16c6b1e90b2fb602a74a794}{linkage\+\_\+clustering\+\_\+from\+\_\+matrix}} (matrix, n, linkage\+\_\+type, output\+\_\+name, complexes)
-\begin{DoxyCompactList}\small\item\em Perform hierarchical clustering on a distance matrix. \end{DoxyCompactList}\item 
-subroutine \mbox{\hyperlink{namespacemod__clust__algorithm_a30eb621a6ad610c736bca0ef2711dc9f}{linkage\+\_\+clustering\+\_\+from\+\_\+array}} (array, n, linkage\+\_\+type, output\+\_\+name, complexes)
-\begin{DoxyCompactList}\small\item\em Perform hierarchical clustering on a distance array. \end{DoxyCompactList}\item 
-subroutine \mbox{\hyperlink{namespacemod__clust__algorithm_af5f3db6d505ab3f6f1ac125933ec5a3c}{sort\+\_\+complexes}} (tot\+\_\+encounters, cluster\+\_\+indexes, cluster\+\_\+count, active\+\_\+clusters, representative\+\_\+indexes, cluster\+\_\+average, cluster\+\_\+sd, array)
-\begin{DoxyCompactList}\small\item\em Sort clusters and associated arrays by a given key array. \end{DoxyCompactList}\item 
+\item
+subroutine \mbox{\hyperlink{namespacemod__clust__algorithm_ad0270717d84c7b90a0b36e69842264d3}{linkage\+\_\+clustering}} (array, n, output\+\_\+name, complexes)
+\begin{DoxyCompactList}\small\item\em Perform hierarchical clustering on a distance array. \end{DoxyCompactList}\item
 subroutine \mbox{\hyperlink{namespacemod__clust__algorithm_a781dcda3e1ee679a509a0a466f15a0cf}{write\+\_\+cluster\+\_\+elements}} (tot\+\_\+encounters, cluster\+\_\+parent, cluster\+\_\+count, active\+\_\+clusters, output\+\_\+name)
-\begin{DoxyCompactList}\small\item\em Write cluster membership lists to a text file. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Write cluster membership lists to a text file. \end{DoxyCompactList}\item
 subroutine \mbox{\hyperlink{namespacemod__clust__algorithm_a8b27ce5160935731f219ce97560d521b}{write\+\_\+clust\+\_\+info}} (tot\+\_\+encounters, representative\+\_\+indexes, active\+\_\+clusters, clust\+\_\+count, cluster\+\_\+average, cluster\+\_\+sd, output\+\_\+name)
-\begin{DoxyCompactList}\small\item\em Write summary information about clusters to a text file. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Write summary information about clusters to a text file. \end{DoxyCompactList}\item
 subroutine \mbox{\hyperlink{namespacemod__clust__algorithm_a0a2c96478205c647ddd3a6bf8c283a39}{write\+\_\+cluster\+\_\+complexes}} (tot\+\_\+encounters, cluster\+\_\+parent, cluster\+\_\+count, active\+\_\+clusters, output\+\_\+name, complexes)
 \begin{DoxyCompactList}\small\item\em Write complexes contained in each cluster to individual files. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{namespacemod__clust__algorithm_a30eb621a6ad610c736bca0ef2711dc9f}\label{namespacemod__clust__algorithm_a30eb621a6ad610c736bca0ef2711dc9f}} 
-\index{mod\_clust\_algorithm@{mod\_clust\_algorithm}!linkage\_clustering\_from\_array@{linkage\_clustering\_from\_array}}
-\index{linkage\_clustering\_from\_array@{linkage\_clustering\_from\_array}!mod\_clust\_algorithm@{mod\_clust\_algorithm}}
-\doxysubsubsection{\texorpdfstring{linkage\_clustering\_from\_array()}{linkage\_clustering\_from\_array()}}
-{\footnotesize\ttfamily subroutine mod\+\_\+clust\+\_\+algorithm\+::linkage\+\_\+clustering\+\_\+from\+\_\+array (\begin{DoxyParamCaption}\item[{real (kind=8), dimension(\+:), intent(inout), allocatable}]{array,  }\item[{integer, intent(in)}]{n,  }\item[{character(len=$\ast$), intent(in)}]{linkage\+\_\+type,  }\item[{character$\ast$128, intent(in)}]{output\+\_\+name,  }\item[{type(\mbox{\hyperlink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}})}]{complexes }\end{DoxyParamCaption})}
+\Hypertarget{namespacemod__clust__algorithm_ad0270717d84c7b90a0b36e69842264d3}\label{namespacemod__clust__algorithm_ad0270717d84c7b90a0b36e69842264d3}
+\index{mod\_clust\_algorithm@{mod\_clust\_algorithm}!linkage\_clustering@{linkage\_clustering}}
+\index{linkage\_clustering@{linkage\_clustering}!mod\_clust\_algorithm@{mod\_clust\_algorithm}}
+\doxysubsubsection{\texorpdfstring{linkage\_clustering()}{linkage\_clustering()}}
+{\footnotesize\ttfamily subroutine mod\+\_\+clust\+\_\+algorithm\+::linkage\+\_\+clustering (\begin{DoxyParamCaption}\item[{real (kind=8), dimension(\+:), intent(inout), allocatable}]{array,  }\item[{integer, intent(in)}]{n,  }\item[{character\texorpdfstring{$\ast$}{*}128, intent(in)}]{output\+\_\+name,  }\item[{type(\mbox{\hyperlink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}})}]{complexes }\end{DoxyParamCaption})}
 
 
 
-Perform hierarchical clustering on a distance array. 
+Perform hierarchical clustering on a distance array.
 
-This routine performs hierarchical clustering using minimum, maximum, or mean linkage on the input {\ttfamily array} (shape {\ttfamily (n)}) of pairwise distances or similarity scores. The routine mutates {\ttfamily array} during merging and terminates merging when clusters are farther apart than an internally computed threshold. Results are written to files named using {\ttfamily output\+\_\+name} and complexes information is optionally recorded via the {\ttfamily complexes} structure.
+This routine performs hierarchical clustering using mean linkage on the input {\ttfamily array} (shape {\ttfamily (n)}) of sorted per-\/encounter values. The routine mutates {\ttfamily array} during merging and terminates merging when clusters are farther apart than an internally computed threshold. Results are written to files named using {\ttfamily output\+\_\+name} and complexes information is optionally recorded via the {\ttfamily complexes} structure.
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -36,80 +32,22 @@ This routine performs hierarchical clustering using minimum, maximum, or mean li
 \hline
 \mbox{\texttt{ in}}  & {\em n} & Number of elements / encounters \\
 \hline
-\mbox{\texttt{ in}}  & {\em linkage\+\_\+type} & Type of linkage\+: \textquotesingle{}min\textquotesingle{}, \textquotesingle{}max\textquotesingle{}, or \textquotesingle{}mean\textquotesingle{} \\
-\hline
 \mbox{\texttt{ in}}  & {\em output\+\_\+name} & Base name for output files \\
 \hline
 \mbox{\texttt{ in}}  & {\em complexes} & Structure containing complex text lines/headers \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{namespacemod__clust__algorithm_a6a473a1ca16c6b1e90b2fb602a74a794}\label{namespacemod__clust__algorithm_a6a473a1ca16c6b1e90b2fb602a74a794}} 
-\index{mod\_clust\_algorithm@{mod\_clust\_algorithm}!linkage\_clustering\_from\_matrix@{linkage\_clustering\_from\_matrix}}
-\index{linkage\_clustering\_from\_matrix@{linkage\_clustering\_from\_matrix}!mod\_clust\_algorithm@{mod\_clust\_algorithm}}
-\doxysubsubsection{\texorpdfstring{linkage\_clustering\_from\_matrix()}{linkage\_clustering\_from\_matrix()}}
-{\footnotesize\ttfamily subroutine mod\+\_\+clust\+\_\+algorithm\+::linkage\+\_\+clustering\+\_\+from\+\_\+matrix (\begin{DoxyParamCaption}\item[{real (kind=8), dimension(\+:, \+:), intent(inout), allocatable}]{matrix,  }\item[{integer, intent(in)}]{n,  }\item[{character(len=$\ast$), intent(in)}]{linkage\+\_\+type,  }\item[{character$\ast$128, intent(in)}]{output\+\_\+name,  }\item[{type(\mbox{\hyperlink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}})}]{complexes }\end{DoxyParamCaption})}
-
-
-
-Perform hierarchical clustering on a distance matrix. 
-
-This routine performs hierarchical clustering using minimum, maximum, or mean linkage on the input {\ttfamily matrix} (shape {\ttfamily (n,n)}) of pairwise distances or similarity scores. The routine mutates {\ttfamily matrix} during merging and terminates merging when clusters are farther apart than an internally computed threshold. Results are written to files named using {\ttfamily output\+\_\+name} and complexes information is optionally recorded via the {\ttfamily complexes} structure.
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in,out}}  & {\em matrix} & Pairwise distance/similarity matrix (n, n) This matrix is updated during clustering \\
-\hline
-\mbox{\texttt{ in}}  & {\em n} & Number of elements / encounters \\
-\hline
-\mbox{\texttt{ in}}  & {\em linkage\+\_\+type} & Type of linkage\+: \textquotesingle{}min\textquotesingle{}, \textquotesingle{}max\textquotesingle{}, or \textquotesingle{}mean\textquotesingle{} \\
-\hline
-\mbox{\texttt{ in}}  & {\em output\+\_\+name} & Base name for output files \\
-\hline
-\mbox{\texttt{ in}}  & {\em complexes} & Structure containing complex text lines/headers \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{namespacemod__clust__algorithm_af5f3db6d505ab3f6f1ac125933ec5a3c}\label{namespacemod__clust__algorithm_af5f3db6d505ab3f6f1ac125933ec5a3c}} 
-\index{mod\_clust\_algorithm@{mod\_clust\_algorithm}!sort\_complexes@{sort\_complexes}}
-\index{sort\_complexes@{sort\_complexes}!mod\_clust\_algorithm@{mod\_clust\_algorithm}}
-\doxysubsubsection{\texorpdfstring{sort\_complexes()}{sort\_complexes()}}
-{\footnotesize\ttfamily subroutine mod\+\_\+clust\+\_\+algorithm\+::sort\+\_\+complexes (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{tot\+\_\+encounters,  }\item[{integer, dimension(\+:, \+:), intent(inout)}]{cluster\+\_\+indexes,  }\item[{integer, dimension(\+:), intent(inout)}]{cluster\+\_\+count,  }\item[{logical, dimension(\+:), intent(inout)}]{active\+\_\+clusters,  }\item[{integer, dimension(\+:), intent(inout)}]{representative\+\_\+indexes,  }\item[{real (kind=8), dimension(\+:), intent(inout)}]{cluster\+\_\+average,  }\item[{real (kind=8), dimension(\+:), intent(inout)}]{cluster\+\_\+sd,  }\item[{real (kind=8), dimension(\+:), intent(inout)}]{array }\end{DoxyParamCaption})}
-
-
-
-Sort clusters and associated arrays by a given key array. 
-
-Reorders {\ttfamily cluster\+\_\+indexes} and all supplied per-\/cluster arrays so that they are sorted by ascending values in {\ttfamily array}. This is a stable reordering helper used prior to writing results.
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em tot\+\_\+encounters} & Number of clusters/encounters \\
-\hline
-\mbox{\texttt{ in,out}}  & {\em cluster\+\_\+indexes} & Matrix storing cluster member indexes \\
-\hline
-\mbox{\texttt{ in,out}}  & {\em cluster\+\_\+count} & Number of members in each cluster \\
-\hline
-\mbox{\texttt{ in,out}}  & {\em active\+\_\+clusters} & Logical flags marking active clusters \\
-\hline
-\mbox{\texttt{ in,out}}  & {\em representative\+\_\+indexes} & Representative index per cluster \\
-\hline
-\mbox{\texttt{ in,out}}  & {\em cluster\+\_\+average} & Per-\/cluster average values \\
-\hline
-\mbox{\texttt{ in,out}}  & {\em cluster\+\_\+sd} & Per-\/cluster standard deviation \\
-\hline
-\mbox{\texttt{ in,out}}  & {\em array} & Key array used to sort clusters \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{namespacemod__clust__algorithm_a8b27ce5160935731f219ce97560d521b}\label{namespacemod__clust__algorithm_a8b27ce5160935731f219ce97560d521b}} 
+\Hypertarget{namespacemod__clust__algorithm_a8b27ce5160935731f219ce97560d521b}\label{namespacemod__clust__algorithm_a8b27ce5160935731f219ce97560d521b}
 \index{mod\_clust\_algorithm@{mod\_clust\_algorithm}!write\_clust\_info@{write\_clust\_info}}
 \index{write\_clust\_info@{write\_clust\_info}!mod\_clust\_algorithm@{mod\_clust\_algorithm}}
 \doxysubsubsection{\texorpdfstring{write\_clust\_info()}{write\_clust\_info()}}
-{\footnotesize\ttfamily subroutine mod\+\_\+clust\+\_\+algorithm\+::write\+\_\+clust\+\_\+info (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{tot\+\_\+encounters,  }\item[{integer, dimension(\+:), intent(in)}]{representative\+\_\+indexes,  }\item[{logical, dimension(\+:), intent(in)}]{active\+\_\+clusters,  }\item[{integer, dimension(tot\+\_\+encounters), intent(in)}]{clust\+\_\+count,  }\item[{real (kind=8), dimension(tot\+\_\+encounters), intent(in)}]{cluster\+\_\+average,  }\item[{real (kind=8), dimension(tot\+\_\+encounters), intent(in)}]{cluster\+\_\+sd,  }\item[{character$\ast$128, intent(in)}]{output\+\_\+name }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily subroutine mod\+\_\+clust\+\_\+algorithm\+::write\+\_\+clust\+\_\+info (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{tot\+\_\+encounters,  }\item[{integer, dimension(\+:), intent(in)}]{representative\+\_\+indexes,  }\item[{logical, dimension(\+:), intent(in)}]{active\+\_\+clusters,  }\item[{integer, dimension(tot\+\_\+encounters), intent(in)}]{clust\+\_\+count,  }\item[{real (kind=8), dimension(tot\+\_\+encounters), intent(in)}]{cluster\+\_\+average,  }\item[{real (kind=8), dimension(tot\+\_\+encounters), intent(in)}]{cluster\+\_\+sd,  }\item[{character\texorpdfstring{$\ast$}{*}128, intent(in)}]{output\+\_\+name }\end{DoxyParamCaption})}
 
 
 
-Write summary information about clusters to a text file. 
+Write summary information about clusters to a text file.
 
-Produces a summary file {\ttfamily $<$output\+\_\+name$>$\+\_\+clust\+\_\+info.\+txt} listing cluster population, representative index, average and standard deviation for each active cluster.
+Produces a summary file {\ttfamily \texorpdfstring{$<$}{<}output\+\_\+name\texorpdfstring{$>$}{>}\+\_\+clust\+\_\+info.\+txt} listing cluster population, representative index, average and standard deviation for each active cluster.
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -128,17 +66,17 @@ Produces a summary file {\ttfamily $<$output\+\_\+name$>$\+\_\+clust\+\_\+info.\
 \mbox{\texttt{ in}}  & {\em output\+\_\+name} & Base filename for outputs \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{namespacemod__clust__algorithm_a0a2c96478205c647ddd3a6bf8c283a39}\label{namespacemod__clust__algorithm_a0a2c96478205c647ddd3a6bf8c283a39}} 
+\Hypertarget{namespacemod__clust__algorithm_a0a2c96478205c647ddd3a6bf8c283a39}\label{namespacemod__clust__algorithm_a0a2c96478205c647ddd3a6bf8c283a39}
 \index{mod\_clust\_algorithm@{mod\_clust\_algorithm}!write\_cluster\_complexes@{write\_cluster\_complexes}}
 \index{write\_cluster\_complexes@{write\_cluster\_complexes}!mod\_clust\_algorithm@{mod\_clust\_algorithm}}
 \doxysubsubsection{\texorpdfstring{write\_cluster\_complexes()}{write\_cluster\_complexes()}}
-{\footnotesize\ttfamily subroutine mod\+\_\+clust\+\_\+algorithm\+::write\+\_\+cluster\+\_\+complexes (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{tot\+\_\+encounters,  }\item[{integer, dimension(\+:), intent(in)}]{cluster\+\_\+parent,  }\item[{integer, dimension(\+:), intent(in)}]{cluster\+\_\+count,  }\item[{logical, dimension(\+:), intent(in)}]{active\+\_\+clusters,  }\item[{character$\ast$128, intent(in)}]{output\+\_\+name,  }\item[{type(\mbox{\hyperlink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}})}]{complexes }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily subroutine mod\+\_\+clust\+\_\+algorithm\+::write\+\_\+cluster\+\_\+complexes (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{tot\+\_\+encounters,  }\item[{integer, dimension(\+:), intent(in)}]{cluster\+\_\+parent,  }\item[{integer, dimension(\+:), intent(in)}]{cluster\+\_\+count,  }\item[{logical, dimension(\+:), intent(in)}]{active\+\_\+clusters,  }\item[{character\texorpdfstring{$\ast$}{*}128, intent(in)}]{output\+\_\+name,  }\item[{type(\mbox{\hyperlink{structmod__assoc_1_1type__assoc__file}{type\+\_\+assoc\+\_\+file}})}]{complexes }\end{DoxyParamCaption})}
 
 
 
-Write complexes contained in each cluster to individual files. 
+Write complexes contained in each cluster to individual files.
 
-For each active cluster this routine creates a file {\ttfamily $<$output\+\_\+name$>$\+\_\+cluster\+X\+X\+X\+X\+\_\+complexes} containing the header lines from {\ttfamily complexeshead} and the encounter lines for the cluster members taken from {\ttfamily complexeslines}.
+For each active cluster this routine creates a file {\ttfamily \texorpdfstring{$<$}{<}output\+\_\+name\texorpdfstring{$>$}{>}\+\_\+cluster\+XXXX\+\_\+complexes} containing the header lines from {\ttfamily complexeshead} and the encounter lines for the cluster members taken from {\ttfamily complexeslines}.
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -155,17 +93,17 @@ For each active cluster this routine creates a file {\ttfamily $<$output\+\_\+na
 \mbox{\texttt{ in}}  & {\em complexes} & Structure with header and lines to write \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{namespacemod__clust__algorithm_a781dcda3e1ee679a509a0a466f15a0cf}\label{namespacemod__clust__algorithm_a781dcda3e1ee679a509a0a466f15a0cf}} 
+\Hypertarget{namespacemod__clust__algorithm_a781dcda3e1ee679a509a0a466f15a0cf}\label{namespacemod__clust__algorithm_a781dcda3e1ee679a509a0a466f15a0cf}
 \index{mod\_clust\_algorithm@{mod\_clust\_algorithm}!write\_cluster\_elements@{write\_cluster\_elements}}
 \index{write\_cluster\_elements@{write\_cluster\_elements}!mod\_clust\_algorithm@{mod\_clust\_algorithm}}
 \doxysubsubsection{\texorpdfstring{write\_cluster\_elements()}{write\_cluster\_elements()}}
-{\footnotesize\ttfamily subroutine mod\+\_\+clust\+\_\+algorithm\+::write\+\_\+cluster\+\_\+elements (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{tot\+\_\+encounters,  }\item[{integer, dimension(\+:), intent(in)}]{cluster\+\_\+parent,  }\item[{integer, dimension(\+:), intent(in)}]{cluster\+\_\+count,  }\item[{logical, dimension(\+:), intent(in)}]{active\+\_\+clusters,  }\item[{character$\ast$128, intent(in)}]{output\+\_\+name }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily subroutine mod\+\_\+clust\+\_\+algorithm\+::write\+\_\+cluster\+\_\+elements (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{tot\+\_\+encounters,  }\item[{integer, dimension(\+:), intent(in)}]{cluster\+\_\+parent,  }\item[{integer, dimension(\+:), intent(in)}]{cluster\+\_\+count,  }\item[{logical, dimension(\+:), intent(in)}]{active\+\_\+clusters,  }\item[{character\texorpdfstring{$\ast$}{*}128, intent(in)}]{output\+\_\+name }\end{DoxyParamCaption})}
 
 
 
-Write cluster membership lists to a text file. 
+Write cluster membership lists to a text file.
 
-Outputs a file named {\ttfamily $<$output\+\_\+name$>$\+\_\+clusters.\+txt} containing the members of each active cluster in a matrix-\/like format.
+Outputs a file named {\ttfamily \texorpdfstring{$<$}{<}output\+\_\+name\texorpdfstring{$>$}{>}\+\_\+clusters.\+txt} containing the members of each active cluster in a tabular text format.
 
 
 \begin{DoxyParams}[1]{Parameters}

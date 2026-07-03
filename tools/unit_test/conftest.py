@@ -1,4 +1,7 @@
-"""Pytest configuration and shared fixtures for unit tests."""
+"""Pytest configuration and shared fixtures for unit tests.
+
+@version 1.0
+"""
 
 import os
 import tempfile

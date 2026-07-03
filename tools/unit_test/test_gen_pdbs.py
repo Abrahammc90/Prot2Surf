@@ -1,5 +1,7 @@
 """
 Unit tests for gen_pdbs.py - Atom class and transformation logic.
+
+@version 1.0
 """
 import pytest
 from gen_pdbs import Atom

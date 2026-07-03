@@ -1,4 +1,7 @@
-"""Unit tests for combine.py - Combining encounter complex files."""
+"""Unit tests for combine.py - Combining encounter complex files.
+
+@version 1.0
+"""
 
 import sys
 import os

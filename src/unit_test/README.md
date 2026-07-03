@@ -5,7 +5,6 @@ This directory contains standalone Fortran test programs for core clustering mod
 ## Included Test Programs
 
 - `test_maths.f90`: numerical/geometry operations in `maths`
-- `test_matrix.f90`: matrix I/O and RMSD matrix operations in `mod_matrix`
 - `test_array.f90`: array I/O, array-based encounter metrics, and array/metadata reordering in `mod_array`
 - `test_threshold.f90`: threshold operations in `mod_threshold`
 - `test_pdb.f90`: PDB parsing/structures in `mod_pdb`
@@ -15,9 +14,6 @@ This directory contains standalone Fortran test programs for core clustering mod
 
 ## Current Coverage Notes
 
-- `test_matrix.f90` currently covers:
-	- `write_matrix()` / `read_matrix()`
-	- `matrix_rmsd()`
 - `test_array.f90` currently covers:
 	- `write_array()` / `read_array()`
 	- `array_z_coord()`

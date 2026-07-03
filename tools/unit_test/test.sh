@@ -4,6 +4,8 @@
 #
 # Quick Test Runner - Shortcut for running all tests
 #
+# @version 1.0
+#
 # This script is a quick wrapper around run_tests.sh with common use cases.
 #
 # Usage:
@@ -60,9 +62,6 @@ case "${1:-}" in
         ;;
     fast|-f)
         "$RUN_TESTS" -f
-        ;;
-    cluster)
-        "$RUN_TESTS" --cluster -v
         ;;
     combine)
         "$RUN_TESTS" --combine -v
