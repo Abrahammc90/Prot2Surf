@@ -84,7 +84,7 @@ def _plot_cluster_lines(cluster_data, cluster_x_values):
     bar_width = 5  # Adjusted bar width for better visibility
 
     for cluster_name in cluster_data:
-        cluster_number = int(cluster_name.split()[1])
+        cluster_number = int(cluster_name.split()[1].rstrip(":"))
         y_values = list(cluster_data[cluster_name].values())
         x_values = cluster_x_values[cluster_name]
         
@@ -213,7 +213,7 @@ def _parse_cluster_file(cluster_file, all_distances):
             
             # Identify cluster headers
             if line.startswith("Cluster"):
-                cluster_name = f"{line_parts[0]} {line_parts[1]}"
+                cluster_name = f"{line_parts[0]} {line_parts[1].rstrip(':')}"
                 cluster_data[cluster_name] = {}
                 encounter_tokens = line_parts[2:]
             else:
