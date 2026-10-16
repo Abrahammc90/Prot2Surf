@@ -25,6 +25,7 @@ The selected mode is controlled by `-data_type`:
 - `-pdb1 <file>` (required for `atoms_dist` and angle types)
 - `-atoms1`, `-atoms1a`, `-atoms1b`, `-atoms2b` (as needed by data type)
 - `-nb_encounters <N>`
+- `-complexes_output <file>` (defaults to `sorted_<complexes>`)
 - `-help`
 
 ## Modules Used
@@ -44,7 +45,7 @@ The selected mode is controlled by `-data_type`:
 ```
 
 ```bash
-./make_data -pdb2 p2_noh.pdb -atoms2 Cu -complexes assoc_complexes -data_type z_coord -output array_z.txt
+./make_data -pdb2 p2_noh.pdb -atoms2 Cu -complexes assoc_complexes -data_type z_coord -output array_z.txt -complexes_output sorted_complexes
 ```
 
 ## Author

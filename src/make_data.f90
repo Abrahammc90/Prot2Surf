@@ -40,13 +40,14 @@ program main
     real (kind=8), dimension(:, :), allocatable :: atoms2a_coords, atoms2b_coords
     real (kind=8), dimension(3) :: cog1a, cog1b, cog2a, cog2b
     !real (kind=8), dimension(:, :), allocatable :: residues_cog, residue_crds
-    logical :: pdb1_bool, pdb2_bool, complexes_bool
+    logical :: pdb1_bool, pdb2_bool, complexes_bool, complexes_output_bool
     logical :: output_bool, datatype_bool, nb_encounters_bool, help_bool
     logical :: arr_atoms1a_bool, arr_atoms1b_bool, arr_atoms2a_bool, arr_atoms2b_bool
     call parse_arguments( &
       pdb1_filename, pdb1_bool, &
       pdb2_filename, pdb2_bool, &
       complexes_filename, complexes_bool, &
+      sorted_complexes_filename, complexes_output_bool, &
       nb_encounters, nb_encounters_bool, &
       output_filename, output_bool, &
       data_type, datatype_bool, &
@@ -122,7 +123,9 @@ program main
     end if
 
 
-    sorted_complexes_filename = "sorted_" // trim(complexes_filename)
+    if (.not. complexes_output_bool) then
+      sorted_complexes_filename = "sorted_" // trim(complexes_filename)
+    end if
 
     ! Branch by requested metric type and compute corresponding output data.
     print *, 'Building ', trim(data_type), ' data'
@@ -141,7 +144,7 @@ program main
 
       ! z_coord creates an array (one value per encounter).
       call write_array(distarray, output_filename)
-      call write_complexes(complexes, nb_encounters, complexes_filename)
+      call write_complexes(complexes, nb_encounters, sorted_complexes_filename)
 
     else if (trim(adjustl(data_type)) == "3D_angle" .or. trim(adjustl(data_type)) == "2D_angle") then
 
@@ -251,6 +254,8 @@ program main
       !! @param[out] p_pdb2_bool          Whether `-pdb2` was provided
       !! @param[out] p_complexes_filename Value parsed from `-complexes`
       !! @param[out] p_complexes_bool     Whether `-complexes` was provided
+      !! @param[out] p_complexes_output_filename Value parsed from `-complexes_output`
+      !! @param[out] p_complexes_output_bool Whether `-complexes_output` was provided
       !! @param[out] p_nb_encounters      Value parsed from `-nb_encounters`
       !! @param[out] p_nb_encounters_bool Whether `-nb_encounters` was provided
       !! @param[out] p_output_filename    Value parsed from `-output`
@@ -270,6 +275,7 @@ program main
         p_pdb1_filename, p_pdb1_bool, &
         p_pdb2_filename, p_pdb2_bool, &
         p_complexes_filename, p_complexes_bool, &
+        p_complexes_output_filename, p_complexes_output_bool, &
         p_nb_encounters, p_nb_encounters_bool, &
         p_output_filename, p_output_bool, &
         p_data_type, p_datatype_bool, &
@@ -286,6 +292,8 @@ program main
         logical, intent(out) :: p_pdb2_bool
         character*128, intent(out) :: p_complexes_filename
         logical, intent(out) :: p_complexes_bool
+        character*128, intent(out) :: p_complexes_output_filename
+        logical, intent(out) :: p_complexes_output_bool
         integer, intent(out) :: p_nb_encounters
         logical, intent(out) :: p_nb_encounters_bool
         character*128, intent(out) :: p_output_filename
@@ -317,6 +325,7 @@ program main
         p_pdb1_bool = .false.
         p_pdb2_bool = .false.
         p_complexes_bool = .false.
+        p_complexes_output_bool = .false.
         p_output_bool = .false.
         p_datatype_bool = .false.
         p_nb_encounters_bool = .false.
@@ -345,6 +354,11 @@ program main
             p_complexes_bool = .true.
             call getarg( count_arg+1, argument )
             p_complexes_filename = trim(argument)
+            count_arg = count_arg + 1
+          else if ( trim(argument) == "-complexes_output" ) then
+            p_complexes_output_bool = .true.
+            call getarg( count_arg+1, argument )
+            p_complexes_output_filename = trim(argument)
             count_arg = count_arg + 1
           else if ( trim(argument) == "-nb_encounters" ) then
             p_nb_encounters_bool = .true.
@@ -476,6 +490,7 @@ program main
         print *, "* 3D_angle"
         print *, ""
         print *, "General required options: -pdb2 -atoms2 -complexes -data_type -output"
+        print *, "Optional sorted complexes output: -complexes_output <file>"
         print *, ""
         STOP
       else if (trim(help_option) == "z_coord") then
@@ -485,7 +500,7 @@ program main
         "number of encounters, data type and output file."
         print *, ""
         print *, "Eg.: ./make_data -pdb2 p2_noh.pdb -atoms2 Cu -complexes assoc_complexes ", &
-        "-data_type z_coord -output array_z.txt"
+        "-data_type z_coord -output array_z.txt -complexes_output sorted_complexes"
         print *, ""
         STOP
       else if (trim(help_option) == "atoms_dist") then
@@ -495,7 +510,8 @@ program main
         "and output file."
         print *, ""
         print *, "Eg.: ./make_data -pdb1 p1_noh.pdb -pdb2 p2_noh.pdb -complexes ", &
-        "assoc_complexes -atoms1 C1 C4 -atoms2 Cu -data_type atoms_dist -output array_dist.txt"
+        "assoc_complexes -atoms1 C1 C4 -atoms2 Cu -data_type atoms_dist -output array_dist.txt ", &
+        "-complexes_output sorted_complexes"
         print *, ""
         STOP
       else if (trim(help_option) == "2D_angle" .or. trim(help_option) == "3D_angle") then
@@ -506,7 +522,7 @@ program main
         print *, ""
         print *, "Eg.: ./make_data -pdb1 p1_noh.pdb -pdb2 p2_noh.pdb -complexes ", &
         "assoc_complexes -atoms1a 1 -atoms1b 411 -atoms2a Cu -atoms2b 4 5 6 7 8 -data_type 3D_angle ", &
-        "-output array_angle.txt"
+        "-output array_angle.txt -complexes_output sorted_complexes"
         print *, ""
         print *, "For this specific data type you need to be aware that a center ", &
         "of geometry will be calculated for each group of atoms and indexed accordingly: "

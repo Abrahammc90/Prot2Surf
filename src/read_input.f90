@@ -100,8 +100,8 @@ module read_input
             STOP 1
         end if
 
-        ! Count data rows (excluding 4 header lines).
-        tot_encounters = max(0, size_assoc(input_assoc) - 4)
+        ! Count encounter rows.
+        tot_encounters = max(0, size_assoc(input_assoc))
 
         ! Allocate arrays and read header/transform values.
         call allocate_assoc_object(assoc,tot_encounters)

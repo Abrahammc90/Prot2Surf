@@ -80,18 +80,19 @@ program main
   end if
 
   call read_assoc(complexes, complexes_filename, tot_encounters)
+
+  if (.not. nb_encounters_bool) then
+    nb_encounters = tot_encounters
+  else if (nb_encounters > tot_encounters) then
+    print *, '[threshold] WARNING: -nb_encounters > complexes size. Using complexes size.'
+    nb_encounters = tot_encounters
+  end if
+
   call read_array(distarray, nb_encounters, array_input_filename)
 
   if (nb_encounters > size(distarray)) then
     print *, '[threshold] WARNING: -nb_encounters > array size. Using array size.'
     nb_encounters = size(distarray)
-  end if
-
-  if (nb_encounters > tot_encounters) then
-    print *, '[threshold] WARNING: -nb_encounters > complexes size. Using complexes size.'
-    nb_encounters = tot_encounters
-  else if (.not. nb_encounters_bool) then
-    nb_encounters = min(size(distarray), tot_encounters)
   end if
 
   allocate(encounter_indexes(nb_encounters))
